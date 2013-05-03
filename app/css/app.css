@@ -1,30 +1,123 @@
 /* app css stylesheet */
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+body{
+  margin : 0;
+  color: black;
 }
 
-.menu:before {
-  content: "[";
+.cat{
+  margin-left: 20px;
+  border-radius: 0px;
+  box-shadow: 4px 4px 12px black; 
 }
 
-.menu:after {
-  content: "]";
+.catSelected{
+  background-color: green;
 }
 
-.menu > li {
-  display: inline;
+.container{
+  border: 1px black;
 }
 
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
+.inline{
+  display: inline-block;
 }
 
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
+.navbar .btn{
+  border-color: green;
+}
+
+.navbar .btn, .navbar-search{
+  margin-top: 15px;  
+  margin-left: 80px;
+}
+
+.separator{
+
+  border-top: 2px solid black;
+}
+
+#btnMore{
+  margin-top: 1em;
+}
+
+#carrousel{
+  height: 200px;
+  overflow: hidden;
+  text-align: center;
+}
+
+#catList{
+  text-align: center;
+}
+
+#descTeamSelection{
+  padding: 50px;
+  text-align : justify;
+}
+
+#imgCarrousel{
+  margin-top: -370px;
+}
+
+#logoNavbar{
+  height: 40px;
+}
+
+#logoTeamSelection{
+  width: 300px;
+}
+
+#navbar{
+  background-color: black;
+  height: 60px;
+}
+
+#searchNavbar{
+}
+
+.navbar-inner {
+  background-color: black;
+  border-radius: 0;
+  border: 0px;
+  background-image: none;
+  background-repeat: no-repeat;
+  filter: none;
+}
+
+.hexagon {
+    width: 100px;
+    height: 55px;
+    position: relative;
+}
+.hexagon, .hexagon:before, .hexagon:after {
+    background: red;
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,0.8);   
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.8);   
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);   
+}
+.hexagon:before, .hexagon:after {
+    content: "";
+    position: absolute;
+    left: 22px;
+    width: 57px;
+    height: 57px;
+    -moz-transform: rotate(145deg) skew(22.5deg);
+    -webkit-transform: rotate(145deg) skew(22.5deg);
+    transform: rotate(145deg) skew(22.5deg);
+}
+.hexagon:before {
+    top: -29px;
+}
+.hexagon:after {
+    top: 27px;
+}
+.hexagon span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 55px;
+    background:red;
+    z-index: 1;
 }

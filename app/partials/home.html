@@ -1,0 +1,64 @@
+
+<div id="mainContainer">
+	<div id="carrousel">
+		<img id="imgCarrousel" src="img/img.jpg" alt="imgCarrousel">
+	</div>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container">
+
+				<!-- Be sure to leave the brand out there if you want it shown -->
+				<a class="brand" href="#"><img id="logoNavbar" src="img/logo_home2.png" alt="logoNavbar"></a>
+
+				<div id="searchNavbar" class="input-append navbar-search">
+					<input class="span2" type="text" placeholder="Entrez une recherche">
+					<span class="add-on">
+						<i class="icon-search"></i>
+					</span>
+				</div>
+				<div class="pull-right">
+					<a class="btn" href="#"><b>Poster une Alvéole</b></a>
+					<a class="btn" href="#"><b>À propos d'AlveolUs</b></a>
+					<a class="btn" href="#"><b>Sign in</b></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div id="catList">
+			<a ng-repeat="cat in cats" ng-mouseover="hover(cat)" ng-class="itemClass(cat)" class="btn cat" href="#">{{cat.name}}</a>
+		</div>
+
+		<div id="teamSelection">
+
+			<div>
+				<br>
+				<h3 class="inline">Économie parallèle - Sélection de l'équipe :</h3>
+				<button id="btnMore" class="btn btn-success pull-right" type="button">50 alvéoles d'économie parallèle ></button>
+			</div>
+
+			<table class="offset1">
+				<tr>
+					<td id="logoTeamSelection">
+						<img src="img/ouishare.jpeg">
+					</td>
+					<td  id="descTeamSelection">
+						<span>
+							<h4>OuiShare</h4>
+							OuiShare est une communauté ouverte internationale composée de passionnés -entrepreneurs, designers, makers, chercheurs, décideurs publics, citoyens, et bien d’autres- qui oeuvrent pour le développement de l’économie collaborative. Organisation à but non lucratif fondée en janvier 2012 à Paris, OuiShare se donne pour mission d’explorer, de mettre en lien et de promouvoir les idées et projets à impact sociétal, basés sur les modèles du partage, de la collaboration et de l’ouverture.
+						</span>
+					</td>
+				</tr>
+			</table>
+			<br>
+		</div>
+
+		<div class="separator"></div>
+
+		<div id="popularApps">
+			<h3><img src="img/star_small.png">  Alvéoles Populaires</h3>
+		</div>
+
+		<!-- <div class="hexagon"><span></span></div> -->
+	</div>
+</div>

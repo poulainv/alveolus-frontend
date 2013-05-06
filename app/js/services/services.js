@@ -29,4 +29,11 @@ factory('Webapp', function($resource) {
             method: 'PUT'
         }
     });
+}).
+factory('WebappFacebook', function($resource) {
+    return $resource('http://graph.facebook.com/:id?callback=?', {id:'@id'}, {
+        get: {
+            method: 'GET'
+        }
+    });
 });

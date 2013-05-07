@@ -132,6 +132,7 @@ body{
 .ulWebAppLinks li{
   margin-top: 5px;
   margin-bottom: 5px;
+  color: #2ecc71;
 }
 .ulWebAppLinks li.marginTop{
   margin-top: 20px;
@@ -145,4 +146,7 @@ body{
 }
 .ulWebAppLinks a:hover{
   color: #34495e;
+}
+.rating i{
+  margin:0;
 }

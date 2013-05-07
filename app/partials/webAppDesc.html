@@ -9,11 +9,16 @@
 				<div class="span6"><img ng-src="img/cupofteach.jpg"/></div>
 				<div class="span4">
 					<ul class="ulWebAppLinks">
+						<li class="rating">
+							<i class="{{site.average_rate>=($index+1) | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+							(Note:{{site.average_rate}}/5)
+						</li>
+
 						<li><a href={{site.url}} target="_blank"><i class="icon-external-link icon-large"></i>Accéder au site</a></li>
-						<li><a href=#><i class="icon-star-empty icon-large"></i>Ajouter aux favoris</a></li>
+						<li><a href=#><i class="icon-heart-empty icon-large"></i>Ajouter aux favoris</a></li>
 						<li><a href=#><i class="icon-share-alt icon-large"></i>Partager</a></li>
 						<li class="marginTop"><a href=#><i class="icon-facebook icon-large"></i>{{facebook.likes}} personnes aiment</a></li>
-						<li><a href=#><i class="icon-check icon-large"></i>X personnes participent</a></li>
+						<li><i class="icon-check icon-large"></i>X personnes participent</li>
 						<li><a href=#><i class="icon-eye-open icon-large"></i>Vu {{site.nb_click_preview + site.nb_click_detail}} fois</a></li>
 					</ul>
 				</div>
@@ -24,6 +29,8 @@
 				<p>{{site.description}}</p>
 
 				<p>{{site}}</p>
+
+				
 			</div>
 			
 		</div>

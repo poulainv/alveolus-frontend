@@ -9,6 +9,5 @@ controller('WebAppDescCtrl', function($scope, $routeParams, Webapp, WebappFacebo
 	$scope.user=$scope.site.user_id ? $scope.site.user_id : 'X';
 
 	$scope.facebook_id="294735233916083";
-
 	$scope.facebook=WebappFacebook.get({id: $scope.facebook_id});
 });

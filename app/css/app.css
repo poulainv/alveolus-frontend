@@ -147,6 +147,30 @@ body{
 .ulWebAppLinks a:hover{
   color: #34495e;
 }
-.rating i{
+#starsRatingShow i{
   margin:0;
+}
+
+span.star{
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+}
+.rating span.star:before, .rating span.star:before {
+  content: "\f006";
+  padding-right: 2px;
+  color: #999;
+}
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  font-size: 23px;
+  width: 116px;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\f005";
+   color: rgb(241, 196, 15);
 }

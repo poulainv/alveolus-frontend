@@ -1,35 +1,48 @@
 <div class="container">
 	<div class="row">
 		<div class="span10 offset1">
-			<h1 class="text-center">{{site.title}}</h1>
-			<h2 class="text-center">Categorie - proposée par {{user}}</h2>
+			<h1 class="text-center">{{result.webapp.title}}</h1>
+			<h2 class="text-center">{{category.name}} - proposée par {{user.email}}</h2>
 			
-
 			<div class="row">
+
 				<div class="span6"><img ng-src="img/cupofteach.jpg"/></div>
 				<div class="span4">
 					<ul class="ulWebAppLinks">
-						<li class="rating">
-							<i class="{{site.average_rate>=($index+1) | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
-							(Note:{{site.average_rate}}/5)
+						<li id="starsRatingShow">
+							<i class="{{result.webapp.average_rate>=($index+1) | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+							(Note:{{result.webapp.average_rate}}/5)
 						</li>
 
-						<li><a href={{site.url}} target="_blank"><i class="icon-external-link icon-large"></i>Accéder au site</a></li>
+						<li><a href={{site.url}} target="_blank"><i class="icon-link icon-large"></i>Accéder au site</a></li>
 						<li><a href=#><i class="icon-heart-empty icon-large"></i>Ajouter aux favoris</a></li>
 						<li><a href=#><i class="icon-share-alt icon-large"></i>Partager</a></li>
-						<li class="marginTop"><a href=#><i class="icon-facebook icon-large"></i>{{facebook.likes}} personnes aiment</a></li>
-						<li><i class="icon-check icon-large"></i>X personnes participent</li>
-						<li><a href=#><i class="icon-eye-open icon-large"></i>Vu {{site.nb_click_preview + site.nb_click_detail}} fois</a></li>
+						<div class="block">
+						<li class="marginTop"><a href=#><i class="icon-facebook icon-large"></i>Facebook :{{facebook.likes}} likes</a></li>
+						<li><a href=#><i class="icon-google-plus icon-large"></i>Google Plus</a></li>
+						<li><a href=#><i class="icon-twitter icon-large"></i>Twitter</a></li>
+					</div>
+						<li class="marginTop"><i class="icon-check icon-large"></i>X personnes participent</li>
+						<li><i class="icon-eye-open icon-large"></i>Vu {{result.webapp.nb_click_preview + result.webapp.nb_click_detail}} fois</li>
 					</ul>
 				</div>
+			</div>
 
-			</div class="span10">
-				<h3 class="text-center">{{site.caption}}</h3>
 
-				<p>{{site.description}}</p>
+				<h3>Description</h3>
+				<h4>{{result.webapp.caption}}</h4>
 
-				<p>{{site}}</p>
+				<p>{{result.webapp.description}}</p>
 
+
+			<!-- </div class="span10"> -->
+				<h3><i class="icon-comments"></i>  Commentaires</h3>
+				<div class="rating"><span class="star" ng-repeat="n in [] | range:5"></span></div>
+				<li ng-repeat="comment in comments">
+				 <p>{{comment.body}}</p>
+				</li>
+				{{comments}}
+			<!-- </div> -->
 				
 			</div>
 			

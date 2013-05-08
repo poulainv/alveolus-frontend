@@ -36,4 +36,48 @@ factory('WebappFacebook', function($resource) {
             method: 'GET'
         }
     });
+}).
+factory('WebappComments', function($resource) {
+    return $resource('http://quiet-spire-4994.herokuapp.com/webapps/:id/comments', {id:'@id'}, {
+        get: {
+            method: 'GET'
+        },
+        add: {
+            method: 'POST'
+        }
+    });
+}).
+
+factory('UsersList', function($resource) {
+    return $resource('http://quiet-spire-4994.herokuapp.com/users', {}, {
+        get: {
+            method: 'GET'
+        },
+        add: {
+            method: 'POST'
+        }
+    });
+}).
+factory('User', function($resource) {
+    return $resource('http://quiet-spire-4994.herokuapp.com/users/:id', {id:'@id'}, {
+        get: {
+            method: 'GET'
+        },
+        add: {
+            method: 'POST'
+        },
+        remove: {
+            method: 'DELETE'
+        },
+        update: {
+            method: 'PUT'
+        }
+    });
+}).
+factory('Categorie', function($resource) {
+    return $resource('http://quiet-spire-4994.herokuapp.com/categories/:id', {id:'@id'}, {
+        get: {
+            method: 'GET'
+        }
+    });
 });

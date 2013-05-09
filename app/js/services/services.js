@@ -40,7 +40,7 @@ factory('WebappFacebook', function($resource) {
 factory('WebappComments', function($resource) {
     return $resource('http://quiet-spire-4994.herokuapp.com/webapps/:id/comments', {id:'@id'}, {
         get: {
-            method: 'GET'
+            method:'GET', isArray: true
         },
         add: {
             method: 'POST'

@@ -9,11 +9,6 @@
 				<div class="span6"><img ng-src="img/cupofteach.jpg"/></div>
 				<div class="span4">
 					<ul class="ulWebAppLinks">
-						<li id="starsRatingShow">
-							<i class="{{result.webapp.average_rate>=($index+1) | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
-							(Note:{{result.webapp.average_rate}}/5)
-						</li>
-
 						<li><a href={{site.url}} target="_blank"><i class="icon-link icon-large"></i>Accéder au site</a></li>
 						<li><a href=#><i class="icon-heart-empty icon-large"></i>Ajouter aux favoris</a></li>
 						<li><a href=#><i class="icon-share-alt icon-large"></i>Partager</a></li>
@@ -29,20 +24,80 @@
 			</div>
 
 
-				<h3>Description</h3>
-				<h4>{{result.webapp.caption}}</h4>
-
-				<p>{{result.webapp.description}}</p>
+				<h3>Qu'est-ce que c'est ?</h3>
+				<div class="row">
+					<div class="span2">
+						<h4>Tags</h4>
+						<ul id="tagList">
+							<li ng-repeat="tag in result.webapp.tags"><i class="icon-bookmark-empty"></i> {{tag.tag.name}}</li>
+						</ul>
+					</div>
+					<div class="span8">
+						<h4>{{result.webapp.caption}}</h4>
+						<p>{{result.webapp.description}}</p>
+					</div>
+				</div>
 
 
 			<!-- </div class="span10"> -->
-				<h3><i class="icon-comments"></i>  Commentaires</h3>
-				<div class="rating"><span class="star" ng-repeat="n in [] | range:5"></span></div>
-				<li ng-repeat="comment in comments">
-				 <p>{{comment.body}}</p>
-				</li>
-				{{comments}}
+			<div class="row">
+				<h3 class="span3"><i class="icon-comments"></i>  Commentaires</h3>
+				<span class="span3 offset4"><a href="#" class="btn btn-info" id="btnAvis"><i class="icon-white icon-pencil"></i> Donner un avis</a></span>
+			
+				<h4 class="span10">Avis des utilisateurs</h4>
+				<div id="starsRatingShow" class="span10">
+					<i class="{{result.webapp.average_rate>=($index+1) | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+					Note:{{result.webapp.average_rate}}/5, basée sur X avis
+				</div>
+				<div class="light-separator span10"></div>
+			</div>
+				<div ng-repeat="comment in comments">
+					<div class="row">
+					<aside class="span2">
+						<div class="row">
+							<div class="span2">
+					 			<p>Par {{comment.user_id}}</p>
+					 		</div>
+					 		<div class="span2">
+					 			<p>Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</p>
+					 		</div>
+					 	</div>
+					 </aside>
+					 <section class="span8">
+					 	<p>{{comment.body}}</p>
+					 </section>
+					<div class="light-separator span10"></div>
+				</div>
+					
+				</div>
+
+				<h4>Donnez votre avis !</h4>
+				<!-- <label class="label" for="rating">Note :</label> -->
+				<table>
+					<tr>
+						<td><div id="label">Note :</div></td>
+						<td>
+							<div class="rating">
+						    <input type="radio" id="star5" name="rating" value="5" ng-model="comment.rating"/><label for="star5" title="Amazing !"></label>
+						    <input type="radio" id="star4" name="rating" value="4" ng-model="comment.rating"/><label for="star4" title="Cool !"></label>
+						    <input type="radio" id="star3" name="rating" value="3" ng-model="comment.rating"/><label for="star3" title="Pas mal"></label>
+						    <input type="radio" id="star2" name="rating" value="2" ng-model="comment.rating"/><label for="star2" title="Bof"></label>
+						    <input type="radio" id="star1" name="rating" value="1" ng-model="comment.rating"/><label for="star1" title="J'aime pas"></label>
+							</div>
+						</td>
+					</tr>
+				</table>
+    			<textarea id="textarea" rows="5" class="field span10" ng-model="comment.text"
+    			placeholder="Que pensez vous de ce site ?"></textarea>
+			    <button type="button" class="btn"  ng-click="save()">Envoyer</button>	
 			<!-- </div> -->
+			<br><br>
+			Debug View:
+      		<pre>comment={{comment | json}}</pre>
+      		<pre>user={{user | json}}</pre>
+      		<pre>result={{result | json}}</pre>
+      		<pre>category={{category | json}}</pre>
+				
 				
 			</div>
 			

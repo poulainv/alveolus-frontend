@@ -9,5 +9,3 @@ angular.module('alveolus', ['alveolus.filters', 'alveolus.services', 'alveolus.d
       otherwise({redirectTo: ''});
   }]);
 
-  
-	$("#logoNavbar").hide();

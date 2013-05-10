@@ -29,4 +29,19 @@ factory('Webapp', function($resource) {
             method: 'PUT'
         }
     });
+}).
+factory('FeaturedApp', function($resource){
+    return $resource('http://quiet-spire-4994.herokuapp.com/categories/:id/featured_webapp', {id:'@id'}, {
+        get: {
+            method :'GET'
+        }
+    });
+}).
+factory('Categories', function($resource){
+    return $resource('http://quiet-spire-4994.herokuapp.com/categories',{},{
+        query: {
+            method :'GET',
+            isArray: true
+        }
+    });
 });

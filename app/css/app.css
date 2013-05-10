@@ -45,11 +45,7 @@ body{
 }
 
 .catSelected{
-  background-color: green;
-}
-
-.container{
-  border: 1px black;
+  border: 1px solid green;
 }
 
 .inline{
@@ -92,11 +88,67 @@ body{
   background-repeat: no-repeat;
   filter: none;
 }
+/* Rating stars (dynamic) */
+.rating {
+  float:left;
+  width: 150px;
+  font-family: FontAwesome;
+}
+.rating > #label{
+  font-family: 'Open Sans', sans-serif;
 
+}
+.rating:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+  clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+  float:right;
+  width:1em;
+  padding:0;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:150%;
+  line-height:1.2;
+  color:#ddd;
+  content: "\f005";
+}
+
+.rating:not(:checked) > label:before {
+  content: "\f005";
+}
+
+.rating > input:checked ~ label {
+  color: #f70;
+  content: "\f005";
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: gold;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  color: #ea0;
+  content:"\f005";
+}
 .separator{
 
   border-top: 2px solid black;
 }
+
+/* Stars static */
+.starsRatingShow i{
+  color: #ea0;
+}
+
 
 #btnMore{
   margin-top: 1em;
@@ -112,7 +164,7 @@ body{
   text-align: center;
 }
 
-#descTeamSelection{
+#descFeaturedApp{
   padding: 50px;
   text-align : justify;
 }
@@ -126,10 +178,18 @@ body{
 }
 
 #logoTeamSelection{
-  width: 300px;
+  /*width: 300px;*/
 }
 
 #navbar{
   background-color: black;
   height: 60px;
+}
+
+#socialFeaturedApp{
+  padding-left: 50px;
+}
+
+#tableFeatured{
+  min-height: 250px;
 }

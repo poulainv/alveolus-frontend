@@ -16,6 +16,21 @@ controller('WebAppDescCtrl', function($scope, $routeParams, Webapp, WebappFacebo
 
 	$scope.comments=WebappComments.get({id: $routeParams.webAppId}); 
 
+	// $('#webappModal').modal('toggle');
+
+	$('#webappModal').modal({
+        backdrop: true,
+        keyboard: true,
+        show: true
+    }).css({
+       'width': function () { 
+           return ($(document).width() * .9) + 'px';  
+       },
+       'margin-left': function () { 
+           return -($(this).width() / 2); 
+       }
+});
+
 
 	$scope.save = function() {
 	    $scope.comment = angular.copy($scope.comment, $scope.master);

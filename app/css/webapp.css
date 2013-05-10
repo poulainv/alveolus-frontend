@@ -121,3 +121,8 @@ ul#tagList a {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+
+.linkWithoutDecoration a:hover{
+  text-decoration: none;
+};

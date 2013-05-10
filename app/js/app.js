@@ -7,6 +7,7 @@ angular.module('alveolus', ['alveolus.filters', 'alveolus.services', 'alveolus.d
   $routeProvider.
       when('', {templateUrl: 'partials/home.html',   controller: 'HomeCtrl'}).
       when('/webapp/:webAppId', {templateUrl: 'partials/webAppDesc.html',   controller: 'WebAppDescCtrl'}).
+      when('/webappModal/:webAppId', {templateUrl: 'partials/webAppModal.html',   controller: 'WebAppDescCtrl'}).
       otherwise({redirectTo: ''});
   }]);
 

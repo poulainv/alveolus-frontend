@@ -56,6 +56,17 @@ body{
   text-align: justify;
 }
 
+.appTags{
+  position:absolute;
+  bottom:12px;
+  left:10px;
+  font-size: 12px;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .cat{
   margin-left: 20px;
   border-radius: 0px;
@@ -64,6 +75,10 @@ body{
 
 .catSelected{
   border: 1px solid green;
+}
+
+.carousel-control{
+  background-color: green;
 }
 
 .imgCarousel{

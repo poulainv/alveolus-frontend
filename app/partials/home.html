@@ -70,6 +70,10 @@
 					<p class="appDesc">
 						{{webapps[$parent.$index * numColumns + $index].webapp.caption}}
 					</p>
+					<div class="appTags">
+						<i class="icon-bookmark"></i>
+						<i ng-repeat="tag in webapps[$parent.$index * numColumns + $index].webapp.tags">{{tag.tag.name}}, </i>
+					</div>
 				</div>
 			</div>
 

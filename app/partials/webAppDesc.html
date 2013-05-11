@@ -1,0 +1,139 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="span10 offset1">
+			<h1 class="text-center">{{result.webapp.title}}</h1>
+			<h2 class="text-center">{{category.name}} - proposée par {{user.pseudo}}</h2>
+			
+			<div class="row">
+
+				<div class="span6"><img ng-src="img/cupofteach.jpg"/></div>
+				<div class="span4">
+					<div class="starsRatingShow span10" id="starsRatingShowDesc">
+								<i class="{{ {'rate':result.webapp.average_rate, 'index':$index+1} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+							Note : {{result.webapp.average_rate}}/5, basée sur {{comments.length}} avis
+							</div>
+					<ul class="ulWebAppLinks">
+						<li><a href="{{result.webapp.url}}" target="_blank"><i class="icon-link icon-large"></i> Accéder au site</a></li>
+						<li><a href=#><i class="icon-heart-empty icon-large"></i>Ajouter aux favoris</a></li>
+						<li><a href=#><i class="icon-share-alt icon-large"></i>Partager</a></li>
+						<div class="block">
+						<li class="marginTop"><a href={{facebook.link}} target="_blank"><i class="icon-facebook icon-large"></i>Facebook : {{facebook.likes}} likes</a></li>
+						<li><a href=#><i class="icon-google-plus icon-large"></i>Google Plus</a></li>
+						<li><a href="https://twitter.com/{{result.webapp.twitter_id}}" target="_blank"><i class="icon-twitter icon-large"></i>Twitter : {{twitter.followers_count}} followers</a></li>
+					</div>
+						<li class="marginTop"><i class="icon-check icon-large"></i>X personnes participent</li>
+						<li><i class="icon-eye-open icon-large"></i>Vu {{result.webapp.nb_click_preview + result.webapp.nb_click_detail}} fois</li>
+					</ul>
+				</div>
+				
+
+
+				<h3 class="span10"><i class="icon-zoom-in"></i> Qu'est-ce que c'est ?</h3>
+				<div class="span2">
+					<h4>Tags</h4>
+					<ul id="tagList" class="listWithoutDecoration emerland">
+						<li ng-repeat="tag in result.webapp.tags"><i class="icon-bookmark-empty"></i> {{tag.tag.name}}</li>
+						<li>
+							<a href="#modalAddTag" id="addTagLink" data-toggle="modal"><i class="icon-plus"></i><em> Ajouter...</em></a>
+						</li>
+					</ul>
+				</div>
+				<div class="span8">
+					<h4>{{result.webapp.caption}}</h4>
+					<p>{{result.webapp.description}}</p>
+				</div>
+
+				
+				<!-- Modal add tag -->
+				<div id="modalAddTag" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				    <h3 id="myModalLabel">Ajouter un tag à {{result.webapp.title}}</h3>
+				  </div>
+				  <div class="modal-body">
+				  	<ul class="listWithoutDecoration emerland">
+						<li ng-repeat="tag in result.webapp.tags" class="marginList"><i class="icon-bookmark-empty"></i> {{tag.tag.name}}</li>
+						<li class="marginList">
+							<i class="icon-plus"></i><input type="text" placeholder="Votre tag">
+						</li>
+					</ul>
+				  </div>
+				  <div class="modal-footer">
+				    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				    <button class="btn btn-primary">Save changes</button>
+				  </div>
+				</div>
+
+
+
+			<div class="span10">
+				<class="row">
+					<h3 class="span3"><i class="icon-comments"></i>  Commentaires</h3>
+					<span class="span2 offset4"><a href="#" class="btn btn-info" id="btnAvis"><i class="icon-white icon-pencil"></i> Donner un avis</a></span>
+				
+				
+				<div class="span10">
+					<h4>Avis des utilisateurs</h4>
+					<div class="light-separator"></div>
+					<div ng-repeat="comment in comments">
+						<div class="row">
+							<aside class="span2">
+								<div class="row">
+									<div class="span2 text-center">
+									<i class="icon-user icon-4x"></i>
+						 			<p>Pseudo {{comment.user}}</p>
+						 			<div class="starsRatingShow">
+										<i class="{{ {'rate':comment.rating, 'index':$index+1} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+							 		</div>
+							 		</div>
+							 	</div>
+							 </aside>
+							 <section class="span8">
+							 	<div class="row">
+								 	<span class="label pull-right">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
+								 	<p class="span8">{{comment.body}}</p>
+								 </div>
+							 </section>
+							<div class="light-separator span10"></div>
+						</div>
+					</div>
+				</div>	
+
+				<div class="span10">
+					<h4>Donnez votre avis !</h4>
+					<!-- <label class="label" for="rating">Note :</label> -->
+					<table>
+						<tr>
+							<td><div id="label">Note :</div></td>
+							<td>
+								<div class="rating">
+							    <input type="radio" id="star5" name="rating" value="5" ng-model="comment.rating"/><label for="star5" title="Amazing !"></label>
+							    <input type="radio" id="star4" name="rating" value="4" ng-model="comment.rating"/><label for="star4" title="Cool !"></label>
+							    <input type="radio" id="star3" name="rating" value="3" ng-model="comment.rating"/><label for="star3" title="Pas mal"></label>
+							    <input type="radio" id="star2" name="rating" value="2" ng-model="comment.rating"/><label for="star2" title="Bof"></label>
+							    <input type="radio" id="star1" name="rating" value="1" ng-model="comment.rating"/><label for="star1" title="J'aime pas"></label>
+								</div>
+							</td>
+						</tr>
+					</table>
+	    			<textarea id="textarea" rows="5" class="field span10" ng-model="comment.text"
+	    			placeholder="Que pensez vous de ce site ?"></textarea>
+				    <button type="button" class="btn"  ng-click="save()">Envoyer</button>
+				 </div>	
+
+				 <div class="span10">
+					<br>Debug View:
+		      		<pre>comment={{comment | json}}</pre>
+		      		<pre>user={{user | json}}</pre>
+		      		<pre>result={{result | json}}</pre>
+		      		<pre>category={{category | json}}</pre>
+		      		<pre>comments={{comments | json}}</pre>
+		      	</div>
+				</div>
+				
+			</div>
+			
+		</div>
+	</div>
+</div>
+

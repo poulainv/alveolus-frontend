@@ -44,7 +44,7 @@ factory('Categories', function($resource){
             isArray: true
         }
     });
-})
+}).
 factory('WebappFacebook', function($http) {
    return { get : function(id,callback){
     $http({method: 'JSONP', url: 'http://graph.facebook.com/'+id+'?fields=link,likes&callback=JSON_CALLBACK'}
@@ -69,6 +69,27 @@ factory('WebappTwitter', function($http) {
         console.log("error"+data);
     });
 }} 
+}).
+factory('WebappComments', function($resource) {
+    return $resource('http://quiet-spire-4994.herokuapp.com/webapps/:id/comments', {id:'@id'}, {
+        get: {
+            method:'GET', isArray: true
+        },
+        add: {
+            method: 'POST'
+        }
+    });
+}).
+
+factory('UsersList', function($resource) {
+    return $resource('http://quiet-spire-4994.herokuapp.com/users', {}, {
+        get: {
+            method: 'GET'
+        },
+        add: {
+            method: 'POST'
+        }
+    });
 }).
 factory('User', function($resource) {
     return $resource('http://quiet-spire-4994.herokuapp.com/users/:id', {id:'@id'}, {
@@ -102,4 +123,4 @@ factory('WebappComments', function($resource) {
             method: 'POST'
         }
     });
-}),
+});

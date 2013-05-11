@@ -8,6 +8,7 @@ a:link, a:visited, a:hover, a:active {
 body{
   margin : 0;
   color: black;
+  font-family: 'Open Sans', sans-serif;
   /*background-color: lightblue;*/
 }
 

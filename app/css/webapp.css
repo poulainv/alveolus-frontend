@@ -1,0 +1,128 @@
+/* vert utilisé */
+.emerland{
+  color: #2ecc71;
+}
+
+
+/* Liste de liens à côté de l'image/video */
+.ulWebAppLinks{
+  list-style-type:none;
+  margin-top: 50px;
+}
+.ulWebAppLinks li{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #2ecc71;
+}
+.ulWebAppLinks li.marginTop{
+  margin-top: 20px;
+}
+.ulWebAppLinks li i{
+  margin-right: 5px;
+}
+.ulWebAppLinks a{
+  color: #2ecc71;
+  text-decoration: none;
+}
+.ulWebAppLinks a:hover{
+  color: #34495e;
+}
+
+
+
+
+/* Rating stars (dynamic) */
+.rating {
+    float:left;
+    width: 150px;
+    font-family: FontAwesome;
+}
+.rating > #label{
+    font-family: 'Open Sans', sans-serif;
+
+}
+.rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+    clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:150%;
+    line-height:1.2;
+    color:#ddd;
+    content: "\f005";
+}
+
+.rating:not(:checked) > label:before {
+    content: "\f005";
+}
+
+.rating > input:checked ~ label {
+    color: #f70;
+    content: "\f005";
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: gold;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+    content:"\f005";
+}
+
+.light-separator{
+  height:1px;
+  background:#717171;
+  border-bottom:1px solid #E8E8E8;
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+
+
+/* liste de tags */
+ul#tagList a {
+  text-decoration: none;
+}
+.listWithoutDecoration{
+  text-decoration: none;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#addTagLink{
+  color:#1abc9c;
+}
+
+
+
+.marginList{
+  margin:4px;
+}
+
+/* Stars static */
+.starsRatingShow i{
+  color: #ea0;
+}
+#starsRatingShowDesc{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+.linkWithoutDecoration a:hover{
+  text-decoration: none;
+};

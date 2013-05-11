@@ -8,16 +8,19 @@
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/bootstrap-responsive.css" >
   <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/webapp.css"/>
+  <link rel="stylesheet" href="css/FontAwesome/css/font-awesome.min.css"> <!-- Ajout d'icones à bootstrap -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'><!-- police Open Sans -->
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
   -->
-  <script src="lib/jquery/jquery-1.9.1.js"></script>
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular/angular-resource.js"></script>
   <script src="js/app.js"></script>
   <script src="js/services/services.js"></script>
   <script src="js/controllers/homeCtrl.js"></script>
+  <script src="js/controllers/webAppDescCtrl.js"></script>
   <script src="js/filters/filters.js"></script>
   <script src="js/directives/directives.js"></script>
   <script src="js/dom.js"></script>
@@ -25,7 +28,6 @@
 </head>
 
 <body>
-
   <div id="mainContainer">
     <div id="carrousel">
       <img id="imgCarrousel" src="img/img.jpg" alt="imgCarrousel">
@@ -59,5 +61,9 @@
     </div>
     <div ng-view></div>
   </div>
+  
+  <script src="http://code.jquery.com/jquery.js"></script>
+  <script src="lib/bootstrap/bootstrap.min.js"></script>
+
 </body>
 </html>

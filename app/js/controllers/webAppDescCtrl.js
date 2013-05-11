@@ -5,11 +5,10 @@
 angular.module('alveolus.webAppDescCtrl', []).
 controller('WebAppDescCtrl', function($scope, $routeParams, Webapp, WebappFacebook, User, Categorie, WebappComments, WebappTwitter) {
 
-
+	$scope.webAppId=$routeParams.webAppId;
 	$scope.result=Webapp.get({id: $routeParams.webAppId}, function(){
 		$scope.user=$scope.result.webapp.user_id ? User.get({id: $scope.result.webapp.user_id}) : {'pseudo':'l\'équipe'};
 	    $scope.category=Categorie.get({id: $scope.result.webapp.category_id});
-	    $scope.comments=WebappComments.get({id: $routeParams.webAppId});
 
 	    $scope.result.webapp.facebook_id="294735233916083"; // à remplacer quand données complètes
 		WebappFacebook.get($scope.result.webapp.facebook_id,function(data){$scope.facebook=data}); 

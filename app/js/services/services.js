@@ -30,6 +30,21 @@ factory('Webapp', function($resource) {
         }
     });
 }).
+factory('FeaturedApp', function($resource){
+    return $resource('http://quiet-spire-4994.herokuapp.com/categories/:id/featured_webapp', {id:'@id'}, {
+        get: {
+            method :'GET'
+        }
+    });
+}).
+factory('Categories', function($resource){
+    return $resource('http://quiet-spire-4994.herokuapp.com/categories',{},{
+        query: {
+            method :'GET',
+            isArray: true
+        }
+    });
+}).
 factory('WebappFacebook', function($http) {
    return { get : function(id,callback){
     $http({method: 'JSONP', url: 'http://graph.facebook.com/'+id+'?fields=link,likes&callback=JSON_CALLBACK'}
@@ -96,6 +111,16 @@ factory('Categorie', function($resource) {
     return $resource('http://quiet-spire-4994.herokuapp.com/categories/:id', {id:'@id'}, {
         get: {
             method: 'GET'
+        }
+    });
+}).
+factory('WebappComments', function($resource) {
+    return $resource('http://quiet-spire-4994.herokuapp.com/webapps/:id/comments', {id:'@id'}, {
+        get: {
+            method:'GET', isArray: true
+        },
+        add: {
+            method: 'POST'
         }
     });
 });

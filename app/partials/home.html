@@ -1,26 +1,35 @@
+
 <div class="container">
 	<div id="catList">
-		<a ng-repeat="cat in cats" ng-mouseover="hover(cat)" ng-class="itemClass(cat)" class="btn cat" href="#">{{cat.name}}</a>
+		<span ng-repeat="cat in categories" ng-click="changeCat(cat)" ng-class="itemClass(cat)" class="btn cat" href="#">
+			{{cat.name}}
+		</span>
 	</div>
 
 	<div id="teamSelection">
 
 		<div>
 			<br>
-			<h3 class="inline">Économie parallèle - Sélection de l'équipe :</h3>
-			<button id="btnMore" class="btn btn-success pull-right" type="button">50 alvéoles d'économie parallèle ></button>
+			<h3 class="inline">{{catSelected.name}} - Sélection de l'équipe :</h3>
+			<button id="btnMore" class="btn btn-success pull-right" type="button">{{catSelected.name}} : Voir toutes les alvéoles > </button>
 		</div>
 
-		<table class="offset1">
+		<table id="tableFeatured" class="offset1">
 			<tr>
 				<td id="logoTeamSelection">
-					<img src="img/ouishare.jpeg">
+					<img src="img/{{appFeatured.webapp.id}}.jpg" title="Image du site ! En construction.." alt="Image du site !">
 				</td>
-				<td  id="descTeamSelection">
+				<td  id="descFeaturedApp">
 					<span>
-						<h4>OuiShare</h4>
-						OuiShare est une communauté ouverte internationale composée de passionnés -entrepreneurs, designers, makers, chercheurs, décideurs publics, citoyens, et bien d’autres- qui oeuvrent pour le développement de l’économie collaborative. Organisation à but non lucratif fondée en janvier 2012 à Paris, OuiShare se donne pour mission d’explorer, de mettre en lien et de promouvoir les idées et projets à impact sociétal, basés sur les modèles du partage, de la collaboration et de l’ouverture.
+						<h4><a href="#">{{appFeatured.webapp.title}}</a></h4>
+						{{appFeatured.webapp.description}}
 					</span>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td id="socialFeaturedApp">
+					note : {{appFeatured.webapp.average_rate}} / 5
 				</td>
 			</tr>
 		</table>
@@ -31,6 +40,21 @@
 
 	<div id="popularApps">
 		<h3><img src="img/star_small.png">  Alvéoles Populaires</h3>
+	</div>
+	<div class="row-fluid" data-ng-repeat="row in rows">
+		<div class="col span4 alveole" data-ng-repeat="col in cols">
+			<div>
+				<b>{{webapps[$parent.$index * numColumns + $index].webapp.title}}</b><br>
+				<img class="logo_small" src="img/{{webapps[$parent.$index * numColumns + $index].webapp.id}}.jpg"></p>
+			</div>
+				<!--
+				<div class="alveole-hover">
+					<a href="#/webapp/{{webapps[$parent.$index * numColumns + $index].id}}">
+						{{webapps[$parent.$index * numColumns + $index].caption}}
+					</a>
+				</div>
+			-->
+		</div>
 	</div>
 
 	<!-- <div class="hexagon"><span></span></div> -->

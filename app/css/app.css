@@ -1,9 +1,42 @@
 /* app css stylesheet */
 
+a:link, a:visited, a:hover, a:active {
+  color:black;
+  text-decoration: none;
+}
+
 body{
   margin : 0;
   color: black;
   font-family: 'Open Sans', sans-serif;
+  /*background-color: lightblue;*/
+}
+
+.alveole{
+  height: 245px;
+  margin: 20px 0;
+  padding: 10px 10px 0;
+  cursor: pointer;
+  background: #fff;
+  position: relative;
+  text-align: center;
+  border: 1px solid #d9d9d9;
+  border-bottom: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: #ebebeb 0 2px 0 -1px,#e1e1e1 0 4px 0 -2px,#fff 0 6px 0 -3px,#ebebeb 0 8px 0 -4px,#e1e1e1 0 10px 0 -5px,#fff 0 12px 0 -6px,rgba(0,0,0,0.2) 0 14px 2px -7px;
+  -moz-box-shadow: #ebebeb 0 2px 0 -1px,#e1e1e1 0 4px 0 -2px,#fff 0 6px 0 -3px,#ebebeb 0 8px 0 -4px,#e1e1e1 0 10px 0 -5px,#fff 0 12px 0 -6px,rgba(0,0,0,0.2) 0 14px 2px -7px;
+  box-shadow: #ebebeb 0 2px 0 -1px,#e1e1e1 0 4px 0 -2px,#fff 0 6px 0 -3px,#ebebeb 0 8px 0 -4px,#e1e1e1 0 10px 0 -5px,#fff 0 12px 0 -6px,rgba(0,0,0,0.2) 0 14px 2px -7px;
+}
+
+.alveole-hover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
 }
 
 .cat{
@@ -13,15 +46,26 @@ body{
 }
 
 .catSelected{
-  background-color: green;
-}
-
-.container{
-  border: 1px black;
+  border: 1px solid green;
 }
 
 .inline{
   display: inline-block;
+}
+
+.logo_small{
+  max-width:95%; 
+  max-height:85%;
+}
+
+.navbar .nav > li > a{
+  color: white;
+  margin-top: 10px;
+}
+
+.navbar .nav > li > a:hover{
+  color: white;
+  margin-top: 10px;
 }
 
 .navbar .btn{
@@ -33,10 +77,79 @@ body{
   margin-left: 80px;
 }
 
+.navbar .divider-vertical {
+  height: 60px;
+}
+
+.navbar-inner {
+  background-color: black;
+  border-radius: 0;
+  border: 0px;
+  background-image: none;
+  background-repeat: no-repeat;
+  filter: none;
+}
+/* Rating stars (dynamic) */
+.rating {
+  float:left;
+  width: 150px;
+  font-family: FontAwesome;
+}
+.rating > #label{
+  font-family: 'Open Sans', sans-serif;
+
+}
+.rating:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+  clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+  float:right;
+  width:1em;
+  padding:0;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:150%;
+  line-height:1.2;
+  color:#ddd;
+  content: "\f005";
+}
+
+.rating:not(:checked) > label:before {
+  content: "\f005";
+}
+
+.rating > input:checked ~ label {
+  color: #f70;
+  content: "\f005";
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: gold;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  color: #ea0;
+  content:"\f005";
+}
 .separator{
 
   border-top: 2px solid black;
 }
+
+/* Stars static */
+.starsRatingShow i{
+  color: #ea0;
+}
+
 
 #btnMore{
   margin-top: 1em;
@@ -52,7 +165,7 @@ body{
   text-align: center;
 }
 
-#descTeamSelection{
+#descFeaturedApp{
   padding: 50px;
   text-align : justify;
 }
@@ -66,7 +179,7 @@ body{
 }
 
 #logoTeamSelection{
-  width: 300px;
+  /*width: 300px;*/
 }
 
 #navbar{
@@ -74,51 +187,10 @@ body{
   height: 60px;
 }
 
-#searchNavbar{
+#socialFeaturedApp{
+  padding-left: 50px;
 }
 
-.navbar-inner {
-  background-color: black;
-  border-radius: 0;
-  border: 0px;
-  background-image: none;
-  background-repeat: no-repeat;
-  filter: none;
-}
-
-.hexagon {
-    width: 100px;
-    height: 55px;
-    position: relative;
-}
-.hexagon, .hexagon:before, .hexagon:after {
-    background: red;
-    -moz-box-shadow: 0 0 10px rgba(0,0,0,0.8);   
-    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.8);   
-    box-shadow: 0 0 10px rgba(0,0,0,0.8);   
-}
-.hexagon:before, .hexagon:after {
-    content: "";
-    position: absolute;
-    left: 22px;
-    width: 57px;
-    height: 57px;
-    -moz-transform: rotate(145deg) skew(22.5deg);
-    -webkit-transform: rotate(145deg) skew(22.5deg);
-    transform: rotate(145deg) skew(22.5deg);
-}
-.hexagon:before {
-    top: -29px;
-}
-.hexagon:after {
-    top: 27px;
-}
-.hexagon span {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100px;
-    height: 55px;
-    background:red;
-    z-index: 1;
+#tableFeatured{
+  min-height: 250px;
 }

@@ -32,7 +32,20 @@ factory('Webapp', function($resource) {
 }).
 factory('WebappFacebook', function($http) {
    return { get : function(id,callback){
-    $http({method: 'JSONP', url: 'http://graph.facebook.com/'+id+'?callback=JSON_CALLBACK'}
+    $http({method: 'JSONP', url: 'http://graph.facebook.com/'+id+'?fields=link,likes&callback=JSON_CALLBACK'}
+        ).
+    success(function(data, status, headers, config) {
+        callback(data)
+    }).
+    error(function(data, status, headers, config) {
+        console.log("error"+data);
+    });
+}} 
+}).
+// Attention, Twitter limite les requêtes à 150/h ...
+factory('WebappTwitter', function($http) {
+   return { get : function(id,callback){
+    $http({method: 'JSONP', url: 'http://api.twitter.com/1/users/show.json?screen_name='+id+'&callback=JSON_CALLBACK'}
         ).
     success(function(data, status, headers, config) {
         callback(data)

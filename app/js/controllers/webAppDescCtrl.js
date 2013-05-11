@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.webAppDescCtrl', []).
-controller('WebAppDescCtrl', function($scope, $routeParams, Webapp, WebappFacebook, User, Categorie, WebappComments) {
+controller('WebAppDescCtrl', function($scope, $routeParams, Webapp, WebappFacebook, User, Categorie, WebappComments, WebappTwitter) {
 
 
 	$scope.result=Webapp.get({id: $routeParams.webAppId}, function(){
@@ -13,6 +13,10 @@ controller('WebAppDescCtrl', function($scope, $routeParams, Webapp, WebappFacebo
 
 	    $scope.result.webapp.facebook_id="294735233916083"; // à remplacer quand données complètes
 		WebappFacebook.get($scope.result.webapp.facebook_id,function(data){$scope.facebook=data}); 
+
+		$scope.result.webapp.twitter_id="Cupofteach"; // à remplacer aussi
+		WebappTwitter.get($scope.result.webapp.twitter_id,function(data){$scope.twitter=data});
+		
 	});
 
 

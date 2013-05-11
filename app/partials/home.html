@@ -21,7 +21,7 @@
 				</td>
 				<td  id="descFeaturedApp">
 					<span>
-						<h4><a href="#">{{appFeatured.webapp.title}}</a></h4>
+						<h4><a href="#/webapp/{{appFeatured.webapp.id}}">{{appFeatured.webapp.title}}</a></h4>
 						{{appFeatured.webapp.description}}
 					</span>
 				</td>
@@ -29,7 +29,7 @@
 			<tr>
 				<td></td>
 				<td id="socialFeaturedApp">
-					note : {{appFeatured.webapp.average_rate}} / 5
+					<i class="{{ {'rate':appFeatured.webapp.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
 				</td>
 			</tr>
 		</table>

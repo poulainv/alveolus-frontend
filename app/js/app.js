@@ -2,7 +2,7 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('alveolus', ['alveolus.filters', 'alveolus.services', 'alveolus.directives', 'alveolus.homeCtrl', 'alveolus.webAppDescCtrl']).
+angular.module('alveolus', ['alveolus.filters', 'alveolus.services', 'alveolus.directives', 'alveolus.homeCtrl', 'alveolus.webAppDescCtrl', 'ui.bootstrap']).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
       when('', {templateUrl: 'partials/home.html',   controller: 'HomeCtrl'}).

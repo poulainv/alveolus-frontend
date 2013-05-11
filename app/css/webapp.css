@@ -126,3 +126,7 @@ ul#tagList a {
 .linkWithoutDecoration a:hover{
   text-decoration: none;
 };
+
+.imgDesc{
+  max-height:400px;
+}

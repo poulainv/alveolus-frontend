@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
 	<div class="row">
 		<div class="span10 offset1">
 			<h1 class="text-center">{{result.webapp.title}}</h1>
@@ -6,11 +6,11 @@
 			
 			<div class="row">
 
-				<div class="span6"><img ng-src="img/cupofteach.jpg"/></div>
+				<div class="span6 text-center"><img ng-src="img/{{webAppId}}.jpg" class="img-polaroid" style="max-height:400px;"/></div><!-- Impossible de mettre la hauteur max dans le fichier css !!!  -->
 				<div class="span4">
 					<div class="starsRatingShow span10" id="starsRatingShowDesc">
-								<i class="{{ {'rate':result.webapp.average_rate, 'index':$index+1} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
-							Note : {{result.webapp.average_rate}}/5, basée sur {{comments.length}} avis
+								<i class="{{ {'rate':result.webapp.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+							Note : {{result.webapp.average_rate | number:1}}/5, basée sur {{result.webapp.comments.length}} avis
 							</div>
 					<ul class="ulWebAppLinks">
 						<li><a href="{{result.webapp.url}}" target="_blank"><i class="icon-link icon-large"></i> Accéder au site</a></li>
@@ -70,28 +70,28 @@
 				<class="row">
 					<h3 class="span3"><i class="icon-comments"></i>  Commentaires</h3>
 					<span class="span2 offset4"><a href="#" class="btn btn-info" id="btnAvis"><i class="icon-white icon-pencil"></i> Donner un avis</a></span>
-				
+				</class>
 				
 				<div class="span10">
 					<h4>Avis des utilisateurs</h4>
 					<div class="light-separator"></div>
-					<div ng-repeat="comment in comments">
+					<div ng-repeat="c in result.webapp.comments">
 						<div class="row">
 							<aside class="span2">
 								<div class="row">
 									<div class="span2 text-center">
 									<i class="icon-user icon-4x"></i>
-						 			<p>Pseudo {{comment.user}}</p>
+						 			<p>{{c.comment.user}}</p>
 						 			<div class="starsRatingShow">
-										<i class="{{ {'rate':comment.rating, 'index':$index+1} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+										<i class="{{ {'rate':c.comment.rating, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
 							 		</div>
 							 		</div>
 							 	</div>
 							 </aside>
 							 <section class="span8">
 							 	<div class="row">
-								 	<span class="label pull-right">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
-								 	<p class="span8">{{comment.body}}</p>
+								 	<span class="label pull-right">Le {{c.comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
+								 	<p class="span8">{{c.comment.body}}</p>
 								 </div>
 							 </section>
 							<div class="light-separator span10"></div>

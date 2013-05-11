@@ -8,7 +8,7 @@ controller('HomeCtrl', function($scope,WebappsList,FeaturedApp,Categories) {
 	// $scope.$on('$viewContentLoaded', homeRdy);
 
 	$scope.webapps = WebappsList.query(function(){
-		$scope.numColumns = 3;
+		$scope.numColumns = 4;
 		$scope.rows = [];
 		$scope.cols = [];
 
@@ -31,4 +31,5 @@ controller('HomeCtrl', function($scope,WebappsList,FeaturedApp,Categories) {
 	$scope.itemClass = function(cat) {
 		return cat.id === $scope.catSelected.id ? 'catSelected' : undefined;
 	};
+
 });

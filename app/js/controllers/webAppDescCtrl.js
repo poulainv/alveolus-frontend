@@ -5,23 +5,22 @@
 angular.module('alveolus.webAppDescCtrl', []).
 controller('WebAppDescCtrl', function($scope, $routeParams, Webapp, WebappFacebook, User, Categorie, WebappComments) {
 
-	$scope.result=Webapp.get({id: $routeParams.webAppId});
-	// $scope.user=$scope.webapp.user_id ? $scope.webapp.user_id : 'X';
-	$scope.facebook_id="294735233916083";
-	// $scope.facebook=WebappFacebook.get({id: $scope.facebook_id}); // Requête cross domain ne marche pas
 
-	$scope.user=User.get({id: 1}); // lien avec webapp
+	$scope.result=Webapp.get({id: $routeParams.webAppId}, function(){
+		$scope.user=$scope.result.webapp.user_id ? User.get({id: $scope.result.webapp.user_id}) : {'pseudo':'l\'équipe'};
+	    $scope.category=Categorie.get({id: $scope.result.webapp.category_id});
+	    $scope.comments=WebappComments.get({id: $routeParams.webAppId});
 
-	$scope.category=Categorie.get({id: 2}); // $scope.result.webapp.category_id Ne marche pas !!
+	    $scope.result.webapp.facebook_id="294735233916083"; // à remplacer quand données complètes
+		WebappFacebook.get($scope.result.webapp.facebook_id,function(data){$scope.facebook=data}); 
+	});
 
-	$scope.comments=WebappComments.get({id: $routeParams.webAppId}); 
 
-	// $('#webappModal').modal('toggle');
 
 	$('#webappModal').modal({
         backdrop: true,
         keyboard: true,
-        show: true
+        show: false // true pour montrer la modale
     }).css({
        'width': function () { 
            return ($(document).width() * .9) + 'px';  

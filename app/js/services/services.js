@@ -30,12 +30,17 @@ factory('Webapp', function($resource) {
         }
     });
 }).
-factory('WebappFacebook', function($resource) {
-    return $resource('http://graph.facebook.com/:id?callback=?', {id:'@id'}, {
-        get: {
-            method: 'GET'
-        }
+factory('WebappFacebook', function($http) {
+   return { get : function(id,callback){
+    $http({method: 'JSONP', url: 'http://graph.facebook.com/'+id+'?callback=JSON_CALLBACK'}
+        ).
+    success(function(data, status, headers, config) {
+        callback(data)
+    }).
+    error(function(data, status, headers, config) {
+        console.log("error"+data);
     });
+}} 
 }).
 factory('WebappComments', function($resource) {
     return $resource('http://quiet-spire-4994.herokuapp.com/webapps/:id/comments', {id:'@id'}, {

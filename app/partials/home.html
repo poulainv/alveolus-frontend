@@ -30,6 +30,7 @@
 				<td></td>
 				<td id="socialFeaturedApp">
 					<i class="{{ {'rate':appFeatured.webapp.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+					 <b>-  {{appFeatured.webapp.comments.length}} avis</b>
 				</td>
 			</tr>
 		</table>

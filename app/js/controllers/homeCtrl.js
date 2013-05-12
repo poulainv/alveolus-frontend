@@ -3,9 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.homeCtrl', []).
-controller('HomeCtrl', function($scope,WebappsList,FeaturedApp,Categories) {
-
-	// $scope.$on('$viewContentLoaded', homeRdy);
+controller('HomeCtrl', function($scope,$location,WebappsList,FeaturedApp,Categories) {
 
 	$scope.webapps = WebappsList.query(function(){
 		$scope.numColumns = 4;
@@ -18,18 +16,27 @@ controller('HomeCtrl', function($scope,WebappsList,FeaturedApp,Categories) {
 		});
 	});
 
-	$scope.categories = Categories.query();
+	$scope.isCollapsed = false;
+	$scope.categories = Categories.getCategories();
 
 	$scope.catSelected = {"name":"Crowdfunding","id":"1"};
 	$scope.appFeatured = FeaturedApp.get({id:$scope.catSelected.id});
 
 	$scope.changeCat = function(cat){
+		$scope.isCollapsed = true;
 		$scope.catSelected = cat;
-		$scope.appFeatured = FeaturedApp.get({id:cat.id});
-	};
+		$scope.appFeatured = FeaturedApp.get({id:cat.id}, function(){
+			$scope.isCollapsed = false;			
+		});	
+	}
 
 	$scope.itemClass = function(cat) {
 		return cat.id === $scope.catSelected.id ? 'catSelected' : undefined;
 	};
+
+	$scope.changeView = function(url){
+		console.log(url);
+		$location.path(url);
+	}
 
 });

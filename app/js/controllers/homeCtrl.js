@@ -17,7 +17,7 @@ controller('HomeCtrl', function($scope,$location,WebappsList,FeaturedApp,Categor
 	});
 
 	$scope.isCollapsed = false;
-	$scope.categories = Categories.query();
+	$scope.categories = Categories.getCategories();
 
 	$scope.catSelected = {"name":"Crowdfunding","id":"1"};
 	$scope.appFeatured = FeaturedApp.get({id:$scope.catSelected.id});

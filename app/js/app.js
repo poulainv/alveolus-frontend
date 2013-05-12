@@ -9,7 +9,7 @@ angular.module('alveolus', ['alveolus.filters', 'alveolus.services', 'alveolus.d
       when('/webapp/:webAppId', {templateUrl: 'partials/webAppDesc.html',   controller: 'WebAppDescCtrl'}).
       when('/webappModal/:webAppId', {templateUrl: 'partials/webAppModal.html',   controller: 'WebAppDescCtrl'}).
       when('/alveoles/categorie/:catId', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).
-      when('/alveoles/features/:selectionId', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).
+      when('/alveoles/featured/:selectionId', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).
       when('/user/:userId', {templateUrl: 'partials/user.html',   controller: 'UserCtrl'}).
       otherwise({redirectTo: ''});
   }]);

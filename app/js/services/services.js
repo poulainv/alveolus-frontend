@@ -45,6 +45,18 @@ factory('FeaturedApps', function($resource){
         }
     });
 }).
+factory('TrendApps', function($http) {
+ return { getRecent : function(callback){
+    $http({method:'GET', url: 'http://quiet-spire-4994.herokuapp.com/webapps/trend/recent'}
+        ).
+    success(function(data, status, headers, config) {
+        callback(data);
+    }).
+    error(function(data, status, headers, config) {
+        console.log("error"+data);
+    });
+}} 
+}).
 factory('Categories', function($resource){
     var data;
     var resource = $resource('http://quiet-spire-4994.herokuapp.com/categories');

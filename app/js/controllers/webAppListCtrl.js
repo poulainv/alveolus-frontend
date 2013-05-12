@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.webAppListCtrl', []).
-controller('WebAppListCtrl', function($scope,$routeParams,WebappsList,WebappCategories,Categories,FeaturedApps) {
+controller('WebAppListCtrl', function($scope,$routeParams,WebappsList,WebappCategories,Categories,FeaturedApps,TrendApps) {
 
 	loadCats();
 	setSelectionCats();
@@ -70,6 +70,15 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappsList,WebappCate
 			case 4:
 			//Les plus récentes
 			$scope.pageName = getSelectionName(4);
+			TrendApps.getRecent(function(data){
+				$scope.recentApps = data;
+				console.log($scope.recentApps);
+				$scope.subcats[0].alveoles = data;
+			})
+			break;
+			case 5:
+			//Les plus partagées
+			$scope.pageName = getSelectionName(5);
 			break;
 			default:
 			break;
@@ -95,6 +104,10 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappsList,WebappCate
 		{
 			'name':'Les plus récentes',
 			'id':4
+		},
+		{
+			'name':'Les plus partagées',
+			'id':5
 		}
 		]
 	}
@@ -113,13 +126,18 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappsList,WebappCate
 				$scope.subcats.push(r);
 			}
 
+		} else {
+			$scope.subcats = [];
+			var r = new Object();
+			r.name = '';
+			r.alveoles = null;
+			$scope.subcats.push(r);
 		}
 		
 	}
 
 	function loadCats(){
 		$scope.cats = Categories.getCategories(function(){
-			console.log($scope.cats);
 			setPageName($scope.cats);			
 		});
 

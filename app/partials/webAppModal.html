@@ -1,0 +1,62 @@
+<!-- Button to trigger modal -->
+<a href="#webappModal" role="button" class="btn" data-toggle="modal">View modal</a>
+ 
+<!-- Modal -->
+<div id="webappModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <div id="myModalLabel">
+      <h3>
+        <a href="{{site.url}}">{{result.webapp.title}}</a> 
+        ({{category.name}})
+      </h3>
+      <div class="starsRatingShow">
+            <i class="{{ {'rate':result.webapp.average_rate, 'index':$index+1} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+            , basé sur {{comments.length}} avis
+          </div>
+    </div>
+  </div>
+
+  <div class="modal-body">
+    
+    <div class="row-fluid">
+        <div class="span6"><img ng-src="img/cupofteach.jpg"/></div>
+        <div class="span6">
+          <div class="row-fluid">
+          
+
+          <h4>{{result.webapp.caption}}</h4>
+          <p>{{result.webapp.description}}</p>
+
+          <p>
+            Pages : 
+            <span class="linkWithoutDecoration">
+              <a href=#><i class="icon-facebook icon-large" title="Facebook"></i></a>
+              <a href=#><i class="icon-google-plus icon-large" title="Google Plus"></i></a>
+              <a href=#><i class="icon-twitter icon-large" title="Twitter"></i></a>
+            </span>
+          </p>
+
+          <p>
+            Vu {{result.webapp.nb_click_preview + result.webapp.nb_click_detail}} fois<br>
+            X personnes participent
+          </p>
+
+
+          <p>
+            <a href="index.html#/webapp/{{result.webapp.id}}" class="btn btn-success btn-small" data-dismiss="modal" aria-hidden="true">Description détaillée et commentaires</a>
+            <a href="#" class="btn btn-success btn-small">Toutes les alvéoles de la catégorie {{category.name}}</a>
+          </p>
+
+        </div>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="modal-footer">
+    Merci à {{user.pseudo}} pour sa proposition !
+  </div>
+
+</div>

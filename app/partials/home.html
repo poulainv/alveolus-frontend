@@ -14,14 +14,14 @@
 			<button id="btnMore" class="btn btn-success pull-right" type="button">{{catSelected.name}} : Voir toutes les alvéoles > </button>
 		</div>
 
-		<table id="tableFeatured" class="offset1">
+		<table id="tableFeatured" class="offset0">
 			<tr>
-				<td id="logoTeamSelection">
-					<img src="img/{{appFeatured.webapp.id}}.jpg" title="Image du site ! En construction.." alt="Image du site !">
+				<td>
+					<img id="logoTeamSelection" src="img/{{appFeatured.webapp.id}}.jpg" title="Image du site ! En construction.." alt="Image du site !">
 				</td>
 				<td  id="descFeaturedApp">
 					<span>
-						<h4><a href="#">{{appFeatured.webapp.title}}</a></h4>
+						<h4><a href="#/webapp/{{appFeatured.webapp.id}}">{{appFeatured.webapp.title}}</a></h4>
 						{{appFeatured.webapp.description}}
 					</span>
 				</td>
@@ -29,7 +29,8 @@
 			<tr>
 				<td></td>
 				<td id="socialFeaturedApp">
-					note : {{appFeatured.webapp.average_rate}} / 5
+					<i class="{{ {'rate':appFeatured.webapp.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+					 <b>-  {{appFeatured.webapp.comments.length}} avis</b>
 				</td>
 			</tr>
 		</table>
@@ -41,19 +42,44 @@
 	<div id="popularApps">
 		<h3><img src="img/star_small.png">  Alvéoles Populaires</h3>
 	</div>
+	<!--
 	<div class="row-fluid" data-ng-repeat="row in rows">
 		<div class="col span4 alveole" data-ng-repeat="col in cols">
 			<div>
 				<b>{{webapps[$parent.$index * numColumns + $index].webapp.title}}</b><br>
 				<img class="logo_small" src="img/{{webapps[$parent.$index * numColumns + $index].webapp.id}}.jpg"></p>
 			</div>
-				<!--
 				<div class="alveole-hover">
 					<a href="#/webapp/{{webapps[$parent.$index * numColumns + $index].id}}">
 						{{webapps[$parent.$index * numColumns + $index].caption}}
 					</a>
 				</div>
-			-->
-		</div>  
-	</div>
+		</div>
+	</div>-->
+	<carousel id="popularCarousel">
+		<slide ng-repeat="row in rows" active="img.active">
+			<div class="popularAppWrap" data-ng-repeat="col in cols">
+				<div class="popularApp">
+					<a href="#/webapp/{{webapps[$parent.$index * numColumns + $index].webapp.id}}">
+						<img class="imgCarousel" ng-src="img/{{webapps[$parent.$index * numColumns + $index].webapp.id}}.jpg" >
+					</a>
+					<h2 class="appName">
+						<a href="#/webapp/{{webapps[$parent.$index * numColumns + $index].webapp.id}}">
+							<strong>{{webapps[$parent.$index * numColumns + $index].webapp.title}}</strong>
+						</a>
+					</h2>
+					<p class="appDesc">
+						{{webapps[$parent.$index * numColumns + $index].webapp.caption}}
+					</p>
+					<div class="appTags">
+						<i class="icon-bookmark"></i>
+						<i ng-repeat="tag in webapps[$parent.$index * numColumns + $index].webapp.tags">{{tag.tag.name}}, </i>
+					</div>
+				</div>
+			</div>
+
+		</slide>
+	</carousel>
+
+	<!-- <div class="hexagon"><span></span></div> -->
 </div>

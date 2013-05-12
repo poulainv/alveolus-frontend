@@ -46,16 +46,51 @@ factory('FeaturedApps', function($resource){
     });
 }).
 factory('TrendApps', function($http) {
- return { getRecent : function(callback){
-    $http({method:'GET', url: 'http://quiet-spire-4994.herokuapp.com/webapps/trend/recent'}
-        ).
-    success(function(data, status, headers, config) {
-        callback(data);
-    }).
-    error(function(data, status, headers, config) {
-        console.log("error"+data);
-    });
-}} 
+   return { 
+    getMostRecent : function(callback){
+        $http({method:'GET', url: 'http://quiet-spire-4994.herokuapp.com/webapps/trend/recent'}).
+        success(
+            function(data, status, headers, config) {
+                callback(data);
+            }).
+        error(
+            function(data, status, headers, config) {
+                console.log("error"+data);
+            });
+    },
+    getMostShared : function(callback){
+        $http({method:'GET', url: 'http://quiet-spire-4994.herokuapp.com/webapps/trend/shared'}).
+        success(
+            function(data,status,headers,config){
+                callback(data);
+            }).
+        error(
+            function(data,status,headers,config){
+                console.log("error"+data);
+            });
+    },
+    getBest : function(callback){
+        $http({method:'GET', url: 'http://quiet-spire-4994.herokuapp.com/webapps/trend/rated'}).
+        success(
+            function(data,status,headers,config){
+                callback(data);
+            }).
+        error(
+            function(data,status,headers,config){
+                console.log("error"+data);
+            });
+    },
+    getMostCommented : function(callback){
+        $http({method:'GET', url: 'http://quiet-spire-4994.herokuapp.com/webapps/trend/commented'}).
+        success(
+            function(data,status,headers,config){
+                callback(data);
+            }).
+        error(
+            function(data,status,headers,config){
+                console.log("error"+data);
+            });
+    }} 
 }).
 factory('Categories', function($resource){
     var data;
@@ -85,7 +120,7 @@ factory('WebappCategories', function($resource){
     });
 }).
 factory('WebappFacebook', function($http) {
- return { get : function(id,callback){
+   return { get : function(id,callback){
     $http({method: 'JSONP', url: 'http://graph.facebook.com/'+id+'?fields=link,likes&callback=JSON_CALLBACK'}
         ).
     success(function(data, status, headers, config) {
@@ -98,7 +133,7 @@ factory('WebappFacebook', function($http) {
 }).
 // Attention, Twitter limite les requêtes à 150/h ...
 factory('WebappTwitter', function($http) {
- return { get : function(id,callback){
+   return { get : function(id,callback){
     $http({method: 'JSONP', url: 'http://api.twitter.com/1/users/show.json?screen_name='+id+'&callback=JSON_CALLBACK'}
         ).
     success(function(data, status, headers, config) {

@@ -93,6 +93,8 @@
 
 
 
+
+
 /* liste de tags */
 ul#tagList a {
   text-decoration: none;
@@ -117,10 +119,14 @@ ul#tagList a {
 .starsRatingShow i{
   color: #ea0;
 }
-#starsRatingShowDesc{
+#starsRatingShowDesc[class^="icon-"]:after,[class*="icon-"]:after,{
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+/* Ne marche pas.. */
+/*.icon-star-empty.icon-star-half:after { content: '\f006'; text-indent: -.35em;}*/
+
 
 
 .linkWithoutDecoration a:hover{

@@ -1,9 +1,12 @@
 
 <div class="container">
 	<div id="catList">
-		<span ng-repeat="cat in categories" ng-click="changeCat(cat)" ng-class="itemClass(cat)" class="btn cat">
+		<span ng-repeat="cat in categories" ng-mouseenter="changeDesc(cat.description)" ng-mouseleave="changeDesc(catSelected.description)" ng-click="changeCat(cat)" ng-class="itemClass(cat)" class="btn cat"> 
 			{{cat.name}}
 		</span>
+		<div class="inline" >
+			{{descCatSelected}}
+		</div>
 	</div>
 	<div id="teamSelection" >
 

@@ -76,7 +76,7 @@ body{
 }
 
 .cat{
-  margin-left: 20px;
+  margin-right: 20px;
   border-radius: 0px;
   box-shadow: 4px 4px 12px black; 
 }
@@ -87,6 +87,10 @@ body{
 
 .carousel-control{
   background-color: green;
+}
+
+.carousel-control:hover{
+  cursor: pointer;
 }
 
 .imgCarousel{
@@ -215,7 +219,7 @@ body{
 }
 
 #catList{
-  text-align: center;
+  text-align: left;
 }
 
 #descFeaturedApp{

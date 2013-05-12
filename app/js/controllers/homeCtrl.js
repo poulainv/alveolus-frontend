@@ -17,10 +17,11 @@ controller('HomeCtrl', function($scope,$location,WebappsList,FeaturedApp,Categor
 	});
 
 	$scope.isCollapsed = false;
-	$scope.categories = Categories.getCategories();
-
-	$scope.catSelected = {"name":"Crowdfunding","id":"1"};
-	$scope.appFeatured = FeaturedApp.get({id:$scope.catSelected.id});
+	$scope.categories = Categories.getCategories(function(){
+		$scope.catSelected = $scope.categories[0];
+		$scope.descCatSelected =  $scope.categories[0].description;
+		$scope.appFeatured = FeaturedApp.get({id:$scope.catSelected.id});
+	});
 
 	$scope.changeCat = function(cat){
 		$scope.isCollapsed = true;
@@ -37,6 +38,10 @@ controller('HomeCtrl', function($scope,$location,WebappsList,FeaturedApp,Categor
 	$scope.changeView = function(url){
 		console.log(url);
 		$location.path(url);
+	}
+
+	$scope.changeDesc = function(catSelected){
+		$scope.descCatSelected = catSelected;
 	}
 
 });

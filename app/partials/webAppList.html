@@ -1,0 +1,43 @@
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div id="alveolesList" class="span8 offset1">
+			<h3>Alvéoles / {{pageName}}</h3>
+			<div ng-repeat="subcat in subcats"> 
+				<h4>{{subcat.name}}</h4>
+
+				<div class="alveoleWrap" ng-repeat="alveole in subcat.alveoles">
+					<div class="alveole">
+						<a href="#/webapp/{{alveole.id}}">
+							<img class="imgCarousel" ng-src="img/{{alveole.id}}.jpg" >
+						</a>
+						<h2 class="alveoleName">
+							<a href="#/webapp/{{alveole.id}}">
+								<strong>{{alveole.title}}</strong>
+							</a>
+						</h2>
+						<p class="alveoleDesc">
+							{{alveole.caption}}
+						</p>
+						<div class="alveoleTags">
+							<i class="icon-bookmark"></i>
+							<i ng-repeat="tag in alveole.tags">{{tag.name}}, </i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="navLinks" class="span2">
+			<h5><i class="icon-star"></i> Sélection</h5>
+			<ul class="noStyleList">
+				<li ng-repeat="selectionCat in selectionCats"><a href="#/alveoles/features/{{selectionCat.id}}">{{selectionCat.name}}</a></li>
+			</ul>
+			<h5><i class="icon-th-large"></i> Catégories</h5>
+			<ul class="noStyleList">
+				<li ng-repeat="cat in cats"><a href="#/alveoles/categorie/{{cat.id}}">{{cat.name}}</a></li>
+			</ul>
+			<h5><i class="icon-tags"></i> Tags</h5>
+		</div>
+	</div>
+</div>
+

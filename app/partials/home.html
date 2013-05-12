@@ -1,39 +1,41 @@
 
 <div class="container">
 	<div id="catList">
-		<span ng-repeat="cat in categories" ng-click="changeCat(cat)" ng-class="itemClass(cat)" class="btn cat" href="#">
+		<span ng-repeat="cat in categories" ng-click="changeCat(cat)" ng-class="itemClass(cat)" class="btn cat">
 			{{cat.name}}
 		</span>
 	</div>
-
-	<div id="teamSelection">
+	<div id="teamSelection" >
 
 		<div>
 			<br>
 			<h3 class="inline">{{catSelected.name}} - Sélection de l'équipe :</h3>
-			<button id="btnMore" class="btn btn-success pull-right" type="button">{{catSelected.name}} : Voir toutes les alvéoles > </button>
+			<button id="btnMore" class="btn btn-success pull-right" type="button" ng-click="changeView('alveoles/categorie/'+catSelected.id)">{{catSelected.name}} : Voir toutes les alvéoles > </button>
 		</div>
-
-		<table id="tableFeatured" class="offset0">
-			<tr>
-				<td>
-					<img id="logoTeamSelection" src="img/{{appFeatured.webapp.id}}.jpg" title="Image du site ! En construction.." alt="Image du site !">
-				</td>
-				<td  id="descFeaturedApp">
-					<span>
-						<h4><a href="#/webapp/{{appFeatured.webapp.id}}">{{appFeatured.webapp.title}}</a></h4>
-						{{appFeatured.webapp.description}}
-					</span>
-				</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td id="socialFeaturedApp">
-					<i class="{{ {'rate':appFeatured.webapp.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
-					 <b>-  {{appFeatured.webapp.comments.length}} avis</b>
-				</td>
-			</tr>
-		</table>
+		<div id="appFeatured">
+			<div collapse="isCollapsed">
+				<table id="tableFeatured" class="offset0" >
+					<tr>
+						<td>
+							<img id="logoTeamSelection" src="img/{{appFeatured.id}}.jpg" title="Image du site ! En construction.." alt="Image du site !">
+						</td>
+						<td  id="descFeaturedApp">
+							<span>
+								<h4><a href="#/webapp/{{appFeatured.id}}">{{appFeatured.title}}</a></h4>
+								{{appFeatured.description}}
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td id="socialFeaturedApp">
+							<i class="{{ {'rate':appFeatured.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+							<b>-  {{appFeatured.comments.length}} avis</b>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
 		<br>
 	</div>
 
@@ -58,22 +60,22 @@
 	</div>-->
 	<carousel id="popularCarousel">
 		<slide ng-repeat="row in rows" active="img.active">
-			<div class="popularAppWrap" data-ng-repeat="col in cols">
-				<div class="popularApp">
-					<a href="#/webapp/{{webapps[$parent.$index * numColumns + $index].webapp.id}}">
-						<img class="imgCarousel" ng-src="img/{{webapps[$parent.$index * numColumns + $index].webapp.id}}.jpg" >
+			<div class="alveoleWrap" data-ng-repeat="col in cols">
+				<div class="alveole">
+					<a href="#/webapp/{{webapps[$parent.$index * numColumns + $index].id}}">
+						<img class="imgCarousel" ng-src="img/{{webapps[$parent.$index * numColumns + $index].id}}.jpg" >
 					</a>
-					<h2 class="appName">
-						<a href="#/webapp/{{webapps[$parent.$index * numColumns + $index].webapp.id}}">
-							<strong>{{webapps[$parent.$index * numColumns + $index].webapp.title}}</strong>
+					<h2 class="alveoleName">
+						<a href="#/webapp/{{webapps[$parent.$index * numColumns + $index].id}}">
+							<strong>{{webapps[$parent.$index * numColumns + $index].title}}</strong>
 						</a>
 					</h2>
-					<p class="appDesc">
-						{{webapps[$parent.$index * numColumns + $index].webapp.caption}}
+					<p class="alveoleDesc">
+						{{webapps[$parent.$index * numColumns + $index].caption}}
 					</p>
-					<div class="appTags">
+					<div class="alveoleTags">
 						<i class="icon-bookmark"></i>
-						<i ng-repeat="tag in webapps[$parent.$index * numColumns + $index].webapp.tags">{{tag.tag.name}}, </i>
+						<i ng-repeat="tag in webapps[$parent.$index * numColumns + $index].tags">{{tag.name}}, </i>
 					</div>
 				</div>
 			</div>

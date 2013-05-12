@@ -13,40 +13,31 @@ body{
 }
 
 .alveole{
-  height: 245px;
-  margin: 20px 0;
-  padding: 10px 10px 0;
-  cursor: pointer;
-  background: #fff;
-  position: relative;
-  text-align: center;
-  border: 1px solid #d9d9d9;
-  border-bottom: none;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-box-shadow: #ebebeb 0 2px 0 -1px,#e1e1e1 0 4px 0 -2px,#fff 0 6px 0 -3px,#ebebeb 0 8px 0 -4px,#e1e1e1 0 10px 0 -5px,#fff 0 12px 0 -6px,rgba(0,0,0,0.2) 0 14px 2px -7px;
-  -moz-box-shadow: #ebebeb 0 2px 0 -1px,#e1e1e1 0 4px 0 -2px,#fff 0 6px 0 -3px,#ebebeb 0 8px 0 -4px,#e1e1e1 0 10px 0 -5px,#fff 0 12px 0 -6px,rgba(0,0,0,0.2) 0 14px 2px -7px;
-  box-shadow: #ebebeb 0 2px 0 -1px,#e1e1e1 0 4px 0 -2px,#fff 0 6px 0 -3px,#ebebeb 0 8px 0 -4px,#e1e1e1 0 10px 0 -5px,#fff 0 12px 0 -6px,rgba(0,0,0,0.2) 0 14px 2px -7px;
-}
-
-.alveole-hover{
-  position: absolute;
-  top: 0;
-  left: 0;
+  padding: 5px;
+  background-position: 0 307px;
+  height: 360px;
+  max-width: 200px;
   overflow: hidden;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -o-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  border-radius: 6px;
+  background-color: #fff;
+  border: 1px solid #d0d5cb;
+  position: relative;
+  background-color: #fff;
 }
 
-.appName{
+.alveoleName{
   font-size: 12px;
   font-weight: bold;
   line-height: 15px;
   padding: 5px;
 }
 
-.appDesc{
+.alveoleDesc{
   color: #75796f!important;
   padding: 0 5px;
   font-size: 12px!important;
@@ -56,7 +47,7 @@ body{
   text-align: justify;
 }
 
-.appTags{
+.alveoleTags{
   position:absolute;
   bottom:10px;
   left:10px;
@@ -66,6 +57,22 @@ body{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.alveoleWrap{
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  moz-border-radius: 9px;
+  -webkit-border-radius: 9px;
+  -o-border-radius: 9px;
+  -ms-border-radius: 9px;
+  -khtml-border-radius: 9px;
+  border-radius: 9px;
+  background: #eef2ea;
+  padding: 4px;
+  margin: 0 20px;
+  clear: both;
 }
 
 .cat{
@@ -130,39 +137,8 @@ body{
   filter: none;
 }
 
-.popularApp{
-  padding: 5px;
-  background-position: 0 307px;
-  height: 360px;
-  max-width: 200px;
-  overflow: hidden;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -o-border-radius: 6px;
-  -ms-border-radius: 6px;
-  -khtml-border-radius: 6px;
-  border-radius: 6px;
-  background-color: #fff;
-  border: 1px solid #d0d5cb;
-  position: relative;
-  background-color: #fff;
-}
-
-.popularAppWrap{
-  display: inline-block;
-  vertical-align: top;
-  text-align: left;
-  moz-border-radius: 9px;
-  -webkit-border-radius: 9px;
-  -o-border-radius: 9px;
-  -ms-border-radius: 9px;
-  -khtml-border-radius: 9px;
-  border-radius: 9px;
-  background: #eef2ea;
-  padding: 4px;
-  margin: 0 20px;
-  clear: both;
-
+.noStyleList{
+  list-style-type:none; 
 }
 
 /* Rating stars (dynamic) */
@@ -226,6 +202,13 @@ body{
   color: #ea0;
 }
 
+#alveolesList{
+  border-right: 1px solid #eef2ea;
+}
+
+#appFeatured{
+  min-height: 250px;
+}
 
 #btnMore{
   margin-top: 1em;
@@ -262,6 +245,10 @@ body{
 #navbar{
   background-color: black;
   height: 60px;
+}
+
+#navLinks{
+  padding-top: 10px;
 }
 
 #popularCarousel{

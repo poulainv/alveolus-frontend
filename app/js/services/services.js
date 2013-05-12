@@ -37,16 +37,43 @@ factory('FeaturedApp', function($resource){
         }
     });
 }).
-factory('Categories', function($resource){
-    return $resource('http://quiet-spire-4994.herokuapp.com/categories',{},{
-        query: {
+factory('FeaturedApps', function($resource){
+    return $resource('http://quiet-spire-4994.herokuapp.com/categories/:id/featured_webapps', {id:'@id'}, {
+        get: {
             method :'GET',
             isArray: true
         }
     });
 }).
+factory('Categories', function($resource){
+    var data;
+    var resource = $resource('http://quiet-spire-4994.herokuapp.com/categories');
+
+    var categories = function(callback) {
+        data = resource.query(callback);
+        return data;
+    }
+
+    return {
+        getCategories: function(callback) {
+            if(data) {
+                return data;
+            } else {
+                return categories(callback); 
+            }
+
+        }
+    };
+}).
+factory('WebappCategories', function($resource){
+    return $resource('http://quiet-spire-4994.herokuapp.com/categories/:id/webapps', {id:'@id'}, {
+        get: {
+            method :'GET'
+        }
+    });
+}).
 factory('WebappFacebook', function($http) {
-   return { get : function(id,callback){
+ return { get : function(id,callback){
     $http({method: 'JSONP', url: 'http://graph.facebook.com/'+id+'?fields=link,likes&callback=JSON_CALLBACK'}
         ).
     success(function(data, status, headers, config) {
@@ -59,7 +86,7 @@ factory('WebappFacebook', function($http) {
 }).
 // Attention, Twitter limite les requêtes à 150/h ...
 factory('WebappTwitter', function($http) {
-   return { get : function(id,callback){
+ return { get : function(id,callback){
     $http({method: 'JSONP', url: 'http://api.twitter.com/1/users/show.json?screen_name='+id+'&callback=JSON_CALLBACK'}
         ).
     success(function(data, status, headers, config) {

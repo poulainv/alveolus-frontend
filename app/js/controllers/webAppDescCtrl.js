@@ -15,10 +15,15 @@ controller('WebAppDescCtrl', function($scope, $routeParams, Webapp, WebappFacebo
 
 		$scope.webapp.twitter_id="Cupofteach"; // à remplacer aussi
 		WebappTwitter.get($scope.webapp.twitter_id,function(data){$scope.twitter=data});
+
+		$scope.webapp.vimeo_id="53270929";
+		// if(!$scope.webapp.vimeo_id){
+		// 	document.getElementById("webappVimeo").style.display="none";
+		// }
 		
 	});
 
-
+	
 
 	$('#webappModal').modal({
         backdrop: true,

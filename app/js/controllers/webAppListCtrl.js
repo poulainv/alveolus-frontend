@@ -62,23 +62,34 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappsList,WebappCate
 			case 2:
 			//Les plus commentéees
 			$scope.pageName = getSelectionName(2);
+			TrendApps.getMostCommented(function(data){
+				$scope.mostCommentedApps = data;
+				$scope.subcats[0].alveoles = data;
+			})
 			break;
 			case 3:
 			//Les mieux notées
 			$scope.pageName = getSelectionName(3);
+			TrendApps.getBest(function(data){
+				$scope.bestApps = data;
+				$scope.subcats[0].alveoles = data;
+			})
 			break;
 			case 4:
 			//Les plus récentes
 			$scope.pageName = getSelectionName(4);
-			TrendApps.getRecent(function(data){
-				$scope.recentApps = data;
-				console.log($scope.recentApps);
+			TrendApps.getMostRecent(function(data){
+				$scope.mostRecentApps = data;
 				$scope.subcats[0].alveoles = data;
 			})
 			break;
 			case 5:
 			//Les plus partagées
 			$scope.pageName = getSelectionName(5);
+			TrendApps.getMostShared(function(data){
+				$scope.mostSharedApps = data;
+				$scope.subcats[0].alveoles = data;
+			})
 			break;
 			default:
 			break;

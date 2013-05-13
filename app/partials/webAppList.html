@@ -1,7 +1,7 @@
 
-<div class="container-fluid">
+<div class="container">
 	<div class="row-fluid">
-		<div id="alveolesList" class="span8 offset1">
+		<div id="alveolesList" class="span9">
 			<h3>Alvéoles / {{pageName}}</h3>
 			<div ng-repeat="subcat in subcats"> 
 				<h4>{{subcat.name}}</h4>
@@ -27,7 +27,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="navLinks" class="span2">
+		<div id="navLinks" class="span3">
 			<h5><i class="icon-star"></i> Sélection</h5>
 			<ul class="noStyleList">
 				<li ng-repeat="selectionCat in selectionCats"><a href="#/alveoles/featured/{{selectionCat.id}}">{{selectionCat.name}}</a></li>

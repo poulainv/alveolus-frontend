@@ -7,7 +7,8 @@
 /* Liste de liens à côté de l'image/video */
 .ulWebAppLinks{
   list-style-type:none;
-  margin-top: 50px;
+  margin-top: 20px;
+  margin-left: 0;
 }
 .ulWebAppLinks li{
   margin-top: 5px;
@@ -119,13 +120,11 @@ ul#tagList a {
 .starsRatingShow i{
   color: #ea0;
 }
-#starsRatingShowDesc[class^="icon-"]:after,[class*="icon-"]:after,{
+#starsRatingShowDesc{
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-/* Ne marche pas.. */
-/*.icon-star-empty.icon-star-half:after { content: '\f006'; text-indent: -.35em;}*/
 
 
 

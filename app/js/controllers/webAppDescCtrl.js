@@ -10,7 +10,7 @@ controller('WebAppDescCtrl', function($scope, $routeParams, Webapp, WebappFacebo
 		$scope.user=$scope.webapp.user_id ? User.get({id: $scope.webapp.user_id}) : {'pseudo':'l\'équipe'};
 	    $scope.category=Categorie.get({id: $scope.webapp.category_id});
 
-	    $scope.webapp.facebook_id="294735233916083"; // à remplacer quand données complètes
+	    //$scope.webapp.facebook_id="294735233916083"; // à remplacer quand données complètes
 	    if($scope.webapp.facebook_id)
 			WebappFacebook.get($scope.webapp.facebook_id,function(data){$scope.facebook=data}); 
 		else $scope.facebook=null;
@@ -26,7 +26,7 @@ controller('WebAppDescCtrl', function($scope, $routeParams, Webapp, WebappFacebo
 		// else $scope.twitter=null; // A voir récupération données google+
 
 
-		$scope.webapp.vimeo_id="53270929";
+		//$scope.webapp.vimeo_id="53270929";
 		
 	});
 

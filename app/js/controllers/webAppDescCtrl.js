@@ -11,15 +11,22 @@ controller('WebAppDescCtrl', function($scope, $routeParams, Webapp, WebappFacebo
 	    $scope.category=Categorie.get({id: $scope.webapp.category_id});
 
 	    $scope.webapp.facebook_id="294735233916083"; // à remplacer quand données complètes
-		WebappFacebook.get($scope.webapp.facebook_id,function(data){$scope.facebook=data}); 
+	    if($scope.webapp.facebook_id)
+			WebappFacebook.get($scope.webapp.facebook_id,function(data){$scope.facebook=data}); 
+		else $scope.facebook=null;
 
 		$scope.webapp.twitter_id="Cupofteach"; // à remplacer aussi
-		WebappTwitter.get($scope.webapp.twitter_id,function(data){$scope.twitter=data});
+		if($scope.webapp.twitter_id)
+			WebappTwitter.get($scope.webapp.twitter_id,function(data){$scope.twitter=data});
+		else $scope.twitter=null;
+
+		$scope.webapp.gplus_id="103505662474284621269"; // à remplacer aussi
+		// if($scope.webapp.gplus_id)
+		// 	WebappTwitter.get($scope.webapp.gplus_id,function(data){$scope.twitter=data});
+		// else $scope.twitter=null; // A voir récupération données google+
+
 
 		$scope.webapp.vimeo_id="53270929";
-		// if(!$scope.webapp.vimeo_id){
-		// 	document.getElementById("webappVimeo").style.display="none";
-		// }
 		
 	});
 

@@ -8,19 +8,22 @@
 				<div class="span4 offset1 text-center"><img ng-src="img/{{webAppId}}.jpg" class="img-polaroid" style="max-height:400px;"/></div><!--  Impossible de metre max-height dans le css!!  -->
 
 				<div class="span4">
+
 					<div class="starsRatingShow" id="starsRatingShowDesc">
 								<i class="{{ {'rate':webapp.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
 							Note : {{webapp.average_rate | number:1}}/5, basée sur {{webapp.comments.length}} avis
-							</div>
+					</div>
+
 					<ul class="ulWebAppLinks">
 						<li><a href="{{webapp.url}}" target="_blank"><i class="icon-link icon-large"></i> Accéder au site</a></li>
 						<li><a href=#><i class="icon-heart-empty icon-large"></i>Ajouter aux favoris</a></li>
 						<li><a href=#><i class="icon-share-alt icon-large"></i>Partager</a></li>
+
 						<div class="block">
-						<li class="marginTop"><a href={{facebook.link}} target="_blank"><i class="icon-facebook icon-large"></i>Facebook : {{facebook.likes}} likes</a></li>
-						<li><a href=#><i class="icon-google-plus icon-large"></i>Google Plus</a></li>
-						<li><a href="https://twitter.com/{{webapp.twitter_id}}" target="_blank"><i class="icon-twitter icon-large"></i>Twitter : {{twitter.followers_count}} followers</a></li>
-					</div>
+							<li class="marginTop" ng-bind-html-unsafe='facebook | facebook'></li>
+							<li ng-bind-html-unsafe='twitter | twitter'></li>
+							<li ng-bind-html-unsafe='webapp.gplus_id | gplus'></li>
+						</div>
 						<li class="marginTop"><i class="icon-check icon-large"></i>X personnes participent</li>
 						<li><i class="icon-eye-open icon-large"></i>Vu {{webapp.nb_click_preview + webapp.nb_click_detail}} fois</li>
 					</ul>
@@ -48,7 +51,7 @@
 
 
 			<div class="text-center">
-				<span class="text-center" ng-bind-html-unsafe='webapp.vimeo_id | vimeo'></span>
+				<span ng-bind-html-unsafe='webapp.vimeo_id | vimeo'></span>
 			</div>
 
 				

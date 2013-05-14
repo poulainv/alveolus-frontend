@@ -16,21 +16,16 @@ controller('HomeCtrl', function($scope,$location,CategoryService,WebappService) 
 		});
 	});
 
-	$scope.isCollapsed = false;
-		console.log('ok?');
-	$scope.categories = CategoryService.getCategories(function(){
-		console.log('ok!');
-		$scope.catSelected = $scope.categories[0];
-		$scope.descCatSelected =  $scope.categories[0].description;
-		$scope.appFeatured = WebappService.getFeaturedApp({catId:$scope.catSelected.id});
-	});
+	CategoryService.getFeaturedWebappForEachCategories(function(data){
+		$scope.categories = data ;
+		$scope.catSelected = $scope.categories[Math.floor(Math.random() * $scope.categories.length)];
+		$scope.descCatSelected =  $scope.catSelected.description;
+		$scope.appFeatured = $scope.catSelected.webapps[Math.floor(Math.random() * $scope.catSelected.webapps.length)];
+	})
 
 	$scope.changeCat = function(cat){
-		$scope.isCollapsed = true;
 		$scope.catSelected = cat;
-		$scope.appFeatured = WebappService.getFeaturedApp({catId:cat.id}, function(){
-			$scope.isCollapsed = false;			
-		});	
+		$scope.appFeatured = cat.webapps[Math.floor(Math.random() * $scope.catSelected.webapps.length)];
 	}
 
 	$scope.itemClass = function(cat) {

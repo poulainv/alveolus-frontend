@@ -1,11 +1,11 @@
 <div class="container">
 	<div class="row">
 		<div class="span10 offset1">
-			<h1 class="text-center">{{webapp.title}}</h1>
-			<h2 class="text-center">{{category.name}} - proposée par {{user.pseudo}}</h2>
+			<h1 class="text-center"><a href="{{webapp.url}}" target="_blank">{{webapp.title}}</a></h1>
+			<h2 class="text-center">{{webapp.category.name}} - proposée par {{user.pseudo}}</h2>
 			
 			<div class="row">
-				<div class="span4 offset1 text-center"><img ng-src="img/{{webAppId}}.jpg" class="img-polaroid" style="max-height:400px;"/></div><!--  Impossible de metre max-height dans le css!!  -->
+				<div class="span4 offset1 text-center"><a href="{{webapp.url}}" target="_blank"><img ng-src="img/{{webAppId}}.jpg" class="img-polaroid" style="max-height:400px;"/></a></div><!--  Impossible de metre max-height dans le css!!  -->
 
 				<div class="span4">
 
@@ -17,8 +17,7 @@
 					<ul class="ulWebAppLinks">
 						<li><a href="{{webapp.url}}" target="_blank"><i class="icon-link icon-large"></i> Accéder au site</a></li>
 						<li><a href=#><i class="icon-heart-empty icon-large"></i>Ajouter aux favoris</a></li>
-						<li><a href=#><i class="icon-share-alt icon-large"></i>Partager</a></li>
-
+						
 						<div class="block marginTop">
 							<li ng-show='facebook'>
 								<a href="{{facebook.link}}" target="_blank"><i class="icon-facebook icon-large"></i>Facebook : {{facebook.likes}} likes</a>
@@ -30,9 +29,26 @@
 								<a href="https://plus.google.com/{{webapp.gplus_id}}" target="_blank"><i class="icon-google-plus icon-large"></i>Google Plus</a>
 							</li>
 						</div>
-						
+
 						<li class="marginTop"><i class="icon-check icon-large"></i>X personnes participent</li>
 						<li><i class="icon-eye-open icon-large"></i>Vu {{webapp.nb_click_preview + webapp.nb_click_detail}} fois</li>
+
+						<li class="marginTop">
+							<!-- <a href="" ng-click="showShareNetworks=true" ng-init="showShareNetworks=false"><i class='icon-share icon-large'></i>Partager sur ...</a> -->
+							Partager sur ...
+							<!-- <span ng-show='showShareNetworks'> -->
+							</span>
+								<a target="_blank" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]={{webapp.url}}&amp;p[images][0]=https://cot-production-assets.s3.amazonaws.com/assets/happy-fingers-da11d5333af9a701244f3606686120a0.jpeg&amp;p[title]={{webapp.title}}&amp;p[summary]={{webapp.caption}}">
+									<i class="icon-facebook-sign icon-2x"></i>
+								</a>
+								<a target="_blank" href="https://twitter.com/intent/tweet?url={{webapp.url}}&amp;text={{webapp.caption}}">  <!-- via={{webapp.twitter_id}} ? -->
+									<i class="icon-twitter-sign icon-2x"></i>
+								</a>
+								<a target="_blank" href="https://plus.google.com/share?url={{webapp.url}}">
+									<i class="icon-google-plus-sign icon-2x"></i>
+								</a>
+							</span>
+						</li>
 					</ul>
 				</div>
 
@@ -53,6 +69,9 @@
 				<div class="span8">
 					<h4>{{webapp.caption}}</h4>
 					<p>{{webapp.description}}</p>
+
+					
+
 				</div>
 			</div>
 
@@ -132,6 +151,11 @@
     			<textarea id="textarea" rows="5" class="field span10" ng-model="comment.text"
     			placeholder="Que pensez vous de ce site ?"></textarea>
 			    <button type="button" class="btn"  ng-click="save()">Envoyer</button>
+
+
+				
+			    
+
 
 				<br>Debug View: 
 	      		<pre>comment={{comment | json}}</pre>

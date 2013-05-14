@@ -3,9 +3,9 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.homeCtrl', []).
-controller('HomeCtrl', function($scope,$location,WebappsList,FeaturedApp,Categories) {
+controller('HomeCtrl', function($scope,$location,CategoryService,WebappService) {
 
-	$scope.webapps = WebappsList.query(function(){
+	$scope.webapps = WebappService.query(function(){
 		$scope.numColumns = 4;
 		$scope.rows = [];
 		$scope.cols = [];
@@ -17,22 +17,24 @@ controller('HomeCtrl', function($scope,$location,WebappsList,FeaturedApp,Categor
 	});
 
 	$scope.isCollapsed = false;
-	$scope.categories = Categories.getCategories(function(){
+		console.log('ok?');
+	$scope.categories = CategoryService.getCategories(function(){
+		console.log('ok!');
 		$scope.catSelected = $scope.categories[0];
 		$scope.descCatSelected =  $scope.categories[0].description;
-		$scope.appFeatured = FeaturedApp.get({id:$scope.catSelected.id});
+		$scope.appFeatured = WebappService.getFeaturedApp({catId:$scope.catSelected.id});
 	});
 
 	$scope.changeCat = function(cat){
 		$scope.isCollapsed = true;
 		$scope.catSelected = cat;
-		$scope.appFeatured = FeaturedApp.get({id:cat.id}, function(){
+		$scope.appFeatured = WebappService.getFeaturedApp({catId:cat.id}, function(){
 			$scope.isCollapsed = false;			
 		});	
 	}
 
 	$scope.itemClass = function(cat) {
-		return cat.id === $scope.catSelected.id ? 'catSelected' : undefined;
+		// return cat.id === $scope.catSelected.id ? 'catSelected' : undefined;
 	};
 
 	$scope.changeView = function(url){

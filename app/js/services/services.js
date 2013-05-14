@@ -2,9 +2,10 @@
 
 /* Services */
 
+//*******************************************************
+//DEPRECATED - NE PAS UTILISER LES SERVICES DE CE FICHIER
+//*******************************************************
 
-// Demonstrate how to register services
-// In this case it is a simple value service.
 angular.module('alveolus.services', ['ngResource']).
 factory('WebappsList', function($resource) {
     return $resource('http://quiet-spire-4994.herokuapp.com/webapps', {}, {
@@ -46,19 +47,14 @@ factory('FeaturedApps', function($resource){
     });
 }).
 factory('TrendApps', function($http) {
-   return { 
+
+
+ return { 
     getMostRecent : function(callback){
         $http({method:'GET', url: 'http://quiet-spire-4994.herokuapp.com/webapps/trend/recent'}).
-        success(
-            function(data, status, headers, config) {
-                callback(data);
-            }).
-        error(
-            function(data, status, headers, config) {
-                console.log("error"+data);
-            });
+        success(function(data){callback(data);});
     },
-    getMostShared : function(callback){
+    getMostShared : function(callbackFunction){
         $http({method:'GET', url: 'http://quiet-spire-4994.herokuapp.com/webapps/trend/shared'}).
         success(
             function(data,status,headers,config){
@@ -120,7 +116,7 @@ factory('WebappCategories', function($resource){
     });
 }).
 factory('WebappFacebook', function($http) {
-   return { get : function(id,callback){
+ return { get : function(id,callback){
     $http({method: 'JSONP', url: 'http://graph.facebook.com/'+id+'?fields=link,likes&callback=JSON_CALLBACK'}
         ).
     success(function(data, status, headers, config) {
@@ -133,7 +129,7 @@ factory('WebappFacebook', function($http) {
 }).
 // Attention, Twitter limite les requêtes à 150/h ...
 factory('WebappTwitter', function($http) {
-   return { get : function(id,callback){
+ return { get : function(id,callback){
     $http({method: 'JSONP', url: 'http://api.twitter.com/1/users/show.json?screen_name='+id+'&callback=JSON_CALLBACK'}
         ).
     success(function(data, status, headers, config) {

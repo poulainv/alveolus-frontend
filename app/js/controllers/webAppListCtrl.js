@@ -3,43 +3,29 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.webAppListCtrl', []).
-controller('WebAppListCtrl', function($scope,$routeParams,WebappsList,WebappCategories,Categories,FeaturedApps,TrendApps) {
+controller('WebAppListCtrl', function($scope,$routeParams,WebappService,CategoryService) {
 
-	loadCats();
-	setSelectionCats();
 
-	if($routeParams.catId){
 
-		console.log('Liste catégorie');
-		//Affichage par catégorie
-
-		catDisplay();
-	}
-
-	if($routeParams.selectionId){
-		console.log('Liste sélection');
-		//Affichage par sélection
-
-		selectionDisplay();
-
-	}
+	go();
 
 	function catDisplay(){
 		$scope.subcats = new Array();
 
 
-		var appsFeatured = FeaturedApps.get({id: $routeParams.catId}, function(){
+		var appsFeatured = WebappService.getFeaturedApps({catId: $routeParams.catId}, function(){
 			var c = new Object();
 			c.name ='Sélection de l\'équipe';
 			c.alveoles = appsFeatured;
 			$scope.subcats.push(c);
-		});
 
-		var appCat = WebappCategories.get({id: $routeParams.catId}, function(){
-			var c = new Object();
-			c.name ='Toutes les alvéoles';
-			c.alveoles = appCat.webapps;
-			$scope.subcats.push(c);
+			//On doit attendre que la requête des app featured soit terminée pour être sur que les subcats soient dans le bon ordre
+			var appCat = WebappService.getAppsFromCat({id: $routeParams.catId}, function(){
+				var c = new Object();
+				c.name ='Toutes les alvéoles';
+				c.alveoles = appCat.webapps;
+				$scope.subcats.push(c);
+			});
 		});
 
 		$scope.numColumns = 4;
@@ -52,6 +38,60 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappsList,WebappCate
 		});
 	}
 
+	function getSelectionName(id){
+		for(var i in $scope.selectionCats){
+			if($scope.selectionCats[i].id == id){
+				return $scope.selectionCats[i].name;
+			}
+		}
+		return null;
+	}
+
+	function display(){
+		setPageName($scope.cats);
+		setSelectionCats();
+
+		if($routeParams.catId){
+			console.log('Liste catégorie');
+
+			//Affichage par catégorie
+			catDisplay();
+		}
+
+		else if($routeParams.selectionId){
+
+			console.log('Liste sélection');
+
+			//Affichage par sélection
+			selectionDisplay();
+		}
+
+		else if($routeParams.content){
+			console.log('Résultat recherche');
+
+			//Affichage du résultat de la recherche
+			resultDisplay();
+		}	
+
+	}
+
+	function go(){
+		$scope.subcats = new Array();
+		// On commence par charger les catégories
+		$scope.cats = CategoryService.getCategories(function(){
+			//On lance l'affichage
+			display();		
+		});
+		//Watcher pour ne pas requeter à chaque fois
+		$scope.$watch('cats',function(newValue){
+			if(newValue && newValue.length > 0 ){
+				//On lance l'affichage
+				display();
+			}
+		});
+
+	}
+
 	function selectionDisplay(){
 
 		switch(parseInt($routeParams.selectionId)){
@@ -62,7 +102,7 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappsList,WebappCate
 			case 2:
 			//Les plus commentéees
 			$scope.pageName = getSelectionName(2);
-			TrendApps.getMostCommented(function(data){
+			WebappService.getMostCommented(function(data){
 				$scope.mostCommentedApps = data;
 				$scope.subcats[0].alveoles = data;
 			})
@@ -70,7 +110,7 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappsList,WebappCate
 			case 3:
 			//Les mieux notées
 			$scope.pageName = getSelectionName(3);
-			TrendApps.getBest(function(data){
+			WebappService.getBest(function(data){
 				$scope.bestApps = data;
 				$scope.subcats[0].alveoles = data;
 			})
@@ -78,7 +118,7 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappsList,WebappCate
 			case 4:
 			//Les plus récentes
 			$scope.pageName = getSelectionName(4);
-			TrendApps.getMostRecent(function(data){
+			WebappService.getMostRecent(function(data){
 				$scope.mostRecentApps = data;
 				$scope.subcats[0].alveoles = data;
 			})
@@ -86,7 +126,7 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappsList,WebappCate
 			case 5:
 			//Les plus partagées
 			$scope.pageName = getSelectionName(5);
-			TrendApps.getMostShared(function(data){
+			WebappService.getMostShared(function(data){
 				$scope.mostSharedApps = data;
 				$scope.subcats[0].alveoles = data;
 			})
@@ -96,6 +136,30 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappsList,WebappCate
 
 		}
 
+	}
+
+	function setPageName(cats){
+		if($routeParams.catId){
+			$scope.pageName=cats[parseInt($routeParams.catId)-1].name;
+		}
+		else if($routeParams.selectionId && $routeParams.selectionId == 1){
+			$scope.subcats = [];
+
+			for(var i in cats){
+				var r = new Object();
+				r.name = cats[i].name;
+				r.alveoles = null;
+				$scope.subcats.push(r);
+			}
+
+		} else {
+			$scope.subcats = [];
+			var r = new Object();
+			r.name = '';
+			r.alveoles = null;
+			$scope.subcats.push(r);
+		}
+		
 	}
 
 	function setSelectionCats(){
@@ -123,50 +187,8 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappsList,WebappCate
 		]
 	}
 
-	function setPageName(cats){
-		if($routeParams.catId){
-			$scope.pageName=cats[parseInt($routeParams.catId)-1].name;
-		}
-		else if($routeParams.selectionId && $routeParams.selectionId == 1){
-			$scope.subcats = [];
-
-			for(var i in cats){
-				var r = new Object();
-				r.name = cats[i].name;
-				r.alveoles = null;
-				$scope.subcats.push(r);
-			}
-
-		} else {
-			$scope.subcats = [];
-			var r = new Object();
-			r.name = '';
-			r.alveoles = null;
-			$scope.subcats.push(r);
-		}
-		
-	}
-
-	function loadCats(){
-		$scope.cats = Categories.getCategories(function(){
-			setPageName($scope.cats);			
-		});
-
-		$scope.$watch('cats',function(newValue){
-			if(newValue && newValue.length > 0 ){
-				setPageName($scope.cats);
-			}
-		});
-
-	}
-
-	function getSelectionName(id){
-		for(var i in $scope.selectionCats){
-			if($scope.selectionCats[i].id == id){
-				return $scope.selectionCats[i].name;
-			}
-		}
-		return null;
+	function resultDisplay(){
+		$scope.pageName = $routeParams.content;
 	}
 
 });

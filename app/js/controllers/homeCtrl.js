@@ -16,7 +16,7 @@ controller('HomeCtrl', function($scope,$location,CategoryService,WebappService) 
 		});
 	});
 
-	CategoryService.getFeaturedWebappForEachCategories(function(data){
+	CategoryService.getCategoriesWithFeaturedApps(function(data){
 		$scope.categories = data ;
 		$scope.catSelected = $scope.categories[Math.floor(Math.random() * $scope.categories.length)];
 		$scope.descCatSelected =  $scope.catSelected.description;
@@ -29,7 +29,7 @@ controller('HomeCtrl', function($scope,$location,CategoryService,WebappService) 
 	}
 
 	$scope.itemClass = function(cat) {
-		// return cat.id === $scope.catSelected.id ? 'catSelected' : undefined;
+		return cat.id === $scope.catSelected.id ? 'catSelected' : undefined;
 	};
 
 	$scope.changeView = function(url){

@@ -13,17 +13,17 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 		$scope.subcats = new Array();
 
 
-		var appsFeatured = WebappService.getFeaturedApps({catId: $routeParams.catId}, function(){
+		WebappService.getFeaturedApps({catId: $routeParams.catId}, function(data){
 			var c = new Object();
 			c.name ='Sélection de l\'équipe';
-			c.alveoles = appsFeatured;
+			c.alveoles = data;
 			$scope.subcats.push(c);
 
 			//On doit attendre que la requête des app featured soit terminée pour être sur que les subcats soient dans le bon ordre
-			var appCat = WebappService.getAppsFromCat({id: $routeParams.catId}, function(){
+			WebappService.getAppsFromCat({catId: $routeParams.catId}, function(data){
 				var c = new Object();
 				c.name ='Toutes les alvéoles';
-				c.alveoles = appCat.webapps;
+				c.alveoles = data.webapps;
 				$scope.subcats.push(c);
 			});
 		});

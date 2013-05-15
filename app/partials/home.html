@@ -24,7 +24,7 @@
 						</td>
 						<td  id="descFeaturedApp">
 							<span>
-								<h4><a href="#/webapp/{{appFeatured.id}}">{{appFeatured.title}}</a></h4>
+								<h4><a href="#/alveoles/{{appFeatured.id}}">{{appFeatured.title}}</a></h4>
 								{{appFeatured.description}}
 							</span>
 						</td>
@@ -65,11 +65,11 @@
 		<slide ng-repeat="row in rows" active="img.active">
 			<div class="alveoleWrap" data-ng-repeat="col in cols">
 				<div class="alveole">
-					<a href="#/webapp/{{webapps[$parent.$index * numColumns + $index].id}}">
+					<a href="#/alveoles/{{webapps[$parent.$index * numColumns + $index].id}}">
 						<img class="imgCarousel" ng-src="img/{{webapps[$parent.$index * numColumns + $index].id}}.jpg" >
 					</a>
 					<h2 class="alveoleName">
-						<a href="#/webapp/{{webapps[$parent.$index * numColumns + $index].id}}">
+						<a href="#/alveoles/{{webapps[$parent.$index * numColumns + $index].id}}">
 							<strong>{{webapps[$parent.$index * numColumns + $index].title}}</strong>
 						</a>
 					</h2>

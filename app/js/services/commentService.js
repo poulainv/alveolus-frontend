@@ -7,12 +7,7 @@ factory('CommentService', function($http,$resource) {
 
     var url = 'http://quiet-spire-4994.herokuapp.com';
 
-    var service = $resource(url+'/webapps/:id/comments', {catId:'@id'}, {
-        get: {
-            method:'GET', 
-            isArray: true
-        }
-    });
+    var service = $resource(url+'/webapps/:id/comments', {catId:'@id'}, {});
 
     return service;
 });

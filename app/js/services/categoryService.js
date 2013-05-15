@@ -24,7 +24,7 @@ factory('CategoryService', function($http,$resource) {
         }
     }
 
-    service.getFeaturedWebappForEachCategories = function(callback){
+    service.getCategoriesWithFeaturedApps = function(callback){
        $http({method:'GET', url: url+'/categories/featured_webapps', cache: true}).
         success(function(data){console.log(data); callback(data);});
     }

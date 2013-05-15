@@ -1,37 +1,48 @@
 <div class="container">
 	<div class="row">
 		<div class="span10 offset1 well">
-			<h2>Proposition d'une alvéole</h2>
+			<form name="form" class="form-signin" novalidate>
+				<h2>Proposition d'une alvéole</h2>
 
-			<label for="title">Titre : </label>
-			<input type="text" id="title" ng-model="webapp.title" placeholder="MaSuperAlvéole"></input>
+				<label for="title">Titre : </label>
+				<input type="text" id="title" ng-model="webapp.title" placeholder="MaSuperAlvéole" required></input>
 
-			<label for="caption">Description rapide : </label>
-			<textarea id="caption" rows="2" class="field span10" ng-model="webapp.caption"
-    			placeholder=""></textarea>
+				<label for="url">Url : </label>
+				<input type="text" id="url" ng-model="webapp.url" placeholder="www.monsite.fr" required></input>
 
-			<label for="description">Description complète : </label>
-			<textarea id="description" rows="5" class="field span10" ng-model="webapp.description"
-    			placeholder=""></textarea>
+				<label for="caption">Description rapide : </label>
+				<textarea id="caption" rows="2" class="field span10" ng-model="webapp.caption"
+				placeholder="" required></textarea>
 
+				<label for="description">Description complète : </label>
+				<textarea id="description" rows="5" class="field span10" ng-model="webapp.description"
+				placeholder="" required></textarea>
 
-			<!-- Réseaux sociaux -> récupération id et vérification que la page existe à voir -->
+				<label for="cat">Catégorie : </label>
+				<input type="text" id="cat" ng-model="webapp.category_id" placeholder="6" required></input>
 
-			Pages :
-			<label for="facebook"><i class="icon-large icon-facebook"></i></label>
-			<input type="text" id="facebook" class="field span6" ng-model="networks.facebook"></input>
-
-			<label for="twitter"><i class="icon-large icon-twitter"></i></label>
-			<input type="text" id="twitter" class="field span6" ng-model="networks.twitter"></input>
-
-			<label for="gplus"><i class="icon-google-plus icon-large"></i></label>
-			<input type="text" id="gplus" class="field span6" ng-model="networks.gplus"></input>
-
-			<label for="image">Image : </label>
-			<input type="file" title="Search for a file to add" id="image" ng-model="image.file">
+				<label for="featured">Featured : </label>
+				<input type="checkbox" id="featured" ng-model="webapp.featured"></input>
 
 
-			<button type="button" class="btn"  ng-click="onSubmit()">Envoyer</button>
+				<!-- Réseaux sociaux -> récupération id et vérification que la page existe à voir -->
+
+				<p>Pages :</p>
+				<label for="facebook"><i class="icon-large icon-facebook"></i></label>
+				<input type="text" id="facebook" class="field span6" ng-model="webapp.facebook_id"></input>
+
+				<label for="twitter"><i class="icon-large icon-twitter"></i></label>
+				<input type="text" id="twitter" class="field span6" ng-model="webapp.twitter_id"></input>
+
+				<label for="gplus"><i class="icon-google-plus icon-large"></i></label>
+				<input type="text" id="gplus" class="field span6" ng-model="webapp.gplus_id"></input>
+
+				<label for="image">Image : </label>
+				<input type="file" title="Search for a file to add" id="image" ng-model="webapp.image">
+
+				<br>
+				<button type="button" class="btn"  ng-click="submit(webapp)">Envoyer</button>
+			</form>
 		</div>
 
 
@@ -39,8 +50,6 @@
 		<div class="span10 offset1 well">
 			<h2> Debug view </h2>
 			webapp = {{webapp | json}}
-			<br><br>
-			networks = {{networks | json}}
 		</div>
 		
 	</div>

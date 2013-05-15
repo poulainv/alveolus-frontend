@@ -1,1 +1,47 @@
-ok
+<div class="container">
+	<div class="row">
+		<div class="span10 offset1 well">
+			<h2>Proposition d'une alvéole</h2>
+
+			<label for="title">Titre : </label>
+			<input type="text" id="title" ng-model="webapp.title" placeholder="MaSuperAlvéole"></input>
+
+			<label for="caption">Description rapide : </label>
+			<textarea id="caption" rows="2" class="field span10" ng-model="webapp.caption"
+    			placeholder=""></textarea>
+
+			<label for="description">Description complète : </label>
+			<textarea id="description" rows="5" class="field span10" ng-model="webapp.description"
+    			placeholder=""></textarea>
+
+
+			<!-- Réseaux sociaux -> récupération id et vérification que la page existe à voir -->
+
+			Pages :
+			<label for="facebook"><i class="icon-large icon-facebook"></i></label>
+			<input type="text" id="facebook" class="field span6" ng-model="networks.facebook"></input>
+
+			<label for="twitter"><i class="icon-large icon-twitter"></i></label>
+			<input type="text" id="twitter" class="field span6" ng-model="networks.twitter"></input>
+
+			<label for="gplus"><i class="icon-google-plus icon-large"></i></label>
+			<input type="text" id="gplus" class="field span6" ng-model="networks.gplus"></input>
+
+			<label for="image">Image : </label>
+			<input type="file" title="Search for a file to add" id="image" ng-model="image.file">
+
+
+			<button type="button" class="btn"  ng-click="onSubmit()">Envoyer</button>
+		</div>
+
+
+
+		<div class="span10 offset1 well">
+			<h2> Debug view </h2>
+			webapp = {{webapp | json}}
+			<br><br>
+			networks = {{networks | json}}
+		</div>
+		
+	</div>
+</div>

@@ -15,6 +15,8 @@ factory('WebappService', function($http,$resource) {
         }
     });
     var serviceCatApps = $resource(url+'/categories/:id/webapps', {id:'@id'}, {});
+    var serviceAddApp = $resource(url+'/webapps/new', {}, {});
+    var serviceSaveApp = $resource(url+'/webapps/', {}, {});
 
 
     service.getMostRecent = function(callback){
@@ -23,7 +25,7 @@ factory('WebappService', function($http,$resource) {
     }
 
     service.getMostShared = function(callback){
-        $http({method:'GET', url: url+'/webapps/trend/shared', cache: true}).
+        $http({method:'GET', url: url+'/WebAppss/trend/shared', cache: true}).
         success(function(data){callback(data);});
     }
 
@@ -47,6 +49,13 @@ factory('WebappService', function($http,$resource) {
 
     service.getAppsFromCat = function(params,callback){
         return serviceCatApps.get(params,callback);
+    }
+
+    service.getNewApp = function(params,callback){
+        return serviceAddApp.get(params,callback);
+    }
+    service.saveNewApp = function(params,callback){
+        return serviceSaveApp.post(params,callback);
     }
 
     return service;

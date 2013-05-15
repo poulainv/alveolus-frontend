@@ -16,6 +16,7 @@ factory('WebappService', function($http,$resource) {
     });
     var serviceCatApps = $resource(url+'/categories/:id/webapps', {id:'@id'}, {});
 
+
     service.getMostRecent = function(callback){
         $http({method:'GET', url: url+'/webapps/trend/recent', cache: true}).
         success(function(data){callback(data);});

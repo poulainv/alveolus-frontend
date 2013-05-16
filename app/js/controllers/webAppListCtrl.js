@@ -5,94 +5,41 @@
 angular.module('alveolus.webAppListCtrl', []).
 controller('WebAppListCtrl', function($scope,$routeParams,WebappService,CategoryService) {
 
+	init();
 
+	/**
+	* On change de catégorie
+	**/
+	$scope.changeCat = function(id){
 
-	go();
+		console.log("changeCat("+id+")");
+		console.log($scope.cats);
 
-	function catDisplay(){
 		$scope.subcats = new Array();
-
+		$scope.pageName=$scope.cats[id-1].name;
 
 		var c = new Object();
 		c.name ='Sélection de l\'équipe';
-		c.alveoles = $scope.cats[$routeParams.catId-1].webapps;
+		c.alveoles = $scope.cats[id-1].webapps;
 		console.log(c);
 		$scope.subcats.push(c);
 
-		WebappService.getAppsFromCat({catId: $routeParams.catId}, function(data){
+		WebappService.getAppsFromCat({catId: id}, function(data){
 			var c = new Object();
 			c.name ='Toutes les alvéoles';
 			c.alveoles = data.webapps;
 			$scope.subcats.push(c);
 		});
-
-		$scope.numColumns = 4;
-		$scope.rows = [];
-		$scope.cols = [];
-
-		$scope.$watch("webApps.length", function(){
-			// $scope.rows.length = Math.ceil($scope.webApps.length / $scope.numColumns);
-			// $scope.cols.length = $scope.numColumns;        
-		});
 	}
 
-	function getSelectionName(id){
-		for(var i in $scope.selectionCats){
-			if($scope.selectionCats[i].id == id){
-				return $scope.selectionCats[i].name;
-			}
-		}
-		return null;
-	}
 
-	function display(){
-		setPageName($scope.cats);
-		setSelectionCats();
-
-		if($routeParams.catId){
-			console.log('Liste catégorie');
-
-			//Affichage par catégorie
-			catDisplay();
-		}
-
-		else if($routeParams.selectionId){
-
-			console.log('Liste sélection');
-
-			//Affichage par sélection
-			selectionDisplay();
-		}
-
-		else if($routeParams.content){
-			console.log('Résultat recherche');
-
-			//Affichage du résultat de la recherche
-			resultDisplay();
-		}	
-
-	}
-
-	function go(){
-		$scope.subcats = new Array();
-		// On commence par charger les catégories
-		$scope.cats = CategoryService.getCategoriesWithFeaturedApps(function(){
-			//On lance l'affichage
-			display();		
-		});
-		//Watcher pour ne pas requeter à chaque fois
-		$scope.$watch('cats',function(newValue){
-			if(newValue && newValue.length > 0 ){
-				//On lance l'affichage
-				display();
-			}
-		});
-
-	}
-
-	function selectionDisplay(){
-
-		switch(parseInt($routeParams.selectionId)){
+	/**
+	* On change de feature
+	**/
+	$scope.changeFeat = function(id){
+		console.log("changeFeat("+id+")");
+		setSubcats(id);
+		switch(id){
 			case 1:
 			//Sélection de l'équipe
 			$scope.pageName = getSelectionName(1);
@@ -134,36 +81,64 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 			break;
 			default:
 			break;
-
 		}
-
 	}
 
-	function setPageName(cats){
-		if($routeParams.catId){
-			$scope.pageName=cats[parseInt($routeParams.catId)-1].name;
-		}
-		else if($routeParams.selectionId && $routeParams.selectionId == 1){
-			$scope.subcats = [];
-
-			for(var i in cats){
-				var r = new Object();
-				r.name = cats[i].name;
-				r.alveoles = null;
-				$scope.subcats.push(r);
+	/**
+	* Retourne le nom de la sélection depuis son id dans le json
+	**/
+	function getSelectionName(id){
+		console.log("getSelectionName("+id+")");
+		for(var i in $scope.selectionCats){
+			if($scope.selectionCats[i].id == id){
+				return $scope.selectionCats[i].name;
 			}
-
-		} else {
-			$scope.subcats = [];
-			var r = new Object();
-			r.name = '';
-			r.alveoles = null;
-			$scope.subcats.push(r);
 		}
-		
+		return null;
 	}
 
+	/**
+	* Initialiase les variables au chargement de la page (une seule fois)
+	**/
+	function init(){
+
+		console.log("init()");
+		$scope.subcats = new Array();
+		setSelectionCats();
+
+		var idCat = CategoryService.getIdCatSelected();
+
+		// On commence par charger les catégories
+		$scope.cats = CategoryService.getCategoriesWithFeaturedApps(function(){
+			//Si l'utilisateur arrive sur la page directement depuis l'url, on le met sur les staff picks
+			console.log(idCat);
+			if(idCat){
+				$scope.changeCat(idCat);				
+			} else {
+				$scope.changeFeat(1);
+			}
+		});
+
+		//Watcher pour ne pas requeter à chaque fois
+		$scope.$watch('cats',function(newValue){
+			if(newValue && newValue.length > 0 ){
+				console.log(idCat);
+				if(idCat){
+					$scope.changeCat(idCat);				
+				} else {
+					$scope.changeFeat(1);
+				}
+			}
+		});
+
+	}
+
+
+	/**
+	* On initialise la liste des sélections
+	**/
 	function setSelectionCats(){
+		console.log("setSelectionCats()");
 		$scope.selectionCats = [
 		{
 			'name':'Sélection de l\'équipe',
@@ -188,8 +163,29 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 		]
 	}
 
-	function resultDisplay(){
-		$scope.pageName = $routeParams.content;
+
+	/**
+	* On initialise les sous catégories, soit avec les catégories, soit avec rien
+	**/
+	function setSubcats(id){
+		console.log("setSubcats("+id+")");
+		if(id == 1){
+			$scope.subcats = [];
+
+			for(var i in $scope.cats){
+				var r = new Object();
+				r.name = $scope.cats[i].name;
+				r.alveoles = null;
+				$scope.subcats.push(r);
+			}
+
+		} else {
+			$scope.subcats = [];
+			var r = new Object();
+			r.name = '';
+			r.alveoles = null;
+			$scope.subcats.push(r);
+		}
 	}
 
 });

@@ -9,6 +9,8 @@ factory('CategoryService', function($http,$resource) {
     var catWithApps;
     var url = 'http://quiet-spire-4994.herokuapp.com';
 
+    var idCatSelected;
+
     var service = $resource(url+'/categories/:id', {catId:'@id'}, {});
     var serviceWithApps = $resource(url+'/categories/featured_webapps', {});
 
@@ -39,6 +41,14 @@ factory('CategoryService', function($http,$resource) {
         } else {
             return categoriesWithApps(callback); 
         }
+    }
+
+    service.setIdCatSelected = function(id){
+        idCatSelected = id;
+    }
+
+    service.getIdCatSelected = function(){
+        return idCatSelected;
     }
 
     return service;

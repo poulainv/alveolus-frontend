@@ -25,6 +25,7 @@ config(
     when('/alveoles/new', {templateUrl: 'partials/addWebapp.html',   controller: 'AddWebappCtrl'}).
     when('/alveoles/:webAppId', {templateUrl: 'partials/webAppDesc.html',   controller: 'WebappCtrl'}).
     when('/webappModal/:webAppId', {templateUrl: 'partials/webAppModal.html',   controller: 'WebappCtrl'}).
+    when('/alveoles', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).
     when('/alveoles/categorie/:catId', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).
     when('/alveoles/featured/:selectionId', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).
     when('/alveoles/search/:content', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).
@@ -32,4 +33,4 @@ config(
     otherwise({redirectTo: ''});
 }],["$httpProvider", function($httpProvider) {
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
-}]);
+}]).value('$anchorScroll', angular.noop);

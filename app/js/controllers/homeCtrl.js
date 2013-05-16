@@ -44,6 +44,7 @@ controller('HomeCtrl', function($scope,$location,CategoryService,WebappService) 
 
 	$scope.changeView = function(url){
 		console.log(url);
+		CategoryService.setIdCatSelected($scope.catSelected.id);
 		$location.path(url);
 	}
 

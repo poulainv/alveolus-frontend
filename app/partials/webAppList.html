@@ -30,11 +30,13 @@
 		<div id="navLinks" class="span3">
 			<h5><i class="icon-star"></i> Sélection</h5>
 			<ul class="noStyleList">
-				<li ng-repeat="selectionCat in selectionCats"><a href="#/alveoles/featured/{{selectionCat.id}}">{{selectionCat.name}}</a></li>
+				<!-- <li ng-repeat="selectionCat in selectionCats"><a href="#/alveoles/featured/{{selectionCat.id}}">{{selectionCat.name}}</a></li> -->
+				<li ng-repeat="selectionCat in selectionCats"><span class="link" ng-click="changeFeat(selectionCat.id)">{{selectionCat.name}}</span></li>
 			</ul>
 			<h5><i class="icon-th-large"></i> Catégories</h5>
 			<ul class="noStyleList">
-				<li ng-repeat="cat in cats"><a href="#/alveoles/categorie/{{cat.id}}">{{cat.name}}</a></li>
+				<!-- <li ng-repeat="cat in cats"><a href="#/alveoles/categorie/{{cat.id}}">{{cat.name}}</a></li> -->
+				<li ng-repeat="cat in cats"><span class="link" ng-click="changeCat(cat.id)">{{cat.name}}</span></li>
 			</ul>
 			<h5><i class="icon-tags"></i> Tags</h5>
 		</div>

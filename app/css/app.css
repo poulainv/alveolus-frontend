@@ -104,6 +104,14 @@ body{
   display: inline-block;
 }
 
+.link{
+  cursor: pointer;
+}
+
+.link:hover{
+  font-weight: bold;
+}
+
 .logo_small{
   max-width:95%; 
   max-height:85%;
@@ -208,6 +216,7 @@ body{
 
 #alveolesList{
   border-right: 1px solid #eef2ea;
+  min-height: 1000px;
 }
 
 #appFeatured{

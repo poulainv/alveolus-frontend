@@ -158,6 +158,7 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 	function setSubcats(id){
 		console.log("setSubcats("+id+")");
 		if(id == 1){
+			//Cas Staff Picks
 			$scope.subcats = [];
 
 			for(var i in $scope.cats){
@@ -168,6 +169,7 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 			}
 
 		} else {
+			//Autres cas
 			$scope.subcats = [];
 			var r = new Object();
 			r.name = '';

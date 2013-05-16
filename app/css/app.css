@@ -47,13 +47,19 @@ body{
   text-align: justify;
 }
 
+.alveoleRating{
+  position: absolute;
+  left: 10px;
+  bottom: 30px;
+}
+
 .alveoleTags{
   position:absolute;
   bottom:10px;
   left:10px;
   font-size: 12px;
   width: 200px;
-  height: 14px;
+  height: 18px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

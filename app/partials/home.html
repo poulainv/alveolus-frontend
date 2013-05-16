@@ -47,23 +47,9 @@
 	<div id="popularApps">
 		<h3><img src="img/star_small.png">  Alvéoles Populaires</h3>
 	</div>
-	<!--
-	<div class="row-fluid" data-ng-repeat="row in rows">
-		<div class="col span4 alveole" data-ng-repeat="col in cols">
-			<div>
-				<b>{{webapps[$parent.$index * numColumns + $index].webapp.title}}</b><br>
-				<img class="logo_small" src="img/{{webapps[$parent.$index * numColumns + $index].webapp.id}}.jpg"></p>
-			</div>
-				<div class="alveole-hover">
-					<a href="#/webapp/{{webapps[$parent.$index * numColumns + $index].id}}">
-						{{webapps[$parent.$index * numColumns + $index].caption}}
-					</a>
-				</div>
-		</div>
-	</div>-->
 	<carousel id="popularCarousel">
 		<slide ng-repeat="row in rows" active="img.active">
-			<div class="alveoleWrap" data-ng-repeat="col in cols">
+			<div class="alveoleWrap" ng-repeat="col in cols">
 				<div class="alveole">
 					<a href="#/alveoles/{{webapps[$parent.$index * numColumns + $index].id}}">
 						<img class="imgCarousel" ng-src="img/{{webapps[$parent.$index * numColumns + $index].id}}.jpg" >
@@ -76,6 +62,9 @@
 					<p class="alveoleDesc">
 						{{webapps[$parent.$index * numColumns + $index].caption}}
 					</p>
+					<div class="alveoleRating">
+						<i class="{{ {'rate':webapps[$parent.$parent.$index * numColumns + $parent.$index].average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+					</div>
 					<div class="alveoleTags">
 						<i class="icon-bookmark"></i>
 						<i ng-repeat="tag in webapps[$parent.$index * numColumns + $index].tags">{{tag.name}}, </i>

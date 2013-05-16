@@ -1,14 +1,18 @@
 
 <div class="container">
-	<div id="catList">
-		<span ng-repeat="cat in categories" ng-mouseenter="changeDesc(cat.description)" ng-mouseleave="changeDesc(catSelected.description)" ng-click="changeCat(cat)" ng-class="itemClass(cat)" class="btn cat"> 
-			{{cat.name}}
-		</span>
-		<div class="inline" >
-			{{descCatSelected}}
+	<div id="catListWrapper">
+		<div class="span5" id="catList">
+			<span ng-repeat="cat in categories" ng-mouseenter="changeDesc(cat.description)" ng-mouseleave="changeDesc(catSelected.description)" ng-click="changeCat(cat)" ng-class="itemClass(cat)" class="btnCat"> 
+				{{cat.name}}
+			</span>
+		</div>
+		<div class="span6" id="catListDescriptionWrapper">
+			<div class="boxDesc" id="catListDescription">
+				{{descCatSelected}}
+			</div>
 		</div>
 	</div>
-	<div id="teamSelection" >
+	<div id="teamSelection" class="span11">
 
 		<div>
 			<br>
@@ -42,38 +46,40 @@
 		<br>
 	</div>
 
-	<div class="separator"></div>
+	<div class="separator span11"></div>
 
-	<div id="popularApps">
+	<div id="popularApps" class="span11" >
 		<h3><img src="img/star_small.png">  Alvéoles Populaires</h3>
-	</div>
-	<carousel id="popularCarousel">
-		<slide ng-repeat="row in rows" active="img.active">
-			<div class="alveoleWrap" ng-repeat="col in cols">
-				<div class="alveole">
-					<a href="#/alveoles/{{webapps[$parent.$index * numColumns + $index].id}}">
-						<img class="imgCarousel" ng-src="img/{{webapps[$parent.$index * numColumns + $index].id}}.jpg" >
-					</a>
-					<h2 class="alveoleName">
+
+		<carousel id="popularCarousel">
+			<slide ng-repeat="row in rows" active="img.active">
+				<div class="alveoleWrap" ng-repeat="col in cols">
+					<div class="alveole">
 						<a href="#/alveoles/{{webapps[$parent.$index * numColumns + $index].id}}">
-							<strong>{{webapps[$parent.$index * numColumns + $index].title}}</strong>
+							<img class="imgCarousel" ng-src="img/{{webapps[$parent.$index * numColumns + $index].id}}.jpg" >
 						</a>
-					</h2>
-					<p class="alveoleDesc">
-						{{webapps[$parent.$index * numColumns + $index].caption}}
-					</p>
-					<div class="alveoleRating">
-						<i class="{{ {'rate':webapps[$parent.$parent.$index * numColumns + $parent.$index].average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
-					</div>
-					<div class="alveoleTags">
-						<i class="icon-bookmark"></i>
-						<i ng-repeat="tag in webapps[$parent.$index * numColumns + $index].tags">{{tag.name}}, </i>
+						<h2 class="alveoleName">
+							<a href="#/alveoles/{{webapps[$parent.$index * numColumns + $index].id}}">
+								<strong>{{webapps[$parent.$index * numColumns + $index].title}}</strong>
+							</a>
+						</h2>
+						<p class="alveoleDesc">
+							{{webapps[$parent.$index * numColumns + $index].caption}}
+						</p>
+						<div class="alveoleRating">
+							<i class="{{ {'rate':webapps[$parent.$parent.$index * numColumns + $parent.$index].average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i> 
+							- {{webapps[$parent.$index * numColumns + $index].comments.length}} avis
+						</div>
+						<div class="alveoleTags">
+							<i class="icon-bookmark"></i>
+							<i ng-repeat="tag in webapps[$parent.$index * numColumns + $index].tags">{{tag.name}}, </i>
+						</div>
 					</div>
 				</div>
-			</div>
 
-		</slide>
-	</carousel>
+			</slide>
+		</carousel>
+	</div>
 
 	<!-- <div class="hexagon"><span></span></div> -->
 </div>

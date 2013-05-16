@@ -77,15 +77,55 @@ body{
   border-radius: 9px;
   background: #eef2ea;
   padding: 4px;
-  margin: 5px 20px;
+  margin: 5px 10px;
   clear: both;
 }
 
-.cat{
-  margin-right: 20px;
-  border-radius: 0px;
-  box-shadow: 4px 4px 12px black; 
+.boxDesc {
+  color: #333;
+  min-height: 56px;
+  position: relative;
+  padding: 8px;
+  background: white;
+  border: 1px solid #D7D7D7;
+  box-shadow: 2px 2px 0 #D7D7D7;
+  border-radius: 3px;
+  font-size: 12px;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -ms-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
 }
+
+.btnCat{
+  float: left;
+  display: block;
+  padding: 7px 15px 5px 15px;
+  text-transform: uppercase;
+  font-size: 11px;
+  border-radius: 3px;
+  color: #333;
+  margin: 0 3px 5px;
+  background-color: #FFF;
+  border: 1px solid #D7D7D7;
+  box-shadow: 2px 2px 0 #D7D7D7;
+  cursor: pointer;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -ms-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+}
+
+.btnCat:hover, .btnCatFocus{
+  background-color: #f9f9f9;
+  box-shadow: 2px 2px 0 #666;
+  color: #000;
+  border-color: #666;
+  text-decoration: none;
+}
+
 
 .catSelected{
   border: 1px solid green;
@@ -220,6 +260,17 @@ body{
   color: #ea0;
 }
 
+.tooltipCustom{
+
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  background-color: #000000;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
 #alveolesList{
   border-right: 1px solid #eef2ea;
   min-height: 1000px;
@@ -234,7 +285,11 @@ body{
 }
 
 #catList{
-  text-align: left;
+  /*margin-left: 0;*/
+}
+
+#catListWrapper{
+  min-height: 70px;
 }
 
 #descFeaturedApp{

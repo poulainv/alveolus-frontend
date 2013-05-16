@@ -20,7 +20,7 @@
 							{{alveole.caption}}
 						</p>
 						<div class="alveoleRating">
-						<i class="{{ {'rate':alveole.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+						<i class="{{ {'rate':alveole.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i> - {{alveole.comments.length}} avis
 						</div>
 						<div class="alveoleTags">
 							<i class="icon-bookmark"></i>

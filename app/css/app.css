@@ -82,8 +82,9 @@ body{
 }
 
 .boxDesc {
-  color: #333;
-  min-height: 56px;
+  color: #444;
+  min-height: 55px;
+  max-height: 55px;
   position: relative;
   padding: 8px;
   background: white;
@@ -96,6 +97,30 @@ body{
   -ms-transition: .3s;
   -o-transition: .3s;
   transition: .3s;
+}
+.boxDesc:after, .boxDesc:before {
+  right: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.boxDesc:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-right-color: #FFFFFF;
+  border-width: 10px;
+  top: 50%;
+  margin-top: -10px;
+}
+.boxDesc:before {
+  border-color: rgba(215, 215, 215, 0);
+  border-right-color: #D7D7D7;
+  border-width: 11px;
+  top: 50%;
+  margin-top: -11px;
 }
 
 .btnCat{

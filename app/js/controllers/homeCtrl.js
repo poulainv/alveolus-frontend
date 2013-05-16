@@ -29,7 +29,7 @@ controller('HomeCtrl', function($scope,$location,CategoryService,WebappService) 
 	}
 
 	$scope.itemClass = function(cat) {
-		return cat.id === $scope.catSelected.id ? 'catSelected' : undefined;
+		return cat.id === $scope.catSelected.id ? 'btnCatFocus' : undefined;
 	};
 
 	$scope.changeView = function(url){

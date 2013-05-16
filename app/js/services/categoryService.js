@@ -5,42 +5,15 @@
 angular.module('alveolus.categoryService', ['ngResource']).
 factory('CategoryService', function($http,$resource) {
 
-    var cat;
-    var catWithApps;
+    var data;
+    var idCatSelected;
     var url = 'http://quiet-spire-4994.herokuapp.com';
 
-    var idCatSelected;
-
     var service = $resource(url+'/categories/:id', {catId:'@id'}, {});
-    var serviceWithApps = $resource(url+'/categories/featured_webapps', {});
-
-    var categories = function(callback) {
-        cat = service.query(callback);
-        return cat;
-    }
-    
-    service.getCategories = function(callback) {
-        if(cat) {
-            console.log(cat);
-            return cat;
-        } else {
-            return categories(callback); 
-        }
-    }
-
-
-    var categoriesWithApps = function(callback){
-        catWithApps = serviceWithApps.query(callback);
-        return catWithApps
-    }
 
     service.getCategoriesWithFeaturedApps = function(callback){
-        if(catWithApps) {
-            console.log(catWithApps);
-            return catWithApps;
-        } else {
-            return categoriesWithApps(callback); 
-        }
+       $http({method:'GET', url: url+'/categories/featured_webapps', cache: true}).
+        success(function(data){console.log(data); callback(data);});
     }
 
     service.setIdCatSelected = function(id){

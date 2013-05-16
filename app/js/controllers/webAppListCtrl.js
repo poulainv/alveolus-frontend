@@ -5,6 +5,7 @@
 angular.module('alveolus.webAppListCtrl', []).
 controller('WebAppListCtrl', function($scope,$routeParams,WebappService,CategoryService) {
 
+	// $('#headerCarousel').hide();
 	init();
 
 	/**
@@ -105,29 +106,16 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 		console.log("init()");
 		$scope.subcats = new Array();
 		setSelectionCats();
-
 		var idCat = CategoryService.getIdCatSelected();
 
 		// On commence par charger les catégories
-		$scope.cats = CategoryService.getCategoriesWithFeaturedApps(function(){
+		CategoryService.getCategoriesWithFeaturedApps(function(data){
 			//Si l'utilisateur arrive sur la page directement depuis l'url, on le met sur les staff picks
-			console.log(idCat);
+			$scope.cats = data;
 			if(idCat){
 				$scope.changeCat(idCat);				
 			} else {
 				$scope.changeFeat(1);
-			}
-		});
-
-		//Watcher pour ne pas requeter à chaque fois
-		$scope.$watch('cats',function(newValue){
-			if(newValue && newValue.length > 0 ){
-				console.log(idCat);
-				if(idCat){
-					$scope.changeCat(idCat);				
-				} else {
-					$scope.changeFeat(1);
-				}
 			}
 		});
 

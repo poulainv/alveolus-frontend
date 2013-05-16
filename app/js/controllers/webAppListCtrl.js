@@ -13,19 +13,17 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 		$scope.subcats = new Array();
 
 
-		WebappService.getFeaturedApps({catId: $routeParams.catId}, function(data){
-			var c = new Object();
-			c.name ='Sélection de l\'équipe';
-			c.alveoles = data;
-			$scope.subcats.push(c);
+		var c = new Object();
+		c.name ='Sélection de l\'équipe';
+		c.alveoles = $scope.cats[$routeParams.catId-1].webapps;
+		console.log(c);
+		$scope.subcats.push(c);
 
-			//On doit attendre que la requête des app featured soit terminée pour être sur que les subcats soient dans le bon ordre
-			WebappService.getAppsFromCat({catId: $routeParams.catId}, function(data){
-				var c = new Object();
-				c.name ='Toutes les alvéoles';
-				c.alveoles = data.webapps;
-				$scope.subcats.push(c);
-			});
+		WebappService.getAppsFromCat({catId: $routeParams.catId}, function(data){
+			var c = new Object();
+			c.name ='Toutes les alvéoles';
+			c.alveoles = data.webapps;
+			$scope.subcats.push(c);
 		});
 
 		$scope.numColumns = 4;
@@ -78,7 +76,7 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 	function go(){
 		$scope.subcats = new Array();
 		// On commence par charger les catégories
-		$scope.cats = CategoryService.getCategories(function(){
+		$scope.cats = CategoryService.getCategoriesWithFeaturedApps(function(){
 			//On lance l'affichage
 			display();		
 		});
@@ -98,6 +96,9 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 			case 1:
 			//Sélection de l'équipe
 			$scope.pageName = getSelectionName(1);
+			for(var i in $scope.cats){
+				$scope.subcats[i].alveoles = $scope.cats[i].webapps;
+			}
 			break;
 			case 2:
 			//Les plus commentéees

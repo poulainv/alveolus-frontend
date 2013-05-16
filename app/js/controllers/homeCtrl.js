@@ -16,12 +16,22 @@ controller('HomeCtrl', function($scope,$location,CategoryService,WebappService) 
 		});
 	});
 
-	CategoryService.getCategoriesWithFeaturedApps(function(data){
-		$scope.categories = data ;
+	$scope.categories = CategoryService.getCategoriesWithFeaturedApps(function(data){
 		$scope.catSelected = $scope.categories[Math.floor(Math.random() * $scope.categories.length)];
 		$scope.descCatSelected =  $scope.catSelected.description;
 		$scope.appFeatured = $scope.catSelected.webapps[Math.floor(Math.random() * $scope.catSelected.webapps.length)];
-	})
+	});
+
+	//Watcher pour simuler le callback quand celui ci n'est pas appelé
+	$scope.$watch('categories',function(newValue){
+		if(newValue && newValue.length > 0 ){
+			console.log('watcher !');
+			$scope.catSelected = $scope.categories[Math.floor(Math.random() * $scope.categories.length)];
+			$scope.descCatSelected =  $scope.catSelected.description;
+			console.log($scope.catSelected);
+			$scope.appFeatured = $scope.catSelected.webapps[Math.floor(Math.random() * $scope.catSelected.webapps.length)];
+		}
+	});
 
 	$scope.changeCat = function(cat){
 		$scope.catSelected = cat;

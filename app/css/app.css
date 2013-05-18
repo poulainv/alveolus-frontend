@@ -164,6 +164,15 @@ body{
   cursor: pointer;
 }
 
+
+.css-form input.ng-invalid.ng-dirty {
+  background-color: #FA787E;
+}
+
+.css-form input.ng-valid.ng-dirty {
+  background-color: #78FA89;
+}
+
 .imgCarousel{
   height: 150px;
   width: 200px; 
@@ -275,6 +284,11 @@ body{
   color: #ea0;
   content:"\f005";
 }
+
+.red-star{
+  color: red;
+}
+
 .separator{
 
   border-top: 2px solid black;

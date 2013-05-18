@@ -8,6 +8,7 @@ controller('AddWebappCtrl', function($scope,$routeParams,WebappService, SocialSe
 
 	$scope.webapp=WebappService.new(function(){
 		console.log($scope.webapp);
+		// $scope.webapp.url = 'http://';
 		// $scope.webapp.$save();
 	});
 
@@ -17,6 +18,6 @@ controller('AddWebappCtrl', function($scope,$routeParams,WebappService, SocialSe
 		$scope.webapp = webapp;
 		console.log($scope.webapp);
 		$scope.webapp.$save();
-	}
+	};
 
 });

@@ -13,6 +13,7 @@ angular.module('alveolus',
     'alveolus.userService', 
     'alveolus.directives', 
     'alveolus.homeCtrl', 
+    'alveolus.mainCtrl', 
     'alveolus.webappCtrl', 
     'alveolus.addWebappCtrl', 
     'alveolus.userCtrl', 
@@ -27,9 +28,6 @@ config(
     when('/alveoles/:webAppId', {templateUrl: 'partials/webAppDesc.html',   controller: 'WebappCtrl'}).
     when('/webappModal/:webAppId', {templateUrl: 'partials/webAppModal.html',   controller: 'WebappCtrl'}).
     when('/alveoles', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).
-    when('/alveoles/categorie/:catId', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).
-    when('/alveoles/featured/:selectionId', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).
-    when('/alveoles/search/:content', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).
     when('/user/:userId', {templateUrl: 'partials/user.html',   controller: 'UserCtrl'}).
     otherwise({redirectTo: ''});
 }],["$httpProvider", function($httpProvider) {

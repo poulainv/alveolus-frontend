@@ -4,22 +4,21 @@
 			<form name="form" class="form-signin" novalidate>
 				<h2>Proposition d'une alvéole</h2>
 
-				<label for="title">Titre : </label>
-				<input type="text" id="title" ng-model="webapp.title" placeholder="MaSuperAlvéole" required></input>
+				<label for="title">Titre<span class="red-star">*</span> : </label>
+				<input type="text" id="title" ng-model="webapp.title" placeholder="MaSuperAlvéole" tooltip-placement="left" tooltip="Le nom du site" required></input>
 
-				<label for="url">Url : </label>
-				<input type="text" id="url" ng-model="webapp.url" placeholder="www.monsite.fr" required></input>
+				<label for="url">Url<span class="red-star">*</span> : </label>
+				<input type="url" id="url" ng-model="webapp.url" placeholder="http://" tooltip-placement="left" tooltip="L'url de l'alvéole (doit être au format http://...)" required></input>
 
-				<label for="caption">Description rapide : </label>
-				<textarea id="caption" rows="2" class="field span10" ng-model="webapp.caption"
-				placeholder="" required></textarea>
+				<label for="caption">Description rapide<span class="red-star">*</span> : </label>
+				<textarea id="caption" rows="2" class="field span10" placeholder="Une description rapide" ng-model="webapp.caption"
+				 tooltip-placement="left" tooltip="Un description en quelques lignes de l'alvéole"required></textarea>
 
-				<label for="description">Description complète : </label>
-				<textarea id="description" rows="5" class="field span10" ng-model="webapp.description"
-				placeholder="" required></textarea>
+				<label for="description">Description complète<span class="red-star">*</span> : </label>
+				<textarea id="description" rows="5" class="field span10" placeholder="Une description complète" ng-model="webapp.description" tooltip-placement="left" tooltip="Une description plus complète de l'alvéole" required></textarea>
 
-				<label for="cat">Catégorie : </label>
-				<input type="text" id="cat" ng-model="webapp.category_id" placeholder="6" required></input>
+				<label for="cat">Catégorie<span class="red-star">*</span> : </label>
+				<input type="text" id="cat" ng-model="webapp.category_id" placeholder="6" tooltip-placement="left" tooltip="La catégorie qui représente le mieux cette alvéole"required></input>
 
 				<label for="featured">Featured : </label>
 				<input type="checkbox" id="featured" ng-model="webapp.featured"></input>
@@ -29,20 +28,22 @@
 
 				<p>Pages :</p>
 				<label for="facebook"><i class="icon-large icon-facebook"></i></label>
-				<input type="text" id="facebook" class="field span6" ng-model="webapp.facebook_id"></input>
+				<input type="text" id="facebook" class="field span6" ng-model="webapp.facebook_id" tooltip-placement="left" tooltip="L'identifiant Facebook"></input>
 
 				<label for="twitter"><i class="icon-large icon-twitter"></i></label>
-				<input type="text" id="twitter" class="field span6" ng-model="webapp.twitter_id"></input>
+				<input type="text" id="twitter" class="field span6" ng-model="webapp.twitter_id" tooltip-placement="left" tooltip="L'identifiant Twitter"></input>
 
 				<label for="gplus"><i class="icon-google-plus icon-large"></i></label>
-				<input type="text" id="gplus" class="field span6" ng-model="webapp.gplus_id"></input>
+				<input type="text" id="gplus" class="field span6" ng-model="webapp.gplus_id" tooltip-placement="left" tooltip="L'identifiant Google+"></input>
 
 				<label for="image">Image : </label>
-				<input type="file" title="Search for a file to add" id="image" ng-model="webapp.image">
+				<input type="file" title="Search for a file to add" id="image" ng-model="webapp.image"  tooltip-placement="left" tooltip="L'image de l'alvéole (format 4:3 recommandé)">
 
 				<br>
-				<button type="button" class="btn"  ng-click="submit(webapp)">Envoyer</button>
+				<button type="button" class="btn"  ng-click="submit(webapp)" ng-disabled="form.$invalid">Envoyer</button>
 			</form>
+
+			<div><span class="red-star">*</span> : Champs requis</div>
 		</div>
 
 

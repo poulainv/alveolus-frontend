@@ -1,46 +1,93 @@
 <div class="container">
 	<div class="row">
 		<div class="span10 offset1 well">
-			<form name="form" class="form-signin" novalidate>
+			<form name="form" class="form-signin form-horizontal" novalidate>
 				<h2>Proposition d'une alvéole</h2>
 
-				<label for="title">Titre<span class="red-star">*</span> : </label>
-				<input type="text" id="title" ng-model="webapp.title" placeholder="MaSuperAlvéole" tooltip-placement="left" tooltip="Le nom du site" required></input>
+				<div class="control-group" ng-class="{error: form.title.$invalid && (!!form.title.$error.minlength || !!form.title.$error.maxlength),success: form.title.$valid}">
+					<label class="control-label" for="title">Titre<span class="red-star">*</span> : </label>
+					<div class="controls">
+						<input type="text" name="title" id="title" ng-model="webapp.title" placeholder="MaSuperAlvéole" tooltip-placement="right" tooltip="Le nom du site" ng-minlength="2" ng-maxlength="25"  required></input>
+						<span ng-show="form.title.$invalid && (!!form.title.$error.minlength || !!form.title.$error.maxlength)" class="help-inline">Le nom du site doit contenir entre 2 et 25 caractères</span>
+					</div>
+				</div>
 
-				<label for="url">Url<span class="red-star">*</span> : </label>
-				<input type="url" id="url" ng-model="webapp.url" placeholder="http://" tooltip-placement="left" tooltip="L'url de l'alvéole (doit être au format http://...)" required></input>
+				<div class="control-group" ng-class="{error: form.url.$invalid && !!form.url.$error.url,success: form.url.$valid}">
+					<label class="control-label" for="url">Url<span class="red-star">*</span> : </label>
+					<div class="controls">
+						<input type="url" name="url" id="url" ng-model="webapp.url" placeholder="http://" tooltip-placement="right" tooltip="L'url de l'alvéole (doit être au format http://...)" required></input>
+						<span ng-show="form.url.$invalid && !!form.url.$error.url" class="help-inline">L'url doit être de la forme 'http://...'</span>
+					</div>
+				</div>
 
-				<label for="caption">Description rapide<span class="red-star">*</span> : </label>
-				<textarea id="caption" rows="2" class="field span10" placeholder="Une description rapide" ng-model="webapp.caption"
-				 tooltip-placement="left" tooltip="Un description en quelques lignes de l'alvéole"required></textarea>
+				<div class="control-group" ng-class="{error: form.caption.$invalid && webapp.caption,success: form.caption.$valid}">
+					<label class="control-label" for="caption">Description rapide<span class="red-star">*</span> : </label>
+					<div class="controls">
+						<textarea id="caption" name="caption" rows="2" class="field span6" placeholder="Une phrase d'accroche" ng-model="webapp.caption"
+						tooltip-placement="right" tooltip="Une phrase d'accroche" required></textarea>
+					</div>
+				</div>
 
-				<label for="description">Description complète<span class="red-star">*</span> : </label>
-				<textarea id="description" rows="5" class="field span10" placeholder="Une description complète" ng-model="webapp.description" tooltip-placement="left" tooltip="Une description plus complète de l'alvéole" required></textarea>
+				<div class="control-group" ng-class="{error: form.description.$invalid && (!!form.description.$error.minlength || !!form.description.$error.maxlength),success: form.description.$valid}">
+					<label class="control-label" for="description">Description complète<span class="red-star">*</span> : </label>
+					<div class="controls">
+						<textarea id="description" name="description" rows="5" class="field span6" placeholder="Donnez une description du site, mettant en avant l'originalité du projet (entre 100 et 600 caractères)" ng-model="webapp.description" ng-minlength="100" ng-maxlength="600" tooltip-placement="right" tooltip="Donnez une description du site, mettant en avant l'originalité du projet (entre 100 et 600 caractères)" required></textarea>
+						<span ng-show="form.description.$invalid && (!!form.description.$error.minlength || !!form.description.$error.maxlength)" class="help-inline">La description doit faire entre 100 et 600 caractères</span>
+					</div>
+				</div>
 
-				<label for="cat">Catégorie<span class="red-star">*</span> : </label>
-				<input type="text" id="cat" ng-model="webapp.category_id" placeholder="6" tooltip-placement="left" tooltip="La catégorie qui représente le mieux cette alvéole"required></input>
+				<div class="control-group" ng-class="{success:form.cat.$valid}">
+					<label class="control-label" for="cat">Catégorie<span class="red-star">*</span> : </label>
+					<div class="controls">
+						<select id="cat" name="cat" ng-model="webapp.category_id" ng-options="cat.id as cat.name for cat in categories" required>
+						</select>
+					</div>
+				</div>
 
-				<label for="featured">Featured : </label>
-				<input type="checkbox" id="featured" ng-model="webapp.featured"></input>
+				<div class="control-group">
+					<label class="control-label" for="featured">Featured : </label>
+					<div class="controls">
+						<input type="checkbox" id="featured" ng-model="webapp.featured"></input>
+					</div>
+				</div>
 
 
 				<!-- Réseaux sociaux -> récupération id et vérification que la page existe à voir -->
 
-				<p>Pages :</p>
-				<label for="facebook"><i class="icon-large icon-facebook"></i></label>
-				<input type="text" id="facebook" class="field span6" ng-model="webapp.facebook_id" tooltip-placement="left" tooltip="L'identifiant Facebook"></input>
+				<div class="control-group">
+					<label class="control-label" for="facebook"><i class="icon-large icon-facebook"></i></label>
+					<div class="controls">
+						<input type="text" id="facebook" class="field span6" ng-model="webapp.facebook_id" tooltip-placement="right" tooltip="L'identifiant Facebook"></input>
+					</div>
+				</div>
 
-				<label for="twitter"><i class="icon-large icon-twitter"></i></label>
-				<input type="text" id="twitter" class="field span6" ng-model="webapp.twitter_id" tooltip-placement="left" tooltip="L'identifiant Twitter"></input>
+				<div class="control-group">
+					<label class="control-label" for="twitter"><i class="icon-large icon-twitter"></i></label>
+					<div class="controls">
+						<input type="text" id="twitter" class="field span6" ng-model="webapp.twitter_id" tooltip-placement="right" tooltip="L'identifiant Twitter"></input>
+					</div>
+				</div>
 
-				<label for="gplus"><i class="icon-google-plus icon-large"></i></label>
-				<input type="text" id="gplus" class="field span6" ng-model="webapp.gplus_id" tooltip-placement="left" tooltip="L'identifiant Google+"></input>
+				<div class="control-group">
+					<label class="control-label" for="gplus"><i class="icon-google-plus icon-large"></i></label>
+					<div class="controls">
+						<input type="text" id="gplus" class="field span6" ng-model="webapp.gplus_id" tooltip-placement="right" tooltip="L'identifiant Google+"></input>
+					</div>
+				</div>
 
-				<label for="image">Image : </label>
-				<input type="file" title="Search for a file to add" id="image" ng-model="webapp.image"  tooltip-placement="left" tooltip="L'image de l'alvéole (format 4:3 recommandé)">
+				<div class="control-group">
+					<label class="control-label" for="image">Image : </label>
+					<div class="controls">
+						<input type="file" title="Search for a file to add" id="image" ng-model="webapp.image"  tooltip-placement="right" tooltip="L'image de l'alvéole (format 4:3 recommandé)"></input>
+					</div>
+				</div>
 
 				<br>
-				<button type="button" class="btn"  ng-click="submit(webapp)" ng-disabled="form.$invalid">Envoyer</button>
+				<div class="control-group">
+					<div class="controls">
+						<button type="button" class="btn"  ng-click="submit(webapp)" ng-disabled="form.$invalid">Envoyer</button>
+					</div>
+				</div>
 			</form>
 
 			<div><span class="red-star">*</span> : Champs requis</div>
@@ -51,7 +98,14 @@
 		<div class="span10 offset1 well">
 			<h2> Debug view </h2>
 			webapp = {{webapp | json}}
+			<br/>
+			<tt>form.$valid = {{form.$valid}}</tt><br/>
+			<tt>form.$error = {{form.$error}}</tt><br/>
+			<tt>form.$valid = {{form.$valid}}</tt><br/>
+			<tt>form.cat = {{form.cat}}</tt><br/>
+			<tt>form.url.$error = {{form.url.$error}}</tt><br/>
+			<tt>form.$error.required = {{!!form.$error.required}}</tt><br/>
 		</div>
-		
+
 	</div>
 </div>

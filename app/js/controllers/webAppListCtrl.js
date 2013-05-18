@@ -82,7 +82,6 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 		WebappService.search({'content':content}, function(data){
 			$scope.subcats.push({ name : 'Résultats de la recherche', alveoles : data});
 		});
-
 	}
 
 	/**

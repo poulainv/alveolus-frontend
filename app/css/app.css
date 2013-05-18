@@ -294,6 +294,11 @@ body{
   color: #ea0;
 }
 
+.tag{
+  font-size: 12px;
+  font-style: italic;
+}
+
 .tooltipCustom{
 
   color: #ffffff;

@@ -3,10 +3,10 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.mainCtrl', []).
-controller('MainCtrl', function($scope,$routeParams,$location,WebappService, SessionService) {
+controller('MainCtrl', function($scope,$routeParams,$location,WebappService, SessionService, TagService) {
 
-	var alertLogSuccess = { type: 'success', msg: 'Parfait, vous êtes correctement authentifié' } ;
-	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifié' } ;
+	var alertLogSuccess = { type: 'success', msg: 'Parfait, vous êtes correctement authentifier'} ;
+	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifier'} ;
 
 	$scope.alerts = [];
 
@@ -52,5 +52,21 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService, Ses
 		backdropFade: true,
 		dialogFade:true
 	};
+
+	$scope.tags=TagService.query(function(){
+
+		var tagNames = [];
+		for(var i in $scope.tags){
+			tagNames.push($scope.tags[i].name);
+		}
+
+		$('#searchInput').typeahead({
+			source: tagNames,
+			updater:function (item) {
+				$scope.search(item);
+				return item;
+			}
+		});
+	});
 
 });

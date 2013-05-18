@@ -12,12 +12,6 @@ controller('VoteCtrl', function($scope,$routeParams,WebappService) {
     * Initialiase les variables au chargement de la page (une seule fois)
     **/
     function loadList(){
-
-        console.log("Load webapps list");
-        //$scope.subcats = [];
-        //initSelectionCats();
-        
-
         // On commence par charger les catégories
         WebappService.query(function(data){
             //console.log(data);
@@ -27,7 +21,7 @@ controller('VoteCtrl', function($scope,$routeParams,WebappService) {
                 return(new Date(b['created_at'])-new Date(a['created_at']));
             });
             for(var a in data){
-                console.log(data[a]);
+                //Récupère l'utilisateur qui a posté l'alvéole
                 data[a].user = data[a].user_id ? User.get({id: data[a].user_id}) : {'pseudo':'l\'équipe'};
             }
         });

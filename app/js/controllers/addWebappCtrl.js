@@ -3,17 +3,35 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.addWebappCtrl', []).
-controller('AddWebappCtrl', function($scope,$routeParams,WebappService, SocialService, CategoryService) {
+controller('AddWebappCtrl', function($scope,$routeParams,WebappService, SocialService, CategoryService, TagService) {
 
 
 	$scope.webapp=WebappService.new(function(){
-		console.log($scope.webapp);
-		// $scope.webapp.url = 'http://';
-		// $scope.webapp.$save();
+		$scope.webapp.tag_list = '';
 	});
 
-	$scope.categories=CategoryService.query(function(){
-		console.log($scope.categories);
+	$scope.categories=CategoryService.query();
+
+	$scope.tags=TagService.query(function(){
+
+		var tagNames = [];
+		for(var i in $scope.tags){
+			tagNames.push($scope.tags[i].name);
+		}
+
+		$('#tags').typeahead({
+
+			source: tagNames,
+
+			updater:function (item) {
+				$scope.webapp.tag_list += item+', ';
+				if($('#tagList').text().length == 0){
+					$('#tagList').append(item);					
+				} else {
+					$('#tagList').append(', '+item);	
+				}
+			}
+		});
 	});
 
 	$scope.submit=function(webapp){
@@ -22,6 +40,10 @@ controller('AddWebappCtrl', function($scope,$routeParams,WebappService, SocialSe
 		$scope.webapp = webapp;
 		console.log($scope.webapp);
 		$scope.webapp.$save();
+	};
+
+	$scope.addTag = function(tag) {
+		console.log(tag);
 	};
 
 

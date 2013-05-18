@@ -70,7 +70,7 @@
 							<i class="{{ {'rate':webapps[$parent.$parent.$index * numColumns + $parent.$index].average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i> 
 							- {{webapps[$parent.$index * numColumns + $index].comments.length}} avis
 						</div>
-						<div class="alveoleTags">
+						<div class="alveoleTagsWrapper">
 							<i class="icon-bookmark"></i>
 							<i ng-repeat="tag in webapps[$parent.$index * numColumns + $index].tags">{{tag.name}}, </i>
 						</div>

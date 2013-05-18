@@ -25,6 +25,7 @@ config(
     $routeProvider.
     when('', {templateUrl: 'partials/home.html',   controller: 'HomeCtrl'}).
     when('/alveoles/new', {templateUrl: 'partials/addWebapp.html',   controller: 'AddWebappCtrl'}).
+    when('/alveoles/search/:content', {templateUrl: 'partials/webAppList.html',   controller: 'WebAppListCtrl'}).
     when('/alveoles/:webAppId', {templateUrl: 'partials/webAppDesc.html',   controller: 'WebappCtrl'}).
     when('/webappModal/:webAppId', {templateUrl: 'partials/webAppModal.html',   controller: 'WebappCtrl'}).
     when('/alveoles', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).

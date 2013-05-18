@@ -3,8 +3,8 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.webAppListCtrl', []).
-controller('WebAppListCtrl', function($scope,$routeParams,WebappService,CategoryService,SearchService) {
-    
+controller('WebAppListCtrl', function($scope,$routeParams,WebappService,CategoryService) {
+
 
 	// $('#headerCarousel').hide();
 	init();
@@ -76,6 +76,15 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 		}
 	};
 
+	$scope.searchResults = function(content){
+		$scope.subTitle = content;
+		$scope.subcats = [] ;
+		WebappService.search({'content':content}, function(data){
+			$scope.subcats.push({ name : 'Résultats de la recherche', alveoles : data});
+		});
+
+	}
+
 	/**
 	* Initialiase les variables au chargement de la page (une seule fois)
 	**/
@@ -91,7 +100,9 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 		CategoryService.getCategoriesWithFeaturedApps(function(data){
 			//Si l'utilisateur arrive sur la page directement depuis l'url, on le met sur les staff picks
 			$scope.cats = data;
-			if(idCat){
+			if($routeParams.content){
+				$scope.searchResults($routeParams.content);
+			} else if(idCat){
 				$scope.changeCat($scope.cats[idCat-1]);				
 			} else {
 				$scope.changeFeat($scope.selectionCats[0]);

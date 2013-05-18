@@ -9,5 +9,10 @@ factory('UserService', function($http,$resource) {
 
     var service = $resource(url+'/users/:id', {catId:'@id'}, {});
 
+    service.getComments = function(params,callback){
+        $http({method:'GET', url: url+'/user/'+params.catId+'/comments', cache:true}).
+        success(function(data){callback(data);});
+    }
+
     return service;
 });

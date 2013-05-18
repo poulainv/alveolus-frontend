@@ -1,3 +1,62 @@
 <div class="container">
-	<p>{{user}}</p>
+	<div class="row">
+		<div class="span10 offset1">
+				<div class="tabbable"> 
+			    <ul class="nav nav-pills">
+			        <li class="active"><a href="#infos" data-toggle="tab">Vos informations</a></li>
+			        <li><a href="#favoris" data-toggle="tab">Vos alvéoles favorites</a></li>
+			        <li><a href="#comments" data-toggle="tab">Vos commentaires</a></li>
+			        <li><a href="#suggestions" data-toggle="tab">Vos suggestions</a></li>
+			    </ul>
+			    <div class="tab-content">
+			        <div class="tab-pane active" id="infos">
+							<!-- <img ng-src="{{user.avatar_file_name}}" /> -->
+						<form class="form-horizontal">
+							<div class="control-group">
+						    <label class="control-label" for="inputPseudo">Pseudo</label>
+						    <div class="controls">
+						      <input type="text" id="inputPseudo" value="{{user.pseudo}}" ng-model="user.pseudo">
+						    </div>
+						  </div>
+						  <div class="control-group">
+						    <label class="control-label" for="inputEmail">Email</label>
+						    <div class="controls">
+						      <input type="text" id="inputEmail" placeholder="Email" value="{{user.email}}" disabled>
+						    </div>
+						  </div>
+						  <div class="control-group">
+						    <label class="control-label" for="inputPassword">Password</label>
+						    <div class="controls">
+						      <input type="password" id="inputPassword" placeholder="Password" value="coucou">
+						    </div>
+						  </div>
+						  <div class="control-group">
+						    <label class="control-label" for="inputAvatar">Avatar</label>
+						    <div class="controls">
+						    	<img ng-src="{{user.avatar_file_name}}" class="span1 img-rounded img-polaroid"/>
+						    	<input type="file" id="inputPassword">
+						    </div>
+						  </div>
+						  <div class="control-group">
+						    <div class="controls">
+						    	<button class="btn" ng-click="onSubmit()">Enregistrer</button>
+						    </div>
+						  </div>
+						  
+						</form>
+						<p></p>
+
+
+						<pre>
+							{{user | json}}
+						</pre>
+			        </div>
+			        <div class="tab-pane" id="favoris">Favoris</div>
+			        <div class="tab-pane" id="comments">Commentaires</div>
+			        <div class="tab-pane" id="suggestions">Suggestions</div>
+			    </div>
+			</div>
+
+		</div>
+	</div>
 </div>

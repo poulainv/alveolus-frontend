@@ -64,19 +64,62 @@
               <li class="divider-vertical"></li>
               <li><a href="#"><i class="icon-eye-open icon-white"></i> À propos d'AlveolUs</a></li>
               <li class="divider-vertical"></li>
-              <li><a href="#"><i class="icon-user icon-white"></i> Connexion</a></li>
+              <li><a ng-click="openModalLogin()"><i class="icon-user icon-white"></i> Connexion</a></li>
               <li class="divider-vertical"></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
+    <div class="row-fluid">
+    <div class="offset1 span10">
+     <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+    </div>
+    </div>
     <div ng-view></div>
   </div>
-  
+
+    <div modal="shouldBeOpen" close="close()" options="opts">
+        <div class="modal-header">
+            <h4>I'm a modal!</h4>
+        </div>
+        <div class="modal-body">
+                   <div class="control-group">
+                  <div class="controls">
+                    <div class="input-prepend">
+                      <span class="add-on"><div class="icon-user"></div></span>
+                      <input id="user-email" type="text" ng-model="user.email"/>
+                    </div>
+                  </div>
+                  <div class="control-group custom_inline" >
+                    <div class="controls">
+                      <div class="input-prepend">
+                        <span class="add-on"><div class="icon-lock"></div></span>
+                        <input id="user-password" type="password" ng-model="user.password"/>
+                      </div>
+                    </div>
+                    <button ng-click="sign_in(user)" class="btn btn-success btn-block" >Go</button>
+                    <p>{{user.email}}{{user.password}}
+                    <div class="line-separator"></div>
+
+                    <!-- <p> Ou connectez-vous avec : </p> -->
+      <!-- <div id="openIdProviders">
+        <a class="openIdProvider hover_green" id="facebookLogIn" href="/auth/facebook">Facebook</a>
+        <a class="openIdProvider soon hover_green" id="googleLogIn" href=""> Google </a>
+        <a class="openIdProvider soon hover_green" id="twitterLogIn" href="">Twitter </a>
+      </div> -->
+                  </div>
+
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+        </div>
+    </div>
+
   <script src="http://code.jquery.com/jquery.js"></script>
   <script src="lib/bootstrap/bootstrap.min.js"></script>
-  <script src="lib/bootstrap/ui-bootstrap-tpls-0.3.0.min.js"></script>
+  <script src="lib/bootstrap/ui-bootstrap-tpls-0.3.0.js"></script>
 
 </body>
 </html>

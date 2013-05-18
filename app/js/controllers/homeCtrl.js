@@ -3,7 +3,8 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.homeCtrl', []).
-controller('HomeCtrl', function($scope,$location,CategoryService,WebappService) {
+controller('HomeCtrl', function($scope,$location,CategoryService,WebappService,SessionService) {
+
 
 	$scope.webapps = WebappService.query(function(){
 		$scope.numColumns = 4;

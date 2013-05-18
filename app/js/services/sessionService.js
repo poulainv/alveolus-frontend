@@ -8,15 +8,6 @@ angular.module('alveolus.sessionService', ['ngResource']).factory('SessionServic
     service = {};
     user = {};
 
-    $resource(url+'/users/:param', {}, {
-      // sign_in: {
-      //   method: 'POST', params : {param : 'sign_in.json'}
-      // },
-      sign_out: {
-        method: 'DELETE', params : {param : 'sign_out.json'}
-      }
-    });
-
     service.sign_in = function(user,callback){
         $http({
           method:'POST', 

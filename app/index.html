@@ -13,8 +13,7 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'><!-- police Open Sans -->
 
   <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
-  -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>-->
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular/angular-resource.js"></script>
   <script src="js/app.js"></script>
@@ -26,6 +25,7 @@
   <script src="js/services/socialService.js"></script>
   <script src="js/services/userService.js"></script>
   <script src="js/controllers/homeCtrl.js"></script>
+  <script src="js/controllers/mainCtrl.js"></script>
   <script src="js/controllers/webappCtrl.js"></script>
   <script src="js/controllers/addWebappCtrl.js"></script>
   <script src="js/controllers/webAppListCtrl.js"></script>
@@ -36,7 +36,7 @@
 
 </head>
 
-<body ng-cloak>
+<body ng-cloak ng-controller="MainCtrl">
   <div id="mainContainer">
     <div id="headerCarousel">
       <img id="headerImgCarousel" src="img/img.jpg" alt="imgCarrousel">
@@ -49,10 +49,12 @@
           <a class="brand" href="#"><img id="logoNavbar" src="img/logo_home2.png" alt="logoNavbar"></a>
 
           <div id="searchNavbar" class="input-append navbar-search">
-            <input class="span2" type="text" placeholder="Entrez une recherche">
-            <span class="add-on">
-              <i class="icon-search"></i>
-            </span>
+            <form name="myForm" ng-submit="search(searchContent)">
+              <input class="span2" type="text" ng-model="searchContent" placeholder="Entrez une recherche">
+              <span class="add-on link" ng-click="search(searchContent)">
+                <i class="icon-search"></i>
+              </span>
+            </form>
           </div>
           <div class="nav-collapse collapse">
             <ul class="nav pull-right">

@@ -3,8 +3,9 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.webAppListCtrl', []).
-controller('WebAppListCtrl', function($scope,$routeParams,WebappService,CategoryService) {
+controller('WebAppListCtrl', function($scope,$routeParams,WebappService,CategoryService,SearchService) {
     
+
 	// $('#headerCarousel').hide();
 	init();
 
@@ -26,7 +27,7 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 		WebappService.getAppsFromCat({catId: cat.id}, function(data){
 			$scope.subcats.push({ name : 'Toutes les alvéoles', alveoles : data.webapps});
 		});
-	}
+	};
 
 
 	/**
@@ -50,30 +51,30 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 			WebappService.getMostCommented(function(data){
 				$scope.subcats.push({ name : '', alveoles : data});
 
-			})
+			});
 			break;
 			case 3:
 			//Les mieux notées
 			WebappService.getBest(function(data){
 				$scope.subcats.push({ name : '', alveoles : data});
-			})
+			});
 			break;
 			case 4:
 			//Les plus récentes
 			WebappService.getMostRecent(function(data){
 				$scope.subcats.push({ name : '', alveoles : data});
-			})
+			});
 			break;
 			case 5:
 			//Les plus partagées
 			WebappService.getMostShared(function(data){
 				$scope.subcats.push({ name : '', alveoles : data});
-			})
+			});
 			break;
 			default:
 			break;
 		}
-	}
+	};
 
 	/**
 	* Initialiase les variables au chargement de la page (une seule fois)
@@ -126,8 +127,7 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 			'name':'Les plus partagées',
 			'id':5
 		}
-		]
+		];
 	}
-
 
 });

@@ -5,6 +5,7 @@
 angular.module('alveolus.webappService', ['ngResource']).
 factory('WebappService', function($http,$resource) {
 
+    var searchContent;
     var url = 'http://quiet-spire-4994.herokuapp.com';
     var service = $resource(url+'/webapps/:id', {id:'@id'}, {}, {
         //Ceci ne marche pas. Je ne sais pas si c'est possible en fait ou si c'est moi qui ai fait une erreur
@@ -50,6 +51,15 @@ factory('WebappService', function($http,$resource) {
     service.getAppsFromCat = function(params,callback){
         $http({method:'GET', url: url+'/categories/'+params.catId+'/webapps'}).
         success(function(data){callback(data);});
+    }
+
+    service.setSearchContent = function(content){
+        searchContent = content;
+        console.log(searchContent);
+    }
+
+    service.getSearchContent = function(){
+        return searchContent;
     }
 
     return service;

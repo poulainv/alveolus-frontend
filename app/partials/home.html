@@ -72,7 +72,7 @@
 						</div>
 						<div class="alveoleTagsWrapper">
 							<i class="icon-bookmark"></i>
-							<i ng-repeat="tag in webapps[$parent.$index * numColumns + $index].tags">{{tag.name}}, </i>
+							<span ng-repeat="tag in webapps[$parent.$index * numColumns + $index].tags" ng-click="search(tag.name)" class="tag">{{tag.name}}, </span>
 						</div>
 					</div>
 				</div>

@@ -36,14 +36,9 @@ controller('AddWebappCtrl', function($scope,$routeParams,WebappService, SocialSe
 
 	$scope.submit=function(webapp){
 		console.log('submit');
-		console.log(webapp);
 		$scope.webapp = webapp;
 		console.log($scope.webapp);
 		$scope.webapp.$save();
-	};
-
-	$scope.addTag = function(tag) {
-		console.log(tag);
 	};
 
 

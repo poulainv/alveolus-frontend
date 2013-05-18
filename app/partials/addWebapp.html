@@ -39,7 +39,7 @@
 				<div class="control-group" ng-class="{success:form.cat.$valid}">
 					<label class="control-label" for="cat">Catégorie<span class="red-star">*</span> : </label>
 					<div class="controls">
-						<select id="cat" name="cat" class="span6" ng-model="webapp.category_id" ng-options="cat.id as cat.name for cat in categories" required>
+						<select id="cat" name="cat" class="span6" ng-model="webapp.category_id" ng-options="cat.id as cat.name for cat in categories" tooltip-placement="right" tooltip="Choisissez la catégorie qui représente le mieux le site" required>
 						</select>
 					</div>
 				</div>
@@ -47,7 +47,7 @@
 				<div class="control-group">
 					<label class="control-label" for="tags">Tags : </label>
 					<div class="controls">
-						<input id="tags" type="text" ng-model="tag" class="span6"></input>
+						<input id="tags" type="text" ng-model="tag" class="span6" tooltip-placement="right" tooltip="Choisissez une liste de tag pour décrire le site"></input>
 						<div id="tagList" class="tag"></div>
 					</div>
 				</div>

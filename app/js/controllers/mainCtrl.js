@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.mainCtrl', []).
-controller('MainCtrl', function($scope,$routeParams,WebappService, SessionService) {
+controller('MainCtrl', function($scope,$routeParams,$location,WebappService, SessionService) {
 
 	var alertLogSuccess = { type: 'success', msg: 'Parfait, vous êtes correctement authentifié' } ;
 	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifié' } ;
@@ -13,7 +13,7 @@ controller('MainCtrl', function($scope,$routeParams,WebappService, SessionServic
 	$scope.user = SessionService.getUser();
 
 	$scope.search = function(content){
-		WebappService.setSearchContent(content);
+		$location.path('/alveoles/search/'+content);
 	};
 
 	$scope.sign_in = function(user){

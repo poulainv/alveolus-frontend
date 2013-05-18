@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.webAppListCtrl', []).
-controller('WebAppListCtrl', function($scope,$routeParams,WebappService,CategoryService) {
+controller('WebAppListCtrl', function($scope,$routeParams,$location,WebappService,CategoryService) {
 
 
 	// $('#headerCarousel').hide();
@@ -74,6 +74,10 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 			default:
 			break;
 		}
+	};
+
+	$scope.search = function(content){
+		$location.path('/alveoles/search/'+content);
 	};
 
 	$scope.searchResults = function(content){

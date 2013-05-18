@@ -5,6 +5,13 @@
 angular.module('alveolus.userCtrl', []).
 controller('UserCtrl', function($scope, $routeParams, User) {
 
-	$scope.user = User.get({id: $routeParams.userId});
-	$scope.user = $scope.user ? $scope.user : 'Bonjour monsieur X';
+	$scope.user = User.get({id: $routeParams.userId}, function(){
+		$scope.user.avatar_file_name="img/avatar.jpg";
+		$scope.user.pseudo="SuperPseudo";
+		comments=User.getComments();
+	});
+	
+	$scope.onSubmit=function(){
+		// User.put();	
+	}
 });

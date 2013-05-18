@@ -337,6 +337,14 @@ body{
   text-align : justify;
 }
 
+#footer{
+  background-color:#f5f5f5;
+  color:#999999;
+}
+#footer ul{
+  list-style:none;
+}
+
 #headerCarousel{
   height: 200px;
   overflow: hidden;

@@ -24,13 +24,14 @@ config(
   ['$routeProvider', function($routeProvider) {
     $routeProvider.
     when('', {templateUrl: 'partials/home.html',   controller: 'HomeCtrl'}).
+    when('/', {templateUrl: 'partials/home.html',   controller: 'HomeCtrl'}).
     when('/alveoles/new', {templateUrl: 'partials/addWebapp.html',   controller: 'AddWebappCtrl'}).
     when('/alveoles/search/:content', {templateUrl: 'partials/webAppList.html',   controller: 'WebAppListCtrl'}).
     when('/alveoles/:webAppId', {templateUrl: 'partials/webAppDesc.html',   controller: 'WebappCtrl'}).
     when('/webappModal/:webAppId', {templateUrl: 'partials/webAppModal.html',   controller: 'WebappCtrl'}).
     when('/alveoles', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).
     when('/user/:userId', {templateUrl: 'partials/user.html',   controller: 'UserCtrl'}).
-    otherwise({redirectTo: ''});
+    otherwise({redirectTo: '/'});
 }],["$httpProvider", function($httpProvider) {
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 }]).value('$anchorScroll', angular.noop);

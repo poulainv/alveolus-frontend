@@ -39,23 +39,27 @@ factory('WebappService', function($http,$resource) {
     }
 
     service.getFeaturedApp = function(params,callback){
-        $http({method:'GET', url: url+'/categories/'+params.catId+'/featured_webapp'}).
+        $http({method:'GET', url: url+'/categories/'+params.catId+'/featured_webapp', cache:true}).
         success(function(data){callback(data);});
     }
 
     service.getFeaturedApps = function(params,callback){
-        $http({method:'GET', url: url+'/categories/'+params.catId+'/featured_webapps'}).
+        $http({method:'GET', url: url+'/categories/'+params.catId+'/featured_webapps', cache: true}).
         success(function(data){callback(data);});
     }
 
     service.getAppsFromCat = function(params,callback){
-        $http({method:'GET', url: url+'/categories/'+params.catId+'/webapps'}).
+        $http({method:'GET', url: url+'/categories/'+params.catId+'/webapps', cache: true}).
         success(function(data){callback(data);});
+    }
+
+    service.search = function(params,callback){
+        $http({method:'GET', url: url+'/webapps/search/'+params.content, cache: true}).
+        success(function(data){callback(data);});        
     }
 
     service.setSearchContent = function(content){
         searchContent = content;
-        console.log(searchContent);
     }
 
     service.getSearchContent = function(){

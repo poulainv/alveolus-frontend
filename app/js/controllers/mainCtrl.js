@@ -3,9 +3,10 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.mainCtrl', []).
-controller('MainCtrl', function($scope,$routeParams,WebappService) {
+controller('MainCtrl', function($scope,$routeParams,$location,WebappService) {
+
 
 	$scope.search = function(content){
-		WebappService.setSearchContent(content);
-	}
+		$location.path('/alveoles/search/'+content);
+	};
 });

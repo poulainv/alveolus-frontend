@@ -1,0 +1,30 @@
+
+<div class="container">
+    <div class="row">
+        <div class="span10 offset1">
+            <h3>Validez les dernières alvéoles proposées</h3>
+            <div ng-repeat="alveole in alveoles">
+                <div class="row">
+                    <div class="span2">
+                        <img ng-src="img/{{alveole.id}}.jpg" alt="{{alveole.title}}">
+                        <ul class="vote-buttons">
+                            <li class="up"><a href='bhcqbsqbh'><i class="icon-thumbs-up"></i></a></li>
+                            <li class="down"><a href='bhcqbsqbh'><i class="icon-thumbs-down"></i></a></li>
+                        </ul>
+                        
+                    </div>
+                    <div class="span8">
+                        <h4>{{alveole.title}} proposée par {{alveole.user.pseudo}}</h4>
+                        <a href="{{alveole.url}}" target="_blank"><i class="icon-link icon-large"></i> Visiter le site</a>
+                        <p class="alveoleCaption">
+                            {{alveole.caption}}
+                        </p>
+                        <p class="alveoleDesc">
+                            {{alveole.description}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

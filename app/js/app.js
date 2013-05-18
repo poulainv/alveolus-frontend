@@ -2,11 +2,11 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('alveolus', 
+angular.module('alveolus',
     ['alveolus.filters',
     'alveolus.services',
-    'alveolus.webappService', 
-    'alveolus.categoryService', 
+    'alveolus.webappService',
+    'alveolus.categoryService',
     'alveolus.commentService',
     'alveolus.sessionService',
     'alveolus.socialService', 
@@ -15,9 +15,10 @@ angular.module('alveolus',
     'alveolus.homeCtrl', 
     'alveolus.mainCtrl', 
     'alveolus.webappCtrl', 
-    'alveolus.addWebappCtrl', 
-    'alveolus.userCtrl', 
-    'alveolus.webAppListCtrl', 
+    'alveolus.addWebappCtrl',
+    'alveolus.userCtrl',
+    'alveolus.webAppListCtrl',
+    'alveolus.voteCtrl',
     'ui.bootstrap'
     ]).
 config(
@@ -30,6 +31,7 @@ config(
     when('/webappModal/:webAppId', {templateUrl: 'partials/webAppModal.html',   controller: 'WebappCtrl'}).
     when('/alveoles', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).
     when('/user/:userId', {templateUrl: 'partials/user.html',   controller: 'UserCtrl'}).
+    when('/vote', {templateUrl: 'partials/vote.html',   controller: 'VoteCtrl'}).
     otherwise({redirectTo: ''});
 }],["$httpProvider", function($httpProvider) {
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');

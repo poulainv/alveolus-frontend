@@ -4,20 +4,14 @@
 
 describe('alveolus', function() {
 
-  beforeEach(function() {
-    browser().navigateTo('../../app/index.html');
-  });
-  
-
-
-  describe('view1', function() {
-
-
-  });
-
-
-  describe('view2', function() {
+	describe('Routing', function() {
+  	
+  	it('should redirect bad url to home page', function() {
+    	browser().navigateTo('../../app/index.html#/hyecaramba');
+    	expect(browser().location().url()).toBe('/');
+  	});
 
 
   });
+
 });

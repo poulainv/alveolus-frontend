@@ -1,0 +1,38 @@
+
+<div class="container">
+    <br>Debug View: 
+    <pre>data={{data | json}}</pre>
+    <div class="row">
+        <div class="span10 offset1">
+            <h3>Validez les dernières alvéoles proposées</h3>
+            <div ng-repeat="alveole in alveoles">
+                <div class="row vote-alv">
+                    <div class="span2">
+                        <img ng-src="img/{{alveole.id}}.jpg" alt="{{alveole.title}}">
+                        <ul class="vote-buttons span2">
+                            <li class="up">
+                                <span href='#' ng-click="vote(alveole.id, 'up')"><i class="icon-thumbs-up"></i></span>
+                            <li class="down">
+                                <span href='#' ng-click="vote(alveole.id, 'down')"><i class="icon-thumbs-down"></i></a></span>
+                        </ul>
+                        
+                    </div>
+                    <div class="span8">
+                        <h4>{{alveole.title}} proposée par {{alveole.user.pseudo}}</h4>
+                        <a href="{{alveole.url}}" target="_blank"><i class="icon-link icon-large"></i> Visiter le site</a>
+                        <p class="alveoleCaption">
+                            {{alveole.caption}}
+                        </p>
+                        <p class="alveoleDesc" collapse="isCollapsed">
+                            {{alveole.description}}
+                        </p>
+                        <a ng-click="isCollapsed = !isCollapsed" ng-click="">
+                            <i class="icon-chevron-{{isCollapsed && 'down'||'up'}}"></i>
+                            {{isCollapsed && 'Afficher la description'||'Réduire la description'}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

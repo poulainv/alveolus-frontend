@@ -5,7 +5,6 @@
 angular.module('alveolus.addWebappCtrl', []).
 controller('AddWebappCtrl', function($scope,$routeParams,WebappService, SocialService, CategoryService, TagService) {
 
-	var url = "http://quiet-spire-4994.herokuapp.com";
 
 	$scope.webapp=WebappService.new(function(){
 		$scope.webapp.tag_list = '';
@@ -40,9 +39,6 @@ controller('AddWebappCtrl', function($scope,$routeParams,WebappService, SocialSe
 		$scope.webapp = webapp;
 		console.log($scope.webapp);
 		WebappService.addWebapp(webapp,$scope.files);
-		
-
-		// $scope.webapp.$save();
 	};
 
 	$scope.results = function(content, completed) {
@@ -95,20 +91,6 @@ controller('AddWebappCtrl', function($scope,$routeParams,WebappService, SocialSe
 			$scope.files.push(element.files[0])
 			$scope.progressVisible = false
 		});
-	}
-
-
-	$scope.uploadFile = function() {
-		var fd = new FormData()
-		fd.append("uploadedFile", $scope.files[0])
-		var xhr = new XMLHttpRequest()
-		xhr.upload.addEventListener("progress", uploadProgress, false)
-		xhr.addEventListener("load", uploadComplete, false)
-		xhr.addEventListener("error", uploadFailed, false)
-		xhr.addEventListener("abort", uploadCanceled, false)
-		xhr.open("POST", "/fileupload")
-		$scope.progressVisible = true
-		xhr.send(fd)
 	}
 
 

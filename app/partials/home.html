@@ -24,7 +24,7 @@
 				<table id="tableFeatured" class="offset0" >
 					<tr>
 						<td>
-							<img id="logoTeamSelection" src="img/{{appFeatured.id}}.jpg" title="Image du site ! En construction.." alt="Image du site !">
+							<img id="logoTeamSelection" src="{{appFeatured | image}}" title="Image du site ! En construction.." alt="Image du site !">
 						</td>
 						<td  id="descFeaturedApp">
 							<span>
@@ -56,7 +56,7 @@
 				<div class="alveoleWrap" ng-repeat="col in cols">
 					<div class="alveole">
 						<a href="#/alveoles/{{webapps[$parent.$index * numColumns + $index].id}}">
-							<img class="imgCarousel" ng-src="img/{{webapps[$parent.$index * numColumns + $index].id}}.jpg" >
+							<img class="imgCarousel" ng-src="{{webapps[$parent.$index * numColumns + $index]  | image}}" >
 						</a>
 						<h2 class="alveoleName">
 							<a href="#/alveoles/{{webapps[$parent.$index * numColumns + $index].id}}">

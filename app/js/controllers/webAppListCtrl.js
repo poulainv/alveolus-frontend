@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.webAppListCtrl', []).
-controller('WebAppListCtrl', function($scope,$routeParams,WebappService,CategoryService) {
+controller('WebAppListCtrl', function($scope,$routeParams,$location,WebappService,CategoryService) {
 
 
 	// $('#headerCarousel').hide();
@@ -76,13 +76,16 @@ controller('WebAppListCtrl', function($scope,$routeParams,WebappService,Category
 		}
 	};
 
+	$scope.search = function(content){
+		$location.path('/alveoles/search/'+content);
+	};
+
 	$scope.searchResults = function(content){
 		$scope.subTitle = content;
 		$scope.subcats = [] ;
 		WebappService.search({'content':content}, function(data){
 			$scope.subcats.push({ name : 'Résultats de la recherche', alveoles : data});
 		});
-
 	}
 
 	/**

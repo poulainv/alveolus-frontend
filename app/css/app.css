@@ -3,6 +3,7 @@
 a:link, a:visited, a:hover, a:active {
   color:black;
   text-decoration: none;
+  cursor: pointer;
 }
 
 body{
@@ -53,11 +54,10 @@ body{
   bottom: 30px;
 }
 
-.alveoleTags{
+.alveoleTagsWrapper{
   position:absolute;
   bottom:10px;
   left:10px;
-  font-size: 12px;
   width: 200px;
   height: 18px;
   overflow: hidden;
@@ -164,13 +164,8 @@ body{
   cursor: pointer;
 }
 
-
-.css-form input.ng-invalid.ng-dirty {
-  background-color: #FA787E;
-}
-
-.css-form input.ng-valid.ng-dirty {
-  background-color: #78FA89;
+.control-group option{
+  color: black;
 }
 
 .imgCarousel{
@@ -299,6 +294,12 @@ body{
   color: #ea0;
 }
 
+.tag{
+  font-size: 12px;
+  font-style: italic;
+  cursor: pointer;
+}
+
 .tooltipCustom{
 
   color: #ffffff;
@@ -334,6 +335,14 @@ body{
 #descFeaturedApp{
   padding: 50px;
   text-align : justify;
+}
+
+#footer{
+  background-color:#f5f5f5;
+  color:#999999;
+}
+#footer ul{
+  list-style:none;
 }
 
 #headerCarousel{

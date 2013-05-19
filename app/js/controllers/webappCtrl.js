@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.webappCtrl', []).
-controller('WebappCtrl', function($scope,$routeParams,WebappService, SocialService) {
+controller('WebappCtrl', function($scope,$routeParams, WebappService, SocialService, CommentService) {
 
 	$scope.webAppId=$routeParams.webAppId;
 	$scope.webapp=WebappService.get({id: $routeParams.webAppId}, function(){
@@ -46,10 +46,18 @@ controller('WebappCtrl', function($scope,$routeParams,WebappService, SocialServi
 // });
 
 
-	// A voir : gestion du formulaire commentaires
-	// $scope.save = function() {
-	//     $scope.comment = angular.copy($scope.comment, $scope.master);
-	//     alert($scope.comment.rating);
- //  };
+	$scope.submitComment = function(comment) {
+	    CommentService.addComment({webappId : $routeParams.webAppId, comment : $scope.comment}, function(data){
+	    	alert(data);
+	    });
+  	};
+
+  	$scope.submitTag = function(tag) {
+	    // CommentService.addComment({webappId : $routeParams.webAppId, comment : $scope.comment}, function(data){
+	    // 	alert(data);
+	    // });
+  	};
+
+  
 
 });

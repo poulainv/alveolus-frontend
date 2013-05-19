@@ -4,13 +4,13 @@
 // Declare app level module which depends on filters, and services
 angular.module('alveolus', 
     ['alveolus.filters',
-    'alveolus.services',
     'alveolus.webappService', 
     'alveolus.categoryService', 
     'alveolus.commentService',
     'alveolus.sessionService',
     'alveolus.socialService', 
     'alveolus.userService', 
+    'alveolus.tagService', 
     'alveolus.directives', 
     'alveolus.homeCtrl', 
     'alveolus.mainCtrl', 
@@ -30,7 +30,7 @@ config(
     when('/webappModal/:webAppId', {templateUrl: 'partials/webAppModal.html',   controller: 'WebappCtrl'}).
     when('/alveoles', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).
     when('/user/:userId', {templateUrl: 'partials/user.html',   controller: 'UserCtrl'}).
-    otherwise({redirectTo: ''});
+    otherwise({redirectTo: '/', templateUrl: 'partials/home.html', controller: 'HomeCtrl'});
 }],["$httpProvider", function($httpProvider) {
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 }]).value('$anchorScroll', angular.noop);

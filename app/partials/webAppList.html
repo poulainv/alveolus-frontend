@@ -22,9 +22,9 @@
 						<div class="alveoleRating">
 						<i class="{{ {'rate':alveole.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i> - {{alveole.comments.length}} avis
 						</div>
-						<div class="alveoleTags">
+						<div class="alveoleTagsWrapper">
 							<i class="icon-bookmark"></i>
-							<i ng-repeat="tag in alveole.tags">{{tag.name}}, </i>
+							<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)" class="tag">{{tag.name}}, </span>
 						</div>
 					</div>
 				</div>

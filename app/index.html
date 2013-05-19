@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My AngularJS App</title>
+  <title>AlveolUs</title>
   <link rel="icon" type="image/png" href="img/favicon.png" />
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/bootstrap-responsive.css" >
@@ -18,12 +18,12 @@
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular/angular-resource.js"></script>
   <script src="js/app.js"></script>
-  <script src="js/services/services.js"></script>
   <script src="js/services/sessionService.js"></script>
   <script src="js/services/webappService.js"></script>
   <script src="js/services/categoryService.js"></script>
   <script src="js/services/commentService.js"></script>
   <script src="js/services/socialService.js"></script>
+  <script src="js/services/tagService.js"></script>
   <script src="js/services/userService.js"></script>
   <script src="js/controllers/homeCtrl.js"></script>
   <script src="js/controllers/mainCtrl.js"></script>
@@ -38,7 +38,7 @@
 
 </head>
 
-<body ng-cloak ng-controller="MainCtrl">
+<body ng-controller="MainCtrl">
   <div id="mainContainer">
     <div id="headerCarousel">
       <img id="headerImgCarousel" src="img/img.jpg" alt="imgCarrousel">
@@ -52,7 +52,7 @@
 
           <div id="searchNavbar" class="input-append navbar-search">
             <form name="myForm" ng-submit="search(searchContent)">
-              <input class="span2" type="text" ng-model="searchContent" placeholder="Entrez une recherche">
+              <input id="searchInput" class="span2" type="text" ng-model="searchContent" placeholder="Entrez une recherche">
               <span class="add-on link" ng-click="search(searchContent)">
                 <i class="icon-search"></i>
               </span>
@@ -117,6 +117,34 @@
             <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
         </div>
     </div>
+
+
+    <div id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="span3 offset2">
+          <h5>Qui sommes nous ?</h5>
+          <ul>
+            <li><a href="#">Nos valeurs</a></li>
+            <li><a href="#">L'équipe</a></li>
+            <li><a href="#">F.A.Q.</a></li>
+          </ul>
+        </div>
+        <div class="span3">
+          <h5>Contactez-nous</h5>
+          <ul>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Signaler un bug</a></li>
+            <li><a href="#">Feedback</a></li>
+          </ul>
+        </div>
+         <div class="span3">
+          <h5>A propos</h5>
+          EnjoyTheWeb est un projet original ayant pour vocation de rapprocher deux entités ayant besoin l'une de l'autre : les sites web innovants et les internautes.
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="http://code.jquery.com/jquery.js"></script>
   <script src="lib/bootstrap/bootstrap.min.js"></script>

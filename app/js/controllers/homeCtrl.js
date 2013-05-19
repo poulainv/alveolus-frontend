@@ -43,4 +43,8 @@ controller('HomeCtrl', function($scope,$location,CategoryService,WebappService,S
 		$scope.descCatSelected = catSelected;
 	}
 
+	$scope.search = function(content){
+		$location.path('/alveoles/search/'+content);
+	};
+
 });

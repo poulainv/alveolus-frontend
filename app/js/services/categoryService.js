@@ -13,7 +13,7 @@ factory('CategoryService', function($http,$resource) {
 
     service.getCategoriesWithFeaturedApps = function(callback){
        $http({method:'GET', url: url+'/categories/featured_webapps', cache: true}).
-        success(function(data){console.log(data); callback(data);});
+        success(function(data){callback(data)});
     }
 
     service.setIdCatSelected = function(id){

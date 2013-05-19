@@ -7,7 +7,7 @@
 				<div class="control-group" ng-class="{error: form.title.$invalid && (!!form.title.$error.minlength || !!form.title.$error.maxlength),success: form.title.$valid}">
 					<label class="control-label" for="title">Titre<span class="red-star">*</span> : </label>
 					<div class="controls">
-						<input type="text" name="title" id="title" ng-model="webapp.title" placeholder="MaSuperAlvéole" tooltip-placement="right" tooltip="Le nom du site" ng-minlength="2" ng-maxlength="25"  required></input>
+						<input type="text" name="title" id="title" class="span6" ng-model="webapp.title" placeholder="MaSuperAlvéole" tooltip-placement="right" tooltip="Le nom du site" ng-minlength="2" ng-maxlength="25"  required></input>
 						<span ng-show="form.title.$invalid && (!!form.title.$error.minlength || !!form.title.$error.maxlength)" class="help-inline">Le nom du site doit contenir entre 2 et 25 caractères</span>
 					</div>
 				</div>
@@ -15,7 +15,7 @@
 				<div class="control-group" ng-class="{error: form.url.$invalid && !!form.url.$error.url,success: form.url.$valid}">
 					<label class="control-label" for="url">Url<span class="red-star">*</span> : </label>
 					<div class="controls">
-						<input type="url" name="url" id="url" ng-model="webapp.url" placeholder="http://" tooltip-placement="right" tooltip="L'url de l'alvéole (doit être au format http://...)" required></input>
+						<input type="url" name="url" id="url" class="span6" ng-model="webapp.url" placeholder="http://" tooltip-placement="right" tooltip="L'url de l'alvéole (doit être au format http://...)" required></input>
 						<span ng-show="form.url.$invalid && !!form.url.$error.url" class="help-inline">L'url doit être de la forme 'http://...'</span>
 					</div>
 				</div>
@@ -39,8 +39,16 @@
 				<div class="control-group" ng-class="{success:form.cat.$valid}">
 					<label class="control-label" for="cat">Catégorie<span class="red-star">*</span> : </label>
 					<div class="controls">
-						<select id="cat" name="cat" ng-model="webapp.category_id" ng-options="cat.id as cat.name for cat in categories" required>
+						<select id="cat" name="cat" class="span6" ng-model="webapp.category_id" ng-options="cat.id as cat.name for cat in categories" tooltip-placement="right" tooltip="Choisissez la catégorie qui représente le mieux le site" required>
 						</select>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="tags">Tags : </label>
+					<div class="controls">
+						<input id="tags" type="text" ng-model="tag" class="span6" tooltip-placement="right" tooltip="Choisissez une liste de tag pour décrire le site"></input>
+						<div id="tagList" class="tag"></div>
 					</div>
 				</div>
 
@@ -57,21 +65,21 @@
 				<div class="control-group">
 					<label class="control-label" for="facebook"><i class="icon-large icon-facebook"></i></label>
 					<div class="controls">
-						<input type="text" id="facebook" class="field span6" ng-model="webapp.facebook_id" tooltip-placement="right" tooltip="L'identifiant Facebook"></input>
+						<input type="text" id="facebook" class="span6" ng-model="webapp.facebook_id" tooltip-placement="right" tooltip="L'identifiant Facebook"></input>
 					</div>
 				</div>
 
 				<div class="control-group">
 					<label class="control-label" for="twitter"><i class="icon-large icon-twitter"></i></label>
 					<div class="controls">
-						<input type="text" id="twitter" class="field span6" ng-model="webapp.twitter_id" tooltip-placement="right" tooltip="L'identifiant Twitter"></input>
+						<input type="text" id="twitter" class="span6" ng-model="webapp.twitter_id" tooltip-placement="right" tooltip="L'identifiant Twitter"></input>
 					</div>
 				</div>
 
 				<div class="control-group">
 					<label class="control-label" for="gplus"><i class="icon-google-plus icon-large"></i></label>
 					<div class="controls">
-						<input type="text" id="gplus" class="field span6" ng-model="webapp.gplus_id" tooltip-placement="right" tooltip="L'identifiant Google+"></input>
+						<input type="text" id="gplus" class="span6" ng-model="webapp.gplus_id" tooltip-placement="right" tooltip="L'identifiant Google+"></input>
 					</div>
 				</div>
 

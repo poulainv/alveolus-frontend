@@ -19,6 +19,7 @@ angular.module('alveolus',
     'alveolus.addWebappCtrl', 
     'alveolus.userCtrl', 
     'alveolus.webAppListCtrl', 
+    'ngUpload', 
     'ui.bootstrap'
     ]).
 config(

@@ -66,5 +66,11 @@ factory('WebappService', function($http,$resource) {
         return searchContent;
     }
 
+    service.vote = function(params,callback){
+        $http({method:'POST', url: url+'/webapps/'+params.id+'/vote/?type='+params.value}).
+        success(function(data){callback(data);});
+    };
+
+
     return service;
 });

@@ -27,4 +27,12 @@ controller('VoteCtrl', function($scope,$routeParams,WebappService) {
         });
     }
 
+    $scope.vote = function(webAppId,voteValue){
+        WebappService.vote({id: webAppId, value: voteValue}, function(data){
+            $scope.data = data;
+        });
+        
+    };
+
+
 });

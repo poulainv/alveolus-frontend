@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="span10 offset1 well">
-			<form name="form" class="form-signin form-horizontal" novalidate>
+			<form name="form" class="form-signin form-horizontal" action="http://quiet-spire-4994.herokuapp.com/webapps" ng-upload novalidate>
 				<h2>Proposition d'une alvéole</h2>
 
 				<div class="control-group" ng-class="{error: form.title.$invalid && (!!form.title.$error.minlength || !!form.title.$error.maxlength),success: form.title.$valid}">
@@ -86,14 +86,14 @@
 				<div class="control-group">
 					<label class="control-label" for="image">Image : </label>
 					<div class="controls">
-						<input type="file" title="Search for a file to add" id="image" ng-model="webapp.image"  tooltip-placement="right" tooltip="L'image de l'alvéole (format 4:3 recommandé)"></input>
+						<input type="file" name="image" title="Search for a file to add" id="image" ng-model="webapp.image"  tooltip-placement="right" tooltip="L'image de l'alvéole (format 4:3 recommandé)"></input> 
 					</div>
 				</div>
 
 				<br>
 				<div class="control-group">
 					<div class="controls">
-						<button type="button" class="btn"  ng-click="submit(webapp)" ng-disabled="form.$invalid">Envoyer</button>
+						<input type="submit" class="btn" value="Envoyer" ng-disabled="form.$invalid" upload-submit="uploadComplete(contents, completed)" />
 					</div>
 				</div>
 			</form>
@@ -113,6 +113,7 @@
 			<tt>form.cat = {{form.cat}}</tt><br/>
 			<tt>form.url.$error = {{form.url.$error}}</tt><br/>
 			<tt>form.$error.required = {{!!form.$error.required}}</tt><br/>
+
 		</div>
 
 	</div>

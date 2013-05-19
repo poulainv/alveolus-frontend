@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.mainCtrl', []).
-controller('MainCtrl', function($scope,$routeParams,$location,WebappService, SessionService, TagService) {
+controller('MainCtrl', function($scope,$routeParams,$location,WebappService,SessionService,TagService,FeedbackService) {
 
 	var alertLogSuccess = { type: 'success', msg: 'Parfait, vous êtes correctement authentifié' } ;
 	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifié' } ;
@@ -44,20 +44,36 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService, Ses
 
 	// Manage open and close of modal login
 	$scope.openModalLogin = function () {
-		$scope.shouldBeOpen = true;
+		$scope.modalLogin = true;
 	};
+
 
 	$scope.closeModalLogin = function () {
 		$scope.closeMsg = 'I was closed at: ' + new Date();
-		$scope.shouldBeOpen = false;
+		$scope.modalLogin = false;
 	};
+
+	$scope.openModalFeedback = function () {
+		$scope.modalFeedback = true;
+	};
+
+	$scope.closeModalFeedback = function () {
+		$scope.modalFeedback = false;
+		$scope.closeMsg = 'I was closed at: ' + new Date();
+		$scope.feedback = {};
+	};
+
+	$scope.sendFeedback = function (content) {
+		$scope.closeModalFeedback();
+		FeedbackService.sendFeedback(content,function(data){
+			console.log(data);
+		});
+	}
 
 	$scope.opts = {
 		backdropFade: true,
 		dialogFade:true
 	};
-
-
 
 
 	$scope.tags=TagService.query(function(){

@@ -41,5 +41,11 @@ controller('AddWebappCtrl', function($scope,$routeParams,WebappService, SocialSe
 		$scope.webapp.$save();
 	};
 
+	$scope.results = function(content, completed) {
+		if (completed && content.length > 0){
+			console.log(content);
+		}
+	}
+
 
 });

@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/bootstrap-responsive.css" >
   <link rel="stylesheet" href="css/app.css"/>
   <link rel="stylesheet" href="css/webapp.css"/>
+  <link rel="stylesheet" href="css/feedback.css"/>
   <link rel="stylesheet" href="css/FontAwesome/css/font-awesome.min.css"> <!-- Ajout d'icones à bootstrap -->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'><!-- police Open Sans -->
 
@@ -23,6 +24,7 @@
   <script src="js/services/categoryService.js"></script>
   <script src="js/services/commentService.js"></script>
   <script src="js/services/socialService.js"></script>
+  <script src="js/services/feedbackService.js"></script>
   <script src="js/services/tagService.js"></script>
   <script src="js/services/userService.js"></script>
   <script src="js/controllers/homeCtrl.js"></script>
@@ -31,9 +33,10 @@
   <script src="js/controllers/addWebappCtrl.js"></script>
   <script src="js/controllers/webAppListCtrl.js"></script>
   <script src="js/controllers/userCtrl.js"></script>
+  <script src="js/controllers/voteCtrl.js"></script>
   <script src="js/filters/filters.js"></script>
   <script src="js/directives/directives.js"></script>
-  <script src="js/dom.js"></script>
+  <script src="js/directives/ng-upload.js"></script>
 
 </head>
 
@@ -58,28 +61,29 @@
             </form>
           </div>
           <div class="nav-collapse collapse">
-            <ul class="nav pull-right">
-              <li class="divider-vertical"></li>
-              <li><a href="#/alveoles/new"><i class="icon-plus icon-white"></i> Poster une Alvéole</a></li>
-              <li class="divider-vertical"></li>
-              <li><a href="#"><i class="icon-eye-open icon-white"></i> À propos d'AlveolUs</a></li>
-              <li class="divider-vertical"></li>
-              <li><a ng-click="openModalLogin()"><i class="icon-user icon-white"></i> {{isLogged && "Bonjour" || "Connexion"}}</a></li>
-              <li class="divider-vertical"></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="offset1 span10">
-       <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+           <ul class="nav pull-right">
+             <li class="divider-vertical"></li>
+             <li><a href="#/alveoles/new"><i class="icon-plus icon-white"></i> Poster une Alvéole</a></li>
+             <li class="divider-vertical"></li>
+             <li><a href="#"><i class="icon-eye-open icon-white"></i> À propos d'AlveolUs</a></li>
+             <li class="divider-vertical"></li>
+             <li><a ng-click="openModalLogin()"><i class="icon-user icon-white"></i> {{isLogged && "Bonjour" || "Connexion"}}</a></li>
+             <li class="divider-vertical"></li>
+           </ul>
+         </div>
+       </div>
      </div>
    </div>
-   <div ng-view></div>
- </div>
+   <a ng-click="openModalFeedback()" id="feedback_link" class="feedback_link left"></a>
+   <div class="row-fluid">
+     <div class="offset1 span10">
+      <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+    </div>
+  </div>
+  <div ng-view></div>
+</div>
 
- <div modal="shouldBeOpen" close="close()" options="opts">
+<div modal="modalLogin" close="closeModalLogin()" options="opts">
   <div class="modal-header">
     <h4>Connexion</h4>
   </div>
@@ -92,13 +96,14 @@
       </div>
     </div>
     <div class="control-group custom_inline" >
-      <div class="controls">
-        <div class="input-prepend">
-          <span class="add-on"><div class="icon-lock"></div></span>
-          <input id="user-password" type="password" ng-model="user.password"/>
-        </div>
-      </div>
-      <div class="line-separator"></div>
+     <div class="controls">
+       <div class="input-prepend">
+         <span class="add-on"><div class="icon-lock"></div></span>
+         <input id="user-password" type="password" ng-model="user.password"/>
+       </div>
+     </div>
+     <div class="line-separator">
+     </div>
     </div>
 
   </div>
@@ -109,6 +114,30 @@
 </div>
 </div>
 
+<div modal="modalFeedback" close="closeModalFeedback()" options="opts">
+  <div class="modal-header">
+    <h4>Feedback</h4>
+  </div>
+  <form name="formFeedback">
+    <div class="modal-body">
+      <div class="control-group">
+        <div class="controls">
+          <textarea autofocus="autofocus" cols="40" ng-model="feedback.content" id="feedbackContent" name="feedbackContent" placeholder="Une idée, un commentaire, un bug ? Dites-nous tout !" rows="20"></textarea>
+        </div>
+        <div class="modal-footer">
+          <div class="control-group">
+            <div class="controls">
+              <button class="btn btn-warning cancel" ng-click="closeModalFeedback()">Cancel</button>
+              <button class="btn btn-success"  ng-click="sendFeedback(feedback)" ng-disabled="!feedback.content">Envoyer
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>
 
 <div id="footer">
   <div class="container">
@@ -120,6 +149,7 @@
           <li><a href="#">L'équipe</a></li>
           <li><a href="#">F.A.Q.</a></li>
         </ul>
+
       </div>
       <div class="span3">
         <h5>Contactez-nous</h5>
@@ -132,9 +162,10 @@
       <div class="span3">
         <h5>A propos</h5>
         EnjoyTheWeb est un projet original ayant pour vocation de rapprocher deux entités ayant besoin l'une de l'autre : les sites web innovants et les internautes.
-      </div>
     </div>
   </div>
+</div>
+
 </div>
 
 <script src="http://code.jquery.com/jquery.js"></script>

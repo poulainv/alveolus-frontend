@@ -2,21 +2,38 @@
 
 /* Services Session */
 
-angular.module('alveolus.sessionService', ['ngResource']).factory('SessionService', function($log, $resource, $http) {
-    var authorized, getUser, sign_in, sign_out, service, user;
+
+angular.module('alveolus.sessionService', ['ngResource']).factory('SessionService', function($log, $resource, $http, $rootScope) {
+
+
+    var authorized, getUser, getToken, sign_in, sign_out, service, user, token ;
     var url = 'http://quiet-spire-4994.herokuapp.com';
     service = {};
-    user = {};
+    user = {}; 
 
-    service.sign_in = function(user,callback){
+    /**
+    BROADCAST METHODS
+    **/
+
+    function broadcastLogged(){
+        $rootScope.$broadcast('onLoggedSuccess');
+    };
+
+    /**
+      PRIVATE METHODS TO SEND HTTP REQUEST FOR SIGNIN AND SIGNOUT
+    **/   
+    service.sign_in = function(data,callback){
         $http({
           method:'POST', 
           url: url+'/users/sign_in.json',
-          data: user,
+          data: data,
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(data){
           console.log("User logged");
+          console.log(data);
+          console.log(data.auth_token);
           user = data ;
+          $http.defaults.headers.common['X-AUTH-TOKEN'] = data.auth_token;
           user.authorized = true;
           callback(user);})
         .error(function(data) {
@@ -46,22 +63,23 @@ angular.module('alveolus.sessionService', ['ngResource']).factory('SessionServic
     };
 
     
+    /*
+    PUBLIC METHODS
+    */
     authorized = function() {
       return user.authorized === "true";
     };
 
     sign_in = function(newUser, resultHandler, errorHandler) {
-       var xsrf = $.param({
-        remote: true,
-         commit: "Sign in",
-          utf8: "✓", 
-          user: {
-             remember_me: 0,
-             password: newUser.password, 
-             email: newUser.email
-           }
-        });
-
+     var xsrf = $.param({
+      remote: true,
+      commit: "Sign in",
+      utf8: "✓", 
+      remember_me: 0,
+      password: newUser.password, 
+      email: newUser.email
+    });
+      // var data = { password : newUser.password, email : newUser.email};
       return service.sign_in(xsrf,function(result) {
         if (angular.isFunction(resultHandler)) {
           return resultHandler(result);
@@ -88,12 +106,20 @@ angular.module('alveolus.sessionService', ['ngResource']).factory('SessionServic
       });
     };
 
+    getToken = function(){
+      console.log("return token : "+token);
+      return token;
+    };
+
     getUser = function() {
       return user;
     };
 
 
+
+
     return {
+      getToken : getToken,
       sign_in: sign_in,
       sign_out: sign_out,
       authorized: authorized,

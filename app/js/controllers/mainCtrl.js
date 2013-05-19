@@ -9,30 +9,27 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService, Ses
 	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifié' } ;
 	var alertUnauthorized = { type: 'error', msg: 'Vous devez être authentifié' } ;
 
-
-	$scope.alerts = [];
-
 	$scope.user = SessionService.getUser();
-
+	$scope.isLogged = SessionService.authorized();
 	$scope.search = function(content){
 		$location.path('/alveoles/search/'+content);
 	};
 
+	// Call SessionService to sin in user with email and password given in modal
+	// Update $scope.user of mainControler
 	$scope.sign_in = function(user){
-		console.log($scope.user.email);
 		SessionService.sign_in($scope.user,function(user){
-			if(user.authorized){
-				$scope.user = user ;
-				addAlert(alertLogSuccess);
-			}else{
-				$scope.user = user ;
-				addAlert(alertLogFail);
-			}
+			$scope.isLogged = user.authorized ;
+			$scope.user = user ;
+			$scope.isLogged ? addAlert(alertLogSuccess)  : addAlert(alertLogFail);
+			$scope.closeModalLogin();
 		});
 	};
 
 
+	// Manage main alert on all pages 
 	var addAlert = function(alert) {
+		$scope.alerts = [];
 		$scope.alerts.push(alert);
 	};
 
@@ -40,7 +37,12 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService, Ses
 		$scope.alerts.splice(index, 1);
 	};
 
+	// Reset alert when change location
+	$scope.$on('$locationChangeSuccess', function(event) {
+        $scope.alerts = [];
+    });
 
+	// Manage open and close of modal login
 	$scope.openModalLogin = function () {
 		$scope.shouldBeOpen = true;
 	};
@@ -54,6 +56,9 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService, Ses
 		backdropFade: true,
 		dialogFade:true
 	};
+
+
+
 
 	$scope.tags=TagService.query(function(){
 

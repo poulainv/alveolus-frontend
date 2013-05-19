@@ -1,4 +1,4 @@
-'use strict';
+    'use strict';
 
 
 // Declare app level module which depends on filters, and services
@@ -31,6 +31,7 @@ config(
     when('/alveoles', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).
     when('/user/:userId', {templateUrl: 'partials/user.html',   controller: 'UserCtrl'}).
     otherwise({redirectTo: '/', templateUrl: 'partials/home.html', controller: 'HomeCtrl'});
-}],["$httpProvider", function($httpProvider) {
-    $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
-}]).value('$anchorScroll', angular.noop);
+}]);
+
+    // register interceptor using an anonymous function
+

@@ -4,12 +4,12 @@
         <div class="span10 offset1">
             <h3>Validez les dernières alvéoles proposées</h3>
             <div ng-repeat="alveole in alveoles">
-                <div class="row">
+                <div class="row vote-alv">
                     <div class="span2">
                         <img ng-src="img/{{alveole.id}}.jpg" alt="{{alveole.title}}">
-                        <ul class="vote-buttons">
-                            <li class="up"><a href='bhcqbsqbh'><i class="icon-thumbs-up"></i></a></li>
-                            <li class="down"><a href='bhcqbsqbh'><i class="icon-thumbs-down"></i></a></li>
+                        <ul class="vote-buttons span2">
+                            <li class="up"><a href='#' ng-click=""><i class="icon-thumbs-up"></i></a></li>
+                            <li class="down"><a href='#' ng-click=""><i class="icon-thumbs-down"></i></a></li>
                         </ul>
                         
                     </div>
@@ -19,9 +19,10 @@
                         <p class="alveoleCaption">
                             {{alveole.caption}}
                         </p>
-                        <p class="alveoleDesc">
+                        <p class="alveoleDesc" collapse="isCollapsed">
                             {{alveole.description}}
                         </p>
+                        <a ng-click="toogle(isCollapsed)" ng-click="">{{toogleButtonContent}}</a>
                     </div>
                 </div>
             </div>

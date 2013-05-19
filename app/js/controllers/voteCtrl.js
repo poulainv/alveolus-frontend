@@ -5,8 +5,8 @@
 angular.module('alveolus.voteCtrl', []).
 controller('VoteCtrl', function($scope,$routeParams,WebappService) {
 
-
-    // $('#headerCarousel').hide();
+    $scope.isCollapsed = true;
+    $scope.toogleButtonContent = "Afficher la description";
     loadList();
     /**
     * Initialiase les variables au chargement de la page (une seule fois)
@@ -25,7 +25,11 @@ controller('VoteCtrl', function($scope,$routeParams,WebappService) {
                 data[a].user = data[a].user_id ? User.get({id: data[a].user_id}) : {'pseudo':'l\'équipe'};
             }
         });
+    }
 
+    $scope.toogle = function(isCollapsed){
+        $scope.isCollapsed = !isCollapsed;
+        $scope.toogleButtonContent = $scope.isCollapsed? "Afficher la description":"Cacher la description";
     }
 
 });

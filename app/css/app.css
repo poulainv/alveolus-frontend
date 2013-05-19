@@ -374,28 +374,39 @@ body{
 
 /*Vote
 ----------*/
+
+
 .vote-buttons{
   font-size:20px;
   padding: 0;
   margin: 0;
   list-style: none;
 }
-.vote-buttons li{
+.vote-buttons li i{
   float:left;
+  padding : 15px;
   margin-right: 10px;
+  color: #FFF;
+}
+.vote-buttons li i:hover{
+  text-shadow: 1px 1px 3px #333;
 }
 
 .vote-buttons .down i{
-  color: #c0392b;
+  background-color: #c0392b;
 }
 .vote-buttons .down i:hover{
-  color: #e74c3c;
+  background-color: #e74c3c;
 }
 .vote-buttons .up i{
-  color: #27ae60;
+  background-color: #27ae60;
 }
 .vote-buttons .up i:hover{
-  color: #2ecc71;
+  background-color: #2ecc71;
+}
+
+.vote-alv{
+  margin-bottom: 10px;
 }
 
 

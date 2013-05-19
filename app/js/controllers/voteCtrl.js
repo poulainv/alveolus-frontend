@@ -27,9 +27,4 @@ controller('VoteCtrl', function($scope,$routeParams,WebappService) {
         });
     }
 
-    $scope.toogle = function(isCollapsed){
-        $scope.isCollapsed = !isCollapsed;
-        $scope.toogleButtonContent = $scope.isCollapsed? "Afficher la description":"Cacher la description";
-    }
-
 });

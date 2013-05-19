@@ -22,7 +22,10 @@
                         <p class="alveoleDesc" collapse="isCollapsed">
                             {{alveole.description}}
                         </p>
-                        <a ng-click="toogle(isCollapsed)" ng-click="">{{toogleButtonContent}}</a>
+                        <a ng-click="isCollapsed = !isCollapsed" ng-click="">
+                            <i class="icon-chevron-{{isCollapsed && 'down'||'up'}}"></i>
+                            {{isCollapsed && 'Afficher la description'||'Réduire la description'}}
+                        </a>
                     </div>
                 </div>
             </div>

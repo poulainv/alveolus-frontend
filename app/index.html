@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/bootstrap-responsive.css" >
   <link rel="stylesheet" href="css/app.css"/>
   <link rel="stylesheet" href="css/webapp.css"/>
+  <link rel="stylesheet" href="css/feedback.css"/>
   <link rel="stylesheet" href="css/FontAwesome/css/font-awesome.min.css"> <!-- Ajout d'icones à bootstrap -->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'><!-- police Open Sans -->
 
@@ -23,6 +24,7 @@
   <script src="js/services/categoryService.js"></script>
   <script src="js/services/commentService.js"></script>
   <script src="js/services/socialService.js"></script>
+  <script src="js/services/feedbackService.js"></script>
   <script src="js/services/tagService.js"></script>
   <script src="js/services/userService.js"></script>
   <script src="js/controllers/homeCtrl.js"></script>
@@ -58,96 +60,123 @@
             </form>
           </div>
           <div class="nav-collapse collapse">
-            <ul class="nav pull-right">
-              <li class="divider-vertical"></li>
-              <li><a href="#/alveoles/new"><i class="icon-plus icon-white"></i> Poster une Alvéole</a></li>
-              <li class="divider-vertical"></li>
-              <li><a href="#"><i class="icon-eye-open icon-white"></i> À propos d'AlveolUs</a></li>
-              <li class="divider-vertical"></li>
-              <li><a ng-click="openModalLogin()"><i class="icon-user icon-white"></i> Connexion</a></li>
-              <li class="divider-vertical"></li>
-            </ul>
-          </div>
-        </div>
+           <ul class="nav pull-right">
+             <li class="divider-vertical"></li>
+             <li><a href="#/alveoles/new"><i class="icon-plus icon-white"></i> Poster une Alvéole</a></li>
+             <li class="divider-vertical"></li>
+             <li><a href="#"><i class="icon-eye-open icon-white"></i> À propos d'AlveolUs</a></li>
+             <li class="divider-vertical"></li>
+             <li><a ng-click="openModalLogin()"><i class="icon-user icon-white"></i> Connexion</a></li>
+             <li class="divider-vertical"></li>
+           </ul>
+         </div>
+       </div>
+     </div>
+   </div>
+   <a ng-click="openModalFeedback()" id="feedback_link" class="feedback_link left"></a>
+   <div class="row-fluid">
+     <div class="offset1 span10">
+      <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+    </div>
+  </div>
+  <div ng-view></div>
+</div>
+
+<div modal="modalLogin" close="closeModalLogin()" options="opts">
+  <div class="modal-header">
+    <h4>I'm a modal!</h4>
+  </div>
+  <div class="modal-body">
+   <div class="control-group">
+    <div class="controls">
+      <div class="input-prepend">
+        <span class="add-on"><div class="icon-user"></div></span>
+        <input id="user-email" type="text" ng-model="user.email"/>
       </div>
     </div>
-    <div class="row-fluid">
-    <div class="offset1 span10">
-     <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
-    </div>
-    </div>
-    <div ng-view></div>
-  </div>
+    <div class="control-group custom_inline" >
+     <div class="controls">
+       <div class="input-prepend">
+         <span class="add-on"><div class="icon-lock"></div></span>
+         <input id="user-password" type="password" ng-model="user.password"/>
+       </div>
+     </div>
+     <button ng-click="sign_in(user)" class="btn btn-success btn-block" >Go</button>
+     <p>{{user.email}}{{user.password}}</p>
+     <div class="line-separator">
+     </div>
 
-    <div modal="shouldBeOpen" close="close()" options="opts">
-        <div class="modal-header">
-            <h4>I'm a modal!</h4>
-        </div>
-        <div class="modal-body">
-                   <div class="control-group">
-                  <div class="controls">
-                    <div class="input-prepend">
-                      <span class="add-on"><div class="icon-user"></div></span>
-                      <input id="user-email" type="text" ng-model="user.email"/>
-                    </div>
-                  </div>
-                  <div class="control-group custom_inline" >
-                    <div class="controls">
-                      <div class="input-prepend">
-                        <span class="add-on"><div class="icon-lock"></div></span>
-                        <input id="user-password" type="password" ng-model="user.password"/>
-                      </div>
-                    </div>
-                    <button ng-click="sign_in(user)" class="btn btn-success btn-block" >Go</button>
-                    <p>{{user.email}}{{user.password}}
-                    <div class="line-separator"></div>
-
-                    <!-- <p> Ou connectez-vous avec : </p> -->
-      <!-- <div id="openIdProviders">
+        <!-- <p> Ou connectez-vous avec : </p>
+        <div id="openIdProviders">
         <a class="openIdProvider hover_green" id="facebookLogIn" href="/auth/facebook">Facebook</a>
         <a class="openIdProvider soon hover_green" id="googleLogIn" href=""> Google </a>
         <a class="openIdProvider soon hover_green" id="twitterLogIn" href="">Twitter </a>
       </div> -->
-                  </div>
-
-                </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
-        </div>
     </div>
 
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-warning cancel" ng-click="closeModalLogin()">Cancel</button>
+</div>
+</div>
 
-    <div id="footer">
-    <div class="container">
-      <div class="row">
-        <div class="span3 offset2">
-          <h5>Qui sommes nous ?</h5>
-          <ul>
-            <li><a href="#">Nos valeurs</a></li>
-            <li><a href="#">L'équipe</a></li>
-            <li><a href="#">F.A.Q.</a></li>
-          </ul>
+<div modal="modalFeedback" close="closeModalFeedback()" options="opts">
+  <div class="modal-header">
+    <h4>Feedback</h4>
+  </div>
+  <form name="formFeedback">
+    <div class="modal-body">
+      <div class="control-group">
+        <div class="controls">
+          <textarea autofocus="autofocus" cols="40" ng-model="feedback.content" id="feedbackContent" name="feedbackContent" placeholder="Une idée, un commentaire, un bug ? Dites-nous tout !" rows="20"></textarea>
         </div>
-        <div class="span3">
-          <h5>Contactez-nous</h5>
-          <ul>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Signaler un bug</a></li>
-            <li><a href="#">Feedback</a></li>
-          </ul>
-        </div>
-         <div class="span3">
-          <h5>A propos</h5>
-          EnjoyTheWeb est un projet original ayant pour vocation de rapprocher deux entités ayant besoin l'une de l'autre : les sites web innovants et les internautes.
+        <div class="modal-footer">
+          <div class="control-group">
+            <div class="controls">
+              <button class="btn btn-warning cancel" ng-click="closeModalFeedback()">Cancel</button>
+              <button class="btn btn-success"  ng-click="sendFeedback(feedback)" ng-disabled="!feedback.content">Envoyer
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </form>
+</div>
+</div>
 
-  <script src="http://code.jquery.com/jquery.js"></script>
-  <script src="lib/bootstrap/bootstrap.min.js"></script>
-  <script src="lib/bootstrap/ui-bootstrap-tpls-0.3.0.js"></script>
+
+<div id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="span3 offset2">
+        <h5>Qui sommes nous ?</h5>
+        <ul>
+          <li><a href="#">Nos valeurs</a></li>
+          <li><a href="#">L'équipe</a></li>
+          <li><a href="#">F.A.Q.</a></li>
+        </ul>
+      </div>
+      <div class="span3">
+       <h5>Contactez-nous</h5>
+       <ul>
+         <li><a href="#">Contact</a></li>
+         <li><a href="#">Signaler un bug</a></li>
+         <li><a href="#">Feedback</a></li>
+       </ul>
+     </div>
+     <div class="span3">
+      <h5>A propos</h5>
+      EnjoyTheWeb est un projet original ayant pour vocation de rapprocher deux entités ayant besoin l'une de l'autre : les sites web innovants et les internautes.
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="lib/bootstrap/bootstrap.min.js"></script>
+<script src="lib/bootstrap/ui-bootstrap-tpls-0.3.0.js"></script>
 
 </body>
 </html>

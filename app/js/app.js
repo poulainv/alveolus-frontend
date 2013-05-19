@@ -20,7 +20,6 @@ angular.module('alveolus',
     'alveolus.userCtrl',
     'alveolus.webAppListCtrl',
     'alveolus.voteCtrl',
-    'ngUpload', 
     'ui.bootstrap'
     ]).
 config(

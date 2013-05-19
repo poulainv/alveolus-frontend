@@ -33,6 +33,7 @@ angular.module('alveolus.sessionService', ['ngResource']).factory('SessionServic
           console.log(data);
           console.log(data.auth_token);
           user = data ;
+          token = data.auth_token;
           $http.defaults.headers.common['X-AUTH-TOKEN'] = data.auth_token;
           user.authorized = true;
           callback(user);})

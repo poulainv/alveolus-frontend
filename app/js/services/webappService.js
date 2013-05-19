@@ -3,7 +3,7 @@
 /* Services WebApps */
 
 angular.module('alveolus.webappService', ['ngResource']).
-factory('WebappService', function($http,$resource) {
+factory('WebappService', function($http,$resource,SessionService) {
 
     var searchContent;
     var url = 'http://quiet-spire-4994.herokuapp.com';
@@ -70,6 +70,42 @@ factory('WebappService', function($http,$resource) {
         $http({method:'POST', url: url+'/webapps/'+params.id+'/vote/?type='+params.value}).
         success(function(data){callback(data);});
     };
+
+    service.addWebapp = function(webapp,files){
+        var fd = new FormData();
+        fd.append("webapp[title]", webapp.title);
+        fd.append("webapp[url]", webapp.url);
+        fd.append("webapp[caption]", webapp.caption);
+        fd.append("webapp[description]", webapp.description);
+        fd.append("webapp[category_id]", webapp.category_id);
+        fd.append("webapp[tag_list]", webapp.tag_list);
+        fd.append("webapp[featured]", webapp.featured);
+        fd.append("webapp[twitter_id]", webapp.twitter_id);
+        fd.append("webapp[facebook_id]", webapp.facebook_id);
+        fd.append("webapp[gplus_id]", webapp.gplus_id);
+        fd.append("webapp[photo]", files[0]);
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("load", uploadComplete, false);
+        xhr.addEventListener("error", uploadFailed, false);
+        xhr.addEventListener("abort", uploadCanceled, false);
+        xhr.open("POST", url+"/webapps");
+        xhr.setRequestHeader('X-AUTH-TOKEN', SessionService.getToken());
+        console.log(xhr);
+        xhr.send(fd)
+    }
+
+    function uploadComplete(evt) {
+        /* This event is raised when the server send back a response */
+        alert(evt.target.responseText)
+    }
+
+    function uploadFailed(evt) {
+        alert("There was an error attempting to upload the file.")
+    }
+
+    function uploadCanceled(evt) {
+        alert("The upload has been canceled by the user or the browser dropped the connection.")
+    }
 
 
     return service;

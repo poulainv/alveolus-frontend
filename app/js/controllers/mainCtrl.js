@@ -7,6 +7,7 @@ controller('MainCtrl', function($scope,$routeParams,WebappService, SessionServic
 
 	var alertLogSuccess = { type: 'success', msg: 'Parfait, vous êtes correctement authentifié' } ;
 	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifié' } ;
+	var alertUnauthorized = { type: 'error', msg: 'Vous devez être authentifié' } ;
 
 	$scope.alerts = [];
 
@@ -43,7 +44,7 @@ controller('MainCtrl', function($scope,$routeParams,WebappService, SessionServic
 		$scope.shouldBeOpen = true;
 	};
 
-	$scope.close = function () {
+	$scope.closeModalLogin = function () {
 		$scope.closeMsg = 'I was closed at: ' + new Date();
 		$scope.shouldBeOpen = false;
 	};

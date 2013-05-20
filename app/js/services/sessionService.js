@@ -3,107 +3,153 @@
 /* Services Session */
 
 
-angular.module('alveolus.sessionService', ['ngResource']).factory('SessionService', function($log, $resource, $http, $rootScope) {
+angular.module('alveolus.sessionService', ['ngResource']).factory('SessionService', function($log, $cookieStore, $resource, $http, $rootScope) {
 
 
     var authorized, getUser, getToken, sign_in, sign_out, service, user, token ;
     var url = 'http://quiet-spire-4994.herokuapp.com';
     service = {};
     user = {}; 
-
+    initTryToLogWithCookie();
     /**
     BROADCAST METHODS
     **/
 
     function broadcastLogged(){
+        console.log("cast broadcastLogged");
         $rootScope.$broadcast('onLoggedSuccess');
+    };
+
+    function broadcastUnlogged(){
+        console.log("cast broadcastUnlogged");
+        $rootScope.$broadcast('onUnloggedSuccess');
     };
 
     /**
       PRIVATE METHODS TO SEND HTTP REQUEST FOR SIGNIN AND SIGNOUT
     **/   
+
+    // Sign in : update user information, setHTTPProvider, set Cookies then broadcast event logged
     service.sign_in = function(data,callback){
         $http({
           method:'POST', 
-          url: url+'/users/sign_in.json',
+          url: url+'/sign_in.json',
           data: data,
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(data){
           console.log("User logged");
-          console.log(data);
-          console.log(data.auth_token);
-          user = data ;
-          $http.defaults.headers.common['X-AUTH-TOKEN'] = data.auth_token;
-          user.authorized = true;
-          callback(user);})
+          setUser({id : data.id, email : data.email, success: true });
+          token = data.auth_token;
+          setHttpProviderCommonHeaderToken(token);
+          setSessionToken(token,data.id);
+          broadcastLogged();
+        })
         .error(function(data) {
           console.log("User not logged");
-          user = data ;
-          user.authorized = false;
-          callback(user);
+          setUser({id : data.id, email : data.email, success: false});
         });
     };
 
-    service.sign_out = function(callback){
+    // Sign out : update user info, unsetHttpProvider, removeCookie then broadcast event logged
+    service.sign_out = function(user){
         $http({
-          method:'DELETE', 
-          url: url+'/users/sign_out.json',
+          method:'DELETE',
+          url: url+'/sign_out.json?id='+user.id,
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(data){
           console.log("User unlogged");
-          user = {} ;
-          user.authorized = false;
-          callback(user);})
+          resetUser();
+          removeSessionToken();
+          setHttpProviderCommonHeaderToken("");
+          broadcastUnlogged();
+        })
         .error(function(data) {
           console.log("Error sign_out");
-          user = {} ;
-          user.authorized = false;
-          callback(user);
+          resetUser();
         });
     };
 
-    
+
+    function initTryToLogWithCookie(){
+      console.log("Try to log with cookies ");
+      var cookieToken = getTokenCookie();
+        if(getTokenCookie()!=null && getTokenCookie()!=""){
+          console.log("session cookie found");
+          setUser({success: true, id : getUserIdCookie()});
+          setHttpProviderCommonHeaderToken(getTokenCookie());
+          broadcastLogged();
+        }
+        else{
+          console.log("Session cookie not found");
+           resetUser();
+           broadcastUnlogged();
+        }
+    }
+
+    function setUser(newUser){
+      user.email = newUser.email ;
+      user.id = newUser.id;
+      user.authorized = newUser.success;
+      console.log("setUser auth :"+newUser.success);
+    }
+
+    function resetUser(){
+      user.email = null ;
+      user.id = null;
+      user.authorized = false;
+ 
+    }
+
+    function setHttpProviderCommonHeaderToken(token){
+      $http.defaults.headers.common['X-AUTH-TOKEN'] = token;
+    }
+
+
+    function setSessionToken(token,id){
+      console.log("set cookie token : "+token+" for userId :"+id);
+      $cookieStore.put('alveolus-token',token)
+      $cookieStore.put('alveolus-userId', id);
+    }
+
+    function getTokenCookie(){
+      console.log('getCookie '+ $cookieStore.get('alveolus-token'))
+      return $cookieStore.get('alveolus-token');
+    }
+
+    function getUserIdCookie(){
+      return $cookieStore.get('alveolus-userId');
+    }
+
+    function removeSessionToken(){
+      $cookieStore.remove('alveolus-token');
+      $cookieStore.remove('alveolus-userId');
+    }
+
     /*
     PUBLIC METHODS
     */
     authorized = function() {
-      return user.authorized === "true";
+      console.log("authorized????"+(user.authorized))
+      return user.authorized;
     };
 
-    sign_in = function(newUser, resultHandler, errorHandler) {
+    sign_in = function(newUser) {
      var xsrf = $.param({
-      remote: true,
-      commit: "Sign in",
-      utf8: "✓", 
-      remember_me: 0,
-      password: newUser.password, 
-      email: newUser.email
-    });
+        remote: true,
+        commit: "Sign in",
+        utf8: "✓", 
+        remember_me: 0,
+        password: newUser.password, 
+        email: newUser.email
+      });
       // var data = { password : newUser.password, email : newUser.email};
-      return service.sign_in(xsrf,function(result) {
-        if (angular.isFunction(resultHandler)) {
-          return resultHandler(result);
-        }
-      }, function(error) {
-        if (angular.isFunction(errorHandler)) {
-          return errorHandler(error);
-        }
-      });
+      service.sign_in(xsrf);
     };
+  
 
 
-    sign_out = function(resultHandler, errorHandler) {
-      return service.sign_out(function(result) {
-        user = {};
-        user.authorized = false;
-        if (angular.isFunction(resultHandler)) {
-          return resultHandler(result);
-        }
-      }, function(error) {
-        if (angular.isFunction(errorHandler)) {
-          return errorHandler(error);
-        }
-      });
+    sign_out = function() {
+      service.sign_out(user);
     };
 
     getToken = function(){

@@ -39,8 +39,8 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService,Sess
 
 	// Reset alert when change location
 	$scope.$on('$locationChangeSuccess', function(event) {
-        $scope.alerts = [];
-    });
+		$scope.alerts = [];
+	});
 
 	// Manage open and close of modal login
 	$scope.openModalLogin = function () {
@@ -86,7 +86,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService,Sess
 		$('#searchInput').typeahead({
 			source: tagNames,
 			updater:function (item) {
-				$scope.search(item);
+				$scope.$apply($scope.searchContent = item);
 				return item;
 			}
 		});

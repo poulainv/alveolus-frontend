@@ -36,5 +36,3 @@ config(
     otherwise({redirectTo: '/', templateUrl: 'partials/home.html', controller: 'HomeCtrl'});
 }]);
 
-    // register interceptor using an anonymous function
-

@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="span10 offset1 well">
-			<form name="form" class="form-signin form-horizontal" action="http://quiet-spire-4994.herokuapp.com/webapps" ng-upload novalidate>
+			<form name="form" class="form-signin form-horizontal" novalidate>
 				<h2>Proposition d'une alvéole</h2>
 
 				<div class="control-group" ng-class="{error: form.title.$invalid && (!!form.title.$error.minlength || !!form.title.$error.maxlength),success: form.title.$valid}">
@@ -86,14 +86,26 @@
 				<div class="control-group">
 					<label class="control-label" for="image">Image : </label>
 					<div class="controls">
-						<input type="file" name="image" title="Search for a file to add" id="image" ng-model="webapp.image"  tooltip-placement="right" tooltip="L'image de l'alvéole (format 4:3 recommandé)"></input> 
+						<!-- <input type="file" name="image" title="Search for a file to add" id="image" ng-model="webapp.image"  tooltip-placement="right" tooltip="L'image de l'alvéole (format 4:3 recommandé)"></input>  -->
+						<input type="file" id="fileToUpload" ng-model="webapp.image" onchange="angular.element(this).scope().setFile(this)"/>
+						<input type="button" value="Choisissez une image" class="block"  onclick="document.getElementById('fileToUpload').click();" />
+						<div ng-show="files.length">
+							<div ng-repeat="file in files.slice(0)">
+								<span>{{file.webkitRelativePath || file.name}}(</span>
+								<span ng-switch="file.size > 1024*1024">
+									<span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB)</span>
+									<span ng-switch-default>{{file.size / 1024 | number:2}} kB)</span>
+								</span>
+							</div>
+						</div>
+						<div id="dropbox" class="dropbox span6" ng-class="dropClass"><span>Déposez l'image</span></div>
 					</div>
 				</div>
 
 				<br>
 				<div class="control-group">
 					<div class="controls">
-						<input type="submit" class="btn" value="Envoyer" ng-disabled="form.$invalid" upload-submit="uploadComplete(contents, completed)" />
+						<button class="btn" ng-disabled="form.$invalid" ng-click="submit(webapp)">Envoyer</button>
 					</div>
 				</div>
 			</form>

@@ -37,7 +37,6 @@
   <script src="js/controllers/voteCtrl.js"></script>
   <script src="js/filters/filters.js"></script>
   <script src="js/directives/directives.js"></script>
-  <script src="js/directives/ng-upload.js"></script>
 
 </head>
 
@@ -56,6 +55,7 @@
           <div id="searchNavbar" class="input-append navbar-search">
             <form name="myForm" ng-submit="search(searchContent)">
               <input id="searchInput" class="span2" type="text" ng-model="searchContent" placeholder="Entrez une recherche">
+              <!-- <typeahead model="testModel" data="getTags()"></typeahead> -->
               <span class="add-on link" ng-click="search(searchContent)">
                 <i class="icon-search"></i>
               </span>

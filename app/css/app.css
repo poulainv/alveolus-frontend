@@ -81,6 +81,10 @@ body{
   clear: both;
 }
 
+.block{
+  display: block!important;
+}
+
 .boxDesc {
   color: #444;
   min-height: 55px;
@@ -166,6 +170,27 @@ body{
 
 .control-group option{
   color: black;
+}
+
+.dropbox{
+  margin-left: 0;
+  padding-top: 50px;
+  height: 3em;
+  border: 2px solid #DDD;
+  border-radius: 8px;
+  background-color: lightgreen;
+  text-align: center;
+  color: black;
+  opacity: 0.5;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.dropbox.not-available {
+    background-color: #F88;
+}
+.dropbox.over {
+    background-color: #bfb;
 }
 
 .imgCarousel{
@@ -335,6 +360,10 @@ body{
 #descFeaturedApp{
   padding: 50px;
   text-align : justify;
+}
+
+#fileToUpload{
+  display: none;
 }
 
 #footer{

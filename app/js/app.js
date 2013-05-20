@@ -21,7 +21,6 @@ angular.module('alveolus',
     'alveolus.userCtrl',
     'alveolus.webAppListCtrl',
     'alveolus.voteCtrl',
-    'ngUpload', 
     'ui.bootstrap'
     ]).
 config(
@@ -37,6 +36,4 @@ config(
     when('/vote', {templateUrl: 'partials/vote.html',   controller: 'VoteCtrl'}).
     otherwise({redirectTo: '/', templateUrl: 'partials/home.html', controller: 'HomeCtrl'});
 }]);
-
-    // register interceptor using an anonymous function
 

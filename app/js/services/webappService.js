@@ -8,7 +8,7 @@ factory('WebappService', function($http,$resource,SessionService) {
     var searchContent;
     var url = 'http://quiet-spire-4994.herokuapp.com';
     var service = $resource(url+'/webapps/:id', {id:'@id'}, {
-        new: {method:'GET', params:{id:'new'}}
+        new: {method:'GET', params:{id:'new'}},
         update : {method:'PUT'}
     });
 

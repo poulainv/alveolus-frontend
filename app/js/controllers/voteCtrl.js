@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.voteCtrl', []).
-controller('VoteCtrl', function($scope,$routeParams,WebappService,UserService) {
+controller('VoteCtrl', function($scope,$routeParams,WebappService) {
     function loadList(){
         /**
         * Charge la liste des alvéoles non validées
@@ -14,13 +14,6 @@ controller('VoteCtrl', function($scope,$routeParams,WebappService,UserService) {
                 // Classe le tableau dans l'ordre décroissant en fonction de "created_at"
                 return(new Date(b['created_at'])-new Date(a['created_at']));
             });
-            for(var alveole_id in $scope.alveoles){
-                //Récupère l'utilisateur qui a posté l'alvéole
-                // a modifier une fois qu'on aura l'objet User dans Webapp
-                $scope.alveoles[alveole_id].user = $scope.alveoles[alveole_id].user_id ?
-                                                    UserService.get({id: $scope.alveoles[alveole_id].user_id})
-                                                    : {'pseudo':'l\'équipe'};
-            }
         });
     }
     $scope.vote = function(webAppId, index, voteValue){

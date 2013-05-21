@@ -17,6 +17,7 @@
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>-->
   <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular/angular-cookies.js"></script>
   <script src="lib/angular/angular-resource.js"></script>
   <script src="js/app.js"></script>
   <script src="js/services/sessionService.js"></script>
@@ -67,7 +68,10 @@
              <li class="divider-vertical"></li>
              <li><a href="#"><i class="icon-eye-open icon-white"></i> À propos d'AlveolUs</a></li>
              <li class="divider-vertical"></li>
-             <li><a ng-click="openModalLogin()"><i class="icon-user icon-white"></i> {{isLogged && "Bonjour" || "Connexion"}}</a></li>
+             <li>
+              <a ng-hide="isLogged" ng-click="openModalLogin()"><i class="icon-user icon-white"></i>Connexion</a>
+              <a ng-show="isLogged" ng-click="sign_out()"><i class="icon-user icon-white"></i> Déconnexion</a>
+            </li>
              <li class="divider-vertical"></li>
            </ul>
          </div>
@@ -83,7 +87,7 @@
   <div ng-view></div>
 </div>
 
-<div modal="modalLogin" close="closeModalLogin()" options="opts">
+<div id="modalLogin" class="modal hide" tabindex="-1" role="dialog" aria-hidden="true" close="closeModalLogin()">
   <div class="modal-header">
     <h4>Connexion</h4>
   </div>
@@ -114,7 +118,7 @@
 </div>
 </div>
 
-<div modal="modalFeedback" close="closeModalFeedback()" options="opts">
+<div id="modalFeedback" class="modal hide" tabindex="-1" role="dialog" aria-hidden="true" close="closeModalFeedback()">
   <div class="modal-header">
     <h4>Feedback</h4>
   </div>
@@ -137,7 +141,7 @@
 
     </div>
   </form>
-</div>
+</div> 
 
 <div id="footer">
   <div class="container">

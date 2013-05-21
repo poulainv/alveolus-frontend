@@ -8,22 +8,52 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService,Sess
 	var alertLogSuccess = { type: 'success', msg: 'Parfait, vous êtes correctement authentifié' } ;
 	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifier' } ;
 	var alertUnauthorized = { type: 'error', msg: 'Vous devez être authentifié' } ;
+	var alertUnlogSuccess = { type: 'info', msg: 'A bientôt ! Vous vous êtes correctement déconnecté' } ;
 
+// $.ajax({
+//   type: "GET",
+//   url: "http://localhost:3000/users/1",
+//   headers : { 'X-AUTH-TOKEN' : '71yrbjehDJJqyLhVE6eS'}
+// }).done(function( msg ) {
+//   alert( "Data Saved: " + msg );
+// });
+	
 	$scope.user = SessionService.getUser();
-	$scope.isLogged = SessionService.authorized();
+    $scope.isLogged = SessionService.authorized();
+
+	// To receive broadcasts
+	 $scope.$on('onLoggedSuccess', function() {
+	 	console.log("catch onLoggedSuccess");
+        $scope.user = SessionService.getUser();
+        $scope.isLogged = SessionService.authorized();
+        $scope.isLogged ? addAlert(alertLogSuccess)  : addAlert(alertLogFail);
+		$scope.closeModalLogin();
+    });
+
+	  $scope.$on('onUnloggedSuccess', function() {
+	 	console.log("catch onUnLoggedSuccess");
+        $scope.user = SessionService.getUser();
+        $scope.isLogged = SessionService.authorized();
+        $scope.isLogged ? addAlert(alertLogFail)  : addAlert(alertUnlogSuccess);
+    });
+
+	
 	$scope.search = function(content){
 		$location.path('/alveoles/search/'+content);
 	};
 
+	$scope.logOrUnlog = function(user){
+		$scope.isLogged && "Bonjour" || "Connexion"
+	}
+
 	// Call SessionService to sin in user with email and password given in modal
 	// Update $scope.user of mainControler
 	$scope.sign_in = function(user){
-		SessionService.sign_in($scope.user,function(user){
-			$scope.isLogged = user.authorized ;
-			$scope.user = user ;
-			$scope.isLogged ? addAlert(alertLogSuccess)  : addAlert(alertLogFail);
-			$scope.closeModalLogin();
-		});
+		SessionService.sign_in($scope.user);
+	};
+
+	$scope.sign_out = function(){
+		SessionService.sign_out();
 	};
 
 
@@ -44,22 +74,23 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService,Sess
 
 	// Manage open and close of modal login
 	$scope.openModalLogin = function () {
-		$scope.modalLogin = true;
+		$('#modalLogin').modal('show');
 	};
 
 
 	$scope.closeModalLogin = function () {
-		$scope.closeMsg = 'I was closed at: ' + new Date();
-		$scope.modalLogin = false;
+		console.log("close mocal lodal");
+		$('#modalLogin').modal('hide');
 	};
 
 	$scope.openModalFeedback = function () {
-		$scope.modalFeedback = true;
+		$('#modalFeedback').modal({
+			show: true});
 	};
 
 	$scope.closeModalFeedback = function () {
-		$scope.modalFeedback = false;
-		$scope.closeMsg = 'I was closed at: ' + new Date();
+		$('#modalFeedback').modal({
+			show: false});
 		$scope.feedback = {};
 	};
 
@@ -69,11 +100,6 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService,Sess
 			console.log(data);
 		});
 	}
-
-	$scope.opts = {
-		backdropFade: true,
-		dialogFade:true
-	};
 
 
 	$scope.tags=TagService.query(function(){

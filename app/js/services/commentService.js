@@ -11,7 +11,7 @@ factory('CommentService', function($http,$resource) {
 
     service.addComment = function(params, callback){
         $http({method:'POST', url: url+'/webapps/'+params.webappId+'/comments', cache: true, 
-        	params : {'comment' : params.comment, 'rating':params.rating}}).
+        	params : {'comment' : params.comment, 'rating' : params.rating}}).
         success(function(data){callback(data);});
     }
 

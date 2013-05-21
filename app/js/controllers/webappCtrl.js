@@ -10,6 +10,14 @@ controller('WebappCtrl', function($scope,$routeParams, WebappService, SocialServ
 		$scope.webapp.user_id=2;
 		$scope.userPost=$scope.webapp.user_id ? UserService.get({id: $scope.webapp.user_id}) : {'pseudo':'l\'équipe'};
 
+		if($scope.user.id)
+			UserService.alreadyCommented({webAppId : $scope.webAppId, userId : $scope.user.id}, function(data){
+				if($.isEmptyObject(data)) $scope.canComment=true;
+				else $scope.canComment=false;
+				
+			});
+		else $scope.canComment=false;
+
 		// DONNEES EXEMPLES
 	    //$scope.webapp.facebook_id="294735233916083";
 	    //$scope.webapp.twitter_id="Cupofteach";
@@ -48,7 +56,8 @@ controller('WebappCtrl', function($scope,$routeParams, WebappService, SocialServ
 
 
 	$scope.submitComment = function(comment) {
-	    CommentService.addComment({webappId : $scope.webAppId, comment : $scope.comment.body, rating : $scope.comment.rating}, function(data){
+	    CommentService.addComment({webappId : $scope.webAppId, comment : comment.body, 
+	    	rating : comment.rating}, function(data){
 	    	alert(data);
 	    });
   	};

@@ -149,25 +149,28 @@
 
 						<div ng-show="!webapp.comments">Pas de commentaires pour le moment :(</div>
 
-						<h4>Donnez votre avis !</h4>
-						<table>
-							<tr>
-								<td><div id="label">Note :</div></td>
-								<td>
-									<div class="rating">
-								    <input type="radio" id="star5" name="rating" value="5" ng-model="comment.rating"/><label for="star5" title="Amazing !"></label>
-								    <input type="radio" id="star4" name="rating" value="4" ng-model="comment.rating"/><label for="star4" title="Cool !"></label>
-								    <input type="radio" id="star3" name="rating" value="3" ng-model="comment.rating"/><label for="star3" title="Pas mal"></label>
-								    <input type="radio" id="star2" name="rating" value="2" ng-model="comment.rating"/><label for="star2" title="Bof"></label>
-								    <input type="radio" id="star1" name="rating" value="1" ng-model="comment.rating"/><label for="star1" title="J'aime pas"></label>
-									</div>
-								</td>
-							</tr>
-						</table>
+						
+						<div ng-show="canComment">
+							<h4>Donnez votre avis !</h4>
+							<table>
+								<tr>
+									<td><div id="label">Note :</div></td>
+									<td>
+										<div class="rating">
+									    <input type="radio" id="star5" name="rating" value="5" ng-model="comment.rating"/><label for="star5" title="Amazing !"></label>
+									    <input type="radio" id="star4" name="rating" value="4" ng-model="comment.rating"/><label for="star4" title="Cool !"></label>
+									    <input type="radio" id="star3" name="rating" value="3" ng-model="comment.rating"/><label for="star3" title="Pas mal"></label>
+									    <input type="radio" id="star2" name="rating" value="2" ng-model="comment.rating"/><label for="star2" title="Bof"></label>
+									    <input type="radio" id="star1" name="rating" value="1" ng-model="comment.rating"/><label for="star1" title="J'aime pas"></label>
+										</div>
+									</td>
+								</tr>
+							</table>
 
-		    			<textarea id="textarea" rows="5" class="field span10" ng-model="comment.body"
-		    			placeholder="Que pensez vous de ce site ?"></textarea>
-					    <button type="button" class="btn"  ng-click="submitComment(comment)" ng-disabled="!comment.rating">Envoyer</button>
+			    			<textarea id="textarea" rows="5" class="field span10" ng-model="comment.body"
+			    			placeholder="Que pensez vous de ce site ?"></textarea>
+						    <button type="button" class="btn"  ng-click="submitComment(comment)" ng-disabled="!comment.rating">Envoyer</button>
+						</div>
 					</div>
 				</div>
 
@@ -176,11 +179,11 @@
 				    
 
 
-					<br>Debug View: 
+					<!-- <br>Debug View: 
 		      		<pre>comment={{comment | json}}</pre>
 		      		<pre>userPost={{userPost | json}}</pre>
-		      		<pre>user={{user | json}}</pre>
-		      		<pre>webapp={{webapp | json}}</pre>
+		      		<pre>user={{user | json}}</pre> -->
+		      		<!-- <pre>webapp={{webapp | json}}</pre> -->
 
 			</div>
 					

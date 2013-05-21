@@ -10,10 +10,10 @@ controller('VoteCtrl', function($scope,$routeParams,WebappService) {
         **/
         WebappService.getUnvalidated(function(data){
             $scope.alveoles = data;
-            $scope.alveoles.sort(function(a, b){
-                // Classe le tableau dans l'ordre décroissant en fonction de "created_at"
-                return(new Date(b['created_at'])-new Date(a['created_at']));
-            });
+            // $scope.alveoles.sort(function(a, b){
+            //     // Classe le tableau dans l'ordre décroissant en fonction de "created_at"
+            //     return(new Date(b['created_at'])-new Date(a['created_at']));
+            // });
         });
     }
     $scope.vote = function(webAppId, index, voteValue){

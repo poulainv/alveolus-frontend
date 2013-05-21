@@ -11,9 +11,10 @@
                         <img ng-src="img/{{alveole.id}}.jpg" alt="{{alveole.title}}">
                         <ul class="vote-buttons span2">
                             <li class="up">
-                                <span href='#' ng-click="vote(alveole.id, 'up')"><i class="icon-thumbs-up"></i></span>
+                                <span href='#' ng-click="vote(alveole.id, $index, 'up')"><i class="icon-arrow-up"></i></span>
+                            <li>{{alveole.count_positive - alveole.count_negative}}</span></li>    
                             <li class="down">
-                                <span href='#' ng-click="vote(alveole.id, 'down')"><i class="icon-thumbs-down"></i></a></span>
+                                <span href='#' ng-click="vote(alveole.id, 'down')"><i class="icon-arrow-down"></i></a></span>
                         </ul>
                         
                     </div>

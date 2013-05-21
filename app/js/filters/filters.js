@@ -23,7 +23,7 @@ angular.module('alveolus.filters', []).filter('star', function() {
     } else if(input){
       return input.image_url;
     } else {
-      return "img/missing.jpg";
+      return "img/missing.png";
     }
   };
 })

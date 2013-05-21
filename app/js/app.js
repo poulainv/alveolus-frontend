@@ -17,6 +17,7 @@ angular.module('alveolus',
     'alveolus.mainCtrl', 
     'alveolus.webappCtrl', 
     'alveolus.addWebappCtrl',
+    'alveolus.editWebappCtrl',
     'alveolus.userCtrl',
     'alveolus.webAppListCtrl',
     'alveolus.voteCtrl',
@@ -25,14 +26,15 @@ angular.module('alveolus',
 config(
   ['$routeProvider', function($routeProvider) {
     $routeProvider.
-    when('', {templateUrl: 'partials/home.html',   controller: 'HomeCtrl'}).
-    when('/alveoles/new', {templateUrl: 'partials/addWebapp.html',   controller: 'AddWebappCtrl'}).
-    when('/alveoles/search/:content', {templateUrl: 'partials/webAppList.html',   controller: 'WebAppListCtrl'}).
-    when('/alveoles/:webAppId', {templateUrl: 'partials/webAppDesc.html',   controller: 'WebappCtrl'}).
-    when('/webappModal/:webAppId', {templateUrl: 'partials/webAppModal.html',   controller: 'WebappCtrl'}).
-    when('/alveoles', {templateUrl: 'partials/webAppList.html', controller: 'WebAppListCtrl'}).
-    when('/user/:userId', {templateUrl: 'partials/user.html',   controller: 'UserCtrl'}).
-    when('/vote', {templateUrl: 'partials/vote.html',   controller: 'VoteCtrl'}).
-    otherwise({redirectTo: '/', templateUrl: 'partials/home.html', controller: 'HomeCtrl'});
+    when('',                            {templateUrl: 'partials/home.html',             controller: 'HomeCtrl'}).
+    when('/alveoles/new',               {templateUrl: 'partials/addWebapp.html',        controller: 'AddWebappCtrl'}).
+    when('/alveoles/search/:content',   {templateUrl: 'partials/webAppList.html',       controller: 'WebAppListCtrl'}).
+    when('/alveoles/:webAppId',         {templateUrl: 'partials/webAppDesc.html',       controller: 'WebappCtrl'}).
+    when('/alveoles/:webAppId/edit',    {templateUrl: 'partials/editWebApp.html',       controller: 'EditWebappCtrl'}).
+    when('/webappModal/:webAppId',      {templateUrl: 'partials/webAppModal.html',      controller: 'WebappCtrl'}).
+    when('/alveoles',                   {templateUrl: 'partials/webAppList.html',       controller: 'WebAppListCtrl'}).
+    when('/user/:userId',               {templateUrl: 'partials/user.html',             controller: 'UserCtrl'}).
+    when('/vote',                       {templateUrl: 'partials/vote.html',             controller: 'VoteCtrl'}).
+    otherwise({redirectTo: '/',          templateUrl: 'partials/home.html',             controller: 'HomeCtrl'});
 }]);
 

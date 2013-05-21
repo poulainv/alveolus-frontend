@@ -7,15 +7,10 @@ factory('WebappService', function($http,$resource,SessionService) {
 
     var searchContent;
     var url = 'http://quiet-spire-4994.herokuapp.com';
-    var service = $resource(url+'/webapps/:id', {id:'@id'}, {}, {
-        //Ceci ne marche pas. Je ne sais pas si c'est possible en fait ou si c'est moi qui ai fait une erreur
-        // new: {method:'GET', params:{id:'new'}}
+    var service = $resource(url+'/webapps/:id', {id:'@id'}, {
+        new: {method:'GET', params:{id:'new'}}
+        update : {method:'PUT'}
     });
-
-    service.new = function(callback){
-        //Du coup obligé de faire comme ça
-        return service.get({id:'new'},callback);
-    }
 
 
     service.getMostRecent = function(callback){

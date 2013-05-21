@@ -1,0 +1,113 @@
+<div class="container">
+	<div class="row">
+		<div class="span10 offset1 well">
+			<form name="form" class="form-signin form-horizontal" novalidate>
+				<h2>Proposition d'une alvéole</h2>
+
+				<div class="control-group" ng-class="{error: form.title.$invalid && (!!form.title.$error.minlength || !!form.title.$error.maxlength),success: form.title.$valid}">
+					<label class="control-label" for="title">Titre<span class="red-star">*</span> : </label>
+					<div class="controls">
+						<input type="text" name="title" id="title" class="span6" ng-model="webapp.title" placeholder="MaSuperAlvéole" tooltip-placement="right" tooltip="Le nom du site" ng-minlength="2" ng-maxlength="25"  required></input>
+						<span ng-show="form.title.$invalid && (!!form.title.$error.minlength || !!form.title.$error.maxlength)" class="help-inline">Le nom du site doit contenir entre 2 et 25 caractères</span>
+					</div>
+				</div>
+
+				<div class="control-group" ng-class="{error: form.url.$invalid && !!form.url.$error.url,success: form.url.$valid}">
+					<label class="control-label" for="url">Url<span class="red-star">*</span> : </label>
+					<div class="controls">
+						<input type="url" name="url" id="url" class="span6" ng-model="webapp.url" placeholder="http://" tooltip-placement="right" tooltip="L'url de l'alvéole (doit être au format http://...)" required></input>
+						<span ng-show="form.url.$invalid && !!form.url.$error.url" class="help-inline">L'url doit être de la forme 'http://...'</span>
+					</div>
+				</div>
+
+				<div class="control-group" ng-class="{error: form.caption.$invalid && webapp.caption,success: form.caption.$valid}">
+					<label class="control-label" for="caption">Description rapide<span class="red-star">*</span> : </label>
+					<div class="controls">
+						<textarea id="caption" name="caption" rows="2" class="field span6" placeholder="Une phrase d'accroche" ng-model="webapp.caption"
+						tooltip-placement="right" tooltip="Une phrase d'accroche" required></textarea>
+					</div>
+				</div>
+
+				<div class="control-group" ng-class="{error: form.description.$invalid && (!!form.description.$error.minlength || !!form.description.$error.maxlength),success: form.description.$valid}">
+					<label class="control-label" for="description">Description complète<span class="red-star">*</span> : </label>
+					<div class="controls">
+						<textarea id="description" name="description" rows="5" class="field span6" placeholder="Donnez une description du site, mettant en avant l'originalité du projet (entre 100 et 600 caractères)" ng-model="webapp.description" ng-minlength="100" ng-maxlength="600" tooltip-placement="right" tooltip="Donnez une description du site, mettant en avant l'originalité du projet (entre 100 et 600 caractères)" required></textarea>
+						<span ng-show="form.description.$invalid && (!!form.description.$error.minlength || !!form.description.$error.maxlength)" class="help-inline">La description doit faire entre 100 et 600 caractères</span>
+					</div>
+				</div>
+
+				<div class="control-group" ng-class="{success:form.cat.$valid}">
+					<label class="control-label" for="cat">Catégorie<span class="red-star">*</span> : </label>
+					<div class="controls">
+						<select id="cat" name="cat" class="span6" ng-model="webapp.category_id" ng-options="cat.id as cat.name for cat in categories" tooltip-placement="right" tooltip="Choisissez la catégorie qui représente le mieux le site" required>
+						</select>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="tags">Tags : </label>
+					<div class="controls">
+						<input id="tags" type="text" ng-model="tag" class="span6" tooltip-placement="right" tooltip="Choisissez une liste de tag pour décrire le site"></input>
+						<div id="tagList" class="tag"></div>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="featured">Featured : </label>
+					<div class="controls">
+						<input type="checkbox" id="featured" ng-model="webapp.featured"></input>
+					</div>
+				</div>
+
+
+				<!-- Réseaux sociaux -> récupération id et vérification que la page existe à voir -->
+
+				<div class="control-group">
+					<label class="control-label" for="facebook"><i class="icon-large icon-facebook"></i></label>
+					<div class="controls">
+						<input type="text" id="facebook" class="span6" ng-model="webapp.facebook_id" tooltip-placement="right" tooltip="L'identifiant Facebook"></input>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="twitter"><i class="icon-large icon-twitter"></i></label>
+					<div class="controls">
+						<input type="text" id="twitter" class="span6" ng-model="webapp.twitter_id" tooltip-placement="right" tooltip="L'identifiant Twitter"></input>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="gplus"><i class="icon-google-plus icon-large"></i></label>
+					<div class="controls">
+						<input type="text" id="gplus" class="span6" ng-model="webapp.gplus_id" tooltip-placement="right" tooltip="L'identifiant Google+"></input>
+					</div>
+				</div>
+
+				<br>
+				<div class="control-group">
+					<div class="controls">
+						<button class="btn" ng-disabled="form.$invalid" ng-click="submit(webapp)">Envoyer</button>
+					</div>
+				</div>
+			</form>
+
+			<div><span class="red-star">*</span> : Champs requis</div>
+		</div>
+
+
+
+		<div class="span10 offset1 well">
+			<h2> Debug view </h2>
+			webapp = {{webapp | json}}
+			<br/>
+			<tt>form.$valid = {{form.$valid}}</tt><br/>
+			<tt>form.$error = {{form.$error}}</tt><br/>
+			<tt>form.$valid = {{form.$valid}}</tt><br/>
+			<tt>form.cat = {{form.cat}}</tt><br/>
+			<tt>form.url.$error = {{form.url.$error}}</tt><br/>
+			<tt>form.$error.required = {{!!form.$error.required}}</tt><br/>
+
+		</div>
+
+	</div>
+</div>

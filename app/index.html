@@ -31,6 +31,7 @@
   <script src="js/controllers/mainCtrl.js"></script>
   <script src="js/controllers/webappCtrl.js"></script>
   <script src="js/controllers/addWebappCtrl.js"></script>
+  <script src="js/controllers/editWebappCtrl.js"></script>
   <script src="js/controllers/webAppListCtrl.js"></script>
   <script src="js/controllers/userCtrl.js"></script>
   <script src="js/controllers/voteCtrl.js"></script>
@@ -54,7 +55,6 @@
           <div id="searchNavbar" class="input-append navbar-search">
             <form name="myForm" ng-submit="search(searchContent)">
               <input id="searchInput" class="span2" type="text" ng-model="searchContent" placeholder="Entrez une recherche">
-              <!-- <typeahead model="testModel" data="getTags()"></typeahead> -->
               <span class="add-on link" ng-click="search(searchContent)">
                 <i class="icon-search"></i>
               </span>

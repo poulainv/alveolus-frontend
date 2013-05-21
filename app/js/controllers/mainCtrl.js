@@ -6,7 +6,7 @@ angular.module('alveolus.mainCtrl', []).
 controller('MainCtrl', function($scope,$routeParams,$location,WebappService,SessionService,TagService,FeedbackService) {
 
 	var alertLogSuccess = { type: 'success', msg: 'Parfait, vous êtes correctement authentifié' } ;
-	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifié' } ;
+	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifier' } ;
 	var alertUnauthorized = { type: 'error', msg: 'Vous devez être authentifié' } ;
 
 	$scope.user = SessionService.getUser();

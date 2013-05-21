@@ -4,16 +4,6 @@
 
 angular.module('alveolus.voteCtrl', []).
 controller('VoteCtrl', function($scope,$routeParams,WebappService,UserService) {
-    function init(){
-        /**
-        * Teste si l'utilisateur est loggué et affiche la modale de connexion ou
-        * ou la liste des alvéoles non validées en fonction
-        **/
-        if(!$scope.isLogged)
-            $scope.openModalLogin();
-        else
-            loadList();
-    }
     function loadList(){
         /**
         * Charge la liste des alvéoles non validées
@@ -34,6 +24,10 @@ controller('VoteCtrl', function($scope,$routeParams,WebappService,UserService) {
         });
     }
     $scope.vote = function(webAppId, index, voteValue){
+        /**
+        * Prend en compte le vote de l'utilisateur
+        * et met à jour le modèle
+        **/
         if($scope.isLogged)
             WebappService.vote({id: webAppId, value: voteValue}, function(data){
                 $scope.alveoles[index] = data;
@@ -44,7 +38,7 @@ controller('VoteCtrl', function($scope,$routeParams,WebappService,UserService) {
     $scope.toogleButtonContent = "Afficher la description";
     $scope.$on('onLoggedSuccess', function(){
         loadList();});
-    init();
+    loadList();
 
 
 });

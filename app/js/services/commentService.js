@@ -15,5 +15,11 @@ factory('CommentService', function($http,$resource) {
         success(function(data){callback(data);});
     }
 
+    service.updateComment = function(params, callback){
+        $http({method:'PUT', url: url+'/comments/'+params.commentId, cache: true, 
+        	params : {'comment' : params.comment, 'rating' : params.rating}}).
+        success(function(data){callback(data);});
+    }
+
     return service;
 });

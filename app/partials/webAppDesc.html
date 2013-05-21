@@ -124,6 +124,7 @@
 									<aside class="span2">
 										<div class="text-center">
 											<i class="icon-user icon-4x"></i>
+											<!-- <img ng-src="{{comment.user.image_url}}"/> -->
 											<p ng-show="user.id==comment.user.id">Moi</p>
 							 				<p ng-show="user.id!=comment.user.id">{{comment.user.pseudo}}</p>
 								 			<div class="starsRatingShow">
@@ -149,7 +150,7 @@
 
 						<div ng-show="!webapp.comments">Pas de commentaires pour le moment :(</div>
 
-						
+
 						<div ng-show="canComment">
 							<h4>Donnez votre avis !</h4>
 							<table>
@@ -171,6 +172,8 @@
 			    			placeholder="Que pensez vous de ce site ?"></textarea>
 						    <button type="button" class="btn"  ng-click="submitComment(comment)" ng-disabled="!comment.rating">Envoyer</button>
 						</div>
+
+						<div ng-show="hadCommented">Merci d'avoir commenté !</div>
 					</div>
 				</div>
 
@@ -180,7 +183,6 @@
 
 
 					<!-- <br>Debug View: 
-		      		<pre>comment={{comment | json}}</pre>
 		      		<pre>userPost={{userPost | json}}</pre>
 		      		<pre>user={{user | json}}</pre> -->
 		      		<!-- <pre>webapp={{webapp | json}}</pre> -->

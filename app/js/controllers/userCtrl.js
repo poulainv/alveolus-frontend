@@ -5,19 +5,31 @@
 angular.module('alveolus.userCtrl', []).
 controller('UserCtrl', function($scope, $routeParams, UserService, SessionService) {
 
-	$scope.authorized=SessionService.authorized();
-	console.log('authorized='+SessionService.authorized());
+	console.log('isLogged:'+$scope.isLogged+' user.id:'+$scope.user.id);
 
-	if(SessionService.authorized()==false){
-		$scope.openModalLogin();	
-	} 
-
-	$scope.user.avatar_file_name="img/avatar.jpg";
-	
-	
-	$scope.onSubmit=function(){
-		// User.put();	
+	if($scope.isLogged){
+		$scope.user2=UserService.get({id: $scope.user.id});
 	}
+	
+
+	// $scope.user = SessionService.getUser();
+ //    $scope.isLogged = SessionService.authorized();
+
+
+	// $scope.authorized=SessionService.authorized();
+	// console.log('authorized '+SessionService.authorized());
+	// console.log('authorized '+SessionService.authorized());
+
+	// if(SessionService.authorized()==false){
+	// 	$scope.openModalLogin();	
+	// } 
+
+	// $scope.user.avatar_file_name="img/avatar.jpg";
+	
+	
+	// $scope.onSubmit=function(){
+	// 	// User.put();	
+	// }
 
 	// vincent.poulain2@gmail.com
 });

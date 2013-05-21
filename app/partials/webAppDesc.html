@@ -2,7 +2,7 @@
 		<div class="row">
 			<div class="span10 offset1">
 				<h1 class="text-center"><a href="{{webapp.url}}" target="_blank">{{webapp.title}}</a></h1>
-				<h2 class="text-center">{{webapp.category.name}} - proposée par {{user.pseudo}}</h2>
+				<h2 class="text-center">{{webapp.category.name}} - proposée par {{userPost.pseudo}}</h2>
 				
 				<div class="row">
 					<div class="span4 offset1 text-center"><a href="{{webapp.url}}" target="_blank"><img ng-src="img/{{webAppId}}.jpg" class="img-polaroid" style="max-height:400px;"/></a></div><!--  Impossible de metre max-height dans le css!!  -->
@@ -29,9 +29,10 @@
 									<a href="https://plus.google.com/{{webapp.gplus_id}}" target="_blank"><i class="icon-google-plus icon-large"></i>Google Plus</a>
 								</li>
 							</div>
-								
+
 							<li class="marginTop"><i class="icon-check icon-large"></i>X personnes participent</li>
 							<li><i class="icon-eye-open icon-large"></i>Vu {{webapp.nb_click_preview + webapp.nb_click_detail}} fois</li>
+
 							<li class="marginTop">
 								<!-- <a href="" ng-click="showShareNetworks=true" ng-init="showShareNetworks=false"><i class='icon-share icon-large'></i>Partager sur ...</a> -->
 								Partager sur ...
@@ -47,9 +48,6 @@
 										<i class="icon-google-plus-sign icon-2x"></i>
 									</a>
 								</span>
-							</li>
-							<li>
-								<a href="#/alveoles/{{webapp.id}}/edit">Éditer</a>
 							</li>
 							</ul>
 						</div>
@@ -69,12 +67,16 @@
 							<div class="row">
 								<div class="span2">
 									<h4>Tags</h4>
+
 									<ul id="tagList" class="listWithoutDecoration emerland">
 										<li ng-repeat="tag in webapp.tags"><i class="icon-bookmark-empty"></i> {{tag.name}}</li>
+										<li ng-show="webapp.tags.length==0">Aucun tag :(</li>
 										<li>
 											<a href="#modalAddTag" id="addTagLink" data-toggle="modal"><i class="icon-plus"></i><em> Ajouter...</em></a>
 										</li>
 									</ul>
+
+
 								</div>
 								<div class="span8">
 									<h4>{{webapp.caption}}</h4>
@@ -114,25 +116,38 @@
 
 					
 					<div class="tab-pane" id="comments">
-						<div class="light-separator"></div>
-						<div ng-repeat="comment in webapp.comments">
-							<div class="row">
-								<aside class="span2">
-									<div class="text-center">
-										<i class="icon-user icon-4x"></i>
-						 				<p>Pseudo {{comment.user.pseudo}}</p>
-							 			<div class="starsRatingShow">
-											<i class="{{ {'rate':comment.rating, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
-								 		</div>
-								 	</div>
-								 </aside>
-								 <section class="span8">
-								 	<span class="label pull-right">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
-								 	<p>{{comment.body}}</p>
-								 </section>
-							</div>
+
+						<div ng-show="webapp.comments">
 							<div class="light-separator"></div>
+							<div ng-repeat="comment in webapp.comments">
+								<div class="row">
+									<aside class="span2">
+										<div class="text-center">
+											<i class="icon-user icon-4x"></i>
+											<p ng-show="user.id==comment.user.id">Moi</p>
+							 				<p ng-show="user.id!=comment.user.id">{{comment.user.pseudo}}</p>
+								 			<div class="starsRatingShow">
+												<i class="{{ {'rate':comment.rating, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+									 		</div>
+									 	</div>
+									 </aside>
+									 <section class="span8">
+									 	<div ng-hide="editComment" ng-init="editComment=false">
+										 	<span class="label pull-right">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
+										 	<p>{{comment.body}}</p>
+										 	<p><button ng-show="user.id==comment.user.id" class="btn btn-primary btn-small" ng-click="editComment=true"><i class="icon-white icon-pencil"></i> Editer mon commentaire</button></p>
+										 </div>
+										 <div ng-show="editComment">
+										 	<textarea class="span8" type="text" rows="3" ng-model="comment.body" id="textAreaEditComment">{{comment.body}}</textarea>
+										 	<button class="btn btn-primary btn-small" ng-click="submitEditComment(comment);"><i class="icon-white icon-pencil"></i> Modifier</button>
+										 </div>
+									 </section>
+								</div>
+								<div class="light-separator"></div>
+							</div>
 						</div>
+
+						<div ng-show="!webapp.comments">Pas de commentaires pour le moment :(</div>
 
 						<h4>Donnez votre avis !</h4>
 						<table>
@@ -163,6 +178,7 @@
 
 					<br>Debug View: 
 		      		<pre>comment={{comment | json}}</pre>
+		      		<pre>userPost={{userPost | json}}</pre>
 		      		<pre>user={{user | json}}</pre>
 		      		<pre>webapp={{webapp | json}}</pre>
 

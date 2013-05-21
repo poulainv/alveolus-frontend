@@ -138,3 +138,7 @@ ul#tagList a {
 .imgDesc{
   max-height:400px;
 }
+
+#textAreaEditComment{
+  resize:none;
+}

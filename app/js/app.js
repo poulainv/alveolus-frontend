@@ -27,6 +27,7 @@ angular.module('alveolus',
 config(
   ['$routeProvider', function($routeProvider) {
     $routeProvider.
+    when('/user', {templateUrl: 'partials/user.html',   controller: 'UserCtrl'}).
     when('',                            {templateUrl: 'partials/home.html',             controller: 'HomeCtrl'}).
     when('/alveoles/new',               {templateUrl: 'partials/addWebapp.html',        controller: 'AddWebappCtrl'}).
     when('/alveoles/search/:content',   {templateUrl: 'partials/webAppList.html',       controller: 'WebAppListCtrl'}).

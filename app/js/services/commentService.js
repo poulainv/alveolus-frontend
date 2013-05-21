@@ -9,5 +9,11 @@ factory('CommentService', function($http,$resource) {
 
     var service = $resource(url+'/webapps/:id/comments', {catId:'@id'}, {});
 
+    service.addComment = function(params, callback){
+        $http({method:'POST', url: url+'/webapps/'+params.webappId+'/comments', cache: true, 
+        	params : {'comment' : params.comment, 'rating':params.rating}}).
+        success(function(data){callback(data);});
+    }
+
     return service;
 });

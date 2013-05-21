@@ -18,7 +18,28 @@ describe('alveolus', function() {
     		browser().navigateTo('../../app/index.html#/hyecaramba');
     		expect(browser().location().url()).toBe('/');
   		});
-  	});
+  });
+
+  describe('Connexion', function() {
+    it('should check connexion and disconnexion', function() {
+      browser().navigateTo('../../app/index.html');
+      // connexion
+      element('.nav a:contains(Connexion)').click();
+      input('user.email').enter('vincent.poulain2@gmail.com');
+      input('user.password').enter('vincent');
+      element('.modal button:contains(Se connecter)').click();
+      expect(element('.alert span').text()).toBe('Parfait, vous êtes correctement authentifié');
+      expect(element('.nav a:visible:contains(Connexion)').count()).toBe(0);
+      expect(element('.nav a:visible:contains(Déconnexion)').count()).toBe(1);
+      // disconnexion
+      element('.nav a:contains(Déconnexion)').click();
+      expect(element('.alert span').text()).toBe('A bientôt ! Vous vous êtes correctement déconnecté');
+      expect(element('.nav a:visible:contains(Connexion)').count()).toBe(1);
+      expect(element('.nav a:visible:contains(Déconnexion)').count()).toBe(0);
+    });
+    
+
+  });
 
   	describe('Home page view', function() {
 

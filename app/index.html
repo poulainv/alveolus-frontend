@@ -45,12 +45,19 @@
     <div id="headerCarousel">
       <img id="headerImgCarousel" src="img/img.jpg" alt="imgCarrousel">
     </div>
-    <div class="navbar">
+    <div class="navbar navbar-inverse navbar-static-top">
       <div class="navbar-inner">
         <div class="container">
 
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </a>
+
           <!-- Be sure to leave the brand out there if you want it shown -->
-          <a class="brand" href="#"><img id="logoNavbar" src="img/logo_home2.png" alt="logoNavbar"></a>
+          <a class="brand" ng-href="#"><img id="logoNavbar" src="img/logo_home2.png" alt="logoNavbar"></a>
 
           <div id="searchNavbar" class="input-append navbar-search">
             <form name="myForm" ng-submit="search(searchContent)">
@@ -64,12 +71,14 @@
           <div class="nav-collapse collapse">
            <ul class="nav pull-right">
              <li class="divider-vertical"></li>
-             <li><a href="#/alveoles/new"><i class="icon-plus icon-white"></i> Poster une Alvéole</a></li>
+             <li><a ng-href="#/alveoles/new"><i class="icon-plus icon-white"></i> Soumettez une Alvéole</a></li>
              <li class="divider-vertical"></li>
-             <li><a href="#"><i class="icon-eye-open icon-white"></i> À propos d'AlveolUs</a></li>
+             <li><a ng-href="#/vote"><i class="icon-leaf icon-white"></i> Modérez les alvéoles</a></li>
+             <li class="divider-vertical"></li>
+             <li><a ng-href="#"><i class="icon-eye-open icon-white"></i> À propos d'AlveolUs</a></li>
              <li class="divider-vertical"></li>
              <li>
-              <a ng-hide="isLogged" ng-click="openModalLogin()"><i class="icon-user icon-white"></i>Connexion</a>
+              <a ng-hide="isLogged" ng-click="openModalLogin()"><i class="icon-user icon-white"></i> Connexion</a>
               <a ng-show="isLogged" ng-click="sign_out()"><i class="icon-user icon-white"></i> Déconnexion</a>
             </li>
              <li class="divider-vertical"></li>

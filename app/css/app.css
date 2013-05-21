@@ -217,7 +217,7 @@ body{
   max-height:85%;
 }
 
-.navbar .nav > li > a{
+/*.navbar .nav > li > a{
   color: white;
   margin-top: 10px;
 }
@@ -247,7 +247,7 @@ body{
   background-image: none;
   background-repeat: no-repeat;
   filter: none;
-}
+}*/
 
 .noStyleList{
   list-style-type:none; 

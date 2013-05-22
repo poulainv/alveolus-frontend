@@ -433,7 +433,6 @@ body{
   margin-right: 10px;
 }
 .vote-buttons li i{
-  cursor: pointer;
   padding : 5px;
   color: #FFF;
 }

@@ -58,7 +58,12 @@
           </a>
 
           <!-- Be sure to leave the brand out there if you want it shown -->
-          <a class="brand" ng-href="#"><img id="logoNavbar" src="img/logo_home2.png" alt="logoNavbar"></a>
+          <a class="brand" ng-href="#">
+            <object data="img/logo_home.svg" type="image/svg+xml">
+              <img src="img/logo_home2.png" alt="alveolus"/>
+            </object>
+            <!-- <img id="logoNavbar" src="img/logo_home.svg" alt="logoNavbar"> -->
+          </a>
 
           <div id="searchNavbar" class="input-append navbar-search">
             <form name="myForm" ng-submit="search(searchContent)">

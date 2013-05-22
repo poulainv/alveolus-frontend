@@ -5,7 +5,7 @@
 				<h2 class="text-center">{{webapp.category.name}} - proposée par {{userPost.pseudo}}</h2>
 				
 				<div class="row">
-					<div class="span4 offset1 text-center"><a href="{{webapp.url}}" target="_blank"><img ng-src="img/{{webAppId}}.jpg" class="img-polaroid" style="max-height:400px;"/></a></div><!--  Impossible de metre max-height dans le css!!  -->
+					<div class="span4 offset1 text-center"><a href="{{webapp.url}}" target="_blank"><img ng-src="{{webapp.image_url}}" class="img-polaroid" style="max-height:400px;"/></a></div><!--  Impossible de metre max-height dans le css!!  -->
 
 					<div class="span4">
 
@@ -124,6 +124,7 @@
 									<aside class="span2">
 										<div class="text-center">
 											<i class="icon-user icon-4x"></i>
+											<!-- <img ng-src="{{comment.user.image_url}}"/> -->
 											<p ng-show="user.id==comment.user.id">Moi</p>
 							 				<p ng-show="user.id!=comment.user.id">{{comment.user.pseudo}}</p>
 								 			<div class="starsRatingShow">
@@ -135,7 +136,10 @@
 									 	<div ng-hide="editComment" ng-init="editComment=false">
 										 	<span class="label pull-right">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
 										 	<p>{{comment.body}}</p>
-										 	<p><button ng-show="user.id==comment.user.id" class="btn btn-primary btn-small" ng-click="editComment=true"><i class="icon-white icon-pencil"></i> Editer mon commentaire</button></p>
+										 	<div ng-show="user.id==comment.user.id" class="pull-right">
+											 	<i class="icon-large icon-pencil pointer-link" ng-click="editComment=true"></i>
+											 	<i class="icon-large icon-trash pointer-link" ng-click="deleteComment(comment);"></i>
+											</div>
 										 </div>
 										 <div ng-show="editComment">
 										 	<textarea class="span8" type="text" rows="3" ng-model="comment.body" id="textAreaEditComment">{{comment.body}}</textarea>
@@ -149,7 +153,7 @@
 
 						<div ng-show="!webapp.comments">Pas de commentaires pour le moment :(</div>
 
-						
+
 						<div ng-show="canComment">
 							<h4>Donnez votre avis !</h4>
 							<table>
@@ -171,6 +175,8 @@
 			    			placeholder="Que pensez vous de ce site ?"></textarea>
 						    <button type="button" class="btn"  ng-click="submitComment(comment)" ng-disabled="!comment.rating">Envoyer</button>
 						</div>
+
+						<div ng-show="hadCommented">Merci d'avoir commenté !</div>
 					</div>
 				</div>
 
@@ -180,10 +186,9 @@
 
 
 					<!-- <br>Debug View: 
-		      		<pre>comment={{comment | json}}</pre>
 		      		<pre>userPost={{userPost | json}}</pre>
 		      		<pre>user={{user | json}}</pre> -->
-		      		<!-- <pre>webapp={{webapp | json}}</pre> -->
+		      		<pre>webapp={{webapp | json}}</pre>
 
 			</div>
 					

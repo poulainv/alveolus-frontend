@@ -58,12 +58,24 @@ controller('WebappCtrl', function($scope,$routeParams, WebappService, SocialServ
 	$scope.submitComment = function(comment) {
 	    CommentService.addComment({webappId : $scope.webAppId, comment : comment.body, 
 	    	rating : comment.rating}, function(data){
-	    	alert(data);
+	    		$scope.webapp.comments=data;
+	    		$scope.canComment=false;
+	    		$scope.hadCommented=true;
 	    });
   	};
 
   	$scope.submitEditComment=function(comment){
-  		alert(comment.id);
+  		CommentService.updateComment({commentId : comment.id, comment : comment.body, 
+	    	rating : comment.rating}, function(data){
+	    		$scope.webapp.comments=data;
+	    		$scope.editComment=false;
+	    });
+  	}
+
+  	$scope.deleteComment=function(comment){
+  		CommentService.deleteComment({commentId : comment.id}, function(data){
+	    		$scope.webapp.comments=data;
+	    });
   	}
 
   	$scope.submitTag = function(tag) {

@@ -84,11 +84,11 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService,Sess
 	};
 
 	$scope.openModalFeedback = function () {
-		$('#modalLogin').modal('show');
+		$('#modalFeedback').modal('show');
 	};
 
 	$scope.closeModalFeedback = function () {
-		$('#modalLogin').modal('hide');
+		$('#modalFeedback').modal('hide');
 		$scope.feedback = {};
 	};
 

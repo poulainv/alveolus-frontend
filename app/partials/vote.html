@@ -1,20 +1,47 @@
 
 <div class="container">
-    <br>Debug View: 
-    <pre>data={{data | json}}</pre>
     <div class="row">
         <div class="span10 offset1">
             <h3>Validez les dernières alvéoles proposées</h3>
-            <div ng-repeat="alveole in alveoles">
+            <div ng-repeat="alveole in alveoles|orderBy:created_at:true ">
                 <div class="row vote-alv">
                     <div class="span2">
                         <img ng-src="img/{{alveole.id}}.jpg" alt="{{alveole.title}}">
-                        <ul class="vote-buttons span2">
-                            <li class="up">
-                                <span href='#' ng-click="vote(alveole.id, 'up')"><i class="icon-thumbs-up"></i></span>
-                            <li class="down">
-                                <span href='#' ng-click="vote(alveole.id, 'down')"><i class="icon-thumbs-down"></i></a></span>
+                        <!-- Boutons si loggué -->
+                        <ul class="vote-buttons span2" ng-show="isLogged">
+                            
+                            <li class="up" ng-show="isLogged">
+                                <span href='#' ng-click="vote(alveole.id, $index, 'up')"><i class="icon-arrow-up"></i></span>
+                            </li>
+                            <li><span>{{alveole.count_positive - alveole.count_negative}}</span></li>    
+                            <li class="down dropdown" ng-controller="VoteCtrl">
+                                <span href='#' ng-click="vote(alveole.id, $index, 'down')" class="dropdown-toogle"><i class="icon-arrow-down"></i></span>
+                                <p class="dropdown-menu">
+                                    Vous devez être connecté pour voter        
+                                </p>
+                            </li>
                         </ul>
+                        <!-- Boutons si non loggué -->
+                        <ul ng-show="!isLogged" class="vote-buttons span2">
+                            <li class="dropdown up" down>
+                              <a class="dropdown-toggle">
+                                <i class="icon-arrow-up"></i>
+                              </a>
+                              <div class="dropdown-menu">
+                                Vous devez être connecté pour voter
+                              </div>
+                            </li>
+                            <li><span>{{alveole.count_positive - alveole.count_negative}}</span></li>
+                            <li class="dropdown down">
+                              <a class="dropdown-toggle">
+                                <i class="icon-arrow-down"></i>
+                              </a>
+                              <div class="dropdown-menu">
+                                Vous devez être connecté pour voter
+                              </div>
+                            </li>
+                        <ul>
+
                         
                     </div>
                     <div class="span8">

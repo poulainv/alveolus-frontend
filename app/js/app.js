@@ -37,6 +37,6 @@ config(
     when('/alveoles',                   {templateUrl: 'partials/webAppList.html',       controller: 'WebAppListCtrl'}).
     when('/user/:userId',               {templateUrl: 'partials/user.html',             controller: 'UserCtrl'}).
     when('/vote',                       {templateUrl: 'partials/vote.html',             controller: 'VoteCtrl'}).
-    otherwise({redirectTo: '/',          templateUrl: 'partials/home.html',             controller: 'HomeCtrl'});
-}]);
+    otherwise({redirectTo: '/',          templateUrl: 'partials/home.html',             controller: 'HomeCtrl'});  
+}]).value('globals',{server_url : 'http://quiet-spire-4994.herokuapp.com'});
 

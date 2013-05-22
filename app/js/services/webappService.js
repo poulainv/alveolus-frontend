@@ -3,58 +3,57 @@
 /* Services WebApps */
 
 angular.module('alveolus.webappService', ['ngResource']).
-factory('WebappService', function($http,$resource,SessionService) {
+factory('WebappService', function($http,$resource,SessionService,globals) {
 
     var searchContent;
-    var url = 'http://quiet-spire-4994.herokuapp.com';
-    var service = $resource(url+'/webapps/:id', {id:'@id'}, {
+    var service = $resource(globals.server_url+'/webapps/:id', {id:'@id'}, {
         new: {method:'GET', params:{id:'new'}},
         update : {method:'PUT'}
     });
 
 
     service.getMostRecent = function(callback){
-        $http({method:'GET', url: url+'/webapps/trend/recent', cache: true}).
+        $http({method:'GET', url: globals.server_url+'/webapps/trend/recent', cache: true}).
         success(function(data){callback(data);});
     }
 
     service.getMostShared = function(callback){
-        $http({method:'GET', url: url+'/webapps/trend/shared', cache: true}).
+        $http({method:'GET', url: globals.server_url+'/webapps/trend/shared', cache: true}).
         success(function(data){callback(data);});
     }
 
     service.getMostCommented =  function(callback){
-        $http({method:'GET', url: url+'/webapps/trend/commented', cache: true}).
+        $http({method:'GET', url: globals.server_url+'/webapps/trend/commented', cache: true}).
         success(function(data){callback(data);});
     }
 
     service.getBest = function(callback){
-        $http({method:'GET', url: url+'/webapps/trend/rated', cache: true}).
+        $http({method:'GET', url: globals.server_url+'/webapps/trend/rated', cache: true}).
         success(function(data){callback(data);});
     }
 
     service.getFeaturedApp = function(params,callback){
-        $http({method:'GET', url: url+'/categories/'+params.catId+'/featured_webapp', cache:true}).
+        $http({method:'GET', url: globals.server_url+'/categories/'+params.catId+'/featured_webapp', cache:true}).
         success(function(data){callback(data);});
     }
 
     service.getFeaturedApps = function(params,callback){
-        $http({method:'GET', url: url+'/categories/'+params.catId+'/featured_webapps', cache: true}).
+        $http({method:'GET', url: globals.server_url+'/categories/'+params.catId+'/featured_webapps', cache: true}).
         success(function(data){callback(data);});
     }
 
     service.getAppsFromCat = function(params,callback){
-        $http({method:'GET', url: url+'/categories/'+params.catId+'/webapps', cache: true}).
+        $http({method:'GET', url: globals.server_url+'/categories/'+params.catId+'/webapps', cache: true}).
         success(function(data){callback(data);});
     }
 
     service.getUnvalidated = function(callback){
-        $http({method:'GET', url: url+'/webapps/trend/unvalidated', cache: true}).
+        $http({method:'GET', url: globals.server_url+'/webapps/trend/unvalidated', cache: true}).
         success(function(data){callback(data);});
     }
 
     service.search = function(params,callback){
-        $http({method:'GET', url: url+'/webapps/search/'+params.content, cache: true}).
+        $http({method:'GET', url: globals.server_url+'/webapps/search/'+params.content, cache: true}).
         success(function(data){callback(data);});        
     }
 
@@ -67,7 +66,7 @@ factory('WebappService', function($http,$resource,SessionService) {
     }
 
     service.vote = function(params,callback){
-        $http({method:'POST', url: url+'/webapps/'+params.id+'/vote/?type='+params.value}).
+        $http({method:'POST', url: globals.server_url+'/webapps/'+params.id+'/vote/?type='+params.value}).
         success(function(data){callback(data);});
     };
 
@@ -88,7 +87,7 @@ factory('WebappService', function($http,$resource,SessionService) {
         xhr.addEventListener("load", uploadComplete, false);
         xhr.addEventListener("error", uploadFailed, false);
         xhr.addEventListener("abort", uploadCanceled, false);
-        xhr.open("POST", url+"/webapps");
+        xhr.open("POST", globals.server_url+"/webapps");
         xhr.setRequestHeader('X-AUTH-TOKEN', SessionService.getToken());
         console.log(xhr);
         xhr.send(fd)

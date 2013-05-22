@@ -48,8 +48,8 @@ describe('alveolus', function() {
     	});
 
   		describe('routing', function() {
-  			it('should redirect to addwebapp page when "Poster une Alvéole" clicked', function() {
-	  			element('a:contains(Poster une Alvéole)').click();
+  			it('should redirect to addwebapp page when "Soumettre une Alvéole" clicked', function() {
+	  			element('a:contains(Soumettre une Alvéole)').click();
 	  			expect(browser().location().url()).toBe('/alveoles/new');
 	  		});
 

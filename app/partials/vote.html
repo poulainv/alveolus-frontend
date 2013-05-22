@@ -6,7 +6,8 @@
             <div ng-repeat="alveole in alveoles|orderBy:created_at:true ">
                 <div class="row vote-alv">
                     <div class="span2">
-                        <img ng-src="img/{{alveole.id}}.jpg" alt="{{alveole.title}}">
+                        <img ng-src="{{alveole | image}}" alt="{{alveole.title}}">
+                        <!-- <img ng-src="img/{{alveole.id}}.jpg" alt="{{alveole.title}}"> -->
                         <!-- Boutons si loggué -->
                         <ul class="vote-buttons span2" ng-show="isLogged">
                             

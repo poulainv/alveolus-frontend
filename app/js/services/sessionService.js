@@ -3,11 +3,11 @@
 /* Services Session */
 
 
-angular.module('alveolus.sessionService', ['ngResource']).factory('SessionService', function($log, $cookieStore, $resource, $http, $rootScope) {
+angular.module('alveolus.sessionService', ['ngResource']).
+factory('SessionService', function($log, $cookieStore, $resource, $http, $rootScope,globals) {
 
 
     var authorized, getUser, getToken, sign_in, sign_out, service, user, token ;
-    var url = 'http://quiet-spire-4994.herokuapp.com';
     service = {};
     user = {}; 
     initTryToLogWithCookie();
@@ -33,7 +33,7 @@ angular.module('alveolus.sessionService', ['ngResource']).factory('SessionServic
     service.sign_in = function(data,callback){
         $http({
           method:'POST', 
-          url: url+'/sign_in.json',
+          url: globals.server_url+'/sign_in.json',
           data: data,
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(data){
@@ -54,7 +54,7 @@ angular.module('alveolus.sessionService', ['ngResource']).factory('SessionServic
     service.sign_out = function(user){
         $http({
           method:'DELETE',
-          url: url+'/sign_out.json?id='+user.id,
+          url: globals.server_url+'/sign_out.json?id='+user.id,
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(data){
           console.log("User unlogged");
@@ -160,9 +160,6 @@ angular.module('alveolus.sessionService', ['ngResource']).factory('SessionServic
     getUser = function() {
       return user;
     };
-
-
-
 
     return {
       getToken : getToken,

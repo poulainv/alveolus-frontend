@@ -3,11 +3,9 @@
 /* Services Tags */
 
 angular.module('alveolus.tagService', ['ngResource']).
-factory('TagService', function($http,$resource) {
+factory('TagService', function($http,$resource,globals) {
 
-    var url = 'http://quiet-spire-4994.herokuapp.com';
-
-    var service = $resource(url+'/tags/:id', {tagId:'@id'}, {});
+    var service = $resource(globals.server_url+'/tags/:id', {tagId:'@id'}, {});
 
     return service;
 });

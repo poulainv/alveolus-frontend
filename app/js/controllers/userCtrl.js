@@ -8,28 +8,16 @@ controller('UserCtrl', function($scope, $routeParams, UserService, SessionServic
 	console.log('isLogged:'+$scope.isLogged+' user.id:'+$scope.user.id);
 
 	if($scope.isLogged){
-		$scope.user2=UserService.get({id: $scope.user.id});
+		$scope.user=UserService.get({id: $scope.user.id});
 	}
-	
-
-	// $scope.user = SessionService.getUser();
- //    $scope.isLogged = SessionService.authorized();
-
-
-	// $scope.authorized=SessionService.authorized();
-	// console.log('authorized '+SessionService.authorized());
-	// console.log('authorized '+SessionService.authorized());
-
-	// if(SessionService.authorized()==false){
-	// 	$scope.openModalLogin();	
-	// } 
-
-	// $scope.user.avatar_file_name="img/avatar.jpg";
+	else $scope.openModalLogin();
 	
 	
-	// $scope.onSubmit=function(){
-	// 	// User.put();	
-	// }
+	$scope.onSubmit=function(user){
+		UserService.updateUser({userId : user.id, user : user}, function(data){
+			$scope.user=data;
+		});	
+	}
 
 	// vincent.poulain2@gmail.com
 });

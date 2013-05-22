@@ -142,3 +142,7 @@ ul#tagList a {
 #textAreaEditComment{
   resize:none;
 }
+
+.pointer-link{
+  cursor:  pointer;
+}

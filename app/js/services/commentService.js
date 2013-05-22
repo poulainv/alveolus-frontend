@@ -21,5 +21,10 @@ factory('CommentService', function($http,$resource) {
         success(function(data){callback(data);});
     }
 
+    service.deleteComment = function(params, callback){
+        $http({method:'DELETE', url: url+'/comments/'+params.commentId, cache: true}).
+        success(function(data){callback(data);});
+    }
+
     return service;
 });

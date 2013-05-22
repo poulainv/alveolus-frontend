@@ -40,7 +40,7 @@
 						  </div>
 						  <div class="control-group">
 						    <div class="controls">
-						    	<button class="btn" ng-click="onSubmit()">Enregistrer</button>
+						    	<button class="btn" ng-click="onSubmit(user)">Enregistrer</button>
 						    </div>
 						  </div>
 						  
@@ -52,11 +52,66 @@
 						</pre>
 
 						<pre>
-							{{user2 | json}}
+							test={{test | json}}
 						</pre>
 			        </div>
-			        <div class="tab-pane" id="favoris">Favoris</div>
-			        <div class="tab-pane" id="comments">Commentaires</div>
+
+
+			        <div class="tab-pane" id="favoris">
+			        	<div ng-show="user.webapps">
+			        		<div class="light-separator"></div>
+			        		<div ng-repeat="webapp in user.webapps">
+			        			<div class="row">
+			        				<img class="span2" src="{{webapp.image_url}}"/>
+			        				<div class="span8">
+			        					<h3>{{webapp.title}}</h3>
+			        					<h4>{{webapp.caption}}</h4>
+			        					<p>{{webapp.description}}</p>
+			        				</div>
+			        			</div>
+			        			<div class="light-separator"></div>
+			        		</div>
+			        	</div>
+			        </div>
+
+
+
+			        <div class="tab-pane" id="comments">
+
+			        	<div ng-show="user.comments">
+							<div class="light-separator"></div>
+							<div ng-repeat="comment in user.comments">
+								<div class="row">
+									<aside class="span2">
+										<div class="text-center">
+											<i class="icon-user icon-4x"></i>
+											<!-- <img ng-src="{{comment.user.image_url}}"/> -->
+											<p ng-show="user.id==comment.user.id">Moi</p>
+							 				<p ng-show="user.id!=comment.user.id">{{comment.user.pseudo}}</p>
+								 			<div class="starsRatingShow">
+												<i class="{{ {'rate':comment.rating, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+									 		</div>
+									 	</div>
+									 </aside>
+									 <section class="span8">
+									 	<div ng-hide="editComment" ng-init="editComment=false">
+										 	<span class="label pull-right">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
+										 	<p>{{comment.body}}</p>
+										 	<p><button ng-show="user.id==comment.user.id" class="btn btn-primary btn-small" ng-click="editComment=true"><i class="icon-white icon-pencil"></i> Editer mon commentaire</button></p>
+										 </div>
+										 <div ng-show="editComment">
+										 	<textarea class="span8" type="text" rows="3" ng-model="comment.body" id="textAreaEditComment">{{comment.body}}</textarea>
+										 	<button class="btn btn-primary btn-small" ng-click="submitEditComment(comment);"><i class="icon-white icon-pencil"></i> Modifier</button>
+										 </div>
+									 </section>
+								</div>
+								<div class="light-separator"></div>
+							</div>
+						</div>
+
+						<div ng-show="!user.comments">Pas de commentaires pour le moment :(</div>
+
+			        </div>
 			        <div class="tab-pane" id="suggestions">Suggestions</div>
 			    </div>
 			</div>

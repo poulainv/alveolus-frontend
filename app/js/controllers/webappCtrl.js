@@ -72,6 +72,12 @@ controller('WebappCtrl', function($scope,$routeParams, WebappService, SocialServ
 	    });
   	}
 
+  	$scope.deleteComment=function(comment){
+  		CommentService.deleteComment({commentId : comment.id}, function(data){
+	    		$scope.webapp.comments=data;
+	    });
+  	}
+
   	$scope.submitTag = function(tag) {
 	    // CommentService.addComment({webappId : $routeParams.webAppId, comment : $scope.comment}, function(data){
 	    // 	alert(data);

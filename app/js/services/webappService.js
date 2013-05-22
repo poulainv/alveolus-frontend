@@ -48,6 +48,11 @@ factory('WebappService', function($http,$resource,SessionService) {
         success(function(data){callback(data);});
     }
 
+    service.getUnvalidated = function(callback){
+        $http({method:'GET', url: url+'/webapps/trend/unvalidated', cache: true}).
+        success(function(data){callback(data);});
+    }
+
     service.search = function(params,callback){
         $http({method:'GET', url: url+'/webapps/search/'+params.content, cache: true}).
         success(function(data){callback(data);});        

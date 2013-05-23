@@ -9,3 +9,4 @@ angular.module('alveolus.directives', []).
       elm.text(version);
     };
   }]);
+

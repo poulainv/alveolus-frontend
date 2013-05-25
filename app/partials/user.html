@@ -40,7 +40,7 @@
 						  </div>
 						  <div class="control-group">
 						    <div class="controls">
-						    	<button class="btn" ng-click="onSubmit(user)">Enregistrer</button>
+						    	<button class="btn" ng-click="onSubmit(user);">Enregistrer</button>
 						    </div>
 						  </div>
 						  
@@ -50,10 +50,6 @@
 						<pre>
 							{{user | json}}
 						</pre>
-
-						<pre>
-							test={{test | json}}
-						</pre>
 			        </div>
 
 
@@ -62,7 +58,7 @@
 			        		<div class="light-separator"></div>
 			        		<div ng-repeat="webapp in user.webapps">
 			        			<div class="row">
-			        				<img class="span2" src="{{webapp.image_url}}"/>
+			        				<img class="span2" ng-src="{{webapp.image_url}}"/>
 			        				<div class="span8">
 			        					<h3>{{webapp.title}}</h3>
 			        					<h4>{{webapp.caption}}</h4>

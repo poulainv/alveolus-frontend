@@ -15,13 +15,13 @@ factory('CommentService', function($http,$resource,globals) {
     }
 
     service.updateComment = function(params, callback){
-        $http({method:'PUT', url: url+'/comments/'+params.commentId, cache: true, 
+        $http({method:'PUT', url: globals.server_url+'/comments/'+params.commentId, cache: true, 
         	params : {'comment' : params.comment, 'rating' : params.rating}}).
         success(function(data){callback(data);});
     }
 
     service.deleteComment = function(params, callback){
-        $http({method:'DELETE', url: url+'/comments/'+params.commentId, cache: true}).
+        $http({method:'DELETE', url: globals.server_url+'/comments/'+params.commentId, cache: true}).
         success(function(data){callback(data);});
     }
 

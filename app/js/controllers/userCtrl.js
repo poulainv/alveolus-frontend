@@ -14,8 +14,10 @@ controller('UserCtrl', function($scope, $routeParams, UserService, SessionServic
 	
 	
 	$scope.onSubmit=function(user){
+		console.log('$scope.onSubmit');
 		UserService.updateUser({userId : user.id, user : user}, function(data){
 			$scope.user=data;
+			console.log('callback '.data);
 		});	
 	}
 

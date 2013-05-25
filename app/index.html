@@ -78,11 +78,13 @@
              <li class="divider-vertical"></li>
              <li><a ng-href="#/vote"><i class="icon-leaf icon-white"></i> Modérer les alvéoles</a></li>
              <li class="divider-vertical"></li>
-             <li><a ng-href="#"><i class="icon-eye-open icon-white"></i> À propos d'AlveolUs</a></li>
+             <li><a ng-href="#/vote"><i class="icon-eye-open icon-white"></i> À propos d'AlveolUs</a></li>
+             <li class="divider-vertical"></li>
+             <li><a ng-show="isLogged" ng-href="#/user"><i class="icon-user icon-white"></i> Mon compte</a></li>
              <li class="divider-vertical"></li>
              <li>
               <a ng-hide="isLogged" ng-click="openModalLogin()"><i class="icon-user icon-white"></i> Connexion</a>
-              <a ng-show="isLogged" ng-click="sign_out()"><i class="icon-user icon-white"></i> Déconnexion</a>
+              <a ng-show="isLogged" ng-click="sign_out()"><i class="icon-remove icon-white"></i> Déconnexion</a>
             </li>
              <li class="divider-vertical"></li>
            </ul>

@@ -75,8 +75,9 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
       var cookieToken = getTokenCookie();
         if(getTokenCookie()!=null && getTokenCookie()!=""){
           console.log("session cookie found");
+          token = getTokenCookie();
           setUser({success: true, id : getUserIdCookie()});
-          setHttpProviderCommonHeaderToken(getTokenCookie());
+          setHttpProviderCommonHeaderToken(token);
           broadcastLogged();
         }
         else{

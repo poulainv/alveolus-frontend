@@ -3,78 +3,106 @@
 		<div class="span10 offset1">
 			{{authorized}}
 			<div class="tabbable" > 
-			    <ul class="nav nav-pills">
-			        <li class="active"><a href="#infos" data-toggle="tab">Vos informations</a></li>
-			        <li><a href="#favoris" data-toggle="tab">Vos alvéoles favorites</a></li>
-			        <li><a href="#comments" data-toggle="tab">Vos commentaires</a></li>
-			        <li><a href="#suggestions" data-toggle="tab">Vos suggestions</a></li>
-			    </ul>
-			    <div class="tab-content">
-			        <div class="tab-pane active" id="infos">
-							<!-- <img ng-src="{{user.avatar_file_name}}" /> -->
+				<ul class="nav nav-pills">
+					<li class="active"><a href="#infos" data-toggle="tab">Vos informations</a></li>
+					<li><a href="#favoris" data-toggle="tab">Vos alvéoles favorites</a></li>
+					<li><a href="#comments" data-toggle="tab">Vos commentaires</a></li>
+					<li><a href="#suggestions" data-toggle="tab">Vos suggestions</a></li>
+					<li><a href="#avatar" data-toggle="tab">Votre avatar</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="infos">
+						<!-- <img ng-src="{{user.avatar_file_name}}" /> -->
 						<form class="form-horizontal">
 							<div class="control-group">
-						    <label class="control-label" for="inputPseudo">Pseudo</label>
-						    <div class="controls">
-						      <input type="text" id="inputPseudo" value="{{user.pseudo}}" ng-model="user.pseudo">
-						    </div>
-						  </div>
-						  <div class="control-group">
-						    <label class="control-label" for="inputEmail">Email</label>
-						    <div class="controls">
-						      <input type="text" id="inputEmail" placeholder="Email" value="{{user.email}}" disabled>
-						    </div>
-						  </div>
-						  <div class="control-group">
-						    <label class="control-label" for="inputPassword">Password</label>
-						    <div class="controls">
-						      <input type="password" id="inputPassword" placeholder="Password" value="coucou">
-						    </div>
-						  </div>
-						  <div class="control-group">
-						    <label class="control-label" for="inputAvatar">Avatar</label>
-						    <div class="controls">
-						    	<img ng-src="{{user.avatar_file_name}}" class="span1 img-rounded img-polaroid"/>
-						    	<input type="file" id="inputPassword">
-						    </div>
-						  </div>
-						  <div class="control-group">
-						    <div class="controls">
-						    	<button class="btn" ng-click="onSubmit(user);">Enregistrer</button>
-						    </div>
-						  </div>
-						  
+								<label class="control-label" for="inputPseudo">Pseudo</label>
+								<div class="controls">
+									<input type="text" id="inputPseudo" value="{{user.pseudo}}" ng-model="user.pseudo">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="inputEmail">Email</label>
+								<div class="controls">
+									<input type="text" id="inputEmail" placeholder="Email" value="{{user.email}}" disabled>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="inputPassword">Password</label>
+								<div class="controls">
+									<input type="password" id="inputPassword" placeholder="Password" value="coucou">
+								</div>
+							</div>
+
+
+
+					
+
+
+							<div class="control-group">
+								<div class="controls">
+									<button class="btn" ng-click="onSubmit(user);">Enregistrer</button>
+								</div>
+							</div>
+
 						</form>
 
 
 						<pre>
 							{{user | json}}
 						</pre>
-			        </div>
+					</div>
 
 
-			        <div class="tab-pane" id="favoris">
-			        	<div ng-show="user.webapps">
-			        		<div class="light-separator"></div>
-			        		<div ng-repeat="webapp in user.webapps">
-			        			<div class="row">
-			        				<img class="span2" ng-src="{{webapp.image_url}}"/>
-			        				<div class="span8">
-			        					<h3>{{webapp.title}}</h3>
-			        					<h4>{{webapp.caption}}</h4>
-			        					<p>{{webapp.description}}</p>
-			        				</div>
-			        			</div>
-			        			<div class="light-separator"></div>
-			        		</div>
-			        	</div>
-			        </div>
+					<div class="tab-pane" id="favoris">
+						<div ng-show="user.webapps">
+							<div class="light-separator"></div>
+							<div ng-repeat="webapp in user.webapps">
+								<div class="row">
+									<img class="span2" ng-src="{{webapp.image_url}}"/>
+									<div class="span8">
+										<h3>{{webapp.title}}</h3>
+										<h4>{{webapp.caption}}</h4>
+										<p>{{webapp.description}}</p>
+									</div>
+								</div>
+								<div class="light-separator"></div>
+							</div>
+						</div>
+					</div>
+
+<div class="tab-pane" id="avatar">
+
+	<div class="control-group">
+								<label class="control-label" for="inputAvatar">Avatar</label>
+								<div class="controls">
+									<img ng-src="{{user.avatar_file_name}}" class="span1 img-rounded img-polaroid"/>
+									<input type="file" id="fileToUpload" ng-model="webapp.image" onchange="angular.element(this).scope().setFile(this)"/>
+									<input type="button" value="Choisissez une image" class="block"  onclick="document.getElementById('fileToUpload').click();" />
+									<div ng-show="files.length">
+										<div ng-repeat="file in files.slice(0)">
+											<span>{{file.webkitRelativePath || file.name}}(</span>
+											<span ng-switch="file.size > 1024*1024">
+												<span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB)</span>
+												<span ng-switch-default>{{file.size / 1024 | number:2}} kB)</span>
+											</span>
+										</div>
+									</div>
+									<div id="dropbox" class="dropbox span6" ng-class="dropClass"><span>Déposez l'image</span></div>
+								</div>
+							</div>
 
 
+							<div class="control-group">
+								<div class="controls">
+									<button class="btn btn-info" ng-click="updateAvatar();">Mettre à jour</button>
+								</div>
+							</div>
 
-			        <div class="tab-pane" id="comments">
+</div>
 
-			        	<div ng-show="user.comments">
+					<div class="tab-pane" id="comments">
+
+						<div ng-show="user.comments">
 							<div class="light-separator"></div>
 							<div ng-repeat="comment in user.comments">
 								<div class="row">
@@ -83,23 +111,23 @@
 											<i class="icon-user icon-4x"></i>
 											<!-- <img ng-src="{{comment.user.image_url}}"/> -->
 											<p ng-show="user.id==comment.user.id">Moi</p>
-							 				<p ng-show="user.id!=comment.user.id">{{comment.user.pseudo}}</p>
-								 			<div class="starsRatingShow">
+											<p ng-show="user.id!=comment.user.id">{{comment.user.pseudo}}</p>
+											<div class="starsRatingShow">
 												<i class="{{ {'rate':comment.rating, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
-									 		</div>
-									 	</div>
-									 </aside>
-									 <section class="span8">
-									 	<div ng-hide="editComment" ng-init="editComment=false">
-										 	<span class="label pull-right">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
-										 	<p>{{comment.body}}</p>
-										 	<p><button ng-show="user.id==comment.user.id" class="btn btn-primary btn-small" ng-click="editComment=true"><i class="icon-white icon-pencil"></i> Editer mon commentaire</button></p>
-										 </div>
-										 <div ng-show="editComment">
-										 	<textarea class="span8" type="text" rows="3" ng-model="comment.body" id="textAreaEditComment">{{comment.body}}</textarea>
-										 	<button class="btn btn-primary btn-small" ng-click="submitEditComment(comment);"><i class="icon-white icon-pencil"></i> Modifier</button>
-										 </div>
-									 </section>
+											</div>
+										</div>
+									</aside>
+									<section class="span8">
+										<div ng-hide="editComment" ng-init="editComment=false">
+											<span class="label pull-right">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
+											<p>{{comment.body}}</p>
+											<p><button ng-show="user.id==comment.user.id" class="btn btn-primary btn-small" ng-click="editComment=true"><i class="icon-white icon-pencil"></i> Editer mon commentaire</button></p>
+										</div>
+										<div ng-show="editComment">
+											<textarea class="span8" type="text" rows="3" ng-model="comment.body" id="textAreaEditComment">{{comment.body}}</textarea>
+											<button class="btn btn-primary btn-small" ng-click="submitEditComment(comment);"><i class="icon-white icon-pencil"></i> Modifier</button>
+										</div>
+									</section>
 								</div>
 								<div class="light-separator"></div>
 							</div>
@@ -107,9 +135,9 @@
 
 						<div ng-show="!user.comments">Pas de commentaires pour le moment :(</div>
 
-			        </div>
-			        <div class="tab-pane" id="suggestions">Suggestions</div>
-			    </div>
+					</div>
+					<div class="tab-pane" id="suggestions">Suggestions</div>
+				</div>
 			</div>
 
 		</div>

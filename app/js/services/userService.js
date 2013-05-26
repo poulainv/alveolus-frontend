@@ -19,7 +19,7 @@ factory('UserService', function($http,$resource,globals) {
 
     service.updateUser = function(params,callback){
         $http({method:'PUT', url: globals.server_url+'/users/'+params.userId, cache:true,
-            params : {'pseudo' : params.user.pseudo}}).
+            params : {'user' : {'pseudo' : params.user.pseudo}}}).
         success(function(data){callback(data);});
     }
 

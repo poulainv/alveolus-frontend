@@ -8,8 +8,9 @@ factory('FeedbackService', function($http,$resource,globals) {
 
     var service = {};
 
-    service.sendFeedback = function(content,callback){
-        $http({method: 'POST', url: globals.server_url+'/feedback'}).
+    service.sendFeedback = function(feedback,callback){
+    	console.log(feedback);
+        $http({method: 'POST', url: globals.server_url+'/feedback'	, data : feedback}).
         success(function(data) {callback(data)});
     }
 

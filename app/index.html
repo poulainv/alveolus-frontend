@@ -140,13 +140,13 @@
     <div class="modal-body">
       <div class="control-group">
         <div class="controls">
-          <textarea autofocus="autofocus" cols="40" ng-model="feedback.content" id="feedbackContent" name="feedbackContent" placeholder="Une idée, un commentaire, un bug ? Dites-nous tout !" rows="20"></textarea>
+          <textarea autofocus="autofocus" cols="40" ng-model="feedback.comment" id="feedbackContent" name="feedbackContent" placeholder="Une idée, un commentaire, un bug ? Dites-nous tout !" rows="20"></textarea>
         </div>
         <div class="modal-footer">
           <div class="control-group">
             <div class="controls">
               <button class="btn btn-warning cancel" ng-click="closeModalFeedback()">Cancel</button>
-              <button class="btn btn-success"  ng-click="sendFeedback(feedback)" ng-disabled="!feedback.content">Envoyer
+              <button class="btn btn-success"  ng-click="sendFeedback(feedback)" ng-disabled="!feedback.comment">Envoyer
               </button>
             </div>
           </div>

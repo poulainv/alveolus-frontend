@@ -9,6 +9,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService,Sess
 	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifier' } ;
 	var alertUnauthorized = { type: 'error', msg: 'Vous devez être authentifié' } ;
 	var alertUnlogSuccess = { type: 'info', msg: 'A bientôt ! Vous vous êtes correctement déconnecté' } ;
+	var alertSuggestionSaved = { type: 'success', msg: 'Votre proposition a bien été prise en compte' } ;
 
 // $.ajax({
 //   type: "GET",
@@ -22,12 +23,18 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService,Sess
     $scope.isLogged = SessionService.authorized();
 
 	// To receive broadcasts
-	 $scope.$on('onLoggedSuccess', function() {
+	$scope.$on('onLoggedSuccess', function() {
 	 	console.log("catch onLoggedSuccess");
         $scope.user = SessionService.getUser();
         $scope.isLogged = SessionService.authorized();
         $scope.isLogged ? addAlert(alertLogSuccess)  : addAlert(alertLogFail);
 		$scope.closeModalLogin();
+    });
+
+	$scope.$on('onSuggestionSaved', function() {
+	 	console.log("catch onSuggestionSaved");
+	 	// $location.path('/');
+        addAlert(alertSuggestionSaved);
     });
 
 	 // When 401 response is receive, an interceptor broadcast
@@ -76,9 +83,10 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService,Sess
 	};
 
 	// Reset alert when change location
-	$scope.$on('$locationChangeSuccess', function(event) {
+	$scope.$on('$locationChangeStart', function(event) {
 		$scope.alerts = [];
 	});
+
 
 	// Manage open and close of modal login
 	$scope.openModalLogin = function () {

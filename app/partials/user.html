@@ -49,15 +49,15 @@
 
 
 					<div class="tab-pane" id="favoris">
-						<div ng-show="user.webapps">
+						<div ng-show="user.bookmarks">
 							<div class="light-separator"></div>
-							<div ng-repeat="webapp in user.webapps">
+							<div ng-repeat="bookmark in user.bookmarks">
 								<div class="row">
-									<img class="span2" ng-src="{{webapp.image_url}}"/>
+									<img class="span2" ng-src="{{bookmark.webapp.image_url}}"/>
 									<div class="span8">
-										<h3>{{webapp.title}}</h3>
-										<h4>{{webapp.caption}}</h4>
-										<p>{{webapp.description}}</p>
+										<h3>{{bookmark.webapp.title}}</h3>
+										<h4>{{bookmark.webapp.caption}}</h4>
+										<p>{{bookmark.webapp.description}}</p>
 									</div>
 								</div>
 								<div class="light-separator"></div>
@@ -131,7 +131,23 @@
 						<div ng-show="!user.comments">Pas de commentaires pour le moment :(</div>
 
 					</div>
-					<div class="tab-pane" id="suggestions">Suggestions</div>
+					<div class="tab-pane" id="suggestions">
+
+						<div ng-show="user.webapps">
+							<div class="light-separator"></div>
+							<div ng-repeat="webapp in user.webapps">
+								<div class="row">
+									<img class="span2" ng-src="{{webapp.image_url}}"/>
+									<div class="span8">
+										<h3>{{webapp.title}}</h3>
+										<h4>{{webapp.caption}}</h4>
+										<p>{{webapp.description}}</p>
+									</div>
+								</div>
+								<div class="light-separator"></div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 

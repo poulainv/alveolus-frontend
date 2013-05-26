@@ -58,14 +58,11 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(data){
           console.log("User unlogged");
-          resetUser();
-          removeSessionToken();
-          setHttpProviderCommonHeaderToken("");
-          broadcastUnlogged();
+          resetSession();
         })
         .error(function(data) {
           console.log("Error sign_out");
-          resetUser();
+          resetSession();
         });
     };
 
@@ -82,8 +79,7 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
         }
         else{
           console.log("Session cookie not found");
-           resetUser();
-           broadcastUnlogged();
+           resetSession();
         }
     }
 
@@ -129,6 +125,14 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
     /*
     PUBLIC METHODS
     */
+
+    function resetSession(){
+      resetUser();
+      setHttpProviderCommonHeaderToken("");
+      removeSessionToken();
+      broadcastUnlogged();
+    }
+
     authorized = function() {
       console.log("authorized????"+(user.authorized))
       return user.authorized;
@@ -167,7 +171,8 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
       sign_in: sign_in,
       sign_out: sign_out,
       authorized: authorized,
-      getUser: getUser
+      getUser: getUser,
+      resetSession : resetSession
     };
   }
 );

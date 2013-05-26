@@ -77,7 +77,7 @@ factory('WebappService', function($http,$resource,SessionService,globals) {
         fd.append("webapp[caption]", webapp.caption);
         fd.append("webapp[description]", webapp.description);
         fd.append("webapp[category_id]", webapp.category_id);
-        fd.append("webapp[tag_list]", webapp.tag_list);
+        fd.append("webapp[tag_list]", webapp.tag_list.substr(0,webapp.tag_list.length-2)); // To remove ', ' at the end
         fd.append("webapp[featured]", webapp.featured);
         fd.append("webapp[twitter_id]", webapp.twitter_id);
         fd.append("webapp[facebook_id]", webapp.facebook_id);

@@ -15,7 +15,6 @@ controller('WebAppListCtrl', function($scope,$routeParams,$location,WebappServic
 	$scope.changeCat = function(cat){
 
 		console.log("changeCat("+cat.name+")");
-		console.log($scope.cats);
 
 		$scope.subcats = [] ;
 		$scope.subTitle = cat.name;

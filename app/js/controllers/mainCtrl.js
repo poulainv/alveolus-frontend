@@ -30,6 +30,14 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService,Sess
 		$scope.closeModalLogin();
     });
 
+	 // When 401 response is receive, an interceptor broadcast
+	 // onNeedLogin, so we catch it then we open modal login
+	$scope.$on('onNeedLogin', function() {
+		console.log("catch need login");
+		SessionService.resetSession();
+		$scope.openModalLogin();
+	});
+
 	  $scope.$on('onUnloggedSuccess', function() {
 	 	console.log("catch onUnLoggedSuccess");
         $scope.user = SessionService.getUser();

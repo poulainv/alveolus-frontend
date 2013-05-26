@@ -25,7 +25,7 @@ angular.module('alveolus',
     'ui.bootstrap'
     ]).
 config(
-  ['$routeProvider', function($routeProvider) {
+  ['$routeProvider','$httpProvider', function($routeProvider, $httpProvider) {
     $routeProvider.
     when('/user', {templateUrl: 'partials/user.html',   controller: 'UserCtrl'}).
     when('',                            {templateUrl: 'partials/home.html',             controller: 'HomeCtrl'}).
@@ -37,6 +37,28 @@ config(
     when('/alveoles',                   {templateUrl: 'partials/webAppList.html',       controller: 'WebAppListCtrl'}).
     when('/user/:userId',               {templateUrl: 'partials/user.html',             controller: 'UserCtrl'}).
     when('/vote',                       {templateUrl: 'partials/vote.html',             controller: 'VoteCtrl'}).
-    otherwise({redirectTo: '/',          templateUrl: 'partials/home.html',             controller: 'HomeCtrl'});  
+    otherwise({redirectTo: '/',          templateUrl: 'partials/home.html',             controller: 'HomeCtrl'}); 
+
+    var interceptor = ['$location', '$q','$rootScope', function ($location, $q, $rootScope) {
+        return function (promise) {
+            return promise.then(function (response) {
+                return response;
+            }, function (response) {
+                if(response.status === 401) {
+                    $location.path('/');
+                    console.log("catch 401 : cast broadcastNeedLogin, and redirect main page");
+                    $location.path('/');
+                    $rootScope.$broadcast('onNeedLogin');
+                    return $q.reject(response);
+                }
+                else {
+                    return $q.reject(response);
+                }
+            });
+        };
+    }]
+    
+    $httpProvider.responseInterceptors.push(interceptor);
+
 }]).value('globals',{server_url : 'http://quiet-spire-4994.herokuapp.com'});
 

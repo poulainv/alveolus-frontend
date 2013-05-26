@@ -42,6 +42,9 @@
 				<li ng-repeat="cat in cats"><span class="link" ng-click="changeCat(cat)">{{cat.name}}</span></li>
 			</ul>
 			<h5><i class="icon-tags"></i> Tags</h5>
+			<ul class="noStyleList">
+				<li ng-repeat="tag in tags"><span class="link" ng-click="search(tag.name)">{{tag.name}}</span></li>
+			</ul>
 		</div>
 	</div>
 </div>

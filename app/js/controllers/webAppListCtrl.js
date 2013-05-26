@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.webAppListCtrl', []).
-controller('WebAppListCtrl', function($scope,$routeParams,$location,WebappService,CategoryService) {
+controller('WebAppListCtrl', function($scope,$routeParams,$location,WebappService,CategoryService, TagService) {
 
 
 	// $('#headerCarousel').hide();
@@ -111,6 +111,10 @@ controller('WebAppListCtrl', function($scope,$routeParams,$location,WebappServic
 				$scope.changeFeat($scope.selectionCats[0]);
 			}
 		});
+
+		// tags
+
+		$scope.tags = TagService.query();
 
 	}
 

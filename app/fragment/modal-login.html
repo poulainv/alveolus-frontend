@@ -1,0 +1,31 @@
+
+<div id="modalLogin" class="modal hide" tabindex="-1" role="dialog" aria-hidden="true" close="closeModalLogin()">
+  <div class="modal-header">
+    <h4>Connexion</h4>
+  </div>
+  <div class="modal-body">
+   <div class="control-group">
+    <div class="controls">
+      <div class="input-prepend">
+        <span class="add-on"><div class="icon-user"></div></span>
+        <input id="user-email" type="text" ng-model="user.email"/>
+      </div>
+    </div>
+    <div class="control-group custom_inline" >
+     <div class="controls">
+       <div class="input-prepend">
+         <span class="add-on"><div class="icon-lock"></div></span>
+         <input id="user-password" type="password" ng-model="user.password"/>
+       </div>
+     </div>
+     <div class="line-separator">
+     </div>
+    </div>
+
+  </div>
+</div>
+<div class="modal-footer">
+  <button ng-click="sign_in(user)" class="btn btn-success">Se connecter</button>
+  <button class="btn btn-warning cancel" ng-click="closeModalLogin()">Annuler</button>
+</div>
+</div>

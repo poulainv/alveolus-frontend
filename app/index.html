@@ -101,90 +101,11 @@
   <div ng-view></div>
 </div>
 
-<div id="modalLogin" class="modal hide" tabindex="-1" role="dialog" aria-hidden="true" close="closeModalLogin()">
-  <div class="modal-header">
-    <h4>Connexion</h4>
-  </div>
-  <div class="modal-body">
-   <div class="control-group">
-    <div class="controls">
-      <div class="input-prepend">
-        <span class="add-on"><div class="icon-user"></div></span>
-        <input id="user-email" type="text" ng-model="user.email"/>
-      </div>
-    </div>
-    <div class="control-group custom_inline" >
-     <div class="controls">
-       <div class="input-prepend">
-         <span class="add-on"><div class="icon-lock"></div></span>
-         <input id="user-password" type="password" ng-model="user.password"/>
-       </div>
-     </div>
-     <div class="line-separator">
-     </div>
-    </div>
+ <div ng-include src="'fragment/modal-login.html'"></div>
 
-  </div>
-</div>
-<div class="modal-footer">
-  <button ng-click="sign_in(user)" class="btn btn-success">Se connecter</button>
-  <button class="btn btn-warning cancel" ng-click="closeModalLogin()">Annuler</button>
-</div>
-</div>
+<div ng-include src="'fragment/modal-feedback.html'"></div>
 
-<div id="modalFeedback" class="modal hide" tabindex="-1" role="dialog" aria-hidden="true" close="closeModalFeedback()">
-  <div class="modal-header">
-    <h4>Feedback</h4>
-  </div>
-  <form name="formFeedback">
-    <div class="modal-body">
-      <div class="control-group">
-        <div class="controls">
-          <textarea autofocus="autofocus" cols="40" ng-model="feedback.comment" id="feedbackContent" name="feedbackContent" placeholder="Une idée, un commentaire, un bug ? Dites-nous tout !" rows="20"></textarea>
-        </div>
-        <div class="modal-footer">
-          <div class="control-group">
-            <div class="controls">
-              <button class="btn btn-warning cancel" ng-click="closeModalFeedback()">Cancel</button>
-              <button class="btn btn-success"  ng-click="sendFeedback(feedback)" ng-disabled="!feedback.comment">Envoyer
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </form>
-</div> 
-
-<div id="footer">
-  <div class="container">
-    <div class="row">
-      <div class="span3 offset2">
-        <h5>Qui sommes nous ?</h5>
-        <ul>
-          <li><a href="#">Nos valeurs</a></li>
-          <li><a href="#">L'équipe</a></li>
-          <li><a href="#">F.A.Q.</a></li>
-        </ul>
-
-      </div>
-      <div class="span3">
-        <h5>Contactez-nous</h5>
-        <ul>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">Signaler un bug</a></li>
-          <li><a href="#">Feedback</a></li>
-        </ul>
-      </div>
-      <div class="span3">
-        <h5>A propos</h5>
-        EnjoyTheWeb est un projet original ayant pour vocation de rapprocher deux entités ayant besoin l'une de l'autre : les sites web innovants et les internautes.
-    </div>
-  </div>
-</div>
-
-</div>
+<div ng-include src="'fragment/footer.html'"></div>
 
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="lib/bootstrap/bootstrap.min.js"></script>

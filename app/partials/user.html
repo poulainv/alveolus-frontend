@@ -5,10 +5,10 @@
 			<div class="tabbable" > 
 				<ul class="nav nav-pills">
 					<li class="active"><a href="#infos" data-toggle="tab">Vos informations</a></li>
+					<li><a href="#avatar" data-toggle="tab">Votre avatar</a></li>
 					<li><a href="#favoris" data-toggle="tab">Vos alvéoles favorites</a></li>
 					<li><a href="#comments" data-toggle="tab">Vos commentaires</a></li>
 					<li><a href="#suggestions" data-toggle="tab">Vos suggestions</a></li>
-					<li><a href="#avatar" data-toggle="tab">Votre avatar</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="infos">
@@ -32,11 +32,6 @@
 									<input type="password" id="inputPassword" placeholder="Password" value="coucou">
 								</div>
 							</div>
-
-
-
-					
-
 
 							<div class="control-group">
 								<div class="controls">
@@ -70,35 +65,35 @@
 						</div>
 					</div>
 
-<div class="tab-pane" id="avatar">
+					<div class="tab-pane" id="avatar">
 
-	<div class="control-group">
-								<label class="control-label" for="inputAvatar">Avatar</label>
-								<div class="controls">
-									<img ng-src="{{user.avatar_file_name}}" class="span1 img-rounded img-polaroid"/>
-									<input type="file" id="fileToUpload" ng-model="webapp.image" onchange="angular.element(this).scope().setFile(this)"/>
-									<input type="button" value="Choisissez une image" class="block"  onclick="document.getElementById('fileToUpload').click();" />
-									<div ng-show="files.length">
-										<div ng-repeat="file in files.slice(0)">
-											<span>{{file.webkitRelativePath || file.name}}(</span>
-											<span ng-switch="file.size > 1024*1024">
-												<span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB)</span>
-												<span ng-switch-default>{{file.size / 1024 | number:2}} kB)</span>
-											</span>
-										</div>
+						<div class="control-group">
+							<label class="control-label" for="inputAvatar">Avatar</label>
+							<div class="controls">
+								<img ng-src="{{user.image_url}}" class="span1 img-rounded img-circle"/>
+								<input type="file" id="fileToUpload" ng-model="webapp.image" onchange="angular.element(this).scope().setFile(this)"/>
+								<input type="button" value="Choisissez une image" class="block"  onclick="document.getElementById('fileToUpload').click();" />
+								<div ng-show="files.length">
+									<div ng-repeat="file in files.slice(0)">
+										<span>{{file.webkitRelativePath || file.name}}(</span>
+										<span ng-switch="file.size > 1024*1024">
+											<span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB)</span>
+											<span ng-switch-default>{{file.size / 1024 | number:2}} kB)</span>
+										</span>
 									</div>
-									<div id="dropbox" class="dropbox span6" ng-class="dropClass"><span>Déposez l'image</span></div>
 								</div>
+								<div id="dropbox" class="dropbox span6" ng-class="dropClass"><span>Déposez l'image</span></div>
 							</div>
+						</div>
 
 
-							<div class="control-group">
-								<div class="controls">
-									<button class="btn btn-info" ng-click="updateAvatar();">Mettre à jour</button>
-								</div>
+						<div class="control-group">
+							<div class="controls">
+								<button class="btn btn-info" ng-click="updateAvatar();">Mettre à jour</button>
 							</div>
+						</div>
 
-</div>
+					</div>
 
 					<div class="tab-pane" id="comments">
 

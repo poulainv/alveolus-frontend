@@ -52,18 +52,6 @@
       <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
     </div>
   </div>
-  <a ng-click="openModalFeedback()" id="feedback_link" class="feedback_link left"></a>
-  <div class="row-fluid">
-   <div class="offset1 span10">
-    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
-  </div>
-</div>
-<div data-facebook='450339965057952'>
-  <div id="fb-root"></div>
-  <div>
-    <a href='#' data-ng-click='fetch()' class='btn btn-primary'>fetch</a> {{login_status}}
-  </div>
-</div>
 <div ng-view></div>
 </div>
 

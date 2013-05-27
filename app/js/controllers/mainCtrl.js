@@ -58,7 +58,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService,Sess
 
 
 	// Manage main alert on all pages 
-	var addAlert = function(alert) {
+	$scope.addAlert = function(alert) {
 		$scope.alerts = [];
 		$scope.alerts.push(alert);
 	};

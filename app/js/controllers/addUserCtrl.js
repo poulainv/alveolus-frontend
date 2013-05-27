@@ -5,23 +5,29 @@
 angular.module('alveolus.addUserCtrl', []).
 controller('AddUserCtrl', function($scope,$routeParams,UserService) {
     $scope.user={};
-    $scope.pseudoMinLenght = 8;
+    var registerSuccessAlert = { type: 'success', msg: 'Votre inscription a correctement été prise en compte' } ;
+    var registerFailAlert = { type: 'error', msg: 'Il y a eu une erreur durant votre inscription' } ;
     $scope.generatePseudo = function(){
         //Complète le pseudo si il contient moins de 8 caractères
         if($scope.user.email && !$scope.user.pseudo){
             $scope.user.pseudo = $scope.user.email.split('@')[0];
             var possible = "0123456789";
-            console.log($scope.addUserForm.pseudo.error);
             while($scope.user.pseudo.length<8)
                 $scope.user.pseudo+=possible.charAt(Math.floor(Math.random() * possible.length));
         }
     };
-
-
     $scope.submit=function(){
         UserService.register($scope.user,
             function(data){
-                console.log(data);
+              //Success callback
+              if(data['success'])
+                $scope.addAlert(registerSuccessAlert);
+              else
+                $scope.addAlert(registerFailAlert);
+            },
+            function(data){
+              //Error callback
+              $scope.addAlert(registerFailAlert);
             });
     };
 }).
@@ -30,8 +36,12 @@ directive('sameAs', function() {
     require: 'ngModel',
     link: function(scope, elm, attrs, ctrl) {
       ctrl.$parsers.unshift(function(viewValue) {
-        console.log(scope['user.password']);
-        if (viewValue === scope[attrs.sameAs]) {
+        var ref = scope;
+        var tab = attrs.sameAs.split('.');
+        for(var i=0;i<tab.length; i++){
+          ref = ref[tab[i]];
+        }
+        if (viewValue === ref) {
           ctrl.$setValidity('sameAs', true);
           return viewValue;
         } else {

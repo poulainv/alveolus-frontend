@@ -11,20 +11,20 @@ factory('UserService', function($http,$resource) {
     service.getComments = function(params,callback){
         $http({method:'GET', url: url+'/users/'+params.catId+'/comments', cache:true}).
         success(function(data){callback(data);});
-    }
+    };
 
     service.alreadyCommented = function(params,callback){
         $http({method:'GET', url: url+'/users/'+params.userId+'/webapps/'+params.webAppId+'/comments', cache:true}).
         success(function(data){callback(data);});
-    }
+    };
 
-    service.register = function(user,callback){
-        $http({method:'POST', url: url+'/users/sign_up',
-                                email:user.email,
-                                pseudo:user.pseudo,
-                                password:user.password,
-                                password_confirmation:user.password_confirmation}).
-        success(function(data){callback(data);});
+    service.register = function(user,success,error){
+        $http.post(url+'/registration', {'user':user})
+        .success(function(data, status, headers, config) {
+            success(data);
+        }).error(function(data, status, headers, config) {
+            error(data);
+        });
     };
 
     return service;

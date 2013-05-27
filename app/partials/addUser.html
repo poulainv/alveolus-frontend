@@ -3,104 +3,59 @@
         <div class="span10 offset1 well">
             <form name="form" class="form-signin form-horizontal" novalidate ng-submit="submit()">
                 <h2>Inscription</h2>
-                <div class="control-group">
+                <div class="control-group"
+                     ng-class="{error: form.email.$error.email,
+                                success: form.email.$valid}">
                     <label class="control-label" for="email">E-mail</label>
                     <div class="controls">
-                        <input type="email" id="email" required ng-model="user.email"
+                        <input type="email" id="email" name="email" required ng-model="user.email"
                         tooltip-placement="right" tooltip="Votre adresse email">
-                        <span class="help-inline">
-                            Votre email n'est pas valide
+                        <span class="help-inline" ng-show="form.email.$error.email">
+                            Votre email n'est pas valide.
                         </span>
                     </div>
                 </div>
-                <div class="control-group">
+<!--                 <div class="control-group"
+                     ng-class="{error: form.pseudo.$error.maxlenght || form.pseudo.$error.minlength,
+                                success: form.pseudo.$valid}">
                     <label class="control-label" for="pseudo">Pseudo</label>
                     <div class="controls">
-                        <input type="text" id="pseudo" required ng-model="user.pseudo"
-                        tooltip-placement="right" tooltip="Votre pseudo sur le site">
-                        <span class="help-inline">
-                            Votre pseudo doit contenir au moins 3 caractères
+                        <input type="text" id="pseudo" name="pseudo" required ng-model="user.pseudo"
+                        tooltip-placement="right" tooltip="Votre pseudo sur le site" ng-minlength="3" ng-maxlength="25">
+                        <span class="help-inline" ng-show="form.pseudo.$error.minlength">
+                            Votre pseudo doit contenir au moins 3 caractères.
                         </span>
-                    </div>
-                </div>
-                <!-- <div class="control-group">
-                    <label class="control-label" for="password">Mot de passe</label>
-                    <div class="controls">
-                        <input type="password" id="password" required ng-model="user.password"
-                        tooltip-placement="right" tooltip="Votre mot de passe doit contenir au moins 8 caractères">
-                        <span class="help-inline">
-                            Votre mot de passe doit contenir au moins 8 caractères
+                        <span class="help-inline" ng-show="form.pseudo.$error.maxlength">
+                            Votre pseudo ne doit pas faire plus de 25 caractères.
                         </span>
-                    </div>
-
-                    <label class="control-label" for="password_confirmation">Confirmez</label>
-                    <div class="controls">
-                        <input type="password" id="password_confirmation" required ng-model="user.password_confirmation"
-                        same-as='password'
-                        tooltip-placement="right" tooltip="Confirmez le mot de passe saisi plus haut">
-                        <span class="help-inline">
-                            Les deux mots de passe ne sont pas identiques
-                        </span>
-
-                        <span class='help-inline' ng-show='form.password_confirmation.$valid'>
-                            <i class='icon-ok'></i>
-                        </span>
-
                     </div>
                 </div> -->
-            <div class='control-group'>
-                <label for='password'> Password </label>
-                <div class='controls'>
-                    <input type='password' id='password' required name='password' ng-model='user.password'>
-                    <span class='help-inline' ng-show='form.password.$valid'>
-                    <i class='icon-ok'></i> </span>
-                </div>
-            </div>
-            <div class='control-group'>
-                <label for='password_confirmation'> Confirm password </label>
-                <div class='controls'>
-                    <input type='password' id='password_confirmation' required name='password_confirmation' same-as='user.password' ng-model='user.password_confirmation'>
-                    <span class='help-inline' ng-show='form.password_confirmation.$valid'>
-                    <i class='icon-ok'></i></span>
-                </div>
-            </div>
-
-                <!-- <div class="control-group" ng-class="{error: form.email.$invalid && (!!form.email.$error.minlength || !!form.email.$error.maxlength),success: form.email.$valid}">
-                    <label class="control-label" for="email">E-mail<span class="red-star">*</span> : </label>
-                    <div class="controls">
-                        <input type="email" name="email" id="email" class="span6" ng-model="user.email" placeholder="contat@dupont.org" tooltip-placement="right" tooltip="Votre adresse email" ng-minlength="4" ng- required ng-change="generatePseudo()"></input>
-                        <span ng-show="form.email.$invalid && (!!form.email.$error.minlength || !!form.email.$error.maxlength)" class="help-inline">Votre email doit etre valide</span>
+                <div class='control-group'
+                     ng-class="{error: form.password.$error.minlenght,
+                                success: form.password.$valid}">
+                    <label class="control-label" for='password'>Mot de passe</label>
+                    <div class='controls'>
+                        <input type='password' id='password' name='password' required name='password' ng-model='user.password' ng-minlength="8">
+                        <span class='help-inline' ng-show="form.password.$error.minlength">
+                        Votre mot de passe doit contenir au moins 8 caractères
+                        </span>
                     </div>
                 </div>
-
-                <div class="control-group" ng-class="{error: form.pseudo.$invalid && !!form.pseudo.$error.pseudo,success: form.pseudo.$valid}">
-                    <label class="control-label" for="pseudo">Pseudo<span class="red-star">*</span> : </label>
-                    <div class="controls">
-                        <input type="text" name="pseudo" id="pseudo" class="span6" ng-model="user.pseudo" placeholder="dupont00" tooltip-placement="right" tooltip="Votre pseudo" required ng-minlength="{{pseudoMinLenght}}"></input>
-                        <span ng-show="form.pseudo.$invalid && !!form.pseudo.$error.pseudo" class="help-inline">Votre pseudo doit contenir au minimum 8 caractères</span>
+                <div class='control-group'
+                     ng-class="{error: form.password_confirmation.$error.sameAs,
+                                success: form.password_confirmation.$valid}">
+                    <label class="control-label" for='password_confirmation'>Confirmation</label>
+                    <div class='controls'>
+                        <input type='password' id='password_confirmation' name='password_confirmation' name='password_confirmation' same-as='user.password' ng-model='user.password_confirmation' required>
+                        <span class='help-inline' ng-show='form.password_confirmation.$error.sameAs'>
+                            Les deux mots de passe ne sont pas identiques.
+                        </span>
                     </div>
+                </div>           
+                <div class='form-actions'>
+                    <input type="submit" value="S'inscrire" class="btn" ng-disabled="!form.$valid"/>
                 </div>
-
-                <div class="control-group" ng-class="{error: form.password.$invalid && !!form.password.$error.password,success: form.password.$valid}">
-                    <label class="control-label" for="password">Mot de passe<span class="red-star">*</span> : </label>
-                    <div class="controls">
-                        <input type="password" name="password" id="password" class="span6" ng-model="user.password" tooltip-placement="right" tooltip="Votre mot de passe" required></input>
-                        <span ng-show="form.password.$invalid && !!form.password.$error.password" class="help-inline">Votre mot de passe doit contenir des chiffres et des lettres et faire au moins 8 caractères</span>
-                    </div>
-
-                    <label class="control-label" for="password_confirmation">Confirmez le mot de passe<span class="red-star">*</span> : </label>
-                    <div class="controls">
-                        <input type="password" name="password_confirmation" id="password_confirmation" class="span6" ng-model="user.password_confirmation" tooltip-placement="right" tooltip="Confirmez votre mot de passe" required></input>
-                        <span ng-show="form.password_confirmation.$invalid && !!form.password_confirmation.$error.password_confirmation" class="help-inline"></span>
-                    </div>
-
-                </div> -->
-
-            
-            <div class='form-actions'>
-                <input type="submit" value="S'inscrire" class="btn" ng-disabled="!form.$valid"/>
-            </div>
-        </form>
+            </form>
         <div><span class="red-star">*</span> : Champs requis</div>
     </div>
 
@@ -113,40 +68,12 @@
         form = {{form | json}}
         <br/>
         <tt>form.$valid = {{form.$valid}}</tt><br/>
-        <tt>form.$error = {{form.$error}}</tt><br/>
-        <tt>form.$error.email = {{form.$error.email}}</tt><br/>
-        <tt>form.email.$valid = {{form.email.$valid}}</tt><br/>
+        <tt>form.email.$error = {{form.email.$error}}</tt><br/>
+        <tt>form.email.$invalid = {{form.email.$invalid}}</tt><br/>
+        <tt>form.email = {{form.email}}</tt><br/>
+        <tt>form.pseudo.$error = {{form.pseudo.$error}}</tt><br/>
     </div>
 
 </div>
 </div>
-
-<!-- 
-
-
-
-
-    <div class='row span4'>
-        <form name='form' autocomplete='off'>
-            <div class='control-group'>
-                <label for='password'> Password </label>
-                <div class='controls'>
-                    <input type='password' id='password' required name='password' ng-model='password'>
-                    <span class='help-inline' ng-show='form.password.$valid'>
-                    <i class='icon-ok'></i> </span>
-                </div>
-            </div>
-            <div class='control-group'>
-                <label for='password_confirmation'> Confirm password </label>
-                <div class='controls'>
-                    <input type='password' id='password_confirmation' required name='password_confirmation' same-as='password' ng-model='password_confirmation'>
-                    <span class='help-inline' ng-show='form.password_confirmation.$valid'>
-                    <i class='icon-ok'></i></span>
-                </div>
-            </div>
-            <div class='form-actions'>
-                <button class='btn btn-large btn-primary' ng-disabled='!form.$valid'>Create account</button>
-            </div>
-        </form>
-    </div> -->
 

@@ -217,6 +217,10 @@ body{
   max-height:85%;
 }
 
+.modal-backdrop{
+  background-color: white;
+}
+
 .noStyleList{
   list-style-type:none; 
 }

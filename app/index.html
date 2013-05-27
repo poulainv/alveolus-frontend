@@ -53,9 +53,9 @@
 
           <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
           </a>
 
           <!-- Be sure to leave the brand out there if you want it shown -->
@@ -86,22 +86,28 @@
               <a ng-hide="isLogged" ng-click="openModalLogin()"><i class="icon-user icon-white"></i> Connexion</a>
               <a ng-show="isLogged" ng-click="sign_out()"><i class="icon-remove icon-white"></i> Déconnexion</a>
             </li>
-             <li class="divider-vertical"></li>
-           </ul>
-         </div>
-       </div>
-     </div>
-   </div>
-   <a ng-click="openModalFeedback()" id="feedback_link" class="feedback_link left"></a>
-   <div class="row-fluid">
-     <div class="offset1 span10">
-      <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+            <li class="divider-vertical"></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
-  <div ng-view></div>
+  <a ng-click="openModalFeedback()" id="feedback_link" class="feedback_link left"></a>
+  <div class="row-fluid">
+   <div class="offset1 span10">
+    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+  </div>
+</div>
+<div data-facebook='450339965057952'>
+  <div id="fb-root"></div>
+  <div>
+    <a href='#' data-ng-click='fetch()' class='btn btn-primary'>fetch</a> {{login_status}}
+  </div>
+</div>
+<div ng-view></div>
 </div>
 
- <div ng-include src="'fragment/modal-login.html'"></div>
+<div ng-include src="'fragment/modal-login.html'"></div>
 
 <div ng-include src="'fragment/modal-feedback.html'"></div>
 

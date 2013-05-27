@@ -103,33 +103,22 @@
 								<div class="row">
 									<aside class="span2">
 										<div class="text-center">
-											<i class="icon-user icon-4x"></i>
-											<!-- <img ng-src="{{comment.user.image_url}}"/> -->
-											<p ng-show="user.id==comment.user.id">Moi</p>
-											<p ng-show="user.id!=comment.user.id">{{comment.user.pseudo}}</p>
-											<div class="starsRatingShow">
-												<i class="{{ {'rate':comment.rating, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
-											</div>
+											<span class="label pull-right"><a href="alveoles/{{comment.webapp_id}}">Webapp {{comment.webapp_id}}</a></span>
 										</div>
 									</aside>
 									<section class="span8">
-									 	<div ng-hide="editComment" ng-init="editComment=false">
-										 	<span class="label pull-right">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
-										 	<p>{{comment.body}}</p>
-										 	<i class="icon-large icon-pencil pointer-link" ng-click="editComment=true"></i>
-										 	<i class="icon-large icon-trash pointer-link" ng-click="deleteComment(comment);"></i>
-										 </div>
-										 <div ng-show="editComment">
-										 	<textarea class="span8" type="text" rows="3" ng-model="comment.body" id="textAreaEditComment">{{comment.body}}</textarea>
-										 	<button class="btn btn-primary btn-small" ng-click="submitEditComment(comment);"><i class="icon-white icon-pencil"></i> Modifier</button>
-										 </div>
+									 	<span class="label pull-right">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
+									 	<div class="starsRatingShow">
+											<i class="{{ {'rate':comment.rating, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+										</div>
+									 	<p>{{comment.body}}</p>
 									 </section>
 								</div>
 								<div class="light-separator"></div>
 							</div>
 						</div>
 
-						<div ng-show="!user.comments">Pas de commentaires pour le moment :(</div>
+						<div ng-show="!user.comments">Vous n'avez posté aucun commentaire :(</div>
 
 					</div>
 					<div class="tab-pane" id="suggestions">

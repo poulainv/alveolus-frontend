@@ -3,7 +3,7 @@
 /* Controleur de la user page */
 
 angular.module('alveolus.userCtrl', []).
-controller('UserCtrl', function($scope, $routeParams, UserService, SessionService) {
+controller('UserCtrl', function($scope, $routeParams, $location, UserService, SessionService, CategoryService) {
 
 	console.log('isLogged:'+$scope.isLogged+' user.id:'+$scope.user.id);
 
@@ -75,5 +75,9 @@ controller('UserCtrl', function($scope, $routeParams, UserService, SessionServic
 			$scope.progressVisible = false
 		});
 	}
-	// vincent.poulain2@gmail.com
+	
+	$scope.changeView = function(url){
+		console.log('changeView ' + url);
+		$location.path(url);
+	}
 });

@@ -3,9 +3,9 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.homeCtrl', []).
-controller('HomeCtrl', function($scope,$location,CategoryService,WebappService,SessionService) {
-
-
+controller('HomeCtrl', function($scope,$location,CategoryService,WebappService,SessionService, UserService) {
+	UserService.get({id:11}, function(data){
+		console.log(data)});
 	$scope.webapps = WebappService.query(function(){
 		$scope.numColumns = 4;
 		$scope.rows = [];

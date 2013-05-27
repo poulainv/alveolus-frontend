@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.mainCtrl', []).
-controller('MainCtrl', function($scope,$routeParams,$location,WebappService,SessionService,TagService,FeedbackService) {
+controller('MainCtrl', function($scope,$routeParams,$location,WebappService,SessionService,TagService,FeedbackService,UserService) {
 
 	var alertLogSuccess = { type: 'success', msg: 'Parfait, vous êtes correctement authentifié' } ;
 	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifier' } ;
@@ -21,7 +21,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService,Sess
 	
 	$scope.user = SessionService.getUser();
     $scope.isLogged = SessionService.authorized();
-
+    $scope.userInfo = $scope.isLogged ? UserService.get({id:$scope.user.id}): null;
 	// To receive broadcasts
 	$scope.$on('onLoggedSuccess', function() {
 	 	console.log("catch onLoggedSuccess");
@@ -73,10 +73,11 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService,Sess
 
 
 	// Manage main alert on all pages 
-	$scope.addAlert = function(alert) {
+	var addAlert = function(alert) {
 		$scope.alerts = [];
 		$scope.alerts.push(alert);
 	};
+	$scope.addAlert = addAlert;
 
 	$scope.closeAlert = function(index) {
 		$scope.alerts.splice(index, 1);

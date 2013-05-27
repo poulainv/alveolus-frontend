@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.homeCtrl', []).
-controller('HomeCtrl', function($scope,$location,CategoryService,WebappService,SessionService) {
+controller('HomeCtrl', function($scope,$location,CategoryService,WebappService,SessionService, UserService) {
 
 	$('#contentWrapper').hide();
 	$('#loading').show();

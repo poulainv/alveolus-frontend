@@ -10,15 +10,12 @@
                         <!-- Boutons si loggué -->
                         <ul class="vote-buttons span2" ng-show="isLogged">
                             
-                            <li class="up" ng-show="isLogged">
+                            <li class="up">
                                 <span href='#' ng-click="vote(alveole.id, $index, 'up')"><i class="icon-arrow-up"></i></span>
                             </li>
                             <li><span>{{alveole.count_positive - alveole.count_negative}}</span></li>    
-                            <li class="down dropdown" ng-controller="VoteCtrl">
-                                <span href='#' ng-click="vote(alveole.id, $index, 'down')" class="dropdown-toogle"><i class="icon-arrow-down"></i></span>
-                                <p class="dropdown-menu">
-                                    Vous devez être connecté pour voter        
-                                </p>
+                            <li class="down">
+                                <span href='#' ng-click="vote(alveole.id, $index, 'down')"><i class="icon-arrow-down"></i></span>
                             </li>
                         </ul>
                         <!-- Boutons si non loggué -->

@@ -187,10 +187,10 @@ body{
 }
 
 .dropbox.not-available {
-    background-color: #F88;
+  background-color: #F88;
 }
 .dropbox.over {
-    background-color: #bfb;
+  background-color: #bfb;
 }
 
 .imgCarousel{
@@ -216,38 +216,6 @@ body{
   max-width:95%; 
   max-height:85%;
 }
-
-/*.navbar .nav > li > a{
-  color: white;
-  margin-top: 10px;
-}
-
-.navbar .nav > li > a:hover{
-  color: white;
-  margin-top: 10px;
-}
-
-.navbar .btn{
-  border-color: green;
-}
-
-.navbar .btn, .navbar-search{
-  margin-top: 15px;  
-  margin-left: 80px;
-}
-
-.navbar .divider-vertical {
-  height: 60px;
-}
-
-.navbar-inner {
-  background-color: black;
-  border-radius: 0;
-  border: 0px;
-  background-image: none;
-  background-repeat: no-repeat;
-  filter: none;
-}*/
 
 .noStyleList{
   list-style-type:none; 
@@ -395,6 +363,10 @@ body{
   max-height: 200px;
 }
 
+#mainWrapper{
+  min-height: 915px;
+}
+
 #navbar{
   background-color: black;
   height: 60px;
@@ -461,5 +433,58 @@ body{
 }
 
 
+/****** LOADING ANIMATION *****/
+/* Animation keyframes - you need to add prefixes */
 
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+
+@-o-keyframes spin {
+  from { -o-transform: rotate(0deg); }
+  to { -o-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Loading animation container */
+#loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+}
+
+/* Spinning circle (inner circle) */
+#loading .maskedCircle {
+  width: 20px;
+  height: 20px;
+  border-radius: 12px;
+  border: 3px solid black;
+}
+
+/* Spinning circle mask */
+#loading .mask {
+  width: 12px;
+  height: 12px;
+  overflow: hidden;
+}
+
+/* Spinner */
+#loading .spinner {
+  position: absolute;
+  /*left: 550px;*/
+  top: 150px;
+  width: 26px;
+  height: 26px;
+  -webkit-animation: spin 1s infinite linear;
+  -o-animation: spin 1s infinite linear;
+  animation: spin 1s infinite linear;
+}
 

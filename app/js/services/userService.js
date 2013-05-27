@@ -10,12 +10,21 @@ factory('UserService', function($http,$resource,globals, SessionService) {
     service.getComments = function(params,callback){
         $http({method:'GET', url: globals.server_url+'/users/'+params.id+'/comments', cache:true}).
         success(function(data){callback(data);});
-    }
+    };
 
     service.alreadyCommented = function(params,callback){
         $http({method:'GET', url: globals.server_url+'/users/'+params.userId+'/webapps/'+params.webAppId+'/comments', cache:true}).
         success(function(data){callback(data);});
-    }
+    };
+
+    service.register = function(user,success,error){
+        $http.post(url+'/registration', {'user':user})
+        .success(function(data, status, headers, config) {
+            success(data);
+        }).error(function(data, status, headers, config) {
+            error(data);
+        });
+    };
 
     service.updateUser = function(params,callback){
         $http({method:'PUT', url: globals.server_url+'/users/'+params.userId, cache:true,

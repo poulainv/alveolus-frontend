@@ -419,8 +419,6 @@ body{
 
 /*Vote
 ----------*/
-
-
 .vote-buttons{
   font-size:20px;
   padding: 0;
@@ -456,6 +454,12 @@ body{
 .vote-alv{
   margin-bottom: 10px;
 }
+/* Forms
+----------*/
+.required:after{
+  content: ' <i class="icon-asterisk red-star"></i>'
+}
+
 
 
 

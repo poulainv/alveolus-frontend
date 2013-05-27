@@ -20,6 +20,7 @@ angular.module('alveolus',
     'alveolus.addWebappCtrl',
     'alveolus.editWebappCtrl',
     'alveolus.userCtrl',
+    'alveolus.addUserCtrl',
     'alveolus.webAppListCtrl',
     'alveolus.voteCtrl',
     'ui.bootstrap'
@@ -27,7 +28,7 @@ angular.module('alveolus',
 config(
   ['$routeProvider','$httpProvider', function($routeProvider, $httpProvider) {
     $routeProvider.
-    when('/user', {templateUrl: 'partials/user.html',   controller: 'UserCtrl'}).
+    when('/user',                       {templateUrl: 'partials/user.html',             controller: 'UserCtrl'}).
     when('',                            {templateUrl: 'partials/home.html',             controller: 'HomeCtrl'}).
     when('/alveoles/new',               {templateUrl: 'partials/addWebapp.html',        controller: 'AddWebappCtrl'}).
     when('/alveoles/search/:content',   {templateUrl: 'partials/webAppList.html',       controller: 'WebAppListCtrl'}).
@@ -36,6 +37,7 @@ config(
     when('/webappModal/:webAppId',      {templateUrl: 'partials/webAppModal.html',      controller: 'WebappCtrl'}).
     when('/alveoles',                   {templateUrl: 'partials/webAppList.html',       controller: 'WebAppListCtrl'}).
     when('/user/:userId',               {templateUrl: 'partials/user.html',             controller: 'UserCtrl'}).
+    when('/inscription',                {templateUrl: 'partials/addUser.html',          controller: 'AddUserCtrl'}).
     when('/vote',                       {templateUrl: 'partials/vote.html',             controller: 'VoteCtrl'}).
     otherwise({redirectTo: '/',          templateUrl: 'partials/home.html',             controller: 'HomeCtrl'}); 
 

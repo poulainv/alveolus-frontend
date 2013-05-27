@@ -24,7 +24,7 @@ controller('WebAppListCtrl', function($scope,$routeParams,$location,WebappServic
 
 		// Get all apps for category 'cat'
 		WebappService.getAppsFromCat({catId: cat.id}, function(data){
-			$scope.subcats.push({ name : 'Toutes les alvéoles', alveoles : data.webapps});
+			$scope.subcats.push({ name : 'Toutes les alvéoles', alveoles : data});
 		});
 	};
 

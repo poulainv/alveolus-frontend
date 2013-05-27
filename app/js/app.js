@@ -26,7 +26,7 @@ angular.module('alveolus',
     'ui.bootstrap'
     ]).
 config(
-  ['$routeProvider','$httpProvider', function($routeProvider, $httpProvider) {
+  ['$routeProvider','$httpProvider', function($routeProvider, $httpProvider, $injector ) {
     $routeProvider.
     when('/user',                       {templateUrl: 'partials/user.html',             controller: 'UserCtrl'}).
     when('',                            {templateUrl: 'partials/home.html',             controller: 'HomeCtrl'}).
@@ -40,26 +40,44 @@ config(
     when('/inscription',                {templateUrl: 'partials/addUser.html',          controller: 'AddUserCtrl'}).
     when('/vote',                       {templateUrl: 'partials/vote.html',             controller: 'VoteCtrl'}).
     otherwise({redirectTo: '/',          templateUrl: 'partials/home.html',             controller: 'HomeCtrl'}); 
-
-    var interceptor = ['$location', '$q','$rootScope', function ($location, $q, $rootScope) {
+    var $http;
+    var interceptor = ['$location', '$q','$rootScope','$injector', function ($location, $q, $rootScope, $injector ) {
         return function (promise) {
-            return promise.then(function (response) {
-                return response;
-            }, function (response) {
-                if(response.status === 401) {
-                    $location.path('/');
-                    console.log("catch 401 : cast broadcastNeedLogin, and redirect main page");
-                    $location.path('/');
-                    $rootScope.$broadcast('onNeedLogin');
-                    return $q.reject(response);
-                }
-                else {
-                    return $q.reject(response);
-                }
-            });
-        };
-    }]
-    
+            $('#contentWrapper').hide();
+            $('#loading').show();
+
+            var success = function(response){
+                 $http = $http || $injector.get('$http');
+                    if($http.pendingRequests.length < 1) {
+                       $('#contentWrapper').show();
+                       $('#loading').hide();
+                    }
+                    return response;
+            }
+
+            var error = function (response) {
+                    $http = $http || $injector.get('$http');
+                    if($http.pendingRequests.length < 1) {
+                       $('#contentWrapper').show();
+                       $('#loading').hide();
+                    }
+                    
+                    if(response.status === 401) {
+                        $location.path('/');
+                        console.log("catch 401 : cast broadcastNeedLogin, and redirect main page");
+                        $location.path('/');
+                        $rootScope.$broadcast('onNeedLogin');
+                        return $q.reject(response);
+                    }
+                    else {
+                        return $q.reject(response);
+                    }
+            };
+
+            return promise.then(success, error);
+            }
+        }]
+
     $httpProvider.responseInterceptors.push(interceptor);
 
 }]).value('globals',{server_url : 'http://quiet-spire-4994.herokuapp.com'});

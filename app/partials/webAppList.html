@@ -3,7 +3,7 @@
 	<div class="row-fluid">
 		<div id="alveolesList" class="span9">
 			<h3>Alvéoles / {{subTitle}}</h3>
-			<div ng-repeat="subcat in subcats"> 
+			<div id="contentWrapper" ng-repeat="subcat in subcats"> 
 				<h4>{{subcat.name}}</h4>
 
 				<div class="alveoleWrap" ng-repeat="alveole in subcat.alveoles">

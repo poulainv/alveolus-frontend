@@ -7,7 +7,6 @@
 /* Liste de liens à côté de l'image/video */
 .ulWebAppLinks{
   list-style-type:none;
-  margin-top: 20px;
   margin-left: 0;
 }
 .ulWebAppLinks li{
@@ -100,8 +99,8 @@
 
 
 /* liste de tags */
-ul#tagList a {
-  text-decoration: none;
+tagList{
+  margin:2px;
 }
 .listWithoutDecoration{
   text-decoration: none;

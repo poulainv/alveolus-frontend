@@ -113,16 +113,17 @@
 										</div>
 									</aside>
 									<section class="span8">
-										<div ng-hide="editComment" ng-init="editComment=false">
-											<span class="label pull-right">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
-											<p>{{comment.body}}</p>
-											<p><button ng-show="user.id==comment.user.id" class="btn btn-primary btn-small" ng-click="editComment=true"><i class="icon-white icon-pencil"></i> Editer mon commentaire</button></p>
-										</div>
-										<div ng-show="editComment">
-											<textarea class="span8" type="text" rows="3" ng-model="comment.body" id="textAreaEditComment">{{comment.body}}</textarea>
-											<button class="btn btn-primary btn-small" ng-click="submitEditComment(comment);"><i class="icon-white icon-pencil"></i> Modifier</button>
-										</div>
-									</section>
+									 	<div ng-hide="editComment" ng-init="editComment=false">
+										 	<span class="label pull-right">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
+										 	<p>{{comment.body}}</p>
+										 	<i class="icon-large icon-pencil pointer-link" ng-click="editComment=true"></i>
+										 	<i class="icon-large icon-trash pointer-link" ng-click="deleteComment(comment);"></i>
+										 </div>
+										 <div ng-show="editComment">
+										 	<textarea class="span8" type="text" rows="3" ng-model="comment.body" id="textAreaEditComment">{{comment.body}}</textarea>
+										 	<button class="btn btn-primary btn-small" ng-click="submitEditComment(comment);"><i class="icon-white icon-pencil"></i> Modifier</button>
+										 </div>
+									 </section>
 								</div>
 								<div class="light-separator"></div>
 							</div>

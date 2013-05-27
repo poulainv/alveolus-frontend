@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.webappCtrl', []).
-controller('WebappCtrl', function($scope,$routeParams, WebappService, SocialService, CommentService, UserService) {
+controller('WebappCtrl', function($scope,$location,$routeParams, WebappService, SocialService, CommentService, UserService, CategoryService) {
 
 	$scope.webAppId=$routeParams.webAppId;
 	$scope.webapp=WebappService.get({id: $routeParams.webAppId}, function(){
@@ -13,17 +13,13 @@ controller('WebappCtrl', function($scope,$routeParams, WebappService, SocialServ
 		if($scope.user.id)
 			UserService.alreadyCommented({webAppId : $scope.webAppId, userId : $scope.user.id}, function(data){
 				if($.isEmptyObject(data)) $scope.canComment=true;
-				else $scope.canComment=false;
+				else{
+					$scope.canComment=false;
+					$scope.hadAlreadyCommented=true;
+				}
 				
 			});
 		else $scope.canComment=false;
-
-		// DONNEES EXEMPLES
-	    //$scope.webapp.facebook_id="294735233916083";
-	    //$scope.webapp.twitter_id="Cupofteach";
-	    //$scope.webapp.gplus_id="103505662474284621269";
-	    //$scope.webapp.vimeo_id="53270929";
-
 	    if($scope.webapp.facebook_id)
 			SocialService.getFacebookData($scope.webapp.facebook_id,function(data){$scope.facebook=data}); 
 		else $scope.facebook=null;
@@ -61,6 +57,7 @@ controller('WebappCtrl', function($scope,$routeParams, WebappService, SocialServ
 	    		$scope.webapp.comments=data;
 	    		$scope.canComment=false;
 	    		$scope.hadCommented=true;
+	    		$scope.webapp=WebappService.get({id: $routeParams.webAppId});
 	    });
   	};
 
@@ -75,8 +72,17 @@ controller('WebappCtrl', function($scope,$routeParams, WebappService, SocialServ
   	$scope.deleteComment=function(comment){
   		CommentService.deleteComment({commentId : comment.id}, function(data){
 	    		$scope.webapp.comments=data;
+	    		$scope.webapp=WebappService.get({id: $routeParams.webAppId});
+	    		$scope.canComment=true;
+
 	    });
   	}
+
+	$scope.changeView = function(url){
+		console.log('changeView ' + url);
+		CategoryService.setIdCatSelected($scope.webapp.category_id);
+		$location.path(url);
+	}
 
   	$scope.submitTag = function(tag) {
 	    // CommentService.addComment({webappId : $routeParams.webAppId, comment : $scope.comment}, function(data){

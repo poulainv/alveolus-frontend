@@ -17,7 +17,7 @@
 
           
           <div class="nav-collapse collapse">
-            <ul class="nav pull-right">
+            <ul class="nav pull-left">
               <li class="divider-vertical"></li>
               <li><a>
                 <span>Découvrez</span><br/>
@@ -52,14 +52,7 @@
 
               <li class="divider-vertical"></li>
 
-              <li data-facebook='261681253955145' >
-                <span id="fb-root"></span>
-                <a ng-href="" data-ng-click='fetch()'>Facebook Login <br> {{fetch_status}}</a>
-              </li>
-              <li class="divider-vertical"></li>
-
               <li ng-hide="isLogged"><a ng-click="openModalLogin()">Connexion</a></li>
-              <li ng-hide="isLogged"><a ng-href="#/inscription">Inscription</a></li>
               <li class="dropdown" ng-show="isLogged">
                 <a class="dropdown-toggle">
                   <img src="{{userInfo.image_url}}" class="img-circle" style:"max-height:40px;"/>

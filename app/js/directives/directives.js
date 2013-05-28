@@ -8,7 +8,7 @@ directive('facebook', function($http,globals) {
 	return {
 		restrict: 'A',
 		scope: true,
-		controller: function($scope, $attrs) {
+		controller: function($scope, $attrs, SessionService) {
       // Load the SDK Asynchronously
       (function(d){
       	var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
@@ -31,27 +31,16 @@ directive('facebook', function($http,globals) {
       };
 
       function fetch() {
-      	$http.post(globals.server_url+'/facebook/fetch', $scope.auth
-      		).success(function(data) {
-      			window.location.reload(true);
-      			$scope.fetch_status = data.status;
-      			console.log("User logged");
-      			setUser({id : data.id, email : data.email, success: true });
-      			token = data.auth_token;
-      			setHttpProviderCommonHeaderToken(token);
-      			setSessionToken(token,data.id);
-      			broadcastLogged();
-      		}).error(function(data) {
-      			console.log('error: '+data);
-      			$scope.fetch_status = data.status;
-      		});
-      	}
+      	SessionService.fetchFacebook($scope.auth)
+      }
 
       	$scope.fetch = function() {
+          console.log("fetch function...");
       		if ($scope.login_status == 'connected') {
       			console.log('fetch');
       			fetch();
       		} else {
+            console.log("login function...");
       			login();
       		}
       	};
@@ -73,9 +62,9 @@ directive('facebook', function($http,globals) {
             // connected
             scope.auth = response.authResponse;
         } else if (response.status === 'not_authorized') {
-            // not_authorized
+            console.log("Vous devez autorisé Alveolus pour pouvoir vous connecter à partir de Facebook")
         } else {
-            // not_logged_in
+            console.log("Erreur")
         }
         scope.login_status = response.status;
         scope.$apply();

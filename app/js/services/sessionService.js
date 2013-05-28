@@ -133,6 +133,22 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
       broadcastUnlogged();
     }
 
+    var fetchFacebook = function(auth){
+           $http.post(globals.server_url+'/facebook/fetch',auth
+          ).success(function(data) {
+            console.log(data);
+            console.log("User logged");
+            setUser({id : data.id, email : data.email, success: true });
+            token = data.auth_token;
+            setHttpProviderCommonHeaderToken(token);
+            setSessionToken(token,data.id);
+            broadcastLogged();
+          }).error(function(data) {
+            console.log('error: '+data);
+          });
+        
+    }
+
     authorized = function() {
       console.log("authorized????"+(user.authorized))
       return user.authorized;
@@ -172,7 +188,8 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
       sign_out: sign_out,
       authorized: authorized,
       getUser: getUser,
-      resetSession : resetSession
+      resetSession : resetSession,
+      fetchFacebook : fetchFacebook
     };
   }
 );

@@ -1,6 +1,6 @@
 <div class="container">
-	<div class="row">
-		<div class="span10 offset1 well">
+	<div id="appForm" class="row">
+		<div id="contentWrapper" class="span10 offset1 well">
 			<form name="form" class="form-signin form-horizontal" novalidate>
 				<h2>Proposition d'une alvéole</h2>
 
@@ -59,7 +59,7 @@
 				<div 
 				class="control-group" 
 				ng-class="{
-				error: form.caption.$invalid && webapp.caption,
+				error: form.caption.$invalid && (!!form.caption.$error.minlength || !!form.caption.$error.maxlength),
 				success: form.caption.$valid}">
 				<label class="control-label" for="caption">Description rapide<span class="red-star">*</span> : </label>
 				<div class="controls">
@@ -71,10 +71,17 @@
 					class="field span6" 
 					placeholder="Une phrase d'accroche" 
 					ng-model="webapp.caption"
+					ng-minlength="30" 
+					ng-maxlength="200" 
 					tooltip-placement="right" 
 					tooltip="Une phrase d'accroche" 
 					required></textarea>
 				</div></div>
+
+				<span 
+				ng-show="form.caption.$invalid && (!!form.caption.$error.minlength || !!form.caption.$error.maxlength)"
+				class="help-inline">
+				La caption doit faire entre 30 et 200 caractères</span>
 
 				<div 
 				class="control-group" 
@@ -179,17 +186,19 @@
 
 
 
-		<div class="span10 offset1 well">
-			<h2> Debug view </h2>
-			<tt>webapp = {{webapp | json}}</tt><br/><br/>
-			<tt>form.$valid = {{form.$valid}}</tt><br/>
-			<tt>form.$error = {{form.$error}}</tt><br/>
-			<tt>form.$valid = {{form.$valid}}</tt><br/>
-			<tt>form.cat = {{form.cat}}</tt><br/>
-			<tt>form.url.$error = {{form.url.$error}}</tt><br/>
-			<tt>form.$error.required = {{!!form.$error.required}}</tt><br/>
 
-		</div>
+	</div>
+
+	<div class="span10 offset1 well">
+		<h2> Debug view </h2>
+		webapp = {{webapp | json}}
+		<br/>
+		<tt>form.$valid = {{form.$valid}}</tt><br/>
+		<tt>form.$error = {{form.$error}}</tt><br/>
+		<tt>form.$valid = {{form.$valid}}</tt><br/>
+		<tt>form.cat = {{form.cat}}</tt><br/>
+		<tt>form.url.$error = {{form.url.$error}}</tt><br/>
+		<tt>form.$error.required = {{!!form.$error.required}}</tt><br/>
 
 	</div>
 </div>

@@ -317,6 +317,10 @@ body{
   /*min-height: 250px;*/
 }
 
+#appForm{
+  min-height: 975px;
+}
+
 #btnMore{
   margin-top: 1em;
 }

@@ -2,29 +2,31 @@
 <div class="container">
 	<div class="row-fluid">
 		<div id="alveolesList" class="span9">
-			<h3>Alvéoles / {{subTitle}}</h3>
-			<div id="contentWrapper" ng-repeat="subcat in subcats"> 
-				<h4>{{subcat.name}}</h4>
+			<div id="contentWrapper">
+				<h3>Alvéoles / {{subTitle}}</h3>
+				<div ng-repeat="subcat in subcats"> 
+					<h4>{{subcat.name}}</h4>
 
-				<div class="alveoleWrap" ng-repeat="alveole in subcat.alveoles">
-					<div class="alveole">
-						<a href="#/alveoles/{{alveole.id}}">
-							<img class="imgCarousel" ng-src="{{alveole | image}}" >
-						</a>
-						<h2 class="alveoleName">
+					<div class="alveoleWrap" ng-repeat="alveole in subcat.alveoles">
+						<div class="alveole">
 							<a href="#/alveoles/{{alveole.id}}">
-								<strong>{{alveole.title}}</strong>
+								<img class="imgCarousel" ng-src="{{alveole | image}}" >
 							</a>
-						</h2>
-						<p class="alveoleDesc">
-							{{alveole.caption}}
-						</p>
-						<div class="alveoleRating">
-						<i class="{{ {'rate':alveole.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i> - {{alveole.comments.length}} avis
-						</div>
-						<div class="alveoleTagsWrapper">
-							<i class="icon-bookmark"></i>
-							<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)" class="tag">{{tag.name}}, </span>
+							<h2 class="alveoleName">
+								<a href="#/alveoles/{{alveole.id}}">
+									<strong>{{alveole.title}}</strong>
+								</a>
+							</h2>
+							<p class="alveoleDesc">
+								{{alveole.caption}}
+							</p>
+							<div class="alveoleRating">
+								<i class="{{ {'rate':alveole.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i> - {{alveole.comments.length}} avis
+							</div>
+							<div class="alveoleTagsWrapper">
+								<i class="icon-bookmark"></i>
+								<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)" class="tag">{{tag.name}}, </span>
+							</div>
 						</div>
 					</div>
 				</div>

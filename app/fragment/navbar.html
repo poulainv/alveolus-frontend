@@ -1,6 +1,7 @@
     <div class="navbar navbar-inverse navbar-static-top">
       <div class="navbar-inner">
-        <div class="container">
+        <!-- <div class="container"> -->
+        <div>
 
           <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -16,7 +17,7 @@
 
           
           <div class="nav-collapse collapse">
-            <ul class="nav">
+            <ul class="nav pull-right">
               <li class="divider-vertical"></li>
               <li><a>
                 <span>Découvrez</span><br/>
@@ -51,10 +52,9 @@
 
               <li class="divider-vertical"></li>
 
-              <li data-facebook='450339965057952' >
+              <li data-facebook='261681253955145' >
                 <span id="fb-root"></span>
-                <a ng-href="" data-ng-click='fetch()'>Facebook Login</a>
-                {{login_status}}
+                <a ng-href="" data-ng-click='fetch()'>Facebook Login <br> {{fetch_status}}</a>
               </li>
               <li class="divider-vertical"></li>
 

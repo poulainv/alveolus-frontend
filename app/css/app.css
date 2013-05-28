@@ -10,7 +10,7 @@ body{
   margin : 0;
   color: black;
   font-family: 'Open Sans', sans-serif;
-  /*background-color: lightblue;*/
+  /*background-color: #F5F6D4;*/
 }
 
 .alveole{
@@ -314,7 +314,7 @@ body{
 }
 
 #appFeatured{
-  min-height: 250px;
+  /*min-height: 250px;*/
 }
 
 #btnMore{
@@ -327,10 +327,11 @@ body{
 
 #catListWrapper{
   min-height: 70px;
+  margin-bottom: 20px;
 }
 
 #descFeaturedApp{
-  padding: 50px;
+  /*padding: 50px;*/
   text-align : justify;
 }
 
@@ -353,6 +354,7 @@ body{
   overflow: hidden;
   text-align: center;
   margin-bottom: 20px;
+  border-bottom: 2px solid black;
 }
 
 #headerImgCarousel{
@@ -364,8 +366,10 @@ body{
 }
 
 #logoTeamSelection{
-  max-width: 300px;
-  max-height: 200px;
+  width: 267px;
+  height: 200px;
+  border: 2px grey solid;
+  border-radius: 15px;
 }
 
 #mainWrapper{
@@ -386,13 +390,36 @@ body{
 }
 
 #socialFeaturedApp{
-  padding-left: 50px;
+  position: absolute;
+  bottom: 60px;
 }
 
 #tableFeatured{
   min-height: 250px;
 }
 
+#teamSelection{
+  padding: 30px;
+}
+
+#teamSelectionWrapper{
+  color: black;
+  display: block;
+  position: relative;
+  border: solid #FFF 2px;
+  /*background-image: -webkit-linear-gradient(left,#DED4B9 0%, #F2EEEB 35%, #F2EEEB 65%, #DED4B9 100%);
+  background-image: -moz-linear-gradient(left,#DED4B9 0%, #F2EEEB 35%, #F2EEEB 65%, #DED4B9 100%);
+  background-image: -ms-linear-gradient(left,#DED4B9 0%, #F2EEEB 35%, #F2EEEB 65%, #DED4B9 100%);
+  background-image: -o-linear-gradient(left,#DED4B9 0%, #F2EEEB 35%, #F2EEEB 65%, #DED4B9 100%);*/
+  background-color: white;
+  box-shadow: 0 0 3px #333;
+  margin-bottom: 20px;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -ms-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s;
+}
 
 /*Vote
 ----------*/

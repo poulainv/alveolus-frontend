@@ -5,6 +5,7 @@
 angular.module('alveolus.addWebappCtrl', []).
 controller('AddWebappCtrl', function($scope,$routeParams,WebappService, SocialService, CategoryService, TagService) {
 
+	var nbTags = 0;
 
 	$scope.webapp=WebappService.new(function(){
 		$scope.webapp.tag_list = '';
@@ -26,10 +27,12 @@ controller('AddWebappCtrl', function($scope,$routeParams,WebappService, SocialSe
 			updater:function (item) {
 				$scope.webapp.tag_list += item+', ';
 				if($('#tagList').text().length == 0){
-					$('#tagList').append(item);					
+					var appendMe = "<span id=\"tag"+nbTags+"\">"+item+"</span>";		
 				} else {
-					$('#tagList').append(', '+item);	
+					var appendMe = "<span id=\"tag"+nbTags+"\">,"+item+"</span>";
 				}
+				$('#tagList').append(appendMe);	
+				nbTags++;
 			}
 		});
 	});

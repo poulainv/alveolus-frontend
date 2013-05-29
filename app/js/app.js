@@ -16,6 +16,7 @@ angular.module('alveolus',
     'alveolus.directives', 
     'alveolus.homeCtrl', 
     'alveolus.mainCtrl', 
+    'alveolus.graphCtrl', 
     'alveolus.webappCtrl', 
     'alveolus.addWebappCtrl',
     'alveolus.editWebappCtrl',
@@ -39,6 +40,7 @@ config(
     when('/user/:userId',               {templateUrl: 'partials/user.html',             controller: 'UserCtrl'}).
     when('/inscription',                {templateUrl: 'partials/addUser.html',          controller: 'AddUserCtrl'}).
     when('/vote',                       {templateUrl: 'partials/vote.html',             controller: 'VoteCtrl'}).
+    when('/graph',                       {templateUrl: 'partials/graphd3.html' ,         controller: 'GraphCtrl' }).
     otherwise({redirectTo: '/',          templateUrl: 'partials/home.html',             controller: 'HomeCtrl'}); 
     var $http;
     var interceptor = ['$location', '$q','$rootScope','$injector', function ($location, $q, $rootScope, $injector ) {
@@ -61,7 +63,7 @@ config(
                        $('#contentWrapper').show();
                        $('#loading').hide();
                     }
-                    
+
                     if(response.status === 401) {
                         $location.path('/');
                         console.log("catch 401 : cast broadcastNeedLogin, and redirect main page");

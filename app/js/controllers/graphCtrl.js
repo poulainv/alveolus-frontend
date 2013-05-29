@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.graphCtrl', []).
-controller('GraphCtrl', function($scope,$routeParams,$location,WebappService,CategoryService) {
+controller('GraphCtrl', function($scope,$routeParams,$location,WebappService,CategoryService,globals) {
 
 $scope.webappSelected = null;
 $scope.detailViewed = false ; 
@@ -14,7 +14,7 @@ $scope.change = function(i,j){
   console.log( $scope.webappSelected.title);
 }
 
-$.getJSON('http://localhost:3000/categories/all', function(data) {
+$.getJSON(globals.server_url+'/categories/all', function(data) {
 console.log(data);
 $scope.categories = data ;
 var root = new Object();

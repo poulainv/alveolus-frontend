@@ -8,122 +8,131 @@
 				<div class="row">
 					<div class="span5" ng-show="webapp.vimeo_id">
 						<div class="tabbable">
-							  <ul class="nav nav-pills">
-							    <li class="active"><a href="#video" data-toggle="tab">Vidéo</a></li>
-							    <li><a href="#image" data-toggle="tab">Image</a></li>
-							  </ul>
-							  <div class="tab-content">
-							    <div class="tab-pane active" id="video">
+							<ul class="nav nav-pills">
+								<li class="active"><a href="#video" data-toggle="tab">Vidéo</a></li>
+								<li><a href="#image" data-toggle="tab">Image</a></li>
+							</ul>
+							<div class="tab-content">
+								<div class="tab-pane active" id="video">
 									<span ng-bind-html-unsafe='webapp.vimeo_id | vimeo'></span>
-							    </div>
-							    <div class="tab-pane" id="image">
-							      <img ng-src="{{webapp.image_url}}"/>
-							    </div>
-							  </div>
-						</div>
-					</div>
-
-					<div class="span5" ng-hide="webapp.vimeo_id">
-						<img ng-src="{{webapp.image_url}}"/>
-					</div>
-
-					<div class="span5">
-						<div class="starsRatingShow" id="starsRatingShowDesc">
-									<i class="{{ {'rate':webapp.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
-								({{webapp.comments.length}} avis)
-						</div>
-
-						<h4>{{webapp.caption}}</h4>
-
-						<span ng-repeat="tag in webapp.tags">
-							<span class="label tagList">{{tag.name}}</span>
-						</span>
-						
-						<a href="#modalAddTag" id="addTagLink" data-toggle="modal"><span class="badge badge-inverse"><i class="icon-plus"></i></span></a>
-
-
-						<ul class="ulWebAppLinks">
-							<li><a href="{{webapp.url}}" target="_blank"><i class="icon-link icon-large"></i> Accéder au site</a></li>
-							<li><a href=#><i class="icon-heart-empty icon-large"></i>Ajouter aux favoris</a></li>
-						</ul>
-							<p>Proposée par {{userPost.pseudo}}</p>
-					</div>
-					</div>
-
-					<ul class="ulWebAppLinks">
-					<li>
-						Partager sur ...
-						<a target="_blank" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]={{webapp.url}}&amp;p[images][0]=https://cot-production-assets.s3.amazonaws.com/assets/happy-fingers-da11d5333af9a701244f3606686120a0.jpeg&amp;p[title]={{webapp.title}}&amp;p[summary]={{webapp.caption}}">
-							<i class="icon-facebook-sign icon-2x"></i>
-						</a>
-						<a target="_blank" href="https://twitter.com/intent/tweet?url={{webapp.url}}&amp;text={{webapp.caption}}">  <!-- via={{webapp.twitter_id}} ? -->
-							<i class="icon-twitter-sign icon-2x"></i>
-						</a>
-						<a target="_blank" href="https://plus.google.com/share?url={{webapp.url}}">
-							<i class="icon-google-plus-sign icon-2x"></i>
-						</a>
-					</li>
-				</ul>
-
-					
-
-				<div class="tabbable"> 
-				    <ul class="nav nav-tabs">
-				        <li class="active"><a href="#infos" data-toggle="tab"><i class="icon-zoom-in"></i> Qu'est-ce que c'est ?</a></li>
-				        <li><a href="#comments" data-toggle="tab"><i class="icon-comments"></i>  Commentaires</a></li>
-				    </ul>
-
-				    <div class="tab-content">
-				        <div class="tab-pane active" id="infos">
-
-							<div class="row">
-								<div class="span3">
-									<ul class="ulWebAppLinks">
-										<li ng-show='facebook'>
-											<a href="{{facebook.link}}" target="_blank"><i class="icon-facebook icon-large"></i>Facebook : {{facebook.likes}} likes</a>
-										</li>
-										<li ng-show='twitter'>
-											<a href="https://twitter.com/{{webapp.twitter_id}}" target="_blank"><i class="icon-twitter icon-large"></i>Twitter : {{twitter.followers_count}} followers</a>
-										</li>
-										<li ng-show='webapp.gplus_id'>
-											<a href="https://plus.google.com/{{webapp.gplus_id}}" target="_blank"><i class="icon-google-plus icon-large"></i>Google Plus</a>
-										</li>
-										<li class="marginTop"><i class="icon-check icon-large"></i>X personnes participent</li>
-								<li><i class="icon-eye-open icon-large"></i>Vu {{webapp.nb_click_preview + webapp.nb_click_detail}} fois</li>
-
-									</ul>
 								</div>
-
-								<div class="span7">
-									<p>{{webapp.description}}</p>
+								<div class="tab-pane" id="image">
+									<img ng-src="{{webapp | image}}"/>
 								</div>
 							</div>
+						</div>
+					</div>
+
+					<div 
+					class="span5 relative" 
+					ng-hide="webapp.vimeo_id" 
+					ng-mouseenter="showChangeImageLink = true" 
+					ng-mouseleave="showChangeImageLink = false">
+
+					<img ng-src="{{webapp | image}}" />
+
+					<a id="changeImage" ng-href="#/alveoles/{{webapp.id}}/edit#editImagePanel" ng-show="showChangeImageLink">
+						Changer l'image
+					</a>
+				</div>
+
+				<div class="span5">
+					<div class="starsRatingShow" id="starsRatingShowDesc">
+						<i class="{{ {'rate':webapp.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+						({{webapp.comments.length}} avis)
+					</div>
+
+					<h4>{{webapp.caption}}</h4>
+
+					<span ng-repeat="tag in webapp.tags">
+						<span class="label tagList">{{tag.name}}</span>
+					</span>
+
+					<a href="#modalAddTag" id="addTagLink" data-toggle="modal"><span class="badge badge-inverse"><i class="icon-plus"></i></span></a>
 
 
-							
+					<ul class="ulWebAppLinks">
+						<li><a href="{{webapp.url}}" target="_blank"><i class="icon-link icon-large"></i> Accéder au site</a></li>
+						<li><a href=#><i class="icon-heart-empty icon-large"></i>Ajouter aux favoris</a></li>
+					</ul>
+					<p>Proposée par {{userPost.pseudo}}</p>
+				</div>
+			</div>
 
-								
-							<!-- Modal add tag -->
-							<div id="modalAddTag" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							  <div class="modal-header">
-							    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-							    <h3 id="myModalLabel">Ajouter un tag à {{webapp.title}}</h3>
-							  </div>
-							  <div class="modal-body">
-							  	<ul class="listWithoutDecoration emerland">
+			<ul class="ulWebAppLinks">
+				<li>
+					Partager sur ...
+					<a target="_blank" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]={{webapp.url}}&amp;p[images][0]=https://cot-production-assets.s3.amazonaws.com/assets/happy-fingers-da11d5333af9a701244f3606686120a0.jpeg&amp;p[title]={{webapp.title}}&amp;p[summary]={{webapp.caption}}">
+						<i class="icon-facebook-sign icon-2x"></i>
+					</a>
+					<a target="_blank" href="https://twitter.com/intent/tweet?url={{webapp.url}}&amp;text={{webapp.caption}}">  <!-- via={{webapp.twitter_id}} ? -->
+						<i class="icon-twitter-sign icon-2x"></i>
+					</a>
+					<a target="_blank" href="https://plus.google.com/share?url={{webapp.url}}">
+						<i class="icon-google-plus-sign icon-2x"></i>
+					</a>
+				</li>
+			</ul>
+
+
+
+			<div class="tabbable"> 
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#infos" data-toggle="tab"><i class="icon-zoom-in"></i> Qu'est-ce que c'est ?</a></li>
+					<li><a href="#comments" data-toggle="tab"><i class="icon-comments"></i>  Commentaires</a></li>
+				</ul>
+
+				<div class="tab-content">
+					<div class="tab-pane active" id="infos">
+
+						<div class="row">
+							<div class="span3">
+								<ul class="ulWebAppLinks">
+									<li ng-show='facebook'>
+										<a href="{{facebook.link}}" target="_blank"><i class="icon-facebook icon-large"></i>Facebook : {{facebook.likes}} likes</a>
+									</li>
+									<li ng-show='twitter'>
+										<a href="https://twitter.com/{{webapp.twitter_id}}" target="_blank"><i class="icon-twitter icon-large"></i>Twitter : {{twitter.followers_count}} followers</a>
+									</li>
+									<li ng-show='webapp.gplus_id'>
+										<a href="https://plus.google.com/{{webapp.gplus_id}}" target="_blank"><i class="icon-google-plus icon-large"></i>Google Plus</a>
+									</li>
+									<li class="marginTop"><i class="icon-check icon-large"></i>X personnes participent</li>
+									<li><i class="icon-eye-open icon-large"></i>Vu {{webapp.nb_click_preview + webapp.nb_click_detail}} fois</li>
+
+								</ul>
+							</div>
+
+							<div class="span7">
+								<p>{{webapp.description}}</p>
+							</div>
+						</div>
+
+
+
+
+
+						<!-- Modal add tag -->
+						<div id="modalAddTag" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h3 id="myModalLabel">Ajouter un tag à {{webapp.title}}</h3>
+							</div>
+							<div class="modal-body">
+								<ul class="listWithoutDecoration emerland">
 									<li ng-repeat="tag in webapp.tags" class="marginList"><i class="icon-bookmark-empty"></i> {{tag.name}}</li>
 									<li class="marginList">
 										<i class="icon-plus"></i><input type="text" placeholder="Votre tag" ng-model="tag.name">
 									</li>
 								</ul>
 								<pre>tag={{tag | json}}</pre>
-							  </div>
-							  <div class="modal-footer">
-							    <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
-							    <button class="btn btn-primary" ng-click="submitTag(tag)">Enregistrer</button>
-							  </div>
+							</div>
+							<div class="modal-footer">
+								<button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+								<button class="btn btn-primary" ng-click="submitTag(tag)">Enregistrer</button>
 							</div>
 						</div>
+					</div>
 
 
 
@@ -139,26 +148,26 @@
 											<!-- <i ng-show="" class="icon-user icon-4x"></i> -->
 											<img class="img-circle" ng-src="{{comment.user.image_url}}"/>
 											<p ng-show="user.id==comment.user.id">Moi</p>
-							 				<p ng-show="user.id!=comment.user.id">{{comment.user.pseudo}}</p>
-								 			<div class="starsRatingShow">
+											<p ng-show="user.id!=comment.user.id">{{comment.user.pseudo}}</p>
+											<div class="starsRatingShow">
 												<i class="{{ {'rate':comment.rating, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
-									 		</div>
-									 	</div>
-									 </aside>
-									 <section class="span8">
-									 	<div ng-hide="editComment" ng-init="editComment=false">
-										 	<span class="label pull-right">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
-										 	<p>{{comment.body}}</p>
-										 	<div ng-show="user.id==comment.user.id" class="pull-right">
-											 	<i class="icon-large icon-pencil pointer-link" ng-click="editComment=true"></i>
-											 	<i class="icon-large icon-trash pointer-link" ng-click="deleteComment(comment);"></i>
 											</div>
-										 </div>
-										 <div ng-show="editComment">
-										 	<textarea class="span8" type="text" rows="3" ng-model="comment.body" id="textAreaEditComment">{{comment.body}}</textarea>
-										 	<button class="btn btn-primary btn-small" ng-click="submitEditComment(comment);"><i class="icon-white icon-pencil"></i> Modifier</button>
-										 </div>
-									 </section>
+										</div>
+									</aside>
+									<section class="span8">
+										<div ng-hide="editComment" ng-init="editComment=false">
+											<span class="label pull-right">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
+											<p>{{comment.body}}</p>
+											<div ng-show="user.id==comment.user.id" class="pull-right">
+												<i class="icon-large icon-pencil pointer-link" ng-click="editComment=true"></i>
+												<i class="icon-large icon-trash pointer-link" ng-click="deleteComment(comment);"></i>
+											</div>
+										</div>
+										<div ng-show="editComment">
+											<textarea class="span8" type="text" rows="3" ng-model="comment.body" id="textAreaEditComment">{{comment.body}}</textarea>
+											<button class="btn btn-primary btn-small" ng-click="submitEditComment(comment);"><i class="icon-white icon-pencil"></i> Modifier</button>
+										</div>
+									</section>
 								</div>
 								<div class="light-separator"></div>
 							</div>
@@ -175,19 +184,19 @@
 									<td><div id="label">Note :</div></td>
 									<td>
 										<div class="rating">
-									    <input type="radio" id="star5" name="rating" value="5" ng-model="comment.rating"/><label for="star5" title="Amazing !"></label>
-									    <input type="radio" id="star4" name="rating" value="4" ng-model="comment.rating"/><label for="star4" title="Cool !"></label>
-									    <input type="radio" id="star3" name="rating" value="3" ng-model="comment.rating"/><label for="star3" title="Pas mal"></label>
-									    <input type="radio" id="star2" name="rating" value="2" ng-model="comment.rating"/><label for="star2" title="Bof"></label>
-									    <input type="radio" id="star1" name="rating" value="1" ng-model="comment.rating"/><label for="star1" title="J'aime pas"></label>
+											<input type="radio" id="star5" name="rating" value="5" ng-model="comment.rating"/><label for="star5" title="Amazing !"></label>
+											<input type="radio" id="star4" name="rating" value="4" ng-model="comment.rating"/><label for="star4" title="Cool !"></label>
+											<input type="radio" id="star3" name="rating" value="3" ng-model="comment.rating"/><label for="star3" title="Pas mal"></label>
+											<input type="radio" id="star2" name="rating" value="2" ng-model="comment.rating"/><label for="star2" title="Bof"></label>
+											<input type="radio" id="star1" name="rating" value="1" ng-model="comment.rating"/><label for="star1" title="J'aime pas"></label>
 										</div>
 									</td>
 								</tr>
 							</table>
 
-			    			<textarea id="textarea" rows="5" class="field span10" ng-model="comment.body"
-			    			placeholder="Que pensez vous de ce site ?"></textarea>
-						    <button type="button" class="btn"  ng-click="submitComment(comment)" ng-disabled="!comment.rating">Envoyer</button>
+							<textarea id="textarea" rows="5" class="field span10" ng-model="comment.body"
+							placeholder="Que pensez vous de ce site ?"></textarea>
+							<button type="button" class="btn"  ng-click="submitComment(comment)" ng-disabled="!comment.rating">Envoyer</button>
 						</div>
 
 						<div ng-show="hadCommented">Merci d'avoir commenté !</div>
@@ -196,7 +205,7 @@
 
 
 
-</div>
+			</div>
 
 
 
@@ -206,9 +215,9 @@
 		      		<pre>user={{user | json}}</pre> -->
 		      		<pre>webapp={{webapp | json}}</pre>
 
-			</div>
-					
-		</div>
-				
-	</div>
+		      	</div>
+
+		      </div>
+
+		  </div>
 

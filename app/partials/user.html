@@ -71,7 +71,7 @@
 							<label class="control-label" for="inputAvatar">Avatar</label>
 							<div class="controls">
 								<img ng-src="{{user.image_url}}" class="span1 img-rounded img-circle"/>
-								<input type="file" id="fileToUpload" ng-model="webapp.image" onchange="angular.element(this).scope().setFile(this)"/>
+								<input type="file" id="fileToUpload" onchange="angular.element(this).scope().setFile(this)"/>
 								<input type="button" value="Choisissez une image" class="block"  onclick="document.getElementById('fileToUpload').click();" />
 								<div ng-show="files.length">
 									<div ng-repeat="file in files.slice(0)">

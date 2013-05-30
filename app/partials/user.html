@@ -48,6 +48,7 @@
 					</div>
 
 
+
 					<div class="tab-pane" id="favoris">
 						<div ng-show="user.bookmarks">
 							<div class="light-separator"></div>
@@ -55,9 +56,9 @@
 								<div class="row">
 									<img class="span2" ng-src="{{bookmark.webapp.image_url}}"/>
 									<div class="span8">
-										<h3>{{bookmark.webapp.title}}</h3>
-										<h4>{{bookmark.webapp.caption}}</h4>
-										<p>{{bookmark.webapp.description}}</p>
+										<h3>{{bookmark.title}}</h3>
+										<h4>{{bookmark.caption}}</h4>
+										<p>{{bookmark.description}}</p>
 									</div>
 								</div>
 								<div class="light-separator"></div>
@@ -65,8 +66,8 @@
 						</div>
 					</div>
 
-					<div class="tab-pane" id="avatar">
 
+					<div class="tab-pane" id="avatar">
 						<div class="control-group">
 							<label class="control-label" for="inputAvatar">Avatar</label>
 							<div class="controls">
@@ -95,15 +96,36 @@
 
 					</div>
 
-					<div class="tab-pane" id="comments">
 
+					<div class="tab-pane" id="favoris">
+						<div ng-show="user.bookmarks">
+							<div class="light-separator"></div>
+							<div ng-repeat="bookmark in user.bookmarks">
+								<div class="row">
+									<a href="#alveoles/{{bookmark.webapp.id}}"><img class="span2" ng-src="{{bookmark.webapp.image_url}}"/></a>
+									<div class="span8">
+										<h3><a href="#alveoles/{{bookmark.webapp.id}}">{{bookmark.webapp.title}}</a></h3>
+										<h4>{{bookmark.webapp.caption}}</h4>
+										<p>{{bookmark.webapp.description}}</p>
+									</div>
+								</div>
+								<div class="light-separator"></div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="tab-pane" id="comments">
 						<div ng-show="user.comments">
 							<div class="light-separator"></div>
 							<div ng-repeat="comment in user.comments">
 								<div class="row">
 									<aside class="span2">
-										<div class="text-center">
-											<span class="label pull-right"><a href="alveoles/{{comment.webapp_id}}">Webapp {{comment.webapp_id}}</a></span>
+										<div class="row">
+										<div class="span2 text-center">
+											<a href="#alveoles/{{comment.webapp.id}}"><img class="span2" ng-src="{{comment.webapp.image_url}}"/>
+											<p class="span2 text-center">{{comment.webapp.title}}</p></a>
+										</div>
 										</div>
 									</aside>
 									<section class="span8">
@@ -127,11 +149,19 @@
 							<div class="light-separator"></div>
 							<div ng-repeat="webapp in user.webapps">
 								<div class="row">
-									<img class="span2" ng-src="{{webapp.image_url}}"/>
+									<a ng-show="webapp.validate" href="#alveoles/{{webapp.id}}"><img class="span2" ng-src="{{webapp.image_url}}"/></a>
+									<img ng-hide="webapp.validate" class="span2" ng-src="{{webapp.image_url}}"/>
 									<div class="span8">
-										<h3>{{webapp.title}}</h3>
+										<div class="pull-right">
+											Status : 
+											<span class="label" ng-hide="webapp.validate">Pas encore validée...</span>
+											<span class="label label-success" ng-show="webapp.validate">Validée ! </span>
+										</div>
+										<a ng-show="webapp.validate" href="#alveoles/{{webapp.id}}"><h3>{{webapp.title}}</h3></a>
+										<h3 ng-hide="webapp.validate">{{webapp.title}}</h3>
 										<h4>{{webapp.caption}}</h4>
 										<p>{{webapp.description}}</p>
+										<a class="btn btn-small" type="button" ng-show="webapp.validate" href="#alveoles/{{webapp.id}}">Voir la page</a>
 									</div>
 								</div>
 								<div class="light-separator"></div>

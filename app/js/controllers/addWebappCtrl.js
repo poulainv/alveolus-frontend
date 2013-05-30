@@ -3,7 +3,11 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.addWebappCtrl', []).
-controller('AddWebappCtrl', function($scope,$routeParams,WebappService, SocialService, CategoryService, TagService) {
+controller('AddWebappCtrl', function($scope,$routeParams,$location,WebappService, SocialService, CategoryService, TagService) {
+
+	if(!$scope.isLogged){
+		$location.path('/');
+	}
 
 	var nbTags = 0;
 

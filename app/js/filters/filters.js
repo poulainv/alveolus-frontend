@@ -34,5 +34,13 @@ angular.module('alveolus.filters', []).filter('star', function() {
       input.push(i);
     return input;
   };
+})
+.filter('substring', function() {
+  return function (input) {
+    if(input){
+      return input.substring(0,500)+"..";
+    }
+    return;
+  }
 });
 

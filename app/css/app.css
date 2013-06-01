@@ -11,6 +11,7 @@ body{
   color: black;
   font-family: 'Open Sans', sans-serif;
   /*background-color: #F5F6D4;*/
+  background-image: url(/app/img/bgnoise_lg.jpg);
 }
 
 .alveole{
@@ -93,7 +94,7 @@ body{
   padding: 8px;
   background: white;
   border: 1px solid #D7D7D7;
-  box-shadow: 2px 2px 0 #D7D7D7;
+  /*box-shadow: 1px 1px 0 rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.1) inset;*/
   border-radius: 3px;
   font-size: 12px;
   -webkit-transition: .3s;
@@ -138,7 +139,7 @@ body{
   margin: 0 3px 5px;
   background-color: #FFF;
   border: 1px solid #D7D7D7;
-  box-shadow: 2px 2px 0 #D7D7D7;
+  box-shadow: 1px 1px 0 rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.1) inset;
   cursor: pointer;
   -webkit-transition: .3s;
   -moz-transition: .3s;
@@ -148,8 +149,8 @@ body{
 }
 
 .btnCat:hover, .btnCatFocus{
-  background-color: #f9f9f9;
-  box-shadow: 2px 2px 0 #666;
+  /*background-color: #f9f9f9;*/
+  box-shadow: 2px 1px 0 rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.1) inset;
   color: #000;
   border-color: #666;
   text-decoration: none;
@@ -193,6 +194,11 @@ body{
   background-color: #bfb;
 }
 
+.icon-star, .icon-star-half-empty, .icon-star-empty{
+  font-size: 10px;
+  color: lightseagreen;
+}
+
 .imgCarousel{
   height: 150px;
   width: 200px; 
@@ -225,6 +231,7 @@ body{
   list-style-type:none; 
 }
 /* Rating stars (dynamic) */
+
 .rating {
   float:left;
   width: 150px;
@@ -320,8 +327,16 @@ body{
   /*min-height: 250px;*/
 }
 
+#appFeaturedTitle{
+  border-bottom: 1px solid #eeeeee;
+}
+
 #appForm{
   min-height: 975px;
+}
+
+#avatarNavbar{
+  max-height: 40px;
 }
 
 #btnMore{
@@ -360,6 +375,9 @@ body{
 #descFeaturedApp{
   /*padding: 50px;*/
   text-align : justify;
+  margin-top: 10px;
+  height: 120px;
+  overflow: hidden;
 }
 
 #fileToUpload{
@@ -389,13 +407,18 @@ body{
 }
 
 #logoNavbar{
+  height: 60px;
+  margin-top: -7px;
+}
+
+#logoNavbarContainer{
   height: 40px;
 }
 
 #logoTeamSelection{
   width: 267px;
   height: 200px;
-  border: 2px grey solid;
+  /*border: 2px grey solid;*/
   border-radius: 15px;
 }
 
@@ -412,21 +435,42 @@ body{
   padding-top: 10px;
 }
 
+#popularAppsWrapper{
+  background-color: white;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+
 #popularCarousel{
   text-align: center;
 }
 
+#searchNavbar{
+  margin-bottom: 0px;
+  margin-top: 9px;
+}
+
 #socialFeaturedApp{
-  position: absolute;
-  bottom: 60px;
+  /*position: absolute;
+  bottom: 60px;*/
 }
 
 #tableFeatured{
   min-height: 250px;
 }
 
+#tagListFeatured{
+  position: absolute;
+  bottom: 30px;
+  color: white;
+}
+
+#tagListFeatured:hover{
+  color: black;
+}
+
 #teamSelection{
-  padding: 30px;
+  padding: 20px 50px;
 }
 
 #teamSelectionWrapper{
@@ -446,6 +490,7 @@ body{
   -ms-transition: 0.25s;
   -o-transition: 0.25s;
   transition: 0.25s;
+  height: 330px;
 }
 
 #teamSelectionWrapper:after {

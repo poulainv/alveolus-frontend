@@ -137,7 +137,9 @@ $scope.userInfo = $scope.isLogged ? UserService.get({id:$scope.user.id}): null;
 		$('#searchInput').typeahead({
 			source: tagNames,
 			updater:function (item) {
+				console.log(item);
 				$scope.$apply($scope.searchContent = item);
+				console.log($scope.searchContent);
 				return item;
 			}
 		});

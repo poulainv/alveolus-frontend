@@ -15,6 +15,11 @@ factory('CategoryService', function($http,$resource,globals) {
         success(function(data){callback(data)});
     }
 
+    service.getCategoriesWithAllWebapps = function(callback){
+       $http({method:'GET', url: globals.server_url+'/categories/all', cache: true}).
+        success(function(data){callback(data)});
+    }
+
     service.setIdCatSelected = function(id){
         idCatSelected = id;
     }

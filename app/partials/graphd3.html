@@ -1,22 +1,29 @@
 
 <div class="container">
   <div class="row">
-  
+
   	<h3>Alvéoles / Exploration</h3>
   	<hr>
     <div class="span6 offset2">
-    <!-- // <script src="popover.js"></script> -->
       <div class="row-fluid"  id="graph"></div>
-   
-  </div>
-  <div class="span4">
-    <div ng-show="detailViewed" class="hero-unit">
-    	<h4>{{webappSelected.title}} </h4>
-    	<small>{{webappSelected.caption}}</small>
-    	<hr>
-    	<a class="btn btn-success" ng-href="#/avleoles/{{webappSelected.id}}">Voir plus !</a>
     </div>
-   
-  </div>
-</div>
+    <div class="span4">
+      <label class="radio inline">
+      <input type="radio" name="optionsRadios" ng-click="explorationCat()" checked>
+      Par catégories
+    </label>
+    <label class="radio inline">
+      <input type="radio" name="optionsRadios" ng-click="explorationTag()">
+      Par tags
+    </label>
+    <hr>
+      <div ng-show="detailViewed" class="hero-unit">
+       <h4>{{webappSelected.title}} </h4>
+       <small>{{webappSelected.caption}}</small>
+       <hr>
+       <a class="btn btn-success" ng-href="#/avleoles/{{webappSelected.id}}">Voir plus !</a>
+     </div>
+
+   </div>
+ </div>
 </div>

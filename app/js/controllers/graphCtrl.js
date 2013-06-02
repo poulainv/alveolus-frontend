@@ -134,6 +134,7 @@ controller('GraphCtrl', function($scope,$routeParams,$location,TagService,Catego
       .attr("rx",5)
       .attr("ry",5)
       .attr("fill", function(d) {return color(d.name)})
+      .style("opacity","0.6")
 
       if($scope.selection=="cat"){
       
@@ -215,6 +216,10 @@ controller('GraphCtrl', function($scope,$routeParams,$location,TagService,Catego
           $scope.$apply(function(){
             $scope.detailViewed = false ;
           });
+
+          t.select("text")
+          .attr("fill","black")
+
           t.select("rect")
           .attr("rx",5)
           .attr("ry",5)

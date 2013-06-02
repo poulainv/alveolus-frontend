@@ -86,10 +86,8 @@ body{
   display: block!important;
 }
 
-.boxDesc {
+.box-desc {
   color: #444;
-  min-height: 55px;
-  max-height: 55px;
   position: relative;
   padding: 8px;
   background: white;
@@ -103,7 +101,7 @@ body{
   -o-transition: .3s;
   transition: .3s;
 }
-.boxDesc:after, .boxDesc:before {
+.box-desc:after, .box-desc:before {
   right: 100%;
   border: solid transparent;
   content: " ";
@@ -113,14 +111,14 @@ body{
   pointer-events: none;
 }
 
-.boxDesc:after {
+.box-desc:after {
   border-color: rgba(255, 255, 255, 0);
   border-right-color: #FFFFFF;
   border-width: 10px;
   top: 50%;
   margin-top: -10px;
 }
-.boxDesc:before {
+.box-desc:before {
   border-color: rgba(215, 215, 215, 0);
   border-right-color: #D7D7D7;
   border-width: 11px;
@@ -202,6 +200,10 @@ body{
 }
 .dropbox.over {
   background-color: #bce8f1;
+}
+
+.graph-popover{
+
 }
 
 .icon-star, .icon-star-half-empty, .icon-star-empty{
@@ -352,8 +354,8 @@ body{
   margin-top: 1em;
 }
 
-#catList{
-  /*margin-left: 0;*/
+#catListDescription{
+  height: 55px;
 }
 
 #catListWrapper{
@@ -421,6 +423,21 @@ body{
 #formExplicationsWrapper .close {
   right: 0;
   top: 20px;
+}
+
+#graphContainer{
+  min-height: 810px;
+}
+
+#graphDesc{
+  height: 200px;
+  margin-top: 150px;
+}
+
+#graphDescMore{
+  position: absolute;
+  bottom: 15px;
+  width: 250px;
 }
 
 #headerCarousel{

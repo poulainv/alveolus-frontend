@@ -23,7 +23,7 @@ controller('UserCtrl', function($scope, $routeParams, $location, UserService, Se
 
 	$scope.updateAvatar = function(){
 		console.log("updateAVatar");
-		UserService.updateAvatar($scope.files,function(evt){
+		UserService.updateAvatar($scope.user.id,$scope.files,function(evt){
 			$scope.user = jQuery.parseJSON(evt.target.response);
 			console.log($scope.user);
 			$scope.image = $scope.user.image_url

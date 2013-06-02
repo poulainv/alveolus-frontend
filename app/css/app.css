@@ -46,7 +46,7 @@ body{
   line-height: 15px;
   height: 60px;
   text-overflow: ellipsis;
-  text-align: justify;
+  /*text-align: justify;*/
 }
 
 .alveoleRating{
@@ -148,7 +148,7 @@ body{
 
 .btnCat:hover, .btnCatFocus{
   /*background-color: #f9f9f9;*/
-  box-shadow: 2px 1px 0 rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.1) inset;
+  box-shadow:  2px 1px 0 rgb(0, 0, 0), 0 0 50px rgba(0, 0, 0, 0.12) inset;
   color: #000;
   border-color: #666;
   text-decoration: none;
@@ -402,7 +402,7 @@ body{
 
 #descFeaturedApp{
   /*padding: 50px;*/
-  text-align : justify;
+  /*text-align : justify;*/
   margin-top: 10px;
   height: 120px;
   overflow: hidden;

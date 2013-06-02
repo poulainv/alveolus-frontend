@@ -11,18 +11,10 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService,Sess
 	var alertUnlogSuccess = { type: 'info', msg: 'A bientôt ! Vous vous êtes correctement déconnecté' } ;
 	var alertSuggestionSaved = { type: 'success', msg: 'Votre proposition a bien été prise en compte' } ;
 
-// $.ajax({
-//   type: "GET",
-//   url: "http://localhost:3000/users/1",
-//   headers : { 'X-AUTH-TOKEN' : '71yrbjehDJJqyLhVE6eS'}
-// }).done(function( msg ) {
-//   alert( "Data Saved: " + msg );
-// });
-
-$scope.user = SessionService.getUser();
-$scope.isLogged = SessionService.authorized();
-$scope.userInfo = $scope.isLogged ? UserService.get({id:$scope.user.id}): null;
-	// To receive broadcasts
+	$scope.user = SessionService.getUser();
+	$scope.isLogged = SessionService.authorized();
+	$scope.userInfo = $scope.isLogged ? UserService.get({id:$scope.user.id}): null;
+		// To receive broadcasts
 	$scope.$on('onLoggedSuccess', function() {
 		console.log("catch onLoggedSuccess");
 		$scope.user = SessionService.getUser();
@@ -49,7 +41,7 @@ $scope.userInfo = $scope.isLogged ? UserService.get({id:$scope.user.id}): null;
 	 	console.log("catch onUnLoggedSuccess");
 	 	$scope.user = SessionService.getUser();
 	 	$scope.isLogged = SessionService.authorized();
-	 	$scope.isLogged ? addAlert(alertLogFail)  : addAlert(alertUnlogSuccess);
+	 	$scope.isLogged ? addAlert(alertLogFail)  : addAlert(alertLogFail);
 	 });
 
 

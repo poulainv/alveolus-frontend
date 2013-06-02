@@ -30,7 +30,6 @@ controller('GraphCtrl', function($scope,$routeParams,$location,TagService,Catego
   $scope.explorationCat();
 
   function initGraph(data){
-    // console.log(data);
     $scope.categories = data ;
     var root = new Object();
     var index = 0 ;
@@ -66,14 +65,14 @@ controller('GraphCtrl', function($scope,$routeParams,$location,TagService,Catego
           var x,y,gravity;
 
           // if(d.x==0){
-            x = -300;
-            y = d.y+d.dy/2;
-            gravity = "left";
+            // x = -300;
+            // y = d.y+d.dy/2;
+            // gravity = "right";
          //  }
          //  else{
-         //   x = w;
-         //   y = d.y+d.dy/2;
-         //   gravity = "right";
+           x = w;
+           y = d.y+d.dy/2;
+           gravity = "right";
          // }
          return {
           x : x,
@@ -83,7 +82,7 @@ controller('GraphCtrl', function($scope,$routeParams,$location,TagService,Catego
       }
 
 
-      var w = 1000/1.8,
+      var w = 760/1,
       h = 800/1.2,
       x = d3.scale.linear().range([0, w]),
       y = d3.scale.linear().range([0, h]),

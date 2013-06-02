@@ -5,6 +5,12 @@
 angular.module('alveolus.editWebappCtrl', []).
 controller('EditWebappCtrl', function($scope,$routeParams,$location,WebappService,CategoryService) {
 
+	if(!$scope.isLogged){
+		$location.path('/');
+	}
+
+	// $('body').css('background-color','#eef2ea');
+	
 	$scope.webapp = WebappService.get({id:$routeParams.webAppId});
 	$scope.categories=CategoryService.query();		
 

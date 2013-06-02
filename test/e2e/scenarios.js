@@ -43,8 +43,12 @@ describe('alveolus', function() {
     });
 
     describe('Connexion', function() {
-        it('should check connexion and disconnexion', function() {
+        beforeEach(function() {
             browser().navigateTo('../../app/index.html');
+            disconnexion();
+        });
+
+        it('should check connexion and disconnexion', function() {
             // connexion
             connexion();
             expect(element('.alert span').text()).toBe('Parfait, vous êtes correctement authentifié');
@@ -207,7 +211,38 @@ describe('alveolus', function() {
         });
 
         describe('add a comment', function() {
-  			
+            beforeEach(function() {
+                element('.icon-comments').click();
+            });
+
+            it('should propose to add a comment when "Commentaires" tab is clicked and user logged in (remove manually Vincent comment if already there)', function() {
+                expectNonexistentElement('h4:contains(Donnez votre avis):visible');
+                expectNonexistentElement('#textarea:visible');
+                connexion();
+                expectUniqueElement('h4:contains(Donnez votre avis):visible');
+                expectUniqueElement('#textarea:visible');
+            });
+
+            it('should not allow to post a comment until a note is selected', function() {
+                expectNonexistentElement('button:contains(Envoyer)[disabled!="disabled"]');
+                element('#star3').click();
+                expectUniqueElement('button:contains(Envoyer)[disabled!="disabled"]');
+            });
+
+  			it('should add a comment on MyMajorCompany and hide comment form', function() {
+                element('#star3').click();
+                input('comment.body').enter('Une idée sympa! test');
+                element('button:contains(Envoyer)').click();
+                expectUniqueElement('p:contains(Une idée sympa! test):visible');
+                expectNonexistentElement('h4:contains(Donnez votre avis):visible');
+                expectNonexistentElement('#textarea:visible');
+            });
+
+            it('should delete a comment on MyMajorCompany', function() {
+                element('p:contains(Une idée sympa! test) + div i.icon-trash').click();
+                expectNonexistentElement('p:contains(Une idée sympa! test):visible');
+                disconnexion();
+            });
   		});
   	});
   	

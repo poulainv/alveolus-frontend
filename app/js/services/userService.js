@@ -18,7 +18,7 @@ factory('UserService', function($http,$resource,globals, SessionService) {
     };
 
     service.register = function(user,success,error){
-        $http.post(url+'/registration', {'user':user})
+        $http.post(globals.server_url+'/registration', {'user':user})
         .success(function(data, status, headers, config) {
             success(data);
         }).error(function(data, status, headers, config) {

@@ -10,8 +10,8 @@ body{
   margin : 0;
   color: black;
   font-family: 'Open Sans', sans-serif;
-  /*background-color: #F5F6D4;*/
-  background-image: url(/app/img/bgnoise_lg.jpg);
+  background-color: white;
+  /*background-image: url(/app/img/bgnoise_lg.jpg);*/
 }
 
 .alveole{
@@ -169,20 +169,30 @@ body{
   cursor: pointer;
 }
 
+.container-grey{
+  background-color: #eef2ea;
+  padding-bottom: 100px;
+}
+
+.container-white{
+  padding: 20px 0;
+  margin-top: 50px;
+  background-color: white;
+}
+
 .control-group option{
   color: black;
 }
 
 .dropbox{
   margin-left: 0;
-  padding-top: 50px;
+  padding-top: 20px;
   height: 3em;
-  border: 2px solid #DDD;
+  border: 2px solid #bce8f1;
   border-radius: 8px;
-  background-color: lightgreen;
+  background-color: #d9edf7;
   text-align: center;
-  color: black;
-  opacity: 0.5;
+  color: #3a87ad;
   font-size: 2em;
   font-weight: bold;
 }
@@ -191,7 +201,7 @@ body{
   background-color: #F88;
 }
 .dropbox.over {
-  background-color: #bfb;
+  background-color: #bce8f1;
 }
 
 .icon-star, .icon-star-half-empty, .icon-star-empty{
@@ -225,6 +235,10 @@ body{
 
 .modal-backdrop{
   background-color: white;
+}
+
+.navbar .divider-vertical {
+  height: 60px;
 }
 
 .noStyleList{
@@ -332,11 +346,6 @@ body{
 }
 
 #appForm{
-  min-height: 975px;
-}
-
-#avatarNavbar{
-  max-height: 40px;
 }
 
 #btnMore{
@@ -380,18 +389,38 @@ body{
   overflow: hidden;
 }
 
+#imageEditForm{
+  width: 270px;
+}
+
 #fileToUpload{
   display: none;
 }
 
 #footer{
-  margin-top: 100px;
   padding-bottom: 25px;
   background-color:#f5f5f5;
   color:#999999;
 }
 #footer ul{
   list-style:none;
+}
+
+#formContainer{
+  min-height: 1000px;
+}
+
+#formExplications{
+  padding: 20px;
+}
+
+#formExplicationsWrapper{
+  margin-top: 92px;
+}
+
+#formExplicationsWrapper .close {
+  right: 0;
+  top: 20px;
 }
 
 #headerCarousel{
@@ -422,8 +451,13 @@ body{
   border-radius: 15px;
 }
 
+#mainContainer{
+  /*padding-bottom: 100px;*/
+}
+
 #mainWrapper{
   min-height: 915px;
+  padding-bottom: 100px;
 }
 
 #navbar{
@@ -431,12 +465,29 @@ body{
   height: 60px;
 }
 
+#navbar-avatar{
+  height: 40px;
+}
+
+#navbar-avatar-container{
+  width: 84px;
+}
+
+#navbar-dropdown-arrow{
+  position: relative;
+  display: inline-block;
+  border: 5px solid transparent;
+  border-top-color: #999;
+  top: 3px;
+  cursor: pointer;
+}
+
 #navLinks{
   padding-top: 10px;
 }
 
 #popularAppsWrapper{
-  background-color: white;
+  background-color: #eef2ea;
   border-top: 1px solid grey;
   border-bottom: 1px solid grey;
 }

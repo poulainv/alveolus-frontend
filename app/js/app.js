@@ -48,41 +48,43 @@ config(
     var interceptor = ['$location', '$q','$rootScope','$injector', function ($location, $q, $rootScope, $injector ) {
         return function (promise) {
             $('#contentWrapper').hide();
+            $('#navbar-avatar-container').css("visibility","hidden");
             $('#loading').show();
 
             var success = function(response){
-                 $http = $http || $injector.get('$http');
-                    if($http.pendingRequests.length < 1) {
-                       $('#contentWrapper').show();
-                       $('#loading').hide();
-                    }
-                    return response;
-            }
+               $http = $http || $injector.get('$http');
+               if($http.pendingRequests.length < 1) {
+                 $('#contentWrapper').show();
+                 $('#navbar-avatar-container').css("visibility","visible");
+                 $('#loading').hide();
+             }
+             return response;
+         }
 
-            var error = function (response) {
-                    $http = $http || $injector.get('$http');
-                    if($http.pendingRequests.length < 1) {
-                       $('#contentWrapper').show();
-                       $('#loading').hide();
-                    }
+         var error = function (response) {
+            $http = $http || $injector.get('$http');
+            if($http.pendingRequests.length < 1) {
+             $('#contentWrapper').show();
+             $('#loading').hide();
+         }
 
-                    if(response.status === 401) {
-                        $location.path('/');
-                        console.log("catch 401 : cast broadcastNeedLogin, and redirect main page");
-                        $location.path('/');
-                        $rootScope.$broadcast('onNeedLogin');
-                        return $q.reject(response);
-                    }
-                    else {
-                        return $q.reject(response);
-                    }
-            };
+         if(response.status === 401) {
+            $location.path('/');
+            console.log("catch 401 : cast broadcastNeedLogin, and redirect main page");
+            $location.path('/');
+            $rootScope.$broadcast('onNeedLogin');
+            return $q.reject(response);
+        }
+        else {
+            return $q.reject(response);
+        }
+    };
 
-            return promise.then(success, error);
-            }
-        }]
+    return promise.then(success, error);
+}
+}]
 
-    $httpProvider.responseInterceptors.push(interceptor);
+$httpProvider.responseInterceptors.push(interceptor);
 
 }]).value('globals',{server_url : 'http://quiet-spire-4994.herokuapp.com'});
 

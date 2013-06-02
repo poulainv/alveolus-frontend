@@ -3,11 +3,13 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.addWebappCtrl', []).
-controller('AddWebappCtrl', function($scope,$routeParams,$location,WebappService, SocialService, CategoryService, TagService) {
+controller('AddWebappCtrl', function($scope,$routeParams,$location,$window,WebappService, SocialService, CategoryService, TagService) {
 
 	if(!$scope.isLogged){
 		$location.path('/');
 	}
+
+	$('body').css('background-color','#eef2ea');
 
 	var nbTags = 0;
 

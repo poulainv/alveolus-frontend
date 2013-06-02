@@ -182,6 +182,9 @@ body{
   color: black;
 }
 
+.counts-vote{
+  margin-top: 5px;
+}
 .dropbox{
   margin-left: 0;
   padding-top: 20px;
@@ -334,6 +337,10 @@ body{
   border-radius: 4px;
 }
 
+#accountWrapper{
+  min-height: 295px;
+}
+
 #alveolesList{
   border-right: 1px solid #eef2ea;
   min-height: 1000px;
@@ -464,8 +471,6 @@ body{
 #logoTeamSelection{
   width: 267px;
   height: 200px;
-  /*border: 2px grey solid;*/
-  border-radius: 15px;
 }
 
 #mainContainer{
@@ -573,38 +578,46 @@ body{
   box-shadow: 0 7px 16px rgba(0,0,0,0.4);
 }
 
+#voteWrapper{
+  min-height: 300px;
+}
+
 /*Vote
 ----------*/
 .vote-buttons{
   font-size:20px;
   padding: 0;
-  margin: 0;
   list-style: none;
+  cursor: pointer;
+  margin: 0 0 0 45px;
 }
 .vote-buttons li{
   float:left;
-  padding: 5px;
+  padding: 15px 0 0 0;
   margin-right: 10px;
+  font-weight: bold;
 }
 .vote-buttons li i{
   padding : 5px;
   color: #FFF;
+  display: block;
+  background-color: black;
 }
 .vote-buttons .dropdown-menu{
   padding: 5px;
   font-size: 12px;
 }
 .vote-buttons .down i{
-  background-color: #c0392b;
+  /*background-color: #c0392b;*/
 }
 .vote-buttons .down i:hover{
   background-color: #e74c3c;
 }
 .vote-buttons .up i{
-  background-color: #27ae60;
+  /*background-color: #27ae60;*/
 }
 .vote-buttons .up i:hover{
-  background-color: #2ecc71;
+  background-color: green;
 }
 
 .vote-alv{
@@ -614,6 +627,10 @@ body{
 ----------*/
 .required:after{
   content: ' <i class="icon-asterisk red-star"></i>'
+}
+
+.rounded{
+  border-radius: 15px 
 }
 
 
@@ -638,7 +655,7 @@ body{
 /* Loading animation container */
 #loading {
   position: absolute;
-  top: 50%;
+  top: 200px;
   left: 50%;
   width: 28px;
   height: 28px;

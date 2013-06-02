@@ -9,7 +9,7 @@ controller('AddWebappCtrl', function($scope,$routeParams,$location,$window,Webap
 		$location.path('/');
 	}
 
-	$('body').css('background-color','#eef2ea');
+	// $('body').css('background-color','#eef2ea');
 
 	var nbTags = 0;
 

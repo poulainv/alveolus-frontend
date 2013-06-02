@@ -47,14 +47,14 @@ config(
     var interceptor = ['$location', '$q','$rootScope','$injector', function ($location, $q, $rootScope, $injector ) {
         return function (promise) {
             $('#contentWrapper').hide();
-            $('#avatarNavbar').css("visibility","hidden");
+            $('#navbar-avatar-container').css("visibility","hidden");
             $('#loading').show();
 
             var success = function(response){
                $http = $http || $injector.get('$http');
                if($http.pendingRequests.length < 1) {
                  $('#contentWrapper').show();
-                 $('#avatarNavbar').css("visibility","visible");
+                 $('#navbar-avatar-container').css("visibility","visible");
                  $('#loading').hide();
              }
              return response;

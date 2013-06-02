@@ -9,7 +9,7 @@ controller('EditWebappCtrl', function($scope,$routeParams,$location,WebappServic
 		$location.path('/');
 	}
 
-	$('body').css('background-color','#eef2ea');
+	// $('body').css('background-color','#eef2ea');
 	
 	$scope.webapp = WebappService.get({id:$routeParams.webAppId});
 	$scope.categories=CategoryService.query();		

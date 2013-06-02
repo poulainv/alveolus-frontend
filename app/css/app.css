@@ -14,11 +14,6 @@ body{
   /*background-image: url(/app/img/bgnoise_lg.jpg);*/
 }
 
-.alert .close {
-  right: 0;
-  top: 20px;
-}
-
 .alveole{
   padding: 5px;
   background-position: 0 307px;
@@ -174,6 +169,17 @@ body{
   cursor: pointer;
 }
 
+.container-grey{
+  background-color: #eef2ea;
+  padding-bottom: 100px;
+}
+
+.container-white{
+  padding: 20px 0;
+  margin-top: 50px;
+  background-color: white;
+}
+
 .control-group option{
   color: black;
 }
@@ -195,7 +201,7 @@ body{
   background-color: #F88;
 }
 .dropbox.over {
-  background-color: #bfb;
+  background-color: #bce8f1;
 }
 
 .icon-star, .icon-star-half-empty, .icon-star-empty{
@@ -340,13 +346,6 @@ body{
 }
 
 #appForm{
-  padding: 20px 0;
-  margin-top: 50px;
-  background-color: white;
-}
-
-#avatarNavbar{
-  max-height: 40px;
 }
 
 #btnMore{
@@ -408,7 +407,7 @@ body{
 }
 
 #formContainer{
-  min-height: 1076px;
+  min-height: 1000px;
 }
 
 #formExplications{
@@ -417,6 +416,11 @@ body{
 
 #formExplicationsWrapper{
   margin-top: 92px;
+}
+
+#formExplicationsWrapper .close {
+  right: 0;
+  top: 20px;
 }
 
 #headerCarousel{
@@ -448,16 +452,34 @@ body{
 }
 
 #mainContainer{
-  padding-bottom: 100px;
+  /*padding-bottom: 100px;*/
 }
 
 #mainWrapper{
   min-height: 915px;
+  padding-bottom: 100px;
 }
 
 #navbar{
   background-color: black;
   height: 60px;
+}
+
+#navbar-avatar{
+  height: 40px;
+}
+
+#navbar-avatar-container{
+  width: 84px;
+}
+
+#navbar-dropdown-arrow{
+  position: relative;
+  display: inline-block;
+  border: 5px solid transparent;
+  border-top-color: #999;
+  top: 3px;
+  cursor: pointer;
 }
 
 #navLinks{

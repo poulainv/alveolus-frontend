@@ -326,6 +326,11 @@ body{
   cursor: pointer;
 }
 
+.team-member{
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
 .tooltipCustom{
 
   color: #ffffff;

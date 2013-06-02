@@ -246,6 +246,11 @@ body{
   height: 60px;
 }
 
+.navbar-colored{
+  color: rgb(20,63,20);
+  font-weight: bold;
+}
+
 .noStyleList{
   list-style-type:none; 
 }

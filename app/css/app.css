@@ -439,14 +439,23 @@ body{
   display: none;
 }
 
+
+
+/* FOOTER */
+
 #footer{
   padding-bottom: 25px;
   background-color:#f5f5f5;
+  font-size: 90%;
+}
+#footer h5{
   color:#999999;
 }
 #footer ul{
   list-style:none;
 }
+
+
 
 #formContainer{
   min-height: 1000px;

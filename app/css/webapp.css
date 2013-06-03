@@ -145,3 +145,9 @@ tagList{
 .pointer-link{
   cursor:  pointer;
 }
+
+
+
+#unbookmark-link{
+  font-size: 70%;
+}

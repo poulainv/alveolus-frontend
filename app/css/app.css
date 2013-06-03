@@ -242,6 +242,20 @@ body{
   background-color: white;
 }
 
+.navbar-inner{
+  background-color: rgb(236,236,237);
+  background-image: none;
+  /*height: 80px;*/
+}
+
+.navbar-link{
+  font-family: politica;
+  color: black;
+  font-weight: bold;
+  font-size: 17px;
+  margin-top: 5px;
+}
+
 .navbar .divider-vertical {
   height: 60px;
 }
@@ -249,6 +263,15 @@ body{
 .navbar-colored{
   color: rgb(20,63,20);
   font-weight: bold;
+}
+
+.navbar-picto{
+  max-height: 40px;
+}
+
+.navbar-picto-container{
+  height: 40px;
+  text-align: center;
 }
 
 .noStyleList{
@@ -470,12 +493,13 @@ body{
 }
 
 #logoNavbar{
-  height: 60px;
-  margin-top: -7px;
+  height: 40px;
 }
 
 #logoNavbarContainer{
   height: 40px;
+  margin-top: 10px;
+  border-right: 3px solid black;
 }
 
 #logoTeamSelection{
@@ -530,9 +554,14 @@ body{
 
 #searchNavbar{
   margin-bottom: 0px;
-  margin-top: 9px;
+  margin-top: 20px;
 }
 
+#searchInput{
+  outline: none;
+  border:none !important;
+  box-shadow:none !important;
+}
 #socialFeaturedApp{
   /*position: absolute;
   bottom: 60px;*/
@@ -643,6 +672,11 @@ body{
   border-radius: 15px 
 }
 
+/**Font Politica**/
+@font-face {
+  font-family: "Politica";
+  src: url(/app/font/Politica.ttf) format("truetype");
+}
 
 /****** LOADING ANIMATION *****/
 /* Animation keyframes - you need to add prefixes */

@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.mainCtrl', []).
-controller('MainCtrl', function($scope,$routeParams,$location,WebappService,SessionService,TagService,FeedbackService,UserService) {
+controller('MainCtrl', function($scope,$routeParams,$location,$window,WebappService,SessionService,TagService,FeedbackService,UserService) {
 
 	var alertLogSuccess = { type: 'success', msg: 'Parfait, vous êtes correctement authentifié' } ;
 	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifier' } ;
@@ -83,8 +83,10 @@ controller('MainCtrl', function($scope,$routeParams,$location,WebappService,Sess
 	};
 
 	// Reset alert when change location
-	$scope.$on('$locationChangeStart', function(event) {
+	$scope.$on('$routeChangeSuccess', function(event) {
 		$scope.alerts = [];
+		// For google analytics
+	    $window._gaq.push(['_trackPageview', $location.path()]);
 	});
 
 

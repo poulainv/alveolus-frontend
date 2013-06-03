@@ -37,7 +37,8 @@ controller('GraphCtrl', function($scope,$routeParams,$location,TagService,Catego
     root.children =new Array();
     for(var i=0; i<data.length;i++){
       root.children[i] = new Object();
-      root.children[i].name = data[i].name.toUpperCase() ;
+      // root.children[i].name = data[i].name.toUpperCase() ;
+      root.children[i].name = data[i].name
       root.children[i].index =  i ;
       if(data[i].description != null && data[i].description != undefined){
         root.children[i].description = data[i].description ;
@@ -160,9 +161,10 @@ controller('GraphCtrl', function($scope,$routeParams,$location,TagService,Catego
       g.append("text")
       .attr("x", function(d) {  return d.dx / 2; })
       .attr("y", function(d) { return d.dy / 2; })
+      .attr("font-family","Politica")
       .attr("dy", ".35em")
-      .attr("font-size",function(d){ if (d.dx >110) return "20px"
-                                      else return "10px"})
+      .attr("font-size",function(d){ if (d.dx >110) return "25px"
+                                      else return "15px"})
       .attr("text-anchor", "middle")
       .text(function(d) {return d.name.substring(0,16); })
 

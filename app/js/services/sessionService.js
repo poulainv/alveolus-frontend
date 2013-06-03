@@ -70,9 +70,9 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
     function initTryToLogWithCookie(){
       console.log("Try to log with cookies ");
       var cookieToken = getTokenCookie();
-        if(getTokenCookie()!=null && getTokenCookie()!=""){
+        if(cookieToken!=null && cookieToken!=""){
+          token = cookieToken;
           console.log("session cookie found");
-          token = getTokenCookie();
           setUser({success: true, id : getUserIdCookie()});
           setHttpProviderCommonHeaderToken(token);
           broadcastLogged();

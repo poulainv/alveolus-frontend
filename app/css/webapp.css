@@ -12,7 +12,6 @@
 .ulWebAppLinks li{
   margin-top: 5px;
   margin-bottom: 5px;
-  color: #2ecc71;
 }
 .ulWebAppLinks li.marginTop{
   margin-top: 20px;
@@ -24,7 +23,6 @@
   margin-right: 5px;
 }
 .ulWebAppLinks a{
-  color: #2ecc71;
   text-decoration: none;
 }
 .ulWebAppLinks a:hover{
@@ -144,4 +142,32 @@ tagList{
 
 .pointer-link{
   cursor:  pointer;
+}
+
+
+
+#unbookmark-link{
+  font-size: 70%;
+}
+
+
+.margin{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+#title-webapp{
+  background-color: #2ecc71;
+  padding: 1px;
+}
+#title-webapp h1 a{
+  color: white;
+}
+
+
+.label-color{
+  background-color: #2ecc71;
+  padding: 3px;
+  color: white;
 }

@@ -97,8 +97,12 @@ factory('WebappService', function($http,$resource, $rootScope, SessionService,gl
         xhr.send(fd)
     }
 
-    service.bookmarker = function(params,callback){
+    service.bookmark = function(params,callback){
         $http({method:'POST', url: globals.server_url+'/webapps/'+params.id+'/bookmarks', cache: true}).
+        success(function(data){callback(data);});        
+    }
+    service.unbookmark = function(params,callback){
+        $http({method:'DELETE', url: globals.server_url+'/webapps/'+params.id+'/bookmarks', cache: true}).
         success(function(data){callback(data);});        
     }
 

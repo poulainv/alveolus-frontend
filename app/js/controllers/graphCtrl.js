@@ -37,7 +37,7 @@ controller('GraphCtrl', function($scope,$routeParams,$location,TagService,Catego
     root.children =new Array();
     for(var i=0; i<data.length;i++){
       root.children[i] = new Object();
-      root.children[i].name = data[i].name ;
+      root.children[i].name = data[i].name.toUpperCase() ;
       root.children[i].index =  i ;
       if(data[i].description != null && data[i].description != undefined){
         root.children[i].description = data[i].description ;

@@ -45,6 +45,17 @@
                   <div class="navbar-link">MODÉREZ</div>
                 </a>
               </li>
+               <li>
+                <div class="input-append navbar-search">
+                  <form id="searchNavbar" name="myForm navbar-search" ng-submit="search(searchContent)">
+                    <input id="searchInput" class="span2 search-query" type="text" ng-model="searchContent" placeholder="Entrez une recherche">
+                  </form>
+                </div>
+              </li>
+            </ul>
+          </div>
+                        <div class="nav-collapse collapse pull-right">
+            <ul class="nav pull-right">    
               <li ng-hide="isLogged">
                 <a ng-click="openModalLogin()">
                   <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-connect.svg"></div>
@@ -66,13 +77,7 @@
                   </li>
                 </ul>
               </li>  
-              <li>
-                <div class="input-append navbar-search">
-                  <form id="searchNavbar" name="myForm navbar-search" ng-submit="search(searchContent)">
-                    <input id="searchInput" class="span2 search-query" type="text" ng-model="searchContent" placeholder="Entrez une recherche">
-                  </form>
-                </div>
-              </li>            
+                     
             </ul>
           </div>
         </div>

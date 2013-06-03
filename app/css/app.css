@@ -243,6 +243,7 @@ body{
 }
 
 .navbar-inner{
+  
   background-color: rgb(236,236,237);
   background-image: none;
   /*height: 80px;*/
@@ -490,15 +491,16 @@ body{
 }
 
 #headerCarousel{
-  height: 200px;
+  height: 350px;
+
   overflow: hidden;
   text-align: center;
   margin-bottom: 20px;
-  border-bottom: 2px solid black;
+  /*border-bottom: 2px solid black;*/
 }
 
 #headerImgCarousel{
-  margin-top: -370px;
+  margin-top: -130px;
 }
 
 #logoNavbar{
@@ -684,7 +686,7 @@ body{
 /**Font Politica**/
 @font-face {
   font-family: "Politica";
-  src: url(/app/font/Politica.ttf) format("truetype");
+  src: url(../font/Politica.ttf) format("truetype");
 }
 
 /****** LOADING ANIMATION *****/

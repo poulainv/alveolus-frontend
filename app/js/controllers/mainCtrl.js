@@ -18,6 +18,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,WebappServ
 	$scope.$on('onLoggedSuccess', function() {
 		console.log("catch onLoggedSuccess");
 		$scope.user = SessionService.getUser();
+		$scope.userInfo = UserService.get({id:$scope.user.id});
 		$scope.isLogged = SessionService.authorized();
 		$scope.isLogged ? addAlert(alertLogSuccess)  : addAlert(alertLogFail);
 		$scope.closeModalLogin();
@@ -40,6 +41,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,WebappServ
 	 $scope.$on('onUnloggedSuccess', function() {
 	 	console.log("catch onUnLoggedSuccess");
 	 	$scope.user = SessionService.getUser();
+	 	$scope.userInfo = null ;
 	 	$scope.isLogged = SessionService.authorized();
 	 	$scope.isLogged ? addAlert(alertLogFail)  : addAlert(alertLogFail);
 	 });

@@ -8,9 +8,9 @@
 				</div>
 
 
-				<h1 class="text-center"><a href="{{webapp.url}}" target="_blank" style="margin-left:15px;">{{webapp.title}}</a></h1>
+				<div id="title-webapp" class="margin"><h1 class="text-center" sty><a href="{{webapp.url}}" target="_blank">{{webapp.title}}</a></h1></div>
 				
-				<div class="row">
+				<div class="row margin">
 					<div class="span5" ng-show="webapp.vimeo_id">
 						<div class="tabbable">
 							  <ul class="nav nav-pills" style="margin:0;">
@@ -49,17 +49,20 @@
 						</div>
 
 						
-						Tags : 
+						
+						<ul class="ulWebAppLinks">
+							<li><a href="{{webapp.url}}" target="_blank"><i class="icon-link icon-large"></i> Accéder au site</a></li>
+							<li ng-show="webapp.bookmarked"><i class="icon-heart icon-large"></i> Dans vos favoris <a ng-click="unbookmark();" id="unbookmark-link">(Supprimer)</a></a></li>
+							<li ng-hide="webapp.bookmarked"><a ng-click="bookmark();"><i class="icon-heart-empty icon-large"></i> Ajouter aux favoris</a></li>
+							
+						<i class="icon-bookmark icon-large"></i> 
 						<span ng-repeat="tag in webapp.tags">
-							<span class="label tagList">{{tag.name}}</span>
+							<span class="label-color tagList"> {{tag.name}}</span>
 						</span>
 						<a ng-show="webapp.tags" href="#modalAddTag" id="addTagLink" data-toggle="modal"><span class="badge badge-inverse"><i class="icon-plus"></i></span></a>
 						<a ng-hide="webapp.tags" href="#modalAddTag" id="addTagLink" data-toggle="modal"><span class="badge badge-inverse"><i class="icon-plus"></i> Pas encore de tag, ajoutez le premier !</span></a>
 
 						<ul class="ulWebAppLinks">
-							<li><a href="{{webapp.url}}" target="_blank"><i class="icon-link icon-large"></i> Accéder au site</a></li>
-							<li ng-show="webapp.bookmarked"><i class="icon-heart icon-large"></i> Dans vos favoris <a ng-click="unbookmark();" id="unbookmark-link">(Supprimer)</a></a></li>
-							<li ng-hide="webapp.bookmarked"><a ng-click="bookmark();"><i class="icon-heart-empty icon-large"></i> Ajouter aux favoris</a></li>
 							<li>
 								Partager sur ...
 								<a target="_blank" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]={{webapp.url}}&amp;p[images][0]=https://cot-production-assets.s3.amazonaws.com/assets/happy-fingers-da11d5333af9a701244f3606686120a0.jpeg&amp;p[title]={{webapp.title}}&amp;p[summary]={{webapp.caption}}">
@@ -74,12 +77,13 @@
 							</li>
 						</ul>
 
+
 						<p ng-show="webapp.user">Proposée par {{webapp.user.pseudo}}</p>
 					</div>
 				</div>
 
 
-				<div class="row">
+				<div class="row margin">
 					<div class="span3">
 
 						<ul class="ulWebAppLinks">
@@ -138,7 +142,7 @@
 
 					
 
-						<div ng-show="webapp.comments" >
+						<div ng-show="webapp.comments" class="margin">
 							<h3>Commentaires</h3>
 							<!-- Commentaire de l'utilisateur connecté -->
 							<div ng-show="commentUser">
@@ -198,11 +202,12 @@
 							</div>
 						</div>
 
-						<div ng-show="!webapp.comments">Pas de commentaires pour le moment :(</div>
-						<div ng-show="commentUser">Vous avez déjà commenté cette alvéole, vous ne pouvez pas commenter à nouveau.</div>
+
+						<div ng-show="!webapp.comments" class="margin">Pas de commentaires pour le moment :(</div>
+						<div ng-show="commentUser" class="margin">Vous avez déjà commenté cette alvéole, vous ne pouvez pas commenter à nouveau.</div>
 
 
-						<div ng-show="canComment">
+						<div ng-show="canComment" class="margin">
 							<h4>Donnez votre avis !</h4>
 							<table>
 								<tr>

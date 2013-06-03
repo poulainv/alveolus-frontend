@@ -243,7 +243,7 @@ body{
 }
 
 .navbar-inner{
-  
+
   background-color: rgb(236,236,237);
   background-image: none;
   /*height: 80px;*/
@@ -500,7 +500,7 @@ body{
 }
 
 #headerImgCarousel{
-  margin-top: -130px;
+  margin-top: -230px;
 }
 
 #logoNavbar{

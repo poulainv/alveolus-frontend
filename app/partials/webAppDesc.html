@@ -35,21 +35,20 @@
 					ng-hide="webapp.vimeo_id" 
 					ng-mouseenter="showChangeImageLink = true" 
 					ng-mouseleave="showChangeImageLink = false">
+						<img ng-src="{{webapp | image}}" />
 
-					<img ng-src="{{webapp | image}}" />
-
-					<a id="changeImage" ng-href="#/alveoles/{{webapp.id}}/edit#editImagePanel" ng-show="showChangeImageLink">
-						Changer l'image
-					</a>
+						<a id="changeImage" ng-href="#/alveoles/{{webapp.id}}/edit#editImagePanel" ng-show="showChangeImageLink">
+							Changer l'image
+						</a>
 					</div>
 
-					<div class="span5" style="margin-top:20px;">
+					<div class="span5">
 						<div class="starsRatingShow" id="starsRatingShowDesc" ng-show="webapp.average_rate">
 									<i class="{{ {'rate':webapp.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
 								({{webapp.comments.length}} avis)
 						</div>
 
-						<h4>{{webapp.caption}}</h4>
+						
 						Tags : 
 						<span ng-repeat="tag in webapp.tags">
 							<span class="label tagList">{{tag.name}}</span>
@@ -57,18 +56,10 @@
 						<a ng-show="webapp.tags" href="#modalAddTag" id="addTagLink" data-toggle="modal"><span class="badge badge-inverse"><i class="icon-plus"></i></span></a>
 						<a ng-hide="webapp.tags" href="#modalAddTag" id="addTagLink" data-toggle="modal"><span class="badge badge-inverse"><i class="icon-plus"></i> Pas encore de tag, ajoutez le premier !</span></a>
 
-
 						<ul class="ulWebAppLinks">
 							<li><a href="{{webapp.url}}" target="_blank"><i class="icon-link icon-large"></i> Accéder au site</a></li>
-							<li><a ng-click="bookmarker();"><i class="icon-heart-empty icon-large"></i>Ajouter aux favoris</a></li>
-							<li><a ng-click="#/alveoles/{{webapp.id}}/edit"><i class="icon-pencil icon-large"></i>Editer</a></li>
-						</ul>
-							<p ng-show="webapp.user">Proposée par {{webapp.user.pseudo}}</p>
-					</div>
-					</div>
-
-					<div class="row">
-						<ul class="ulWebAppLinks span5 text-center" style="margin-bottom:40px;">
+							<li ng-show="webapp.bookmarked"><i class="icon-heart icon-large"></i> Dans vos favoris <a ng-click="unbookmark();" id="unbookmark-link">(Supprimer)</a></a></li>
+							<li ng-hide="webapp.bookmarked"><a ng-click="bookmark();"><i class="icon-heart-empty icon-large"></i> Ajouter aux favoris</a></li>
 							<li>
 								Partager sur ...
 								<a target="_blank" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]={{webapp.url}}&amp;p[images][0]=https://cot-production-assets.s3.amazonaws.com/assets/happy-fingers-da11d5333af9a701244f3606686120a0.jpeg&amp;p[title]={{webapp.title}}&amp;p[summary]={{webapp.caption}}">
@@ -82,41 +73,40 @@
 								</a>
 							</li>
 						</ul>
+
+						<p ng-show="webapp.user">Proposée par {{webapp.user.pseudo}}</p>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="span3">
+
+						<ul class="ulWebAppLinks">
+							<li ng-show='facebook'>
+								<a href="{{facebook.link}}" target="_blank"><i class="icon-facebook icon-large"></i> Facebook : {{facebook.likes}} likes</a>
+							</li>
+							<li ng-show='twitter'>
+								<a href="https://twitter.com/{{webapp.twitter_id}}" target="_blank"><i class="icon-twitter icon-large"></i> Twitter : {{twitter.followers_count}} followers</a>
+							</li>
+							<li ng-show='webapp.gplus_id'>
+								<a href="https://plus.google.com/{{webapp.gplus_id}}" target="_blank"><i class="icon-google-plus icon-large"></i>Google Plus</a>
+							</li>
+							<li><i class="icon-eye-open icon-large"></i> Vu {{webapp.nb_click_preview + webapp.nb_click_detail}} fois</li>
+							<li><a ng-click="#/alveoles/{{webapp.id}}/edit"><i class="icon-pencil icon-large"></i> Editer</a></li>
+
+						</ul>
+
 					</div>
 
-					
 
-				<div class="tabbable"> 
-				    <ul class="nav nav-tabs">
-				        <li class="active"><a href="#infos" data-toggle="tab"><i class="icon-zoom-in"></i> Qu'est-ce que c'est ?</a></li>
-				        <li><a href="#comments" data-toggle="tab"><i class="icon-comments"></i>  Commentaires</a></li>
-				    </ul>
-
-				    <div class="tab-content">
-				        <div class="tab-pane active" id="infos">
-
-							<div class="row">
-								<div class="span3">
-									<ul class="ulWebAppLinks">
-										<li ng-show='facebook'>
-											<a href="{{facebook.link}}" target="_blank"><i class="icon-facebook icon-large"></i>Facebook : {{facebook.likes}} likes</a>
-										</li>
-										<li ng-show='twitter'>
-											<a href="https://twitter.com/{{webapp.twitter_id}}" target="_blank"><i class="icon-twitter icon-large"></i>Twitter : {{twitter.followers_count}} followers</a>
-										</li>
-										<li ng-show='webapp.gplus_id'>
-											<a href="https://plus.google.com/{{webapp.gplus_id}}" target="_blank"><i class="icon-google-plus icon-large"></i>Google Plus</a>
-										</li>
-										<li class="marginTop"><i class="icon-check icon-large"></i>X personnes participent</li>
-								<li><i class="icon-eye-open icon-large"></i>Vu {{webapp.nb_click_preview + webapp.nb_click_detail}} fois</li>
-
-									</ul>
-								</div>
-
-								<div class="span7">
-									<p>{{webapp.description}}</p>
-								</div>
-							</div>
+					<div class="span7">
+						<div class="well">
+							<h4>{{webapp.caption}}</h4>
+							<p>{{webapp.description}}</p>
+						</div>
+					</div>
+				</div>
 
 
 							
@@ -142,14 +132,14 @@
 							    <button class="btn btn-primary" ng-click="submitTag(tag)">Enregistrer</button>
 							  </div>
 							</div>
-						</div>
+
 
 
 
 					
-					<div class="tab-pane" id="comments">
 
-						<div ng-show="webapp.comments">
+						<div ng-show="webapp.comments" >
+							<h3>Commentaires</h3>
 							<!-- Commentaire de l'utilisateur connecté -->
 							<div ng-show="commentUser">
 								<h4>Mon commentaire</h4>
@@ -183,28 +173,28 @@
 
 							<div ng-show="webapp.comments">
 								<h4>Commentaires des autres utilisateurs</h4>
-							<div class="light-separator"></div>
-							<div ng-repeat="comment in webapp.comments" ng-hide="comment.user.id==user.id">
-								<div class="row" >
-									<aside class="span2">
-										<div class="text-center">
-											<!-- <i ng-show="" class="icon-user icon-4x"></i> -->
-											<img class="img-circle" ng-src="{{comment.user.image_url}}"/>
-							 				<p>{{comment.user.pseudo}}</p>
-								 			<div class="starsRatingShow">
-												<i class="{{ {'rate':comment.rating, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
-									 		</div>
-									 	</div>
-									 </aside>
-									 <section class="span8">
-									 	<div>
-										 	<span class="label pull-right">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
-										 	<p>{{comment.body}}</p>
-										 </div>
-									 </section>
-								</div>
 								<div class="light-separator"></div>
-							</div>
+								<div ng-repeat="comment in webapp.comments" ng-hide="comment.user.id==user.id">
+									<div class="row" >
+										<aside class="span2">
+											<div class="text-center">
+												<!-- <i ng-show="" class="icon-user icon-4x"></i> -->
+												<img class="img-circle" ng-src="{{comment.user.image_url}}"/>
+								 				<p>{{comment.user.pseudo}}</p>
+									 			<div class="starsRatingShow">
+													<i class="{{ {'rate':comment.rating, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+										 		</div>
+										 	</div>
+										 </aside>
+										 <section class="span8">
+										 	<div>
+											 	<span class="label pull-right">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
+											 	<p>{{comment.body}}</p>
+											 </div>
+										 </section>
+									</div>
+									<div class="light-separator"></div>
+								</div>
 							</div>
 						</div>
 
@@ -234,25 +224,15 @@
 						    <button type="button" class="btn"  ng-click="submitComment(comment)" ng-disabled="!comment.rating">Envoyer</button>
 						</div>
 
-						<div ng-show="hadCommented">Merci d'avoir commenté !</div>
-					</div>
-				</div>
-
-
-
-</div>
-
-
 
 
 					<!-- <br>Debug View:  -->
 		      		<!-- <pre>user={{user | json}}</pre> -->
-		      		<pre>commentUser={{commentUser | json}}</pre>
+		      		<!-- <pre>commentUser={{commentUser | json}}</pre> -->
 		      		<!-- <pre>webapp={{webapp | json}}</pre> -->
-
-			</div>
-					
+				</div>	
 		</div>
+								</div>
 				
 	</div>
 

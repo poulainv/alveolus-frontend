@@ -5,6 +5,10 @@
 angular.module('alveolus.webappCtrl', []).
 controller('WebappCtrl', function($scope,$location,$routeParams, WebappService, SocialService, UserService, CommentService, CategoryService) {
 
+	var alertNewComment = {type : 'success', msg : 'Merci d\'avoir commenté cette alvéole ! '};
+	var alertSubmitComment = {type : 'info', msg : 'Votre commentaire a bien été modifié.'};
+	var alertDeleteComment = {type : 'info', msg : 'Votre commentaire a bien été supprimé.'};
+
 	$scope.webAppId=$routeParams.webAppId;
 	$scope.webapp=WebappService.get({id: $routeParams.webAppId}, function(){
 		$scope.webapp.user_id=2;
@@ -75,44 +79,37 @@ controller('WebappCtrl', function($scope,$location,$routeParams, WebappService, 
 	$scope.submitComment = function(comment) {
 	    CommentService.addComment({webappId : $scope.webAppId, comment : comment.body, 
 	    	rating : comment.rating}, function(data){
-	    		UserService.alreadyCommented({webAppId : $scope.webAppId, userId : $scope.user.id}, function(data){
-	    			$scope.commentUser=data;
-	    		});
-	    		$scope.webapp.comments=data;
+	    		$scope.commentUser=data;
 	    		$scope.canComment=false;
-	    		$scope.hadCommented=true;
-	    		$scope.webapp=WebappService.get({id: $routeParams.webAppId});
-	    		$scope.alerts.push({type : 'success', msg : 'Merci d\'avoir commenté cette alvéole ! '});
+	    		$scope.addAlert(alertNewComment);
 	    });
   	};
 
   	$scope.submitEditComment=function(comment){
   		CommentService.updateComment({commentId : comment.id, comment : comment.body, 
 	    	rating : comment.rating}, function(data){
-	    		UserService.alreadyCommented({webAppId : $scope.webAppId, userId : $scope.user.id}, function(data){
-	    			$scope.commentUser=data;
-	    		});
-	    		// $scope.webapp.comments=data;
+	    		$scope.commentUser=data;
 	    		$scope.editComment=false;
-	    		$scope.alerts.push({type : 'info', msg : 'Votre commentaire a bien été modifié.'});
+	    		$scope.addAlert(alertSubmitComment);
 	    });
   	}
 
   	$scope.deleteComment=function(comment){
   		CommentService.deleteComment({commentId : comment.id}, function(data){
-	    		// $scope.webapp.comments=data;
-
-	    		$scope.webapp=WebappService.get({id: $routeParams.webAppId});
 	    		$scope.canComment=true;
 	    		$scope.commentUser=null;
-	    		$scope.alerts.push({type : 'info', msg : 'Votre commentaire a bien été supprimé.'});
+	    		$scope.addAlert(alertDeleteComment);
 	    });
   	}
 
-  	$scope.bookmarker=function(){
-  		console.log('function');
-  		WebappService.bookmarker({id : $scope.webAppId}, function(data){
-	    		console.log('bookmarker => ' + data);
+  	$scope.bookmark=function(){
+  		WebappService.bookmark({id : $scope.webAppId}, function(data){
+	    		$scope.webapp.bookmarked=true;	    			
+	    });
+  	}
+  	$scope.unbookmark=function(){
+  		WebappService.unbookmark({id : $scope.webAppId}, function(data){
+	    	$scope.webapp.bookmarked=false;
 	    });
   	}
 

@@ -7,7 +7,7 @@ a:link, a:visited, a:hover, a:active {
 }
 
 body{
-  margin : 0;
+  margin : 86px 0 0 0;
   color: black;
   font-family: 'Open Sans', sans-serif;
   background-color: white;
@@ -213,7 +213,7 @@ h1, h2, h3, h4, h5{
 
 .icon-star, .icon-star-half-empty, .icon-star-empty{
   font-size: 10px;
-  color: lightseagreen;
+  color: rgb(57,181,74);
 }
 
 .imgCarousel{
@@ -352,8 +352,11 @@ h1, h2, h3, h4, h5{
 }
 
 .tag{
-  font-size: 12px;
+  color: white !important;
   font-style: italic;
+  background-color: rgb(57,181,74);
+  padding: 3px;
+  font-family: politica;
   cursor: pointer;
 }
 
@@ -609,8 +612,7 @@ h1, h2, h3, h4, h5{
   background-image: -ms-linear-gradient(left,#DED4B9 0%, #F2EEEB 35%, #F2EEEB 65%, #DED4B9 100%);
   background-image: -o-linear-gradient(left,#DED4B9 0%, #F2EEEB 35%, #F2EEEB 65%, #DED4B9 100%);*/
   background-color: #fff;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.25), 0 0 50px rgba(0,0,0,0.1) inset;
-  border-radius: 1%     1%     1%     1% /     1%     1%     1%     1%;
+  border: 1px solid grey;
   margin-bottom: 20px;
   -webkit-transition: 0.25s;
   -moz-transition: 0.25s;
@@ -618,18 +620,6 @@ h1, h2, h3, h4, h5{
   -o-transition: 0.25s;
   transition: 0.25s;
   height: 330px;
-}
-
-#teamSelectionWrapper:after {
-  position: absolute;
-  width: 80%;
-  height: 40%;
-  left: 10%;
-  border-radius: 50%;
-  z-index: -1;
-  bottom: 0%;
-  content: "";
-  box-shadow: 0 7px 16px rgba(0,0,0,0.4);
 }
 
 #voteWrapper{

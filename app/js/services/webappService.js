@@ -97,12 +97,17 @@ factory('WebappService', function($http,$resource, $rootScope, SessionService,gl
         xhr.send(fd)
     }
 
+    service.tracker = function(params){
+        $http({method:'POST', url: globals.server_url+'/webapps/'+params.id+'/click/'+params.type});
+    }
+
+
     service.bookmark = function(params,callback){
-        $http({method:'POST', url: globals.server_url+'/webapps/'+params.id+'/bookmarks', cache: true}).
+        $http({method:'POST', url: globals.server_url+'/webapps/'+params.id+'/bookmarks'}).
         success(function(data){callback(data);});        
     }
     service.unbookmark = function(params,callback){
-        $http({method:'DELETE', url: globals.server_url+'/webapps/'+params.id+'/bookmarks', cache: true}).
+        $http({method:'DELETE', url: globals.server_url+'/webapps/'+params.id+'/bookmarks'}).
         success(function(data){callback(data);});        
     }
 

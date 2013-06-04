@@ -452,8 +452,10 @@ body{
 #footer h5{
   color:#999999;
 }
-#footer ul{
+#footer .footer-list{
   list-style:none;
+  padding: 0;
+  margin: 0;
 }
 
 

@@ -7,11 +7,15 @@ a:link, a:visited, a:hover, a:active {
 }
 
 body{
-  margin : 0;
+  margin : 81px 0 0 0;
   color: black;
   font-family: 'Open Sans', sans-serif;
   background-color: white;
   /*background-image: url(/app/img/bgnoise_lg.jpg);*/
+}
+
+h1, h2, h3, h4, h5{
+  font-family: Politica;
 }
 
 .alveole{
@@ -33,8 +37,6 @@ body{
 }
 
 .alveoleName{
-  font-size: 12px;
-  font-weight: bold;
   line-height: 15px;
   padding: 5px;
 }
@@ -211,7 +213,7 @@ body{
 
 .icon-star, .icon-star-half-empty, .icon-star-empty{
   font-size: 10px;
-  color: lightseagreen;
+  color: rgb(57,181,74);
 }
 
 .imgCarousel{
@@ -253,8 +255,7 @@ body{
   font-family: politica;
   color: black;
   font-weight: bold;
-  font-size: 17px;
-  margin-top: 5px;
+  font-size: 16px;
 }
 
 .navbar .divider-vertical {
@@ -267,7 +268,7 @@ body{
 }
 
 .navbar-picto{
-  max-height: 40px;
+  max-height: 35px;
 }
 
 .navbar-picto-container{
@@ -350,8 +351,11 @@ body{
 }
 
 .tag{
-  font-size: 12px;
-  font-style: italic;
+  font-family: Politica;
+  color: white !important;
+  /*font-style: italic;*/
+  background-color: rgb(57,181,74);
+  padding: 5px;
   cursor: pointer;
 }
 
@@ -389,6 +393,10 @@ body{
 }
 
 #appForm{
+}
+
+#beta-label{
+  font-size: 14px;
 }
 
 #btnMore{
@@ -506,11 +514,11 @@ body{
 }
 
 #logoNavbar{
-  height: 40px;
+  height: 30px;
 }
 
 #logoNavbarContainer{
-  height: 40px;
+  height: 30px;
   margin-top: 10px;
   border-right: 3px solid black;
 }
@@ -536,6 +544,8 @@ body{
 
 #navbar-avatar{
   height: 40px;
+  margin-top: -5px;
+  margin-bottom: 5px;
 }
 
 #navbar-avatar-container{
@@ -568,6 +578,7 @@ body{
 #searchNavbar{
   margin-bottom: 0px;
   margin-top: 20px;
+  margin-left: 20px;
 }
 
 #searchInput{
@@ -607,8 +618,7 @@ body{
   background-image: -ms-linear-gradient(left,#DED4B9 0%, #F2EEEB 35%, #F2EEEB 65%, #DED4B9 100%);
   background-image: -o-linear-gradient(left,#DED4B9 0%, #F2EEEB 35%, #F2EEEB 65%, #DED4B9 100%);*/
   background-color: #fff;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.25), 0 0 50px rgba(0,0,0,0.1) inset;
-  border-radius: 1%     1%     1%     1% /     1%     1%     1%     1%;
+  border: 1px solid grey;
   margin-bottom: 20px;
   -webkit-transition: 0.25s;
   -moz-transition: 0.25s;
@@ -616,18 +626,6 @@ body{
   -o-transition: 0.25s;
   transition: 0.25s;
   height: 330px;
-}
-
-#teamSelectionWrapper:after {
-  position: absolute;
-  width: 80%;
-  height: 40%;
-  left: 10%;
-  border-radius: 50%;
-  z-index: -1;
-  bottom: 0%;
-  content: "";
-  box-shadow: 0 7px 16px rgba(0,0,0,0.4);
 }
 
 #voteWrapper{
@@ -689,6 +687,16 @@ body{
 @font-face {
   font-family: "Politica";
   src: url(../font/Politica.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Politica-bold";
+  src: url(../font//Politica/Politica-Bold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Politica-italic";
+  src: url(../font//Politica/Politica-Italic.otf) format("opentype");
 }
 
 /****** LOADING ANIMATION *****/

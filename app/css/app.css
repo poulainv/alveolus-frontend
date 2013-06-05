@@ -7,7 +7,7 @@ a:link, a:visited, a:hover, a:active {
 }
 
 body{
-  margin : 86px 0 0 0;
+  margin : 81px 0 0 0;
   color: black;
   font-family: 'Open Sans', sans-serif;
   background-color: white;
@@ -255,8 +255,7 @@ h1, h2, h3, h4, h5{
   font-family: politica;
   color: black;
   font-weight: bold;
-  font-size: 17px;
-  margin-top: 5px;
+  font-size: 16px;
 }
 
 .navbar .divider-vertical {
@@ -269,7 +268,7 @@ h1, h2, h3, h4, h5{
 }
 
 .navbar-picto{
-  max-height: 40px;
+  max-height: 35px;
 }
 
 .navbar-picto-container{
@@ -511,11 +510,11 @@ h1, h2, h3, h4, h5{
 }
 
 #logoNavbar{
-  height: 40px;
+  height: 30px;
 }
 
 #logoNavbarContainer{
-  height: 40px;
+  height: 30px;
   margin-top: 10px;
   border-right: 3px solid black;
 }
@@ -541,6 +540,8 @@ h1, h2, h3, h4, h5{
 
 #navbar-avatar{
   height: 40px;
+  margin-top: -5px;
+  margin-bottom: 5px;
 }
 
 #navbar-avatar-container{
@@ -573,6 +574,7 @@ h1, h2, h3, h4, h5{
 #searchNavbar{
   margin-bottom: 0px;
   margin-top: 20px;
+  margin-left: 20px;
 }
 
 #searchInput{

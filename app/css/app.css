@@ -1,4 +1,19 @@
 /* app css stylesheet */
+/**Font Politica**/
+@font-face {
+  font-family: "Politica";
+  src: url(../font/Politica.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Politica-bold";
+  src: url(../font//Politica/Politica-Bold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Politica-italic";
+  src: url(../font//Politica/Politica-Italic.otf) format("opentype");
+}
 
 a:link, a:visited, a:hover, a:active {
   color:black;
@@ -18,71 +33,69 @@ h1, h2, h3, h4, h5{
   font-family: Politica;
 }
 
+/** ALVEOLE LST ITEM
+  * Define how an alveole is displayed in a list
+  * or in the carousel
+  **/
 .alveole{
-  padding: 5px;
-  background-position: 0 307px;
-  height: 360px;
-  max-width: 200px;
   overflow: hidden;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -o-border-radius: 6px;
-  -ms-border-radius: 6px;
-  -khtml-border-radius: 6px;
-  border-radius: 6px;
+  position: relative;
+  height: 215px;
   background-color: #fff;
   border: 1px solid #d0d5cb;
+  padding: 5px; 
+}
+.alveole:hover .alveoleContent{
+  top:0;
+}
+.alveoleHeader{
   position: relative;
-  background-color: #fff;
+}
+.alveoleName{
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+  line-height: 20px;
+}
+.alveoleContent{
+  position: absolute;
+  background-color: #FFF;
+  height: 215px;
+  width: 100%;
+  top: 215px;
+  transition: top .3s ease-in;
 }
 
-.alveoleName{
-  line-height: 15px;
-  padding: 5px;
+.alveoleContent .more{
+  margin-top: 20px;
 }
 
 .alveoleDesc{
   color: #75796f!important;
-  padding: 0 5px;
   font-size: 12px!important;
-  line-height: 15px;
-  height: 60px;
-  text-overflow: ellipsis;
-  /*text-align: justify;*/
+  text-align: justify;
+  height: 105px;
 }
-
-.alveoleRating{
+.cropedImg{
+  height: 170px;
+  overflow: hidden;  
+  position: relative;
+}
+.alveoleImg{
+  height: 170px;
   position: absolute;
-  left: 10px;
-  bottom: 30px;
 }
 
 .alveoleTagsWrapper{
-  position:absolute;
-  bottom:10px;
-  left:10px;
-  width: 200px;
-  height: 18px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-family: "Politica";
   white-space: nowrap;
+  width: 200px;
+  height: 20px;
+  text-overflow: ellipsis;
+  position:absolute;
+  overflow: hidden;
 }
-
-.alveoleWrap{
-  display: inline-block;
-  vertical-align: top;
-  text-align: left;
-  moz-border-radius: 9px;
-  -webkit-border-radius: 9px;
-  -o-border-radius: 9px;
-  -ms-border-radius: 9px;
-  -khtml-border-radius: 9px;
-  border-radius: 9px;
-  background: #eef2ea;
-  padding: 4px;
-  margin: 5px 10px;
-  clear: both;
-}
+/* -------------------- */
 
 .block{
   display: block!important;
@@ -683,22 +696,6 @@ h1, h2, h3, h4, h5{
   border-radius: 15px 
 }
 
-/**Font Politica**/
-@font-face {
-  font-family: "Politica";
-  src: url(../font/Politica.ttf) format("truetype");
-}
-
-@font-face {
-  font-family: "Politica-bold";
-  src: url(../font//Politica/Politica-Bold.otf) format("opentype");
-}
-
-@font-face {
-  font-family: "Politica-italic";
-  src: url(../font//Politica/Politica-Italic.otf) format("opentype");
-}
-
 /****** LOADING ANIMATION *****/
 /* Animation keyframes - you need to add prefixes */
 
@@ -722,24 +719,9 @@ h1, h2, h3, h4, h5{
   position: absolute;
   top: 200px;
   left: 50%;
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   margin: -14px 0 0 -14px;
-}
-
-/* Spinning circle (inner circle) */
-#loading .maskedCircle {
-  width: 20px;
-  height: 20px;
-  border-radius: 12px;
-  border: 3px solid black;
-}
-
-/* Spinning circle mask */
-#loading .mask {
-  width: 12px;
-  height: 12px;
-  overflow: hidden;
 }
 
 /* Spinner */
@@ -747,10 +729,10 @@ h1, h2, h3, h4, h5{
   position: absolute;
   /*left: 550px;*/
   top: 150px;
-  width: 26px;
-  height: 26px;
-  -webkit-animation: spin 1s infinite linear;
-  -o-animation: spin 1s infinite linear;
-  animation: spin 1s infinite linear;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 3s infinite linear;
+  -o-animation: spin 3s infinite linear;
+  animation: spin 3s infinite linear;
 }
 

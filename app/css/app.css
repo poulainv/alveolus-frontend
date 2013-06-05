@@ -351,11 +351,11 @@ h1, h2, h3, h4, h5{
 }
 
 .tag{
+  font-family: Politica;
   color: white !important;
-  font-style: italic;
+  /*font-style: italic;*/
   background-color: rgb(57,181,74);
-  padding: 3px;
-  font-family: politica;
+  padding: 5px;
   cursor: pointer;
 }
 
@@ -393,6 +393,10 @@ h1, h2, h3, h4, h5{
 }
 
 #appForm{
+}
+
+#beta-label{
+  font-size: 14px;
 }
 
 #btnMore{
@@ -688,6 +692,11 @@ h1, h2, h3, h4, h5{
 @font-face {
   font-family: "Politica-bold";
   src: url(../font//Politica/Politica-Bold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Politica-italic";
+  src: url(../font//Politica/Politica-Italic.otf) format("opentype");
 }
 
 /****** LOADING ANIMATION *****/

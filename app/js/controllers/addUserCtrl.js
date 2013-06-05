@@ -6,7 +6,7 @@ angular.module('alveolus.addUserCtrl', []).
 controller('AddUserCtrl', function($scope,$routeParams,UserService) {
     $scope.user={};
     var registerSuccessAlert = { type: 'success', msg: 'Votre inscription a correctement été prise en compte' } ;
-    var registerFailAlert = { type: 'error', msg: 'Il y a eu une erreur durant votre inscription' } ;
+    var registerFailAlert = { type: 'error', msg: 'Il y a eu une erreur durant votre inscription, votre email a surement été déjà utilisé !' } ;
     $scope.generatePseudo = function(){
         //Complète le pseudo si il contient moins de 8 caractères
         if($scope.user.email && !$scope.user.pseudo){

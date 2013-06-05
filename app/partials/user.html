@@ -113,15 +113,15 @@
 
 
 							<div class="tab-pane" id="comments">
-								<div ng-show="user.comments">
+								<div ng-show="user.comments.length!=0">
 									<div class="light-separator"></div>
 									<div ng-repeat="comment in user.comments">
 										<div class="row">
 											<aside class="span2">
 												<div class="row">
 													<div class="span2 text-center">
-														<a href="#alveoles/{{comment.webapp.id}}"><img class="span2" ng-src="{{comment.webapp.image_url}}"/>
-															<p class="span2 text-center">{{comment.webapp.title}}</p>
+														<a href="#alveoles/{{comment.webapp_id}}"><img class="span2" ng-src="{{comment.webapp_image_url}}"/>
+															<p class="span2 text-center">{{comment.webapp_title}}</p>
 														</a>
 													</div>
 												</div>
@@ -139,7 +139,7 @@
 									</div>
 								</div>
 
-								<div ng-show="!user.comments">Vous n'avez posté aucun commentaire :(
+								<div ng-show="user.comments.length==0">Vous n'avez posté aucun commentaire :(
 								</div>
 
 							</div>

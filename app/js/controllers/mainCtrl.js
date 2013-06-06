@@ -43,7 +43,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,WebappServ
 	 	$scope.user = SessionService.getUser();
 	 	$scope.userInfo = null ;
 	 	$scope.isLogged = SessionService.authorized();
-	 	$scope.isLogged ? addAlert(alertLogFail)  : addAlert(alertLogFail);
+	 	$scope.isLogged ? addAlert(alertLogFail)  : addAlert(alertUnlogSuccess);
 	 });
 
 

@@ -15,7 +15,7 @@
   src: url(../font//Politica/Politica-Italic.otf) format("opentype");
 }
 
-a:link, a:visited, a:hover, a:active {
+a, a:link, a:visited, a:hover, a:active {
   color:black;
   text-decoration: none;
   cursor: pointer;
@@ -519,7 +519,12 @@ h1, h2, h3, h4, h5{
   overflow: hidden;
   text-align: center;
   margin-bottom: 20px;
-  /*border-bottom: 2px solid black;*/
+  /*background-color:  -webkit-linear-gradient(top, rgb(220,220,220), rgb(208,208,208));*/
+  /*background-image: url("../img/photos-background/main4.jpg"), -webkit-gradient(linear, left bottom, left top, from(rgb(220,220,220)), to(rgb(208,208,208)));*/
+  background-image: url("../img/photos-background/main4.jpg");
+  background-size:1349px 927px;
+  background-position: 50% 40%;
+  background-repeat: no-repeat;
 }
 
 #headerImgCarousel{

@@ -14,8 +14,6 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,WebappServ
 	var alertUnlogSuccess = { type: 'info', msg: 'A bientôt ! Vous vous êtes correctement déconnecté' } ;
 	var alertSuggestionSaved = { type: 'success', msg: 'Votre proposition a bien été prise en compte' } ;
 
-	$scope.searchContent = "";
-
 	$scope.user = SessionService.getUser();
 	$scope.isLogged = SessionService.authorized();
 	$scope.userInfo = $scope.isLogged ? UserService.get({id:$scope.user.id}): null;

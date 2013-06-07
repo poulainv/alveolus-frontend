@@ -14,6 +14,8 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,WebappServ
 	var alertUnlogSuccess = { type: 'info', msg: 'A bientôt ! Vous vous êtes correctement déconnecté' } ;
 	var alertSuggestionSaved = { type: 'success', msg: 'Votre proposition a bien été prise en compte' } ;
 
+	$scope.searchContent = "";
+
 	$scope.user = SessionService.getUser();
 	$scope.isLogged = SessionService.authorized();
 	$scope.userInfo = $scope.isLogged ? UserService.get({id:$scope.user.id}): null;
@@ -142,23 +144,6 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,WebappServ
 		});
 	}
 
-
-	$scope.tags=TagService.query(function(){
-
-		var tagNames = [];
-		for(var i in $scope.tags){
-			tagNames.push($scope.tags[i].name);
-		}
-
-		$('#searchInput').typeahead({
-			source: tagNames,
-			updater:function (item) {
-				console.log(item);
-				$scope.$apply($scope.searchContent = item);
-				console.log($scope.searchContent);
-				return item;
-			}
-		});
-	});
+	$scope.tags=TagService.query();
 
 });

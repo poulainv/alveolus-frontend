@@ -69,7 +69,7 @@ config(
          }
 
          if(response.status === 401) {
-            if(response.config.url == "http://quiet-spire-4994.herokuapp.com/sign_in.json"){
+            if(response.config.url.indexOf("sign_in.json") !== -1){
                 //if wrong id
                 console.log('catch 401 : wrong id/pass - cast broadcastWrongPassword');
                 $rootScope.$broadcast('onWrongPassword');

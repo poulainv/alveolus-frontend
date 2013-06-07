@@ -1,86 +1,86 @@
-    <div class="navbar navbar-static-top navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <!-- <div> -->
+<div class="navbar navbar-static-top navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <!-- <div> -->
 
-          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
 
-          <!-- Be sure to leave the brand out there if you want it shown -->
-          <a id="logoNavbarContainer" class="brand" ng-href="#">
-            <!-- <img src="img/logo_home.svg" type="image/svg+xml" alt="AlveolUs"/> -->
-            <img id="logoNavbar" src="img/logo.png" alt="AlveolUs"/>
-            <div id="beta-label">BETA</div>
-          </a>
+      <!-- Be sure to leave the brand out there if you want it shown -->
+      <a id="logoNavbarContainer" class="brand" ng-href="#">
+        <!-- <img src="img/logo_home.svg" type="image/svg+xml" alt="AlveolUs"/> -->
+        <img id="logoNavbar" src="img/logo.png" alt="AlveolUs"/>
+        <div id="beta-label">BETA</div>
+      </a>
 
-          <!-- <img src="img/navbar-divider.png"> -->
+      <!-- <img src="img/navbar-divider.png"> -->
 
-          
-          <div class="nav-collapse collapse pull-left">
-            <ul class="nav pull-left">
+      
+      <div class="nav-collapse collapse pull-left">
+        <ul class="nav pull-left">
+          <li>
+            <a ng-href="#/about" ng-init="about = 'about'" ng-mouseenter="about = 'about-green'" ng-mouseleave="about='about'">
+              <div class="navbar-picto-container"><img class="navbar-picto" ng-src="img/picto/picto-{{about}}.svg"></div>
+              <div class="navbar-link">À PROPOS</div>
+            </a>
+          </li>
+          <li>
+            <a ng-click="goToAddWebappPage()" ng-init="propose = 'propose'" ng-mouseenter="propose = 'propose-green'" ng-mouseleave="propose='propose'">
+              <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{propose}}.svg"></div>
+              <div class="navbar-link">PROPOSEZ</div>
+            </a>
+          </li>
+          <li>
+            <a ng-href="#/alveoles" ng-init="browse = 'browse'" ng-mouseenter="browse = 'browse-green'" ng-mouseleave="browse='browse'">
+              <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{browse}}.svg"></div>
+              <div class="navbar-link">DÉCOUVREZ</div>
+            </a>
+          </li>
+          <li>
+            <a ng-href="#/vote" ng-init="vote = 'vote'" ng-mouseenter="vote = 'vote-green'" ng-mouseleave="vote='vote'">
+              <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{vote}}.svg"></div>
+              <div class="navbar-link">MODÉREZ</div>
+            </a>
+          </li>
+          <li>
+            <div class="input-append navbar-search">
+              <form id="searchNavbar" name="myForm navbar-search" ng-submit="search(searchContent)">
+                <input id="searchInput" class="span2 search-query" type="text" ng-model="searchContent" placeholder="Entrez une recherche"  typeahead="tag.name for tag in tags | filter:$viewValue">
+              </form>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-collapse collapse pull-right">
+        <ul class="nav pull-right">    
+          <li ng-hide="isLogged">
+            <a ng-click="openModalLogin()" ng-init="connect = 'connect'" ng-mouseenter="connect = 'connect-green'" ng-mouseleave="connect='connect'">
+              <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{connect}}.svg"></div>
+              <div class="navbar-link">CONNEXION</div>
+            </a>
+          </li>
+          <li class="dropdown" ng-show="isLogged" id="navbar-avatar-container">
+            <a class="dropdown-toggle">
+              <img id="navbar-avatar" src="{{userInfo.image_url}}" class="img-circle"/>
+              <span id="navbar-dropdown-arrow"></span>
+              <div class="navbar-link">COMPTE</div>
+            </a>
+            <ul class="dropdown-menu">
               <li>
-                <a ng-href="#/about" ng-init="about = 'about'" ng-mouseenter="about = 'about-green'" ng-mouseleave="about='about'">
-                  <div class="navbar-picto-container"><img class="navbar-picto" ng-src="img/picto/picto-{{about}}.svg"></div>
-                  <div class="navbar-link">À PROPOS</div>
-                </a>
+                <a ng-href="#/user">Mon compte</a>
               </li>
               <li>
-                <a ng-click="goToAddWebappPage()" ng-init="propose = 'propose'" ng-mouseenter="propose = 'propose-green'" ng-mouseleave="propose='propose'">
-                  <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{propose}}.svg"></div>
-                  <div class="navbar-link">PROPOSEZ</div>
-                </a>
-              </li>
-              <li>
-                <a ng-href="#/alveoles" ng-init="browse = 'browse'" ng-mouseenter="browse = 'browse-green'" ng-mouseleave="browse='browse'">
-                  <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{browse}}.svg"></div>
-                  <div class="navbar-link">DÉCOUVREZ</div>
-                </a>
-              </li>
-              <li>
-                <a ng-href="#/vote" ng-init="vote = 'vote'" ng-mouseenter="vote = 'vote-green'" ng-mouseleave="vote='vote'">
-                  <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{vote}}.svg"></div>
-                  <div class="navbar-link">MODÉREZ</div>
-                </a>
-              </li>
-               <li>
-                <div class="input-append navbar-search">
-                  <form id="searchNavbar" name="myForm navbar-search" ng-submit="search(searchContent)">
-                    <input id="searchInput" class="span2 search-query" type="text" ng-model="searchContent" placeholder="Entrez une recherche">
-                  </form>
-                </div>
+                <a ng-click="sign_out()">Deconnexion</a>
               </li>
             </ul>
-          </div>
-                        <div class="nav-collapse collapse pull-right">
-            <ul class="nav pull-right">    
-              <li ng-hide="isLogged">
-                <a ng-click="openModalLogin()" ng-init="connect = 'connect'" ng-mouseenter="connect = 'connect-green'" ng-mouseleave="connect='connect'">
-                  <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{connect}}.svg"></div>
-                  <div class="navbar-link">CONNEXION</div>
-                </a>
-              </li>
-              <li class="dropdown" ng-show="isLogged" id="navbar-avatar-container">
-                <a class="dropdown-toggle">
-                  <img id="navbar-avatar" src="{{userInfo.image_url}}" class="img-circle"/>
-                  <span id="navbar-dropdown-arrow"></span>
-                  <div class="navbar-link">COMPTE</div>
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a ng-href="#/user">Mon compte</a>
-                  </li>
-                  <li>
-                    <a ng-click="sign_out()">Deconnexion</a>
-                  </li>
-                </ul>
-              </li>  
-                     
-            </ul>
-          </div>
-        </div>
+          </li>  
+
+        </ul>
       </div>
     </div>
+  </div>
+</div>

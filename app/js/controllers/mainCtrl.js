@@ -7,7 +7,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,WebappServ
 
 	var alertLogSuccess = { type: 'success', msg: 'Parfait, vous êtes correctement authentifié' } ;
 	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifier' } ;
-	var alertWrongId = { type: 'error', msg: 'Mauvais mot de passe.' } ;
+	var alertWrongPassword = { type: 'error', msg: 'Mauvais mot de passe.' } ;
 	var alertNotConfirmed = { type: 'error', msg: 'Vous devez valider votre inscription avec le mail de confirmation.' } ;
 	var alertUnLogFail = { type: 'error', msg: 'Oops, erreur dans la déconnexion' } ;
 	var alertUnauthorized = { type: 'error', msg: 'Vous devez être authentifié' } ;
@@ -49,10 +49,10 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,WebappServ
 	 	$scope.isLogged ? addAlert(alertUnLogFail)  : addAlert(alertUnlogSuccess);
 	 });
 
-	 $scope.$on('onWrongId', function(){
-	 	console.log('catch onWrongId');
+	 $scope.$on('onWrongPassword', function(){
+	 	console.log('catch onWrongPassword');
 	 	SessionService.resetSession();
-	 	$scope.addModalAlert(alertWrongId);	 
+	 	$scope.addModalAlert(alertWrongPassword);	 
 	 	// $scope.closeModalLogin();	
 	 });
 

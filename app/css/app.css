@@ -521,7 +521,6 @@ h1, h2, h3, h4, h5{
 
 #headerContainer{
   background: -webkit-linear-gradient(top, rgb(208,208,208), rgb(220,220,220));
-  margin-bottom: 20px;
 }
 
 #headerCarousel{
@@ -529,7 +528,7 @@ h1, h2, h3, h4, h5{
 
   overflow: hidden;
   text-align: center;
-  margin-boheaddttom: 20px;
+  margin-bottom: 20px;
   /*background-color:  -webkit-linear-gradient(top, rgb(220,220,220), rgb(208,208,208));*/
   /*background-image: url("../img/photos-background/main4.jpg"), -webkit-gradient(linear, left bottom, left top, from(rgb(220,220,220)), to(rgb(208,208,208)));*/
   background-image: url("../img/photos-background/main4.jpg");

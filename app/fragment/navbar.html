@@ -23,26 +23,26 @@
           <div class="nav-collapse collapse pull-left">
             <ul class="nav pull-left">
               <li>
-                <a ng-href="#/about">
-                  <div class="navbar-picto-container"><img class="navbar-picto" src="img/picto/picto-about.svg"></div>
+                <a ng-href="#/about" ng-init="about = 'about'" ng-mouseenter="about = 'about-green'" ng-mouseleave="about='about'">
+                  <div class="navbar-picto-container"><img class="navbar-picto" ng-src="img/picto/picto-{{about}}.svg"></div>
                   <div class="navbar-link">À PROPOS</div>
                 </a>
               </li>
               <li>
-                <a ng-click="goToAddWebappPage()">
-                  <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-propose.svg"></div>
+                <a ng-click="goToAddWebappPage()" ng-init="propose = 'propose'" ng-mouseenter="propose = 'propose-green'" ng-mouseleave="propose='propose'">
+                  <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{propose}}.svg"></div>
                   <div class="navbar-link">PROPOSEZ</div>
                 </a>
               </li>
               <li>
-                <a ng-href="#/alveoles">
-                  <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-browse.svg"></div>
+                <a ng-href="#/alveoles" ng-init="browse = 'browse'" ng-mouseenter="browse = 'browse-green'" ng-mouseleave="browse='browse'">
+                  <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{browse}}.svg"></div>
                   <div class="navbar-link">DÉCOUVREZ</div>
                 </a>
               </li>
               <li>
-                <a ng-href="#/vote">
-                  <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-vote.svg"></div>
+                <a ng-href="#/vote" ng-init="vote = 'vote'" ng-mouseenter="vote = 'vote-green'" ng-mouseleave="vote='vote'">
+                  <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{vote}}.svg"></div>
                   <div class="navbar-link">MODÉREZ</div>
                 </a>
               </li>
@@ -58,8 +58,8 @@
                         <div class="nav-collapse collapse pull-right">
             <ul class="nav pull-right">    
               <li ng-hide="isLogged">
-                <a ng-click="openModalLogin()">
-                  <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-connect.svg"></div>
+                <a ng-click="openModalLogin()" ng-init="connect = 'connect'" ng-mouseenter="connect = 'connect-green'" ng-mouseleave="connect='connect'">
+                  <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{connect}}.svg"></div>
                   <div class="navbar-link">CONNEXION</div>
                 </a>
               </li>

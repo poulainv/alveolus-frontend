@@ -53,7 +53,7 @@
   <div id="mainContainer">
    <a ng-click="openModalFeedback()" id="feedback_link" class="feedback_link left"></a>
    <div class="row-fluid" ng-show="alerts">
-     <div class="offset1 span10">
+     <div id="alertContainer" class="offset1 span10">
       <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
     </div>
   </div>

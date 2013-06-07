@@ -69,10 +69,16 @@ config(
          }
 
          if(response.status === 401) {
-            $location.path('/');
-            console.log("catch 401 : cast broadcastNeedLogin, and redirect main page");
-            $location.path('/');
-            $rootScope.$broadcast('onNeedLogin');
+            if(response.config.url == "http://quiet-spire-4994.herokuapp.com/sign_in.json"){
+                //if wrong id
+                console.log('catch 401 : wrong id/pass - cast broadcastWrongId');
+                $rootScope.$broadcast('onWrongId');
+            } else {
+                //general case
+                $location.path('/');
+                console.log("catch 401 : cast broadcastNeedLogin, and redirect main page");
+                $rootScope.$broadcast('onNeedLogin');
+            }
             return $q.reject(response);
         }
         else {

@@ -34,9 +34,10 @@ h1, h2, h3, h4, h5{
 }
 
 /** ALVEOLE LST ITEM
-  * Define how an alveole is displayed in a list
-  * or in the carousel
-  **/
+* Define how an alveole is displayed in a list
+* or in the carousel
+**/
+
 .alveole{
   overflow: hidden;
   position: relative;
@@ -392,6 +393,11 @@ h1, h2, h3, h4, h5{
   min-height: 295px;
 }
 
+#alertContainer{
+  position: absolute;
+  top: 90px;
+}
+
 #alveolesList{
   border-right: 1px solid #eef2ea;
   min-height: 1000px;
@@ -513,18 +519,31 @@ h1, h2, h3, h4, h5{
   width: 250px;
 }
 
+#headerContainer{
+  background: -webkit-linear-gradient(top, rgb(208,208,208), rgb(220,220,220));
+  margin-bottom: 20px;
+}
+
 #headerCarousel{
   height: 350px;
 
   overflow: hidden;
   text-align: center;
-  margin-bottom: 20px;
+  margin-boheaddttom: 20px;
   /*background-color:  -webkit-linear-gradient(top, rgb(220,220,220), rgb(208,208,208));*/
   /*background-image: url("../img/photos-background/main4.jpg"), -webkit-gradient(linear, left bottom, left top, from(rgb(220,220,220)), to(rgb(208,208,208)));*/
   background-image: url("../img/photos-background/main4.jpg");
   background-size:1349px 927px;
   background-position: 50% 40%;
   background-repeat: no-repeat;
+}
+
+#headerSlogan{
+  color: black;
+  font-family: Politica;
+  font-weight: bold;
+  text-align: right;
+  padding: 120px 40px;
 }
 
 #headerImgCarousel{
@@ -636,7 +655,7 @@ h1, h2, h3, h4, h5{
   background-image: -ms-linear-gradient(left,#DED4B9 0%, #F2EEEB 35%, #F2EEEB 65%, #DED4B9 100%);
   background-image: -o-linear-gradient(left,#DED4B9 0%, #F2EEEB 35%, #F2EEEB 65%, #DED4B9 100%);*/
   background-color: #fff;
-  border: 1px solid grey;
+  /*border: 1px solid grey;*/
   margin-bottom: 20px;
   -webkit-transition: 0.25s;
   -moz-transition: 0.25s;

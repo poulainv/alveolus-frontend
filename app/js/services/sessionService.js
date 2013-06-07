@@ -7,80 +7,82 @@ angular.module('alveolus.sessionService', ['ngResource']).
 factory('SessionService', function($log, $cookieStore, $resource, $http, $rootScope,globals) {
 
 
-    var authorized, getUser, getToken, sign_in, sign_out, service, user, token ;
-    service = {};
-    user = {}; 
-    initTryToLogWithCookie();
+  var authorized, getUser, getToken, sign_in, sign_out, service, user, token ;
+  service = {};
+  user = {}; 
+  initTryToLogWithCookie();
     /**
     BROADCAST METHODS
     **/
 
     function broadcastLogged(){
-        console.log("cast broadcastLogged");
-        $rootScope.$broadcast('onLoggedSuccess');
+      console.log("cast broadcastLogged");
+      $rootScope.$broadcast('onLoggedSuccess');
     };
 
     function broadcastUnlogged(){
-        console.log("cast broadcastUnlogged");
-        $rootScope.$broadcast('onUnloggedSuccess');
+      console.log("cast broadcastUnlogged");
+      $rootScope.$broadcast('onUnloggedSuccess');
     };
 
     /**
       PRIVATE METHODS TO SEND HTTP REQUEST FOR SIGNIN AND SIGNOUT
-    **/   
+      **/   
 
     // Sign in : update user information, setHTTPProvider, set Cookies then broadcast event logged
     service.sign_in = function(data,callback){
-        $http({
-          method:'POST', 
-          url: globals.server_url+'/sign_in.json',
-          data: data,
-          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        }).success(function(data){
-          console.log("User logged");
-          setUser({id : data.id, email : data.email, success: true });
-          token = data.auth_token;
-          setHttpProviderCommonHeaderToken(token);
-          setSessionToken(token,data.id);
-          broadcastLogged();
-        })
-        .error(function(data) {
-          console.log("User not logged");
-          setUser({id : data.id, email : data.email, success: false});
-        });
+      $http({
+        method:'POST', 
+        url: globals.server_url+'/sign_in.json',
+        data: data,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      }).success(function(data){
+        console.log("User logged");
+        setUser({id : data.id, email : data.email, success: true });
+        token = data.auth_token;
+        setHttpProviderCommonHeaderToken(token);
+        setSessionToken(token,data.id);
+        broadcastLogged();
+      })
+      .error(function(data) {
+        console.log("User not logged");
+        setUser({id : data.id, email : data.email, success: false});
+      });
     };
 
     // Sign out : update user info, unsetHttpProvider, removeCookie then broadcast event logged
     service.sign_out = function(user){
-        $http({
-          method:'DELETE',
-          url: globals.server_url+'/sign_out.json?id='+user.id,
-          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        }).success(function(data){
-          console.log("User unlogged");
-          resetSession();
-        })
-        .error(function(data) {
-          console.log("Error sign_out");
-          resetSession();
-        });
+      $http({
+        method:'DELETE',
+        url: globals.server_url+'/sign_out.json?id='+user.id,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      }).success(function(data){
+        console.log("User unlogged");
+        resetSession();
+        broadcastUnlogged();
+      })
+      .error(function(data) {
+        console.log("Error sign_out");
+        resetSession();
+        broadcastUnlogged();
+      });
     };
 
 
     function initTryToLogWithCookie(){
       console.log("Try to log with cookies ");
       var cookieToken = getTokenCookie();
-        if(cookieToken!=null && cookieToken!=""){
-          token = cookieToken;
-          console.log("session cookie found");
-          setUser({success: true, id : getUserIdCookie()});
-          setHttpProviderCommonHeaderToken(token);
-          broadcastLogged();
-        }
-        else{
-          console.log("Session cookie not found");
-           resetSession();
-        }
+      if(cookieToken!=null && cookieToken!=""){
+        token = cookieToken;
+        console.log("session cookie found");
+        setUser({success: true, id : getUserIdCookie()});
+        setHttpProviderCommonHeaderToken(token);
+        broadcastLogged();
+      }
+      else{
+        console.log("Session cookie not found");
+        resetSession();
+      }
     }
 
     function setUser(newUser){
@@ -94,7 +96,7 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
       user.email = null ;
       user.id = null;
       user.authorized = false;
- 
+      
     }
 
     function setHttpProviderCommonHeaderToken(token){
@@ -130,23 +132,22 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
       resetUser();
       setHttpProviderCommonHeaderToken("");
       removeSessionToken();
-      broadcastUnlogged();
     }
 
     var fetchFacebook = function(auth){
-           $http.post(globals.server_url+'/facebook/fetch',auth
-          ).success(function(data) {
-            console.log(data);
-            console.log("User logged");
-            setUser({id : data.id, email : data.email, success: true });
-            token = data.auth_token;
-            setHttpProviderCommonHeaderToken(token);
-            setSessionToken(token,data.id);
-            broadcastLogged();
-          }).error(function(data) {
-            console.log('error: '+data);
-          });
-        
+     $http.post(globals.server_url+'/facebook/fetch',auth
+      ).success(function(data) {
+        console.log(data);
+        console.log("User logged");
+        setUser({id : data.id, email : data.email, success: true });
+        token = data.auth_token;
+        setHttpProviderCommonHeaderToken(token);
+        setSessionToken(token,data.id);
+        broadcastLogged();
+      }).error(function(data) {
+        console.log('error: '+data);
+      });
+      
     }
 
     authorized = function() {
@@ -156,17 +157,17 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
 
     sign_in = function(newUser) {
      var xsrf = $.param({
-        remote: true,
-        commit: "Sign in",
-        utf8: "✓", 
-        remember_me: 0,
-        password: newUser.password, 
-        email: newUser.email
-      });
+      remote: true,
+      commit: "Sign in",
+      utf8: "✓", 
+      remember_me: 0,
+      password: newUser.password, 
+      email: newUser.email
+    });
       // var data = { password : newUser.password, email : newUser.email};
       service.sign_in(xsrf);
     };
-  
+    
 
 
     sign_out = function() {
@@ -192,4 +193,4 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
       fetchFacebook : fetchFacebook
     };
   }
-);
+  );

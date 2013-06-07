@@ -55,9 +55,9 @@
 							<li ng-show="webapp.bookmarked"><i class="icon-heart icon-large"></i> Dans vos favoris <a ng-click="unbookmark();" id="unbookmark-link">(Supprimer)</a></a></li>
 							<li ng-hide="webapp.bookmarked"><a ng-click="bookmark();"><i class="icon-heart-empty icon-large"></i> Ajouter aux favoris</a></li>
 							
-						<i class="icon-bookmark icon-large"></i> 
+						<i class="icon-bookmark icon-large"></i>  
 						<span ng-repeat="tag in webapp.tags">
-							<span class="label-color tagList"> {{tag.name}}</span>
+							<span class="label-color tagList"><a ng-href="#/alveoles/search/{{tag.name}}"> {{tag.name}}</a></span>
 						</span>
 						<a ng-show="webapp.tags" href="#modalAddTag" id="addTagLink" data-toggle="modal"><span class="badge badge-inverse"><i class="icon-plus"></i></span></a>
 						<a ng-hide="webapp.tags" href="#modalAddTag" id="addTagLink" data-toggle="modal"><span class="badge badge-inverse"><i class="icon-plus"></i> Pas encore de tag, ajoutez le premier !</span></a>

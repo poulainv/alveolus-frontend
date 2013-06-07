@@ -7,6 +7,7 @@ controller('AddWebappCtrl', function($scope,$routeParams,$location,$window,Webap
 
 	if(!$scope.isLogged){
 		$location.path('/');
+		$scope.openModalLogin();
 	}
 
 	// $('body').css('background-color','#eef2ea');

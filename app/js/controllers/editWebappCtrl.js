@@ -7,11 +7,16 @@ controller('EditWebappCtrl', function($scope,$routeParams,$location,WebappServic
 
 	if(!$scope.isLogged){
 		$location.path('/');
+		$scope.openModalLogin();
+
 	}
 
-	// $('body').css('background-color','#eef2ea');
 	
-	$scope.webapp = WebappService.get({id:$routeParams.webAppId});
+	$scope.webapp = WebappService.get({id:$routeParams.webAppId}, function(){
+		if($scope.user.id != $scope.webapp.user_id){
+			$location.path('alveoles/'+$routeParams.webAppId);
+		}	
+	});
 	$scope.categories=CategoryService.query();		
 
 	$scope.submit = function(webapp){

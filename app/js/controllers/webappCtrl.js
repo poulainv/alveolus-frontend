@@ -60,20 +60,6 @@ controller('WebappCtrl', function($scope,$location,$routeParams, WebappService, 
 		// else $scope.twitter=null; 
 	});
 
-	
-//         MODALE 
- //	$('#webappModal').modal({
- //        backdrop: true,
- //        keyboard: true,
- //        show: false // true pour montrer la modale
- //    }).css({
- //       'width': function () { 
- //           return ($(document).width() * .9) + 'px';  
- //       },
- //       'margin-left': function () { 
- //           return -($(this).width() / 2); 
- //       }
-// });
 
 
 	$scope.submitComment = function(comment) {
@@ -111,6 +97,10 @@ controller('WebappCtrl', function($scope,$location,$routeParams, WebappService, 
   		WebappService.unbookmark({id : $scope.webAppId}, function(data){
 	    	$scope.webapp.bookmarked=false;
 	    });
+  	}
+
+  	$scope.trackSharing = function(){
+  		WebappService.tracker({id : $scope.webAppId, type : 'shared'});
   	}
 
 	$scope.changeView = function(url){

@@ -1,52 +1,62 @@
 
 <div class="container">
 	<div class="row-fluid">
-		<div id="alveolesList" class="span9">
-			<div id="contentWrapper">
-				<h3>Alvéoles / {{subTitle}}</h3>
-				<div ng-repeat="subcat in subcats"> 
-					<h4>{{subcat.name}}</h4>
-
-					<div class="alveoleWrap" ng-repeat="alveole in subcat.alveoles">
-						<div class="alveole">
-							<a href="#/alveoles/{{alveole.id}}">
-								<img class="imgCarousel" ng-src="{{alveole | image}}" >
-							</a>
-							<h2 class="alveoleName">
-								<a href="#/alveoles/{{alveole.id}}">
-									<strong>{{alveole.title}}</strong>
-								</a>
-							</h2>
-							<p class="alveoleDesc">
-								{{alveole.caption}}
-							</p>
-							<div class="alveoleRating">
-								<i class="{{ {'rate':alveole.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i> - {{alveole.comments.length}} avis
-							</div>
-							<div class="alveoleTagsWrapper">
-								<i class="icon-bookmark"></i>
-								<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)" class="tag">{{tag.name}}, </span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="navLinks" class="span3">
+		<aside id="navLinks" class="span3 pull-right">
 			<a href="#/graph" class="btn">Exploration graphique</a>
-			<h5><i class="icon-star"></i>Sélection</h5>
+			<h4><img src="img/icon-selection.svg">Sélection</h4>
 			<ul class="noStyleList">
 				<li ng-repeat="selectionCat in selectionCats"><span class="link" ng-click="changeFeat(selectionCat);">{{selectionCat.name}}</span></li>
 			</ul>
-			<h5><i class="icon-th-large"></i> Catégories</h5>
+			<h4><img src="img/icon-categories.svg">Catégories</h4>
 			<ul class="noStyleList">
 				<li ng-repeat="cat in cats"><span class="link" ng-click="changeCat(cat)">{{cat.name}}</span></li>
 			</ul>
-			<h5><i class="icon-tags"></i> Tags</h5>
+			<h4><img src="img/icon-tags.svg">Tags</h4>
 			<ul class="noStyleList">
 				<li ng-repeat="tag in tags"><span class="link" ng-click="search(tag.name)">{{tag.name}}</span></li>
 			</ul>
-		</div>
+		</aside>
+		<section id="alveolesList" class="span9">
+			<h2><img src="img/icon-team-selection.svg"> Alvéoles / {{subTitle}}</h2>
+			<div ng-repeat="subcat in subcats" class="row"> 
+				<h3>{{subcat.name}}</h3>
+				<article class="alveole span3" ng-repeat="alveole in subcat.alveoles">
+						<header class="alveoleHeader">
+							<a href="#/alveoles/{{alveole.id}}">
+								<div class="cropedImg">
+									<img class="alveoleImg" ng-src="{{alveole | image}}"  alt="{{alveole.title}}">
+								</div>
+								<h4 class="alveoleName">
+										<strong>{{alveole.title}}</strong>
+								</h4>
+								<div class="alveoleTagsWrapper">
+									<i class="icon-tags"></i>
+									<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)"><span ng-show="$index!=0">, </span>{{tag.name}}</span>
+								</div>
+							</a>
+						</header>
+						<div class="alveoleContent">
+							<h4 class="alveoleName">
+								<strong>{{alveole.title}}</strong>
+							</h4>
+							<div class="alveoleRating">
+								<i class="{{ {'rate':alveole.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i> - {{alveole.comments.length}} avis
+							</div>
+							<p class="alveoleDesc">
+								{{alveole.caption}}
+							</p>
+							<div class="alveoleTagsWrapper">
+								<i class="icon-tags"></i>
+								<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)">
+									<span ng-show="$index!=0">, </span>
+									{{tag.name}}
+								</span>
+							</div>
+							<a  href="#/alveoles/{{alveole.id}}" class="btn more">En savoir plus</a>
+						</div>
+				</article>
+			</div>
+		</section>
 	</div>
 </div>
 

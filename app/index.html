@@ -16,11 +16,12 @@
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>-->
-  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+ 
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/d3v3/d3.v3.min.js"></script>
   <script src="lib/popover.js"></script>
-  <script src="lib/angular/angular.js"></script>
-  <script src="lib/angular/angular-cookies.js"></script>
-  <script src="lib/angular/angular-resource.js"></script>
+  <script src="lib/angular/angular-cookies.min.js"></script>
+  <script src="lib/angular/angular-resource.min.js"></script>
   <script src="js/app.js"></script>
   <script src="js/services/sessionService.js"></script>
   <script src="js/services/webappService.js"></script>
@@ -62,13 +63,10 @@
 <div id="loading">
   <!-- We make this div spin -->
   <div class="spinner">
-    <!-- Mask of the quarter of circle -->
-    <div class="mask">
-      <!-- Inner masked circle -->
-      <div class="maskedCircle"></div>
-    </div>
+    <img src="img/spinner.png"/>
   </div>
 </div>
+
 <div ng-include src="'fragment/modal-login.html'"></div>
 
 <div ng-include src="'fragment/modal-feedback.html'"></div>
@@ -90,10 +88,18 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
-
-
 </script>
-
+<!-- /Google Analytics -->
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<!-- /Facebook -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<!-- /Twitter -->
 </body>
 </html>

@@ -1,86 +1,101 @@
 /* app css stylesheet */
+/**Font Politica**/
+@font-face {
+  font-family: "Politica";
+  src: url(../font/Politica.ttf) format("truetype");
+}
 
-a:link, a:visited, a:hover, a:active {
+@font-face {
+  font-family: "Politica-bold";
+  src: url(../font//Politica/Politica-Bold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Politica-italic";
+  src: url(../font//Politica/Politica-Italic.otf) format("opentype");
+}
+
+a, a:link, a:visited, a:hover, a:active {
   color:black;
   text-decoration: none;
   cursor: pointer;
 }
 
 body{
-  margin : 0;
+  margin : 81px 0 0 0;
   color: black;
   font-family: 'Open Sans', sans-serif;
   background-color: white;
   /*background-image: url(/app/img/bgnoise_lg.jpg);*/
 }
 
-.alveole{
-  padding: 5px;
-  background-position: 0 307px;
-  height: 360px;
-  max-width: 200px;
-  overflow: hidden;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -o-border-radius: 6px;
-  -ms-border-radius: 6px;
-  -khtml-border-radius: 6px;
-  border-radius: 6px;
-  background-color: #fff;
-  border: 1px solid #d0d5cb;
-  position: relative;
-  background-color: #fff;
+h1, h2, h3, h4, h5{
+  font-family: Politica;
 }
 
+/** ALVEOLE LST ITEM
+  * Define how an alveole is displayed in a list
+  * or in the carousel
+  **/
+.alveole{
+  overflow: hidden;
+  position: relative;
+  height: 215px;
+  background-color: #fff;
+  border: 1px solid #d0d5cb;
+  padding: 5px; 
+}
+.alveole:hover .alveoleContent{
+  top:0;
+}
+.alveoleHeader{
+  position: relative;
+}
 .alveoleName{
   font-size: 12px;
   font-weight: bold;
-  line-height: 15px;
-  padding: 5px;
+  margin: 0;
+  line-height: 20px;
+}
+.alveoleContent{
+  position: absolute;
+  background-color: #FFF;
+  height: 215px;
+  width: 100%;
+  top: 215px;
+  transition: top .3s ease-in;
+}
+
+.alveoleContent .more{
+  margin-top: 20px;
 }
 
 .alveoleDesc{
   color: #75796f!important;
-  padding: 0 5px;
   font-size: 12px!important;
-  line-height: 15px;
-  height: 60px;
-  text-overflow: ellipsis;
-  /*text-align: justify;*/
+  text-align: justify;
+  height: 105px;
 }
-
-.alveoleRating{
+.cropedImg{
+  height: 170px;
+  overflow: hidden;  
+  position: relative;
+}
+.alveoleImg{
+  height: 170px;
   position: absolute;
-  left: 10px;
-  bottom: 30px;
 }
 
 .alveoleTagsWrapper{
-  position:absolute;
-  bottom:10px;
-  left:10px;
-  width: 200px;
-  height: 18px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-family: "Politica";
   white-space: nowrap;
+  width: 200px;
+  height: 20px;
+  text-overflow: ellipsis;
+  position:absolute;
+  overflow: hidden;
 }
-
-.alveoleWrap{
-  display: inline-block;
-  vertical-align: top;
-  text-align: left;
-  moz-border-radius: 9px;
-  -webkit-border-radius: 9px;
-  -o-border-radius: 9px;
-  -ms-border-radius: 9px;
-  -khtml-border-radius: 9px;
-  border-radius: 9px;
-  background: #eef2ea;
-  padding: 4px;
-  margin: 5px 10px;
-  clear: both;
-}
+/* -------------------- */
 
 .block{
   display: block!important;
@@ -211,7 +226,7 @@ body{
 
 .icon-star, .icon-star-half-empty, .icon-star-empty{
   font-size: 10px;
-  color: lightseagreen;
+  color: rgb(57,181,74);
 }
 
 .imgCarousel{
@@ -253,8 +268,7 @@ body{
   font-family: politica;
   color: black;
   font-weight: bold;
-  font-size: 17px;
-  margin-top: 5px;
+  font-size: 16px;
 }
 
 .navbar .divider-vertical {
@@ -267,7 +281,7 @@ body{
 }
 
 .navbar-picto{
-  max-height: 40px;
+  max-height: 35px;
 }
 
 .navbar-picto-container{
@@ -350,8 +364,11 @@ body{
 }
 
 .tag{
-  font-size: 12px;
-  font-style: italic;
+  font-family: Politica;
+  color: white !important;
+  /*font-style: italic;*/
+  background-color: rgb(57,181,74);
+  padding: 5px;
   cursor: pointer;
 }
 
@@ -389,6 +406,10 @@ body{
 }
 
 #appForm{
+}
+
+#beta-label{
+  font-size: 14px;
 }
 
 #btnMore{
@@ -452,8 +473,10 @@ body{
 #footer h5{
   color:#999999;
 }
-#footer ul{
+#footer .footer-list{
   list-style:none;
+  padding: 0;
+  margin: 0;
 }
 
 
@@ -496,7 +519,12 @@ body{
   overflow: hidden;
   text-align: center;
   margin-bottom: 20px;
-  /*border-bottom: 2px solid black;*/
+  /*background-color:  -webkit-linear-gradient(top, rgb(220,220,220), rgb(208,208,208));*/
+  /*background-image: url("../img/photos-background/main4.jpg"), -webkit-gradient(linear, left bottom, left top, from(rgb(220,220,220)), to(rgb(208,208,208)));*/
+  background-image: url("../img/photos-background/main4.jpg");
+  background-size:1349px 927px;
+  background-position: 50% 40%;
+  background-repeat: no-repeat;
 }
 
 #headerImgCarousel{
@@ -504,11 +532,11 @@ body{
 }
 
 #logoNavbar{
-  height: 40px;
+  height: 30px;
 }
 
 #logoNavbarContainer{
-  height: 40px;
+  height: 30px;
   margin-top: 10px;
   border-right: 3px solid black;
 }
@@ -534,6 +562,8 @@ body{
 
 #navbar-avatar{
   height: 40px;
+  margin-top: -5px;
+  margin-bottom: 5px;
 }
 
 #navbar-avatar-container{
@@ -566,6 +596,7 @@ body{
 #searchNavbar{
   margin-bottom: 0px;
   margin-top: 20px;
+  margin-left: 20px;
 }
 
 #searchInput{
@@ -605,8 +636,7 @@ body{
   background-image: -ms-linear-gradient(left,#DED4B9 0%, #F2EEEB 35%, #F2EEEB 65%, #DED4B9 100%);
   background-image: -o-linear-gradient(left,#DED4B9 0%, #F2EEEB 35%, #F2EEEB 65%, #DED4B9 100%);*/
   background-color: #fff;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.25), 0 0 50px rgba(0,0,0,0.1) inset;
-  border-radius: 1%     1%     1%     1% /     1%     1%     1%     1%;
+  border: 1px solid grey;
   margin-bottom: 20px;
   -webkit-transition: 0.25s;
   -moz-transition: 0.25s;
@@ -614,18 +644,6 @@ body{
   -o-transition: 0.25s;
   transition: 0.25s;
   height: 330px;
-}
-
-#teamSelectionWrapper:after {
-  position: absolute;
-  width: 80%;
-  height: 40%;
-  left: 10%;
-  border-radius: 50%;
-  z-index: -1;
-  bottom: 0%;
-  content: "";
-  box-shadow: 0 7px 16px rgba(0,0,0,0.4);
 }
 
 #voteWrapper{
@@ -683,12 +701,6 @@ body{
   border-radius: 15px 
 }
 
-/**Font Politica**/
-@font-face {
-  font-family: "Politica";
-  src: url(../font/Politica.ttf) format("truetype");
-}
-
 /****** LOADING ANIMATION *****/
 /* Animation keyframes - you need to add prefixes */
 
@@ -712,24 +724,9 @@ body{
   position: absolute;
   top: 200px;
   left: 50%;
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   margin: -14px 0 0 -14px;
-}
-
-/* Spinning circle (inner circle) */
-#loading .maskedCircle {
-  width: 20px;
-  height: 20px;
-  border-radius: 12px;
-  border: 3px solid black;
-}
-
-/* Spinning circle mask */
-#loading .mask {
-  width: 12px;
-  height: 12px;
-  overflow: hidden;
 }
 
 /* Spinner */
@@ -737,10 +734,10 @@ body{
   position: absolute;
   /*left: 550px;*/
   top: 150px;
-  width: 26px;
-  height: 26px;
-  -webkit-animation: spin 1s infinite linear;
-  -o-animation: spin 1s infinite linear;
-  animation: spin 1s infinite linear;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 3s infinite linear;
+  -o-animation: spin 3s infinite linear;
+  animation: spin 3s infinite linear;
 }
 

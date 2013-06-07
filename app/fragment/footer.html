@@ -1,27 +1,36 @@
-<div id="footer">
-  <div class="container">
-    <div class="row">
-      <div class="span3 offset2">
-        <h5>Qui sommes nous ?</h5>
-        <ul>
+<footer id="footer">
+  <section class="container">
+    <div class="row-fluid">
+      <menu class="span3">
+        <h5>Qui sommes-nous ?</h5>
+        <ul class="footer-list">
           <li><a href="#/about">Le projet</a></li>
           <li><a href="#/team">L'équipe</a></li>
           <li><a href="#/faq">F.A.Q.</a></li>
         </ul>
 
-      </div>
-      <div class="span3">
+      </menu>
+      <menu class="span3">
         <h5>Contactez-nous</h5>
-        <ul>
+        <ul class="footer-list">
           <li><a href="#/contact">Contact</a></li>
-          <li><a href="#">Signaler un bug</a></li>
-          <li><a href="#">Feedback</a></li>
+          <li><a  ng-click="openModalFeedback()" >Signaler un bug</a></li>
+          <li><a  ng-click="openModalFeedback()" >Feedback</a></li>
         </ul>
-      </div>
-      <div class="span3">
+      </menu>
+      <menu class="span3">
+        <h5>Réseaux sociaux</h5>
+        <ul class="footer-list">
+          <li><div class="fb-like" data-href="https://www.facebook.com/alveolusfr" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div></li>
+          <li><a href="https://twitter.com/alveolusfr" class="twitter-follow-button" data-show-count="false" data-lang="fr">Follow @alveolusfr</a></li>
+          <li><iframe src="http://ghbtns.com/github-btn.html?user=vpoulain&repo=alveolus-frontend&type=watch&count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe></li>
+        </ul>
+      </menu>
+      <menu class="span3">
         <h5>À propos</h5>
         AlveolUs est un projet original ayant pour volonté de promouvoir l'économie collaborative.
-      </div>
+      </menu>
     </div>
-  </div>
-</div>
+  </section>
+</footer>

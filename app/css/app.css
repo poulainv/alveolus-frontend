@@ -44,7 +44,6 @@ h1, h2, h3, h4, h5{
   height: 215px;
   background-color: #fff;
   border: 1px solid #d0d5cb;
-  padding: 5px; 
 }
 .alveole:hover .alveoleContent{
   top:0;
@@ -52,8 +51,15 @@ h1, h2, h3, h4, h5{
 .alveoleHeader{
   position: relative;
 }
+.alveoleHeader .alveoleName{
+  padding: 0 5px 0 5px;
+}
+.alveoleHeader .alveoleTagsWrapper{
+  padding: 0 5px 0 5px;
+}
 .alveoleName{
-  font-size: 12px;
+  color: rgb(57,181,74);
+  font-size: 15px;
   font-weight: bold;
   margin: 0;
   line-height: 20px;
@@ -61,18 +67,30 @@ h1, h2, h3, h4, h5{
 .alveoleContent{
   position: absolute;
   background-color: #FFF;
+  background-color: rgba(255,255,255,.8);
   height: 215px;
-  width: 100%;
   top: 215px;
+  left: 0;
   transition: top .3s ease-in;
+  padding: 5px;
 }
 
 .alveoleContent .more{
+  background: none;
+  text-shadow: none;
+  background-color: rgb(57,181,74);
+  color: #FFF;
+  border: none;
+  border-radius: 0;
   margin-top: 20px;
 }
 
+.alveoleContent .more:hover{
+  background-color: rgb(57,181,74);
+}
+
 .alveoleDesc{
-  color: #75796f!important;
+  /*color: #75796f!important;*/
   font-size: 12px!important;
   text-align: justify;
   height: 105px;
@@ -95,6 +113,12 @@ h1, h2, h3, h4, h5{
   text-overflow: ellipsis;
   position:absolute;
   overflow: hidden;
+}
+.alveoleTagsWrapper>span{
+  padding: 0 3px;
+  margin-right: 3px;
+  color: #FFF; 
+  background-color: rgb(57,181,74);
 }
 /* -------------------- */
 

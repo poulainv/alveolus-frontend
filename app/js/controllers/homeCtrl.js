@@ -11,21 +11,12 @@ controller('HomeCtrl', function($scope,$location,CategoryService,WebappService,S
 		var slideNumber = 0;
 		$scope.slides = [];
 		for(var i=0; i<$scope.popularAlveoles.length;i++){
-			console.log('slideNumber = '+ slideNumber);
 			if(i%4===0)
 				$scope.slides[slideNumber] = [];
 			$scope.slides[slideNumber][i%4] = $scope.popularAlveoles[i];
 			if(i%4==3)
 				slideNumber++;
 		}
-		$scope.numColumns = 4;
-		$scope.rows = [];
-		$scope.cols = [];
-
-		$scope.$watch("webapps.length", function(){
-			$scope.rows.length = Math.ceil($scope.webapps.length / $scope.numColumns);
-			$scope.cols.length = $scope.numColumns;        
-		});
 	});
 
 	CategoryService.getCategoriesWithFeaturedApps(function(data){

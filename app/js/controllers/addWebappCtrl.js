@@ -14,9 +14,7 @@ controller('AddWebappCtrl', function($scope,$routeParams,$location,$window,Webap
 
 	var nbTags = 0;
 
-	$scope.webapp=WebappService.new(function(){
-		$scope.webapp.tag_list = '';
-	});
+	$scope.webapp=WebappService.new();
 
 	$scope.categories=CategoryService.query();
 
@@ -32,12 +30,7 @@ controller('AddWebappCtrl', function($scope,$routeParams,$location,$window,Webap
 			source: tagNames,
 
 			updater:function (item) {
-				$scope.webapp.tag_list += item+', ';
-				if($('#tagList').text().length == 0){
-					var appendMe = "<span id=\"tag"+nbTags+"\">"+item+"</span>";		
-				} else {
-					var appendMe = "<span id=\"tag"+nbTags+"\">,"+item+"</span>";
-				}
+				var appendMe = "<span onClick=\"$(this).remove()\" class=\"tag\" id=\"tag"+nbTags+"\"> "+item+" </span>";
 				$('#tagList').append(appendMe);	
 				nbTags++;
 			}
@@ -45,7 +38,20 @@ controller('AddWebappCtrl', function($scope,$routeParams,$location,$window,Webap
 	});
 
 	$scope.submit=function(webapp){
+
 		console.log('submit');
+
+		// concatenating tags into an array
+		var tagList = [];
+		for(var i = 0; i<nbTags;i++){
+			if( $("#tag"+i).text().length > 0 ){
+				tagList.push($("#tag"+i).text());
+			}
+		}
+
+		// uncomment this to add tags (waiting for confirmation)
+		// webapp.tags = tagList;
+		
 		$scope.webapp = webapp;
 		console.log($scope.webapp);
 		WebappService.addWebapp(webapp,$scope.files);

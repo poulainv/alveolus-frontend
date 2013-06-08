@@ -365,12 +365,26 @@ h1, h2, h3, h4, h5{
 }
 
 .tag{
-  font-family: Politica;
+ /* font-family: Politica;
   color: white !important;
-  /*font-style: italic;*/
+  font-style: italic;
   background-color: rgb(57,181,74);
-  padding: 5px;
+  padding: 5px;*/
   cursor: pointer;
+  display: inline-block;
+  padding: 2px 4px;
+  font-size: 11.844px;
+  font-weight: bold;
+  line-height: 14px;
+  color: #ffffff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: rgb(57,181,74);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin-left: 5px;
 }
 
 .team-member{

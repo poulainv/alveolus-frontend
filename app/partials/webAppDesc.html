@@ -64,7 +64,8 @@
 
 					<i class="icon-bookmark icon-large"></i>  
 					<span ng-repeat="tag in webapp.tags">
-						<span class="label-color tagList"><a ng-href="#/alveoles/search/{{tag.name}}"> {{tag.name}}</a></span>
+						<!-- <span class="label-color tagList"><a ng-href="#/alveoles/search/{{tag.name}}"> {{tag.name}}</a></span> -->
+						<a ng-href="#/alveoles/search/{{tag.name}}" class="tag"> {{tag.name}}</a>
 					</span>
 					<a ng-show="webapp.tags" href="#modalAddTag" id="addTagLink" data-toggle="modal"><span class="badge badge-inverse"><i class="icon-plus"></i></span></a>
 					<a ng-hide="webapp.tags" href="#modalAddTag" id="addTagLink" data-toggle="modal"><span class="badge badge-inverse"><i class="icon-plus"></i> Pas encore de tag, ajoutez le premier !</span></a>

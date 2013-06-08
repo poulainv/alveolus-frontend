@@ -5,12 +5,12 @@
 angular.module('alveolus.editWebappCtrl', []).
 controller('EditWebappCtrl', function($scope,$routeParams,$location,WebappService,CategoryService) {
 
+
 	if(!$scope.isLogged){
 		$location.path('/');
 		$scope.openModalLogin();
 
 	}
-
 	
 	$scope.webapp = WebappService.get({id:$routeParams.webAppId}, function(){
 		if($scope.user.id != $scope.webapp.user_id){

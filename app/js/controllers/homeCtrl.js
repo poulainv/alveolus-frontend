@@ -6,7 +6,18 @@ angular.module('alveolus.homeCtrl', []).
 controller('HomeCtrl', function($scope,$location,CategoryService,WebappService,SessionService, UserService) {
 
 
-	$scope.webapps = WebappService.query(function(){
+	$scope.webapps = WebappService.query(function(data){
+		$scope.popularAlveoles = data;
+		var slideNumber = 0;
+		$scope.slides = [];
+		for(var i=0; i<$scope.popularAlveoles.length;i++){
+			console.log('slideNumber = '+ slideNumber);
+			if(i%4===0)
+				$scope.slides[slideNumber] = [];
+			$scope.slides[slideNumber][i%4] = $scope.popularAlveoles[i];
+			if(i%4==3)
+				slideNumber++;
+		}
 		$scope.numColumns = 4;
 		$scope.rows = [];
 		$scope.cols = [];
@@ -36,7 +47,6 @@ controller('HomeCtrl', function($scope,$location,CategoryService,WebappService,S
 	};
 
 	$scope.changeView = function(url){
-		console.log(url);
 		CategoryService.setIdCatSelected($scope.catSelected.id);
 		$location.path(url);
 	}

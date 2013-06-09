@@ -18,43 +18,34 @@
 		</aside>
 		<section id="alveolesList" class="span9">
 			<h2><img src="img/icon-team-selection.svg"> Alvéoles / {{subTitle}}</h2>
-			<div ng-repeat="subcat in subcats" class="row"> 
+			<div ng-repeat="subcat in subcats" class="row-fluid"> 
 				<h3>{{subcat.name}}</h3>
 				<article class="alveole span3" ng-repeat="alveole in subcat.alveoles">
-						<header class="alveoleHeader">
-							<a href="#/alveoles/{{alveole.id}}">
-								<div class="cropedImg">
-									<img class="alveoleImg" ng-src="{{alveole | image}}"  alt="{{alveole.title}}">
-								</div>
-								<h4 class="alveoleName">
-										<strong>{{alveole.title}}</strong>
-								</h4>
-								<div class="alveoleTagsWrapper">
-									<img src="img/icon-tags.svg">
-									<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)" class="tag">
-										{{tag.name}}
-									</span>
-								</div>
-							</a>
-						</header>
-						<div class="alveoleContent">
+					<header class="alveoleHeader">Note : {{alveole.average_rate|truncate:3:''}}/5
+						<span class="alveoleRatingWrapper">
+							<i class="{{ {'rate':alveole.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+						</span>
+					</header>
+					<div class="alveoleContent">
+						<a href="#/alveoles/{{alveole.id}}">
+							<div class="cropedImg">
+								<img class="alveoleImg" ng-src="{{alveole | image}}"  alt="{{alveole.title}}">
+							</div>
 							<h4 class="alveoleName">
 								<strong>{{alveole.title}}</strong>
 							</h4>
-							<div class="alveoleRating">
-								<i class="{{ {'rate':alveole.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i> - {{alveole.comments.length}} avis
-							</div>
 							<p class="alveoleDesc">
 								{{alveole.caption}}
 							</p>
+						</a>
 							<div class="alveoleTagsWrapper">
-								<img src="img/icon-tags.svg">
+								<img src="img/icon-tags.svg" ng-show="alveole.tags">
 								<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)" class="tag">
-									{{tag.name}}
+									<a href="#/alveoles/search/{{tag.name}}" class="tag">{{tag.name}}</a>
 								</span>
 							</div>
-							<a  href="#/alveoles/{{alveole.id}}" class="btn more">En savoir plus</a>
-						</div>
+						
+					</div>
 				</article>
 			</div>
 		</section>

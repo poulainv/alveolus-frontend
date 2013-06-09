@@ -62,11 +62,10 @@
 							<section class="span10 offset1">
 								<div class="row-fluid">	
 									<article class="alveole span3" ng-repeat="alveole in slide">
-										<header class="alveoleHeader">
-											Note : {{alveole.average_rate|truncate:3:''}}/5
-											<div class="alveoleRating">
+										<header class="alveoleHeader">Note : {{alveole.average_rate|truncate:3:''}}/5
+											<span class="alveoleRatingWrapper">
 												<i class="{{ {'rate':alveole.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
-											</div>
+											</span>
 										</header>
 										<div class="alveoleContent">
 											<a href="#/alveoles/{{alveole.id}}">

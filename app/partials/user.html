@@ -3,19 +3,18 @@
 		<div id="contentWrapper">
 			<div class="row container-white">
 				<div class="span10 offset1">
-					{{authorized}}
 					<div class="tabbable" > 
 						<ul class="nav nav-pills">
-							<li class="active"><a href="#infos" data-toggle="tab">Vos informations</a></li>
-							<li><a href="#avatar" data-toggle="tab">Votre avatar</a></li>
-							<li><a href="#favoris" data-toggle="tab">Vos alvéoles favorites</a></li>
-							<li><a href="#comments" data-toggle="tab">Vos commentaires</a></li>
+							<li class="active"><a href="#infos" data-toggle="tab">Mes informations</a></li>
+							<li><a href="#avatar" data-toggle="tab"><i class="icon-user"></i> Mon avatar</a></li>
+							<li><a href="#favoris" data-toggle="tab"><i class="icon-heart"></i> Mes alvéoles favorites</a></li>
+							<li><a href="#comments" data-toggle="tab"><i class="icon-comments-alt"></i> Mes commentaires</a></li>
 							<li><a href="#suggestions" data-toggle="tab">Vos suggestions</a></li>
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane active" id="infos">
 								<!-- <img ng-src="{{user.avatar_file_name}}" /> -->
-								<form class="form-horizontal">
+								<form name="form" class="form-signin form-horizontal" novalidate ng-submit="submitEditInfos()">
 									<div class="control-group">
 										<label class="control-label" for="inputPseudo">Pseudo</label>
 										<div class="controls">
@@ -29,19 +28,52 @@
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="inputPassword">Password</label>
+										<label class="control-label" for="inputPassword">Mot de passe<span class="red-star" ng-show="editPassword">*</span></label>
 										<div class="controls">
-											<input type="password" id="inputPassword" placeholder="Password" value="coucou">
+											<button ng-hide="editPassword" class="btn btn-primary" ng-click="editPassword=true">Modifier</button>
+											<div ng-show="editPassword" ng-init="editPassword=false">
+												<input type="password" id="inputPassword" placeholder="Password">
+												<i class="icon-remove" ng-click="editPassword=false"></i>
+											</div>
+										</div>
+									</div>
+									<div class="control-group" ng-show="editPassword">
+										<label class="control-label" for='password'>Nouveau mot de passe<span class="red-star">*</span></label>
+										<div class="controls" ng-class="{error: form.password.$error.minlenght, success: form.password.$valid}">
+											<input type='password' id='password' name='password' required ng-model='user.password' ng-minlength="8">
+			                                <span class='help-inline' ng-show="form.password.$error.minlength">
+			                                    Votre mot de passe doit contenir au moins 8 caractères
+			                                </span>
+										</div>
+
+									</div>
+
+									<div class='control-group' ng-class="{error: form.password_confirmation.$error.sameAs, success: form.password_confirmation.$valid}"  ng-show="editPassword">
+			                            <label class="control-label" for='password_confirmation'>Confirmation<span class="red-star">*</span></label>
+			                            <div class='controls'>
+			                                <input type='password' id='password_confirmation' name='password_confirmation' same-as='user.password' ng-model='user.password_confirmation' required>
+			                                <span class='help-inline' ng-show='form.password_confirmation.$error.sameAs'>
+			                                    Les deux mots de passe ne sont pas identiques.
+			                                </span>
+			                            </div>
+		                        	</div>    
+
+		                        	<div class="control-group">
+										<div class="controls">
+											<input type="submit" value="Valider" class="btn" ng-disabled="!form.$valid && editPassword"/>
 										</div>
 									</div>
 
-									<div class="control-group">
+		                        	
+
+									<!-- <div class="control-group">
 										<div class="controls">
 											<button class="btn" ng-click="onSubmit(user);">Enregistrer</button>
 										</div>
-									</div>
+									</div> -->
 
 								</form>
+								<pre>{{user | json}}</pre>
 							</div>
 
 
@@ -51,15 +83,20 @@
 									<div class="light-separator"></div>
 									<div ng-repeat="bookmark in user.bookmarks">
 										<div class="row">
-											<img class="span2" ng-src="{{bookmark.webapp.image_url}}"/>
+											<a href="#alveoles/{{bookmark.id}}"><img class="span2" ng-src="{{bookmark.image_url}}"/></a>
 											<div class="span8">
-												<h3>{{bookmark.title}}</h3>
+												<a href="#alveoles/{{bookmark.id}}"><h3>{{bookmark.title}}</h3></a>
 												<h4>{{bookmark.caption}}</h4>
 												<p>{{bookmark.description}}</p>
 											</div>
 										</div>
 										<div class="light-separator"></div>
 									</div>
+								</div>
+								<div ng-hide="user.bookmarks.length">
+									<p>Vous n'avez aucune alvéole favorite...</p>
+									<button class="btn btn-inverse pull-left" type="button" ng-click="changeView('alveoles')">N'attendez plus pour découvrir toutes nos alvéoles !</button>
+
 								</div>
 							</div>
 
@@ -94,34 +131,18 @@
 							</div>
 
 
-							<div class="tab-pane" id="favoris">
-								<div ng-show="user.bookmarks">
-									<div class="light-separator"></div>
-									<div ng-repeat="bookmark in user.bookmarks">
-										<div class="row">
-											<a href="#alveoles/{{bookmark.webapp.id}}"><img class="span2" ng-src="{{bookmark.webapp.image_url}}"/></a>
-											<div class="span8">
-												<h3><a href="#alveoles/{{bookmark.webapp.id}}">{{bookmark.webapp.title}}</a></h3>
-												<h4>{{bookmark.webapp.caption}}</h4>
-												<p>{{bookmark.webapp.description}}</p>
-											</div>
-										</div>
-										<div class="light-separator"></div>
-									</div>
-								</div>
-							</div>
-
 
 							<div class="tab-pane" id="comments">
-								<div ng-show="user.comments.length!=0">
+								<div ng-show="user.comments.length">
 									<div class="light-separator"></div>
 									<div ng-repeat="comment in user.comments">
 										<div class="row">
 											<aside class="span2">
 												<div class="row">
 													<div class="span2 text-center">
-														<a href="#alveoles/{{comment.webapp_id}}"><img class="span2" ng-src="{{comment.webapp_image_url}}"/>
-															<p class="span2 text-center">{{comment.webapp_title}}</p>
+														<a href="#alveoles/{{comment.webapp_id}}">
+															<img ng-src="{{comment.webapp_image_url}}"/>
+															<h4 class="span2 text-center user-title-webapp-list">{{comment.webapp_title}}</h4>
 														</a>
 													</div>
 												</div>
@@ -139,13 +160,16 @@
 									</div>
 								</div>
 
-								<div ng-show="user.comments.length==0">Vous n'avez posté aucun commentaire :(
+								<div ng-hide="user.comments.length">
+									<p>Vous n'avez posté aucun commentaire :(</p>
 								</div>
-
 							</div>
+
+
+
 							<div class="tab-pane" id="suggestions">
 
-								<div ng-show="user.webapps">
+								<div ng-show="user.webapps.length">
 									<div class="light-separator"></div>
 									<div ng-repeat="webapp in user.webapps">
 										<div class="row">
@@ -167,6 +191,11 @@
 										<div class="light-separator">
 										</div>
 									</div>
+								</div>
+
+								<div ng-hide="user.webapps.length">
+									<p>Vous n'avez pas proposé d'alvéole.</p>
+									<button class="btn btn-inverse pull-left" type="button" ng-click="changeView('alveoles/new')">Contribuer à AlveolUs en suggerant un site web</button>
 								</div>
 							</div>
 						</div>

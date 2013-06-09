@@ -128,6 +128,12 @@ factory('WebappService', function($http,$resource, $rootScope, SessionService,gl
         xhr.send(fd)
     }
 
+    service.addTag = function(params,callback,callbackError){
+        $http({method:'POST', url: globals.server_url+'/webapps/'+params.id+'/tags', params : {'tag' : {'name' : params.tagName}}}).
+        success(function(data){callback(data);}).
+        error(function(data){callbackError(data);});        
+    }
+
 
     return service;
 });

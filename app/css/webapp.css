@@ -88,7 +88,7 @@
   height:1px;
   background:#717171;
   border-bottom:1px solid #E8E8E8;
-  margin-top: 4px;
+  margin-top: 10px;
   margin-bottom: 12px;
 }
 
@@ -158,7 +158,7 @@ tagList{
 
 
 #title-webapp{
-  background-color: #2ecc71;
+  background-color: rgb(57,181,74);
   padding: 1px;
 }
 #title-webapp h1 a{
@@ -169,5 +169,30 @@ tagList{
 .label-color{
   background-color: #2ecc71;
   padding: 3px;
+  color: white;
+}
+
+
+#webapp-content-img{
+  background-color: white;
+}
+
+.webapp-title-margin-top{
+  margin-top: 20px;
+}
+
+#inputTextTag{
+  margin-top: 10px;
+}
+
+
+
+/* PAGE USER */
+.user-title-webapp-list{
+  margin: 0;
+  padding: 0;
+}
+
+.button-link{
   color: white;
 }

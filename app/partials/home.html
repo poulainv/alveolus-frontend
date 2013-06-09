@@ -72,7 +72,7 @@
 												</h4>
 												<div class="alveoleTagsWrapper">
 													<img src="img/icon-tags.svg">
-													<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)">{{tag.name}}</span>
+													<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)" class="tag">{{tag.name}}</span>
 												</div>
 											</a>
 										</header>
@@ -88,7 +88,7 @@
 											</p>
 											<div class="alveoleTagsWrapper">
 												<img src="img/icon-tags.svg">
-												<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)">
+												<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)" class="tag">
 													{{tag.name}}
 												</span>
 											</div>

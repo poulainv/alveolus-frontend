@@ -8,11 +8,13 @@
   <link rel="icon" type="image/png" href="img/favicon.png" />
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/bootstrap-responsive.css" >
+  <link rel=" stylesheet" type="text/css" href="css/joyride-2.0.3.css"> <!-- Joyride plugin -->
   <link rel="stylesheet" href="css/app.css"/>
   <link rel="stylesheet" href="css/webapp.css"/>
   <link rel="stylesheet" href="css/feedback.css"/>
   <link rel="stylesheet" href="css/FontAwesome/css/font-awesome.min.css"> <!-- Ajout d'icones à bootstrap -->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'><!-- police Open Sans -->
+  
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>-->
@@ -73,7 +75,42 @@
 
 <div ng-include src="'fragment/footer.html'"></div>
 
+<!-- Tip Content -->
+    <ol id="joyRideTipContent">
+      <li data-id="logoNavbar" data-text="Suivant">
+        <h2>Bienvenue</h2>
+        <p>Toute la communauté Alveolus vous souhaite la bienvenue. Prenez quelques minutes pour découvrir le site...</p>
+      </li>
+      <li data-id="proposez" data-text="Suivant">
+        <h2>Proposez</h2>
+        <p>Nous avons besoin de vous. N'hésitez pas à soumettre vos découvertes...</p>
+      </li>
+      <li data-id="moderez" data-text="Suivant">
+        <h2>Modérez</h2>
+        <p>... ou a valider celles des autres membres de la communauté.</p>
+      </li>
+      <li data-id="catListWrapper" data-text="Suivant">
+        <h2>Les catégories</h2>
+        <p>Toutes les sites sont classés dans une catégorie pour vous permettre d'orienter rapidement votre recherche</p>
+      </li>
+      <li data-id="teamSelection" data-text="Suivant" data-options="tipLocation:top">
+        <h2>Sélection de l'équipe</h2>
+        <p>Régulièrement l'équipe sélectionne des alvéoles qui ont de forte chances de vous intéresser</p>
+      </li>
+      <li data-id="social-networks" data-button="Suivant" data-options="tipLocation:top">
+        <h2>Réseaux sociaux</h2>
+        <p>Retrouvez nous sur les réseaux sociaux</p>
+      </li>
+      <li data-id="btnMore" data-text="Fermer">
+        <h2>Toutes les alvéoles</h2>
+        <p>Consultez dès maintenant la liste des alvéoles</p>
+      </li>
+    </ol>
+
 <script src="http://code.jquery.com/jquery.js"></script>
+<script src="lib/jquery.joyride-2.0.3.js"></script>
+<script type="text/javascript" src="lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="lib/modernizr.mq.js"></script>
 <script src="lib/bootstrap/bootstrap.min.js"></script>
 <script src="lib/bootstrap/ui-bootstrap-tpls-0.3.0.js"></script>
 
@@ -101,5 +138,13 @@
 <!-- /Facebook -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 <!-- /Twitter -->
+<script>
+$('#joyRideTipContent').joyride({
+        'autoStart' : false,
+        'cookieMonster': true,
+        }
+      });
+</script>
+
 </body>
 </html>

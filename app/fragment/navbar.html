@@ -11,7 +11,7 @@
       </a>
 
       <!-- Be sure to leave the brand out there if you want it shown -->
-      <a id="logoNavbarContainer" class="brand" ng-href="#">
+      <a class="brand" ng-href="#">
         <!-- <img src="img/logo_home.svg" type="image/svg+xml" alt="AlveolUs"/> -->
         <img id="logoNavbar" src="img/logo.png" alt="AlveolUs"/>
         <div id="beta-label">BETA</div>
@@ -31,7 +31,7 @@
           <li>
             <a ng-click="goToAddWebappPage()" ng-init="propose = 'propose'" ng-mouseenter="propose = 'propose-green'" ng-mouseleave="propose='propose'">
               <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{propose}}.svg"></div>
-              <div class="navbar-link">PROPOSEZ</div>
+              <div class="navbar-link" id="proposez">PROPOSEZ</div>
             </a>
           </li>
           <li>
@@ -43,7 +43,7 @@
           <li>
             <a ng-href="#/vote" ng-init="vote = 'vote'" ng-mouseenter="vote = 'vote-green'" ng-mouseleave="vote='vote'">
               <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{vote}}.svg"></div>
-              <div class="navbar-link">MODÉREZ</div>
+              <div class="navbar-link" id="moderez">MODÉREZ</div>
             </a>
           </li>
           <li>

@@ -810,3 +810,9 @@ h1, h2, h3, h4, h5{
   animation: spin 3s infinite linear;
 }
 
+/* Joyride plugin*/
+.joyride-tip-guide{
+  margin-top: -85px;
+  z-index: 1500;
+}
+

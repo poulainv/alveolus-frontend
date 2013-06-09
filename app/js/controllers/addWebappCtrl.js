@@ -9,6 +9,8 @@ controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,$
 		$location.path('/');
 		$scope.openModalLogin();
 	}
+	
+	$('#progressBar').hide();
 
 	// $('body').css('background-color','#eef2ea');
 
@@ -40,6 +42,8 @@ controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,$
 	$scope.submit=function(webapp){
 
 		console.log('submit');
+
+		$('#progressBar').show();
 
 		// concatenating tags into an array
 		var tagList = [];
@@ -75,7 +79,6 @@ controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,$
         xhr.addEventListener("load", function(){$rootScope.$broadcast('onSuggestionSaved');}, false);
         xhr.addEventListener("error", function(){alert("Erreur pendant le chargement du fichier")}, false);
         xhr.addEventListener("abort", function(){ alert('Connexion perdue')}, false);
-        // xhr.addEventListener("progress", updateProgress, false);
         WebappService.addWebapp(xhr,fd);
     };
 
@@ -133,14 +136,14 @@ controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,$
 
 	var updateProgress = function(e){
 		console.log('onprogress');
-            var progress = $('#progressBar .bar');
-            if (e.lengthComputable) 
-            {
-            	var percentComplete = (e.loaded / e.total)*100;  
-            	progress.css("width",percentComplete+'%');
-            	progress.text( Math.round(percentComplete)+'%');
-            }
-        };
+		var progress = $('#progressBar .bar');
+		if (e.lengthComputable) 
+		{
+			var percentComplete = (e.loaded / e.total)*100;  
+			progress.css("width",percentComplete+'%');
+			progress.text( Math.round(percentComplete)+'%');
+		}
+	};
 
 
-    });
+});

@@ -23,11 +23,19 @@ controller('UserCtrl', function($scope, $routeParams, $location, UserService, Se
 
 	$scope.updateAvatar = function(){
 		console.log("updateAVatar");
-		UserService.updateAvatar($scope.user.id,$scope.files,function(evt){
-			$scope.user = jQuery.parseJSON(evt.target.response);
-			console.log($scope.user);
-			$scope.image = $scope.user.image_url
-		});
+
+		$('#progressBar').show();
+
+		var fd = new FormData();
+		fd.append("user[avatar]", $scope.files[0]);
+		var xhr = new XMLHttpRequest();
+        xhr.upload.onprogress = updateProgress;
+		xhr.addEventListener("load", callback, false);
+		xhr.addEventListener("error", function(){console.log("There was an error attempting to upload the file.");}, false);
+		xhr.addEventListener("abort", function(){console.log("he upload has been canceled by the user or the browser dropped the connection.");}, false);
+
+
+		UserService.updateAvatar(xhr,fd,$scope.user.id);
 	}
 
 
@@ -80,4 +88,21 @@ controller('UserCtrl', function($scope, $routeParams, $location, UserService, Se
 		console.log('changeView ' + url);
 		$location.path(url);
 	}
+
+
+	var updateProgress = function(e){
+		var progress = $('#progressBar .bar');
+		if (e.lengthComputable) 
+		{
+			var percentComplete = (e.loaded / e.total)*100;  
+			progress.css("width",percentComplete+'%');
+			progress.text( Math.round(percentComplete)+'%');
+		}
+	};
+
+	var callback = function(evt){
+		$scope.user = jQuery.parseJSON(evt.target.response);
+		console.log($scope.user);
+		$scope.image = $scope.user.image_url
+	};
 });

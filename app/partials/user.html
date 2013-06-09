@@ -13,7 +13,7 @@
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane active" id="infos">
-								<form name="form" class="form-signin form-horizontal" novalidate ng-submit="submitEditInfos()">
+								<form name="form" class="form-signin form-horizontal">
 									<div class="control-group">
 										<label class="control-label" for="inputPseudo">Pseudo</label>
 										<div class="controls">
@@ -27,42 +27,56 @@
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="inputPassword">Mot de passe<span class="red-star" ng-show="editPassword">*</span></label>
+										<label class="control-label" for="inputPassword">Mot de passe</label>
 										<div class="controls">
-											<button ng-hide="editPassword" class="btn btn-primary" ng-click="editPassword=true">Modifier</button>
-											<div ng-show="editPassword" ng-init="editPassword=false">
-												<input type="password" id="inputPassword" placeholder="Password">
-												<i class="icon-remove" ng-click="editPassword=false"></i>
-											</div>
+											<button ng-hide="editPassword" class="btn btn-primary" ng-href="#modalEditPassword" data-toggle="modal">Modifier</button>
 										</div>
 									</div>
-									<div class="control-group" ng-show="editPassword">
-										<label class="control-label" for='password'>Nouveau mot de passe<span class="red-star">*</span></label>
-										<div class="controls" ng-class="{error: form.password.$error.minlenght, success: form.password.$valid}">
-											<input type='password' id='password' name='password' required ng-model='user.password' ng-minlength="8">
-											<span class='help-inline' ng-show="form.password.$error.minlength">
-												Votre mot de passe doit contenir au moins 8 caractères
-											</span>
-										</div>
-
-									</div>
-
-									<div class='control-group' ng-class="{error: form.password_confirmation.$error.sameAs, success: form.password_confirmation.$valid}"  ng-show="editPassword">
-										<label class="control-label" for='password_confirmation'>Confirmation<span class="red-star">*</span></label>
-										<div class='controls'>
-											<input type='password' id='password_confirmation' name='password_confirmation' same-as='user.password' ng-model='user.password_confirmation' required>
-											<span class='help-inline' ng-show='form.password_confirmation.$error.sameAs'>
-												Les deux mots de passe ne sont pas identiques.
-											</span>
-										</div>
-									</div>    
 
 									<div class="control-group">
 										<div class="controls">
-											<input type="submit" value="Valider" class="btn" ng-disabled="!form.$valid && editPassword"/>
+											<button class="btn" ng-click="onSubmit(user);">Enregistrer</button>
 										</div>
 									</div>
+
 								</form>
+								<!-- <pre>{{user | json}}</pre> -->
+
+
+								<!-- Modale edit password -->
+								<div id="modalEditPassword" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+								  <div class="modal-header">
+								    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								    <h3 id="ModalLabel">Modifier mon mot de passe</h3>
+								  </div>
+								  <div class="modal-body">
+								  	<form name="form" class="form-signin form-horizontal">
+										<div class="control-group">
+											<label class="control-label" for="inputPassword">Mot de passe actuel</label>
+											<div class="controls">
+												<input type="password" id="inputPassword" ng-model="password.current_password">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="inputNewPass">Nouveau mot de passe</label>
+											<div class="controls">
+												<input type="password" id="inputNewPass" ng-model="password.password">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="inputNewPassConfirm">Confirmation</label>
+											<div class="controls">
+												<input type="password" id="inputNewPassConfirm" ng-model="password.password_confirmation">
+											</div>
+										</div>
+									</form>
+								    
+								  </div>
+								  <div class="modal-footer">
+								    <button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button>
+								    <button class="btn btn-primary" ng-click="submitEditPassword()">Enregistrer</button>
+								  </div>
+								</div>	
 							</div>
 
 

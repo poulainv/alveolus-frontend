@@ -41,7 +41,7 @@ controller('WebappCtrl', function($scope,$location,$routeParams, WebappService, 
 				}
 				
 			});
-			$scope.user.id=2;	
+			// $scope.user.id=2;	
 			console.log($scope.webapp);
 			console.log($scope.user);
 			if($scope.user.id == $scope.webapp.user_id){

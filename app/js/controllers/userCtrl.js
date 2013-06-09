@@ -23,6 +23,13 @@ controller('UserCtrl', function($scope, $routeParams, $location, $rootScope, Use
 		});	
 	}
 
+	$scope.submitEditPassword=function(){
+		console.log("pass:"+$scope.password.password);
+		UserService.updatePassword({userId : $scope.user.id, user : $scope.password}, function(data){
+			console.log('callback '+data);
+		});	
+	}
+
 	$scope.updateAvatar = function(){
 		console.log("updateAVatar");
 

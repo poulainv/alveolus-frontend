@@ -41,86 +41,83 @@ h1, h2, h3, h4, h5{
 .alveole{
   overflow: hidden;
   position: relative;
-  height: 215px;
+  padding: 5px;
   background-color: #fff;
   border: 1px solid #d0d5cb;
-}
-.alveole:hover .alveoleContent{
-  top:0;
+  height: 320px;
 }
 .alveoleHeader{
-  position: relative;
+  padding: 5px;
+  width: 100%;
+  background-color: rgba(255,255,255,0.95);
+  position: absolute;
+  top: -35px;
+  transition: top .3s linear;
+  z-index: 99;
 }
+.alveole:hover .alveoleHeader{
+  top:0;
+}
+
 .alveoleHeader .alveoleName{
-  padding: 0 5px 0 5px;
+  /*padding: 0 5px 0 5px;*/
 }
 .alveoleHeader .alveoleTagsWrapper{
-  padding: 0 5px 0 5px;
+  /*padding: 0 5px 0 5px;*/
 }
 .alveoleName{
   /*color: rgb(57,181,74);*/
-  font-family: "Politica-bold", Helvetica, Arial, sans-serif;
-  font-size: 15px;
-  margin: 0;
-  line-height: 20px;
+  /*font-size: 15px;*/
+  /*margin: 0;*/
 }
 .alveoleContent{
-  position: absolute;
-  background-color: #FFF;
-  background-color: rgba(255,255,255,.8);
-  height: 215px;
-  top: 215px;
-  left: 0;
-  transition: top .3s ease-in;
-  padding: 5px;
+  /*position: absolute;*/
+  /*background-color: #FFF;*/
+  /*background-color: rgba(255,255,255,.8);*/
+  /*height: 215px;*/
+  /*top: 215px;*/
+  /*left: 0;*/
+  /*transition: top .3s ease-in;*/
+  /*padding: 5px;*/
 }
 
 .alveoleContent .more{
-  background: none;
-  text-shadow: none;
-  background-color: rgb(57,181,74);
-  color: #FFF;
-  border: none;
-  border-radius: 0;
-  margin-top: 20px;
+  /*background: none;*/
+  /*text-shadow: none;*/
+  /*background-color: rgb(57,181,74);*/
+  /*color: #FFF;*/
+  /*border: none;*/
+  /*border-radius: 0;*/
+  /*margin-top: 20px;*/
 }
 
 .alveoleContent .more:hover{
-  background-color: rgb(57,181,74);
+  /*background-color: rgb(57,181,74);*/
 }
 
 .alveoleDesc{
-  /*color: #75796f!important;*/
-  font-size: 12px!important;
+  color: #75796f;
+  font-size: 12px;
   text-align: justify;
-  height: 105px;
+  /*height: 105px;*/
 }
 .cropedImg{
-  height: 170px;
+  height: 130px;
   overflow: hidden;  
   position: relative;
+  border: 1px solid #d0d5cb;
 }
 .alveoleImg{
-  height: 170px;
   position: absolute;
+
 }
 
 .alveoleTagsWrapper{
-  white-space: nowrap;
-  width: 200px;
-  height: 20px;
-  text-overflow: ellipsis;
+  height: 38px;
+  top:auto;
+  bottom: 9px;
   position:absolute;
   overflow: hidden;
-}
-.alveole .tag{
-  padding: 1px 3px;
-  margin: 0;
-  margin-right: 3px;
-  text-shadow: none;
-  font-weight: normal;
-  /*color: #FFF; */
-  /*background-color: rgb(57,181,74);*/
 }
 /* -------------------- */
 
@@ -416,7 +413,6 @@ h1, h2, h3, h4, h5{
   color: #FFF !important;
   white-space: nowrap;
   vertical-align: baseline;
-  border-radius: 3px;
   padding: 1px 3px;
   margin: 0;
   margin-right: 3px;

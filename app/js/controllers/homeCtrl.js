@@ -4,16 +4,34 @@
 
 angular.module('alveolus.homeCtrl', []).
 controller('HomeCtrl', function($scope,$location,CategoryService,WebappService,SessionService, UserService) {
-
-
 	$scope.webapps = WebappService.query(function(data){
-		$scope.popularAlveoles = data;
+		/**
+		 * Get the 12 last apps validated
+		 * and create a slide table.
+		 * Each slide has 4 webapp table in it.
+		 */
+		var validatedAlveoles = [];
+		var j=0;
+		for(var i=0; i<data.length;i++){
+			if(data[i].validate)
+				validatedAlveoles[j++] = data[i];
+		}
+		var lastAlveoles = validatedAlveoles.sort(function(a,b){
+				var dateA = new Date(a.created_at);
+				var dateB = new Date(b.created_at);
+				if(dateA < dateB)
+					return 1;
+				else if (dateA == dateB)
+					return 0;
+				else if(dateA > dateB)
+					return -1;
+			});
 		var slideNumber = 0;
 		$scope.slides = [];
-		for(var i=0; i<$scope.popularAlveoles.length;i++){
+		for(i=0; i<12&&i<lastAlveoles.length;i++){
 			if(i%4===0)
 				$scope.slides[slideNumber] = [];
-			$scope.slides[slideNumber][i%4] = $scope.popularAlveoles[i];
+			$scope.slides[slideNumber][i%4] = lastAlveoles[i];
 			if(i%4==3)
 				slideNumber++;
 		}

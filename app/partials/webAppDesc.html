@@ -1,9 +1,12 @@
+<div class="container-grey">
+<div id="webappWrapper" class="container">
+<div id="contentWrapper">
 	<div class="container">
 		<div class="row">
 			<div class="span10 offset1">
 				<div class="row">
 					<div class="span9">
-						<button id="btnMore" class="btn btn-success pull-left" type="button" ng-click="changeView('alveoles')">Toutes les alvéoles {{webapp.category.name}}</button>
+						<button class="btn btn-inverse pull-left" type="button" ng-click="changeView('alveoles')">Toutes les alvéoles {{webapp.category.name}}</button>
 					</div>
 				</div>
 
@@ -13,11 +16,11 @@
 				<div class="row margin">
 					<div class="span5" ng-show="webapp.vimeo_id">
 						<div class="tabbable">
-							<ul class="nav nav-pills" style="margin:0;">
+							<ul class="nav nav-tabs" style="margin:0;">
 								<li class="active"><a href="#video" data-toggle="tab">Vidéo</a></li>
 								<li><a href="#image" data-toggle="tab">Image</a></li>
 							</ul>
-							<div class="tab-content">
+							<div class="tab-content" id="webapp-content-img">
 								<div class="tab-pane active" id="video">
 									<span ng-bind-html-unsafe='webapp.vimeo_id | vimeo'></span>
 								</div>
@@ -37,13 +40,8 @@
 					</div>
 				</div>
 
-				<div 
-				class="span5 relative" 
-				ng-hide="webapp.vimeo_id" 
-				ng-mouseenter="showChangeImageLink = true" 
-				ng-mouseleave="showChangeImageLink = false">
+			<div class="span5 text-center" ng-hide="webapp.vimeo_id" ng-mouseenter="showChangeImageLink = true" ng-mouseleave="showChangeImageLink = false">
 				<img ng-src="{{webapp | image}}" />
-
 				<a id="changeImage" ng-href="#/alveoles/{{webapp.id}}/edit#editImagePanel" ng-show="showChangeImageLink && canEdit">
 					Changer l'image
 				</a>
@@ -67,8 +65,15 @@
 						<!-- <span class="label-color tagList"><a ng-href="#/alveoles/search/{{tag.name}}"> {{tag.name}}</a></span> -->
 						<a ng-href="#/alveoles/search/{{tag.name}}" class="tag"> {{tag.name}}</a>
 					</span>
-					<a ng-show="webapp.tags" href="#modalAddTag" id="addTagLink" data-toggle="modal"><span class="badge badge-inverse"><i class="icon-plus"></i></span></a>
+					<a ng-show="webapp.tags" ng-click="userAddTag=true" ng-init="userAddTag=false" id="addTagLink"><span class="badge badge-inverse"><i class="icon-plus"></i></span></a>
+					<div ng-show="userAddTag">
+						<i class="icon-plus"></i>
+						<input type="text" placeholder="Votre tag" ng-model="newTag.name" class="span2" id="inputTextTag">
+						<button class="btn" ng-click="submitTag(newTag)">Ok</button>
+						<i class="icon-remove" ng-click="userAddTag=false"></i>
+					</div>
 					<a ng-hide="webapp.tags" href="#modalAddTag" id="addTagLink" data-toggle="modal"><span class="badge badge-inverse"><i class="icon-plus"></i> Pas encore de tag, ajoutez le premier !</span></a>
+
 
 					<ul class="ulWebAppLinks">
 						<li>
@@ -76,6 +81,9 @@
 							<a target="_blank" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]={{webapp.url}}&amp;p[images][0]=https://cot-production-assets.s3.amazonaws.com/assets/happy-fingers-da11d5333af9a701244f3606686120a0.jpeg&amp;p[title]={{webapp.title}}&amp;p[summary]={{webapp.caption}}" ng-click="trackSharing()">
 								<i class="icon-facebook-sign icon-2x"></i>
 							</a>
+							<!-- <a facebook ng-click="shareOnFb()">
+								<i class="icon-facebook-sign icon-2x"></i>
+							</a> -->
 							<a target="_blank" href="https://twitter.com/intent/tweet?url={{webapp.url}}&amp;text={{webapp.caption}}">  <!-- via={{webapp.twitter_id}} ? -->
 								<i class="icon-twitter-sign icon-2x"></i>
 							</a>
@@ -150,11 +158,36 @@
 
 
 
-			<div ng-show="webapp.comments" class="margin">
+			<div class="margin">
 				<h3>Commentaires</h3>
 				<!-- Commentaire de l'utilisateur connecté -->
+				
+
+				<div ng-show="canComment" class="margin">
+					<h4>Donnez votre avis !</h4>
+					<table>
+						<tr>
+							<td><div id="label">Note :</div></td>
+							<td>
+								<div class="rating">
+									<input type="radio" id="star5" name="rating" value="5" ng-model="comment.rating"/><label for="star5" title="Amazing !"></label>
+									<input type="radio" id="star4" name="rating" value="4" ng-model="comment.rating"/><label for="star4" title="Cool !"></label>
+									<input type="radio" id="star3" name="rating" value="3" ng-model="comment.rating"/><label for="star3" title="Pas mal"></label>
+									<input type="radio" id="star2" name="rating" value="2" ng-model="comment.rating"/><label for="star2" title="Bof"></label>
+									<input type="radio" id="star1" name="rating" value="1" ng-model="comment.rating"/><label for="star1" title="J'aime pas"></label>
+								</div>
+							</td>
+						</tr>
+					</table>
+
+					<textarea id="textarea" rows="5" class="field span10" ng-model="comment.body"
+					placeholder="Que pensez vous de ce site ?"></textarea>
+					<button type="button" class="btn"  ng-click="submitComment(comment)" ng-disabled="!comment.rating">Envoyer</button>
+				</div>	
+
+
 				<div ng-show="commentUser">
-					<h4>Mon commentaire</h4>
+					<h4 class="webapp-title-margin-top">Mon commentaire</h4>
 					<div class="light-separator"></div>
 					<div class="row">
 						<aside class="span2">
@@ -181,16 +214,16 @@
 							</div>
 						</section>
 					</div>
+					<div class="light-separator" ng-hide="webappHaveComments"></div>
 				</div>
 
-				<div ng-show="webapp.comments">
-					<h4>Commentaires des autres utilisateurs</h4>
+				<div ng-show="webappHaveComments">
+					<h4 class="webapp-title-margin-top">Commentaires des autres utilisateurs</h4>
 					<div class="light-separator"></div>
 					<div ng-repeat="comment in webapp.comments" ng-hide="comment.user.id==user.id">
 						<div class="row" >
 							<aside class="span2">
 								<div class="text-center">
-									<!-- <i ng-show="" class="icon-user icon-4x"></i> -->
 									<img class="img-circle" ng-src="{{comment.user.image_url}}"/>
 									<p>{{comment.user.pseudo}}</p>
 									<div class="starsRatingShow">
@@ -208,44 +241,24 @@
 						<div class="light-separator"></div>
 					</div>
 				</div>
+			
+
+
+				<div ng-hide="webapp.comments[0]" class="margin">Pas de commentaires pour le moment :(</div>
+				<div ng-show="commentUser" class="margin">Vous avez déjà commenté cette alvéole, vous ne pouvez pas commenter à nouveau.</div>
 			</div>
-
-
-			<div ng-show="!webapp.comments" class="margin">Pas de commentaires pour le moment :(</div>
-			<div ng-show="commentUser" class="margin">Vous avez déjà commenté cette alvéole, vous ne pouvez pas commenter à nouveau.</div>
-
-
-			<div ng-show="canComment" class="margin">
-				<h4>Donnez votre avis !</h4>
-				<table>
-					<tr>
-						<td><div id="label">Note :</div></td>
-						<td>
-							<div class="rating">
-								<input type="radio" id="star5" name="rating" value="5" ng-model="comment.rating"/><label for="star5" title="Amazing !"></label>
-								<input type="radio" id="star4" name="rating" value="4" ng-model="comment.rating"/><label for="star4" title="Cool !"></label>
-								<input type="radio" id="star3" name="rating" value="3" ng-model="comment.rating"/><label for="star3" title="Pas mal"></label>
-								<input type="radio" id="star2" name="rating" value="2" ng-model="comment.rating"/><label for="star2" title="Bof"></label>
-								<input type="radio" id="star1" name="rating" value="1" ng-model="comment.rating"/><label for="star1" title="J'aime pas"></label>
-							</div>
-						</td>
-					</tr>
-				</table>
-
-				<textarea id="textarea" rows="5" class="field span10" ng-model="comment.body"
-				placeholder="Que pensez vous de ce site ?"></textarea>
-				<button type="button" class="btn"  ng-click="submitComment(comment)" ng-disabled="!comment.rating">Envoyer</button>
-			</div>
-
 
 
 			<!-- <br>Debug View:  -->
-			<!-- <pre>user={{user | json}}</pre> -->
+			<pre>user={{user | json}}</pre>
 			<!-- <pre>commentUser={{commentUser | json}}</pre> -->
-			<!-- <pre>webapp={{webapp | json}}</pre> -->
+			<pre>webappHaveComments={{webappHaveComments | json}}</pre>
+			<pre>webapp={{webapp | json}}</pre>
 		</div>	
 	</div>
 </div>
 
+</div>
+</div>
 </div>
 

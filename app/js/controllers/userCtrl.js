@@ -15,8 +15,8 @@ controller('UserCtrl', function($scope, $routeParams, $location, UserService, Se
 	$('#progressBar').hide();
 	
 	
-	$scope.onSubmit=function(user){
-		console.log('$scope.onSubmit');
+	$scope.submitEditInfos=function(user){
+		console.log('$scope.submitEditInfos');
 		UserService.updateUser({userId : user.id, user : user}, function(data){
 			$scope.user=data;
 			console.log('callback '.data);

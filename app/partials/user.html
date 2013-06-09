@@ -13,7 +13,6 @@
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane active" id="infos">
-								<!-- <img ng-src="{{user.avatar_file_name}}" /> -->
 								<form name="form" class="form-signin form-horizontal" novalidate ng-submit="submitEditInfos()">
 									<div class="control-group">
 										<label class="control-label" for="inputPseudo">Pseudo</label>
@@ -63,17 +62,7 @@
 											<input type="submit" value="Valider" class="btn" ng-disabled="!form.$valid && editPassword"/>
 										</div>
 									</div>
-
-
-
-									<!-- <div class="control-group">
-										<div class="controls">
-											<button class="btn" ng-click="onSubmit(user);">Enregistrer</button>
-										</div>
-									</div> -->
-
 								</form>
-								<pre>{{user | json}}</pre>
 							</div>
 
 

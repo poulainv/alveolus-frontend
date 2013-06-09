@@ -13,6 +13,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,WebappServ
 	var alertUnauthorized = { type: 'error', msg: 'Vous devez être authentifié' } ;
 	var alertUnlogSuccess = { type: 'info', msg: 'A bientôt ! Vous vous êtes correctement déconnecté' } ;
 	var alertSuggestionSaved = { type: 'success', msg: 'Votre proposition a bien été prise en compte' } ;
+	var alertFileUpdate = { type: 'success', msg: 'Le fichier a été correctement mis à jour !' } ;
 
 	$scope.user = SessionService.getUser();
 	$scope.isLogged = SessionService.authorized();
@@ -32,6 +33,10 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,WebappServ
 	 	// $location.path('/');
 	 	addAlert(alertSuggestionSaved);
 	 });
+
+	$scope.$on('onFileUpdate', function(){
+		addAlert(alertFileUpdate);
+	});
 
 	 // When 401 response is receive, an interceptor broadcast
 	 // onNeedLogin, so we catch it then we open modal login

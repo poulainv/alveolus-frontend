@@ -11,6 +11,8 @@ controller('UserCtrl', function($scope, $routeParams, $location, UserService, Se
 		$scope.user=UserService.get({id: $scope.user.id});
 	}
 	else $scope.openModalLogin();
+
+	$('#progressBar').hide();
 	
 	
 	$scope.onSubmit=function(user){
@@ -29,7 +31,7 @@ controller('UserCtrl', function($scope, $routeParams, $location, UserService, Se
 		var fd = new FormData();
 		fd.append("user[avatar]", $scope.files[0]);
 		var xhr = new XMLHttpRequest();
-        xhr.upload.onprogress = updateProgress;
+		xhr.upload.onprogress = updateProgress;
 		xhr.addEventListener("load", callback, false);
 		xhr.addEventListener("error", function(){console.log("There was an error attempting to upload the file.");}, false);
 		xhr.addEventListener("abort", function(){console.log("he upload has been canceled by the user or the browser dropped the connection.");}, false);
@@ -102,6 +104,7 @@ controller('UserCtrl', function($scope, $routeParams, $location, UserService, Se
 
 	var callback = function(evt){
 		$scope.user = jQuery.parseJSON(evt.target.response);
+		$rootScope.$broadcast('onFileUpdate');
 		console.log($scope.user);
 		$scope.image = $scope.user.image_url
 	};

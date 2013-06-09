@@ -94,13 +94,7 @@ factory('WebappService', function($http,$resource, $rootScope, $location, Sessio
 
 
 
-    service.updateImage = function(id,files,callback){
-        var fd = new FormData();
-        fd.append("webapp[photo]", files[0]);
-        var xhr = new XMLHttpRequest();
-        xhr.addEventListener("load", callback, false);
-        xhr.addEventListener("error", function(){console.log("There was an error attempting to upload the file.");}, false);
-        xhr.addEventListener("abort", function(){console.log("The upload has been canceled by the user or the browser dropped the connection.");}, false);
+    service.updateImage = function(id,xhr,fd){
         xhr.open("PUT", globals.server_url+"/webapps/"+id);
         console.log("session token : "+ SessionService.getToken());
         // console.log(globals.server_url+"/webapps/"+id);

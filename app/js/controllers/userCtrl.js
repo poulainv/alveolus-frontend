@@ -5,6 +5,8 @@
 angular.module('alveolus.userCtrl', []).
 controller('UserCtrl', function($scope, $routeParams, $location, $rootScope, UserService, SessionService, CategoryService) {
 
+	var alertNewComment = {type : 'success', msg : 'Votre profil a bien été mis à jour.'};
+
 	console.log('isLogged:'+$scope.isLogged+' user.id:'+$scope.user.id);
 
 	if($scope.isLogged){
@@ -19,6 +21,7 @@ controller('UserCtrl', function($scope, $routeParams, $location, $rootScope, Use
 		console.log('$scope.submitEditInfos');
 		UserService.updateUser({userId : user.id, user : user}, function(data){
 			$scope.user=data;
+			$scope.addAlert(alertNewComment);
 			console.log('callback '.data);
 		});	
 	}

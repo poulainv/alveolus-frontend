@@ -9,11 +9,16 @@ controller('VoteCtrl', function($scope,$routeParams,WebappService) {
         * Charge la liste des alvéoles non validées
         **/
         WebappService.getUnvalidated(function(data){
-            $scope.alveoles = data;
-            // $scope.alveoles.sort(function(a, b){
-            //     // Classe le tableau dans l'ordre décroissant en fonction de "created_at"
-            //     return(new Date(b['created_at'])-new Date(a['created_at']));
-            // });
+            $scope.alveoles = data.sort(function(a,b){
+                var dateA = new Date(a.created_at);
+                var dateB = new Date(b.created_at);
+                if(dateA < dateB)
+                    return 1;
+                else if (dateA == dateB)
+                    return 0;
+                else if(dateA > dateB)
+                    return -1;
+            });
         });
     }
     $scope.vote = function(webAppId, index, voteValue){

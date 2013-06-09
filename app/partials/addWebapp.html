@@ -174,7 +174,7 @@
 						<label class="control-label" for="image">Image <span class="red-star">*</span> : </label>
 						<div class="controls">
 							<input id="fileToUpload" ng-model="webapp.image" name="fileToUpload" type="file" ng-init="fileReady=false" accept="image/*" onchange="angular.element(this).scope().fileReady=true;angular.element(this).scope().setFile(this);" />
-							<input type="button" value="Choisissez une image... (1mo maximum)" class="block"  onclick="document.getElementById('fileToUpload').click();" />
+							<input type="button" value="Choisissez une image... (< 1mo)" class="block"  onclick="document.getElementById('fileToUpload').click();" />
 							<div ng-show="files.length">
 								<div ng-repeat="file in files.slice(0)">
 									<span>{{file.webkitRelativePath || file.name}}(</span>
@@ -199,7 +199,6 @@
 				</form>
 
 
-				<!-- <progress id="progressBar" value="0" max="100"></progress> -->
 				<div id="progressBar" class="progress progress-success progress-striped">
 					<div class="bar" style="width: 0%"></div>
 				</div>

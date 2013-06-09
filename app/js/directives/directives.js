@@ -34,18 +34,18 @@ directive('facebook', function($http,globals) {
       	SessionService.fetchFacebook($scope.auth)
       }
 
-      	$scope.fetch = function() {
-          console.log("fetch function...");
-      		if ($scope.login_status == 'connected') {
-      			console.log('fetch');
-      			fetch();
-      		} else {
-            console.log("login function...");
-      			login();
-      		}
-      	};
-      },
-      link: function(scope, element, attrs, controller) {
+      $scope.fetch = function() {
+        console.log("fetch function...");
+        if ($scope.login_status == 'connected') {
+         console.log('fetch');
+         fetch();
+       } else {
+        console.log("login function...");
+        login();
+      }
+    };
+  },
+  link: function(scope, element, attrs, controller) {
       // Additional JS functions here
       window.fbAsyncInit = function() {
       	FB.init({
@@ -54,23 +54,23 @@ directive('facebook', function($http,globals) {
           status     : true, // check login status
           cookie     : true, // enable cookies to allow the server to access the session
           xfbml      : true  // parse XFBML
-      });
+        });
 
         // Additional init code here
         FB.getLoginStatus(function(response) {
         	if (response.status === 'connected') {
             // connected
             scope.auth = response.authResponse;
-        } else if (response.status === 'not_authorized') {
+          } else if (response.status === 'not_authorized') {
             console.log("Vous devez autorisé Alveolus pour pouvoir vous connecter à partir de Facebook")
-        } else {
+          } else {
             console.log("Erreur")
-        }
-        scope.login_status = response.status;
-        scope.$apply();
-    });
+          }
+          scope.login_status = response.status;
+          scope.$apply();
+        });
       }; // end of fbAsyncInit
+    }
   }
-}
 });
 

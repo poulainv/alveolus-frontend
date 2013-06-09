@@ -145,12 +145,6 @@
 							<div id="tagList"><img src="img/icon-tags.svg"> </div>
 						</div>
 					</div>
-					<div class="control-group">
-						<label class="control-label" for="featured">Featured : </label>
-						<div class="controls">
-							<input type="checkbox" id="featured" ng-model="webapp.featured"></input>
-						</div>
-					</div>
 
 
 					<!-- Réseaux sociaux -> récupération id et vérification que la page existe à voir -->
@@ -177,10 +171,10 @@
 					</div>
 
 					<div class="control-group">
-						<label class="control-label" for="image">Image : </label>
+						<label class="control-label" for="image">Image <span class="red-star">*</span> : </label>
 						<div class="controls">
-							<input type="file" id="fileToUpload" ng-model="webapp.image" onchange="angular.element(this).scope().setFile(this)"/>
-							<input type="button" value="Choisissez une image..." class="block"  onclick="document.getElementById('fileToUpload').click();" />
+							<input id="fileToUpload" ng-model="webapp.image" name="fileToUpload" type="file" ng-init="fileReady=false" accept="image/*" onchange="angular.element(this).scope().fileReady=true;angular.element(this).scope().setFile(this);" />
+							<input type="button" value="Choisissez une image... (1mo maximum)" class="block"  onclick="document.getElementById('fileToUpload').click();" />
 							<div ng-show="files.length">
 								<div ng-repeat="file in files.slice(0)">
 									<span>{{file.webkitRelativePath || file.name}}(</span>
@@ -198,11 +192,13 @@
 					<br>
 					<div class="control-group">
 						<div class="controls">
-							<button class="btn" ng-disabled="form.$invalid" ng-click="submit(webapp)">Envoyer</button>
+							<button class="btn" ng-disabled="form.$invalid || !fileReady" ng-click="submit(webapp)">Envoyer</button>
 						</div>
 					</div>
 					<div><span class="red-star">*</span> : Champs requis</div>
 				</form>
+
+
 
 			</div>
 			<div id="formExplicationsWrapper" class="span4 alert alert-info">

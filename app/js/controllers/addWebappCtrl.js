@@ -96,6 +96,7 @@ controller('AddWebappCtrl', function($scope,$routeParams,$location,$window,Webap
 			$scope.$apply(function(){
 				$scope.files = []
 				$scope.files.push(file[0]);
+				$scope.fileReady=true;
 			})
 		}
 	}, false)
@@ -103,9 +104,8 @@ controller('AddWebappCtrl', function($scope,$routeParams,$location,$window,Webap
 	$scope.setFile = function(element){
 		$scope.$apply(function(scope) {
 			console.log('files:', element.files);
-			$scope.files = []
-			$scope.files.push(element.files[0])
-			$scope.progressVisible = false
+			$scope.files = [];
+			$scope.files.push(element.files[0]);
 		});
 	}
 

@@ -3,7 +3,7 @@
 /* Controleur de la user page */
 
 angular.module('alveolus.userCtrl', []).
-controller('UserCtrl', function($scope, $routeParams, $location, UserService, SessionService, CategoryService) {
+controller('UserCtrl', function($scope, $routeParams, $location, $rootScope, UserService, SessionService, CategoryService) {
 
 	console.log('isLogged:'+$scope.isLogged+' user.id:'+$scope.user.id);
 

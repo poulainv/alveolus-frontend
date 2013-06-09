@@ -6,10 +6,10 @@
 					<div class="tabbable" > 
 						<ul class="nav nav-pills">
 							<li class="active"><a href="#infos" data-toggle="tab">Mes informations</a></li>
-							<li><a href="#avatar" data-toggle="tab"><i class="icon-user"></i> Mon avatar</a></li>
 							<li><a href="#favoris" data-toggle="tab"><i class="icon-heart"></i> Mes alvéoles favorites</a></li>
 							<li><a href="#comments" data-toggle="tab"><i class="icon-comments-alt"></i> Mes commentaires</a></li>
-							<li><a href="#suggestions" data-toggle="tab">Vos suggestions</a></li>
+							<li><a href="#suggestions" data-toggle="tab">Mes suggestions</a></li>
+							<li><a href="#avatar" data-toggle="tab"><i class="icon-user"></i> Mon avatar</a></li>
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane active" id="infos">
@@ -41,30 +41,30 @@
 										<label class="control-label" for='password'>Nouveau mot de passe<span class="red-star">*</span></label>
 										<div class="controls" ng-class="{error: form.password.$error.minlenght, success: form.password.$valid}">
 											<input type='password' id='password' name='password' required ng-model='user.password' ng-minlength="8">
-			                                <span class='help-inline' ng-show="form.password.$error.minlength">
-			                                    Votre mot de passe doit contenir au moins 8 caractères
-			                                </span>
+											<span class='help-inline' ng-show="form.password.$error.minlength">
+												Votre mot de passe doit contenir au moins 8 caractères
+											</span>
 										</div>
 
 									</div>
 
 									<div class='control-group' ng-class="{error: form.password_confirmation.$error.sameAs, success: form.password_confirmation.$valid}"  ng-show="editPassword">
-			                            <label class="control-label" for='password_confirmation'>Confirmation<span class="red-star">*</span></label>
-			                            <div class='controls'>
-			                                <input type='password' id='password_confirmation' name='password_confirmation' same-as='user.password' ng-model='user.password_confirmation' required>
-			                                <span class='help-inline' ng-show='form.password_confirmation.$error.sameAs'>
-			                                    Les deux mots de passe ne sont pas identiques.
-			                                </span>
-			                            </div>
-		                        	</div>    
+										<label class="control-label" for='password_confirmation'>Confirmation<span class="red-star">*</span></label>
+										<div class='controls'>
+											<input type='password' id='password_confirmation' name='password_confirmation' same-as='user.password' ng-model='user.password_confirmation' required>
+											<span class='help-inline' ng-show='form.password_confirmation.$error.sameAs'>
+												Les deux mots de passe ne sont pas identiques.
+											</span>
+										</div>
+									</div>    
 
-		                        	<div class="control-group">
+									<div class="control-group">
 										<div class="controls">
 											<input type="submit" value="Valider" class="btn" ng-disabled="!form.$valid && editPassword"/>
 										</div>
 									</div>
 
-		                        	
+
 
 									<!-- <div class="control-group">
 										<div class="controls">
@@ -100,38 +100,6 @@
 								</div>
 							</div>
 
-
-							<div class="tab-pane" id="avatar">
-								<div class="control-group">
-									<label class="control-label" for="inputAvatar">Avatar</label>
-									<div class="controls">
-										<img ng-src="{{user.image_url}}" class="span1 img-rounded img-circle"/>
-										<input type="file" id="fileToUpload" onchange="angular.element(this).scope().setFile(this)"/>
-										<input type="button" value="Choisissez une image" class="block"  onclick="document.getElementById('fileToUpload').click();" />
-										<div ng-show="files.length">
-											<div ng-repeat="file in files.slice(0)">
-												<span>{{file.webkitRelativePath || file.name}}(</span>
-												<span ng-switch="file.size > 1024*1024">
-													<span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB)</span>
-													<span ng-switch-default>{{file.size / 1024 | number:2}} kB)</span>
-												</span>
-											</div>
-										</div>
-										<div id="dropbox" class="dropbox span6" ng-class="dropClass"><span>Déposez l'image</span></div>
-									</div>
-								</div>
-
-
-								<div class="control-group">
-									<div class="controls">
-										<button class="btn btn-info" ng-click="updateAvatar();">Mettre à jour</button>
-									</div>
-								</div>
-
-							</div>
-
-
-
 							<div class="tab-pane" id="comments">
 								<div ng-show="user.comments.length">
 									<div class="light-separator"></div>
@@ -165,8 +133,6 @@
 								</div>
 							</div>
 
-
-
 							<div class="tab-pane" id="suggestions">
 
 								<div ng-show="user.webapps.length">
@@ -197,6 +163,42 @@
 									<p>Vous n'avez pas proposé d'alvéole.</p>
 									<button class="btn btn-inverse pull-left" type="button" ng-click="changeView('alveoles/new')">Contribuer à AlveolUs en suggerant un site web</button>
 								</div>
+							</div>
+
+							<div class="tab-pane" id="avatar">
+								<img ng-src="{{user.image_url}}" class="span1 img-rounded img-circle"/>
+								
+								<form class="form-horizontal">
+									<div class="control-group">
+										<div class="controls">
+											<input type="file" id="fileToUpload" onchange="angular.element(this).scope().setFile(this)"/>
+											<input type="button" value="Choisissez une image... (< 1mo)" class="block"  onclick="document.getElementById('fileToUpload').click();" />
+											<div ng-show="files.length">
+												<div ng-repeat="file in files.slice(0)">
+													<span>{{file.webkitRelativePath || file.name}}(</span>
+													<span ng-switch="file.size > 1024*1024">
+														<span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB)</span>
+														<span ng-switch-default>{{file.size / 1024 | number:2}} kB)</span>
+													</span>
+												</div>
+											</div>
+											<br>
+											<div id="dropbox" class="dropbox span6" ng-class="dropClass"><h3>... ou déposez l'image</h3></div>
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<div class="controls">
+											<button class="btn btn-info" ng-click="updateAvatar();">Mettre à jour</button>
+											<br>
+											<br>
+											<div id="progressBar" class="progress span6 progress-success progress-striped">
+												<div class="bar" style="width: 0%"></div>
+											</div>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>

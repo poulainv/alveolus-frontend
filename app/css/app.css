@@ -58,9 +58,9 @@ h1, h2, h3, h4, h5{
   padding: 0 5px 0 5px;
 }
 .alveoleName{
-  color: rgb(57,181,74);
+  /*color: rgb(57,181,74);*/
+  font-family: "Politica-bold", Helvetica, Arial, sans-serif;
   font-size: 15px;
-  font-weight: bold;
   margin: 0;
   line-height: 20px;
 }

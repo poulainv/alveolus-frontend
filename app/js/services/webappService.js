@@ -3,7 +3,7 @@
 /* Services WebApps */
 
 angular.module('alveolus.webappService', ['ngResource']).
-factory('WebappService', function($http,$resource, $rootScope, SessionService,globals) {
+factory('WebappService', function($http,$resource, $rootScope, $location, SessionService,globals) {
 
     var searchContent;
     var service = $resource(globals.server_url+'/webapps/:id', {id:'@id'}, {
@@ -70,27 +70,8 @@ factory('WebappService', function($http,$resource, $rootScope, SessionService,gl
         success(function(data){callback(data);});
     };
 
-    service.addWebapp = function(webapp,files){
-        var fd = new FormData();
-        fd.append("webapp[title]", webapp.title);
-        fd.append("webapp[url]", webapp.url);
-        fd.append("webapp[caption]", webapp.caption);
-        fd.append("webapp[description]", webapp.description);
-        fd.append("webapp[category_id]", webapp.category_id);
-        if(webapp.tag_list!=null && webapp.tag_list != undefined){
-            fd.append("webapp[tag_list]", webapp.tag_list.substr(0,webapp.tag_list.length-2)); // To remove ', ' at the end
-        } else {
-             fd.append("webapp[tag_list]", "");
-        }
-        fd.append("webapp[featured]", webapp.featured);
-        fd.append("webapp[twitter_id]", webapp.twitter_id);
-        fd.append("webapp[facebook_id]", webapp.facebook_id);
-        fd.append("webapp[gplus_id]", webapp.gplus_id);
-        fd.append("webapp[photo]", files[0]);
-        var xhr = new XMLHttpRequest();
-        xhr.addEventListener("load", function(){  $rootScope.$broadcast('onSuggestionSaved');}, false);
-        xhr.addEventListener("error", function(){alert("Erreur pendant le chargement du fichier")}, false);
-        xhr.addEventListener("abort", function(){ alert('Connexion perdue')}, false);
+    service.addWebapp = function(xhr,fd){
+        
         xhr.open("POST", globals.server_url+"/webapps");
         xhr.setRequestHeader('X-AUTH-TOKEN', SessionService.getToken());
         console.log(xhr);
@@ -113,7 +94,7 @@ factory('WebappService', function($http,$resource, $rootScope, SessionService,gl
 
 
 
-     service.updateImage = function(id,files,callback){
+    service.updateImage = function(id,files,callback){
         var fd = new FormData();
         fd.append("webapp[photo]", files[0]);
         var xhr = new XMLHttpRequest();

@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.addWebappCtrl', []).
-controller('AddWebappCtrl', function($scope,$routeParams,$location,$window,WebappService, SocialService, CategoryService, TagService) {
+controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,$window,WebappService, SocialService, CategoryService, TagService) {
 
 	if(!$scope.isLogged){
 		$location.path('/');
@@ -54,14 +54,36 @@ controller('AddWebappCtrl', function($scope,$routeParams,$location,$window,Webap
 		
 		$scope.webapp = webapp;
 		console.log($scope.webapp);
-		WebappService.addWebapp(webapp,$scope.files);
-	};
 
-	$scope.results = function(content, completed) {
-		if (completed && content.length > 0){
-			console.log(content);
-		}
-	}
+		var fd = new FormData();
+		fd.append("webapp[title]", webapp.title);
+		fd.append("webapp[url]", webapp.url);
+		fd.append("webapp[caption]", webapp.caption);
+		fd.append("webapp[description]", webapp.description);
+		fd.append("webapp[category_id]", webapp.category_id);
+		if(webapp.tag_list!=null && webapp.tag_list != undefined){
+            fd.append("webapp[tag_list]", webapp.tag_list.substr(0,webapp.tag_list.length-2)); // To remove ', ' at the end
+        } else {
+        	fd.append("webapp[tag_list]", "");
+        }
+        fd.append("webapp[twitter_id]", webapp.twitter_id);
+        fd.append("webapp[facebook_id]", webapp.facebook_id);
+        fd.append("webapp[gplus_id]", webapp.gplus_id);
+        fd.append("webapp[photo]", $scope.files[0]);
+        var xhr = new XMLHttpRequest();
+        xhr.upload.onprogress = updateProgress;
+        xhr.addEventListener("load", function(){$rootScope.$broadcast('onSuggestionSaved');}, false);
+        xhr.addEventListener("error", function(){alert("Erreur pendant le chargement du fichier")}, false);
+        xhr.addEventListener("abort", function(){ alert('Connexion perdue')}, false);
+        // xhr.addEventListener("progress", updateProgress, false);
+        WebappService.addWebapp(xhr,fd);
+    };
+
+    $scope.results = function(content, completed) {
+    	if (completed && content.length > 0){
+    		console.log(content);
+    	}
+    }
 
 	//Drag'n'drop
 
@@ -109,5 +131,16 @@ controller('AddWebappCtrl', function($scope,$routeParams,$location,$window,Webap
 		});
 	}
 
+	var updateProgress = function(e){
+		console.log('onprogress');
+            var progress = $('#progressBar .bar');
+            if (e.lengthComputable) 
+            {
+            	var percentComplete = (e.loaded / e.total)*100;  
+            	progress.css("width",percentComplete+'%');
+            	progress.text( Math.round(percentComplete)+'%');
+            }
+        };
 
-});
+
+    });

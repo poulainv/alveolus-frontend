@@ -25,9 +25,11 @@
 .ulWebAppLinks a{
   text-decoration: none;
 }
-.ulWebAppLinks a:hover{
+.ulWebAppLinks a:hover, .grey-hover a:hover{
   color: #34495e;
 }
+
+
 
 
 
@@ -157,12 +159,14 @@ tagList{
 }
 
 
-#title-webapp{
-  background-color: rgb(57,181,74);
-  padding: 1px;
+.webapp-border{
+  border-bottom: 2px solid rgb(57,181,74);
+  padding-bottom: 9px;
+  padding-top: 9px;
 }
-#title-webapp h1 a{
-  color: white;
+.webapp-border h4{
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 
@@ -185,6 +189,11 @@ tagList{
   margin-top: 10px;
 }
 
+.webapp-box-content{
+  background-color: white;
+  padding: 10px;
+}
+
 
 
 /* PAGE USER */
@@ -196,3 +205,5 @@ tagList{
 .button-link{
   color: white;
 }
+
+

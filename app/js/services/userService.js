@@ -32,6 +32,12 @@ factory('UserService', function($http,$resource,globals, SessionService) {
         success(function(data){callback(data);});
     }
 
+    service.updatePassword = function(params,callback){
+        $http({method:'PUT', url: globals.server_url+'/users/'+params.userId+'/update_password', cache:true,
+            data : {'user' : params.user}}).
+        success(function(data){callback(data);});
+    }
+
      service.updateAvatar = function(xhr,fd,id){
         
         xhr.open("PUT", globals.server_url+"/users/"+id);

@@ -166,7 +166,7 @@ $scope.shareOnFb=function(){
           name: "title",
           link:  "http://alveolus.fr",
           caption: "caption",
-          message: "J'ai découvert ça sur EnjoyTheWeb, ça peut vous intéresser !"
+          message: "J'ai découvert ça sur AlveolUs, ça peut vous intéresser !"
       },function(response) {
       console.log("response:"+response);
     });

@@ -30,19 +30,19 @@
           </li>
           <li>
             <a class="navbar-link" ng-click="goToAddWebappPage()" ng-init="propose = 'propose'" ng-mouseenter="propose = 'propose-green'" ng-mouseleave="propose='propose'">
-              <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{propose}}.svg"></div>
+              <div class="navbar-picto-container"><img class="navbar-picto"  ng-src="img/picto/picto-{{propose}}.svg"></div>
               <div class="navbar-link-text" id="proposez">PROPOSEZ</div>
             </a>
           </li>
           <li>
             <a class="navbar-link" ng-href="#/alveoles" ng-init="browse = 'browse'" ng-mouseenter="browse = 'browse-green'" ng-mouseleave="browse='browse'">
-              <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{browse}}.svg"></div>
+              <div class="navbar-picto-container"><img class="navbar-picto"  ng-src="img/picto/picto-{{browse}}.svg"></div>
               <div class="navbar-link-text">DÉCOUVREZ</div>
             </a>
           </li>
           <li>
             <a class="navbar-link" ng-href="#/vote" ng-init="vote = 'vote'" ng-mouseenter="vote = 'vote-green'" ng-mouseleave="vote='vote'">
-              <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{vote}}.svg"></div>
+              <div class="navbar-picto-container"><img class="navbar-picto"  ng-src="img/picto/picto-{{vote}}.svg"></div>
               <div class="navbar-link-text" id="moderez">MODÉREZ</div>
             </a>
           </li>
@@ -59,13 +59,13 @@
         <ul class="nav pull-right">    
           <li ng-hide="isLogged">
             <a class="navbar-link" ng-click="openModalLogin()" ng-init="connect = 'connect'" ng-mouseenter="connect = 'connect-green'" ng-mouseleave="connect='connect'">
-              <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{connect}}.svg"></div>
+              <div class="navbar-picto-container"><img class="navbar-picto"  ng-src="img/picto/picto-{{connect}}.svg"></div>
               <div class="navbar-link-text">CONNEXION</div>
             </a>
           </li>
           <li class="dropdown" ng-show="isLogged" id="navbar-avatar-container">
             <a class="dropdown-toggle">
-              <img id="navbar-avatar" src="{{userInfo.image_url}}" class="img-circle"/>
+              <img id="navbar-avatar" ng-src="{{userInfo.image_url}}" class="img-circle"/>
               <span id="navbar-dropdown-arrow"></span>
               <div class="navbar-link">COMPTE</div>
             </a>

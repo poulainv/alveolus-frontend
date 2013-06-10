@@ -305,11 +305,16 @@ h1, h2, h3, h4, h5{
   /*height: 80px;*/
 }
 
-.navbar-link{
+.navbar-link-text{
   font-family: politica;
   color: black;
   font-weight: bold;
   font-size: 16px;
+  text-shadow:none;
+}
+
+.navbar-link:hover .navbar-link-text{
+  color: rgb(57,181,74);
 }
 
 .navbar .divider-vertical {

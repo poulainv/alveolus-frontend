@@ -23,27 +23,27 @@
       <div class="nav-collapse collapse pull-left">
         <ul class="nav pull-left">
           <li>
-            <a ng-href="#/about" ng-init="about = 'about'" ng-mouseenter="about = 'about-green'" ng-mouseleave="about='about'">
+            <a class="navbar-link" ng-href="#/about" ng-init="about = 'about'" ng-mouseenter="about = 'about-green'" ng-mouseleave="about='about'">
               <div class="navbar-picto-container"><img class="navbar-picto" ng-src="img/picto/picto-{{about}}.svg"></div>
-              <div class="navbar-link">À PROPOS</div>
+              <div class="navbar-link-text">À PROPOS</div>
             </a>
           </li>
           <li>
-            <a ng-click="goToAddWebappPage()" ng-init="propose = 'propose'" ng-mouseenter="propose = 'propose-green'" ng-mouseleave="propose='propose'">
-              <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{propose}}.svg"></div>
-              <div class="navbar-link" id="proposez">PROPOSEZ</div>
+            <a class="navbar-link" ng-click="goToAddWebappPage()" ng-init="propose = 'propose'" ng-mouseenter="propose = 'propose-green'" ng-mouseleave="propose='propose'">
+              <div class="navbar-picto-container"><img class="navbar-picto"  ng-src="img/picto/picto-{{propose}}.svg"></div>
+              <div class="navbar-link-text" id="proposez">PROPOSEZ</div>
             </a>
           </li>
           <li>
-            <a ng-href="#/alveoles" ng-init="browse = 'browse'" ng-mouseenter="browse = 'browse-green'" ng-mouseleave="browse='browse'">
-              <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{browse}}.svg"></div>
-              <div class="navbar-link">DÉCOUVREZ</div>
+            <a class="navbar-link" ng-href="#/alveoles" ng-init="browse = 'browse'" ng-mouseenter="browse = 'browse-green'" ng-mouseleave="browse='browse'">
+              <div class="navbar-picto-container"><img class="navbar-picto"  ng-src="img/picto/picto-{{browse}}.svg"></div>
+              <div class="navbar-link-text">DÉCOUVREZ</div>
             </a>
           </li>
           <li>
-            <a ng-href="#/vote" ng-init="vote = 'vote'" ng-mouseenter="vote = 'vote-green'" ng-mouseleave="vote='vote'">
-              <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{vote}}.svg"></div>
-              <div class="navbar-link" id="moderez">MODÉREZ</div>
+            <a class="navbar-link" ng-href="#/vote" ng-init="vote = 'vote'" ng-mouseenter="vote = 'vote-green'" ng-mouseleave="vote='vote'">
+              <div class="navbar-picto-container"><img class="navbar-picto"  ng-src="img/picto/picto-{{vote}}.svg"></div>
+              <div class="navbar-link-text" id="moderez">MODÉREZ</div>
             </a>
           </li>
           <li>
@@ -58,14 +58,14 @@
       <div class="nav-collapse collapse pull-right">
         <ul class="nav pull-right">    
           <li ng-hide="isLogged">
-            <a ng-click="openModalLogin()" ng-init="connect = 'connect'" ng-mouseenter="connect = 'connect-green'" ng-mouseleave="connect='connect'">
-              <div class="navbar-picto-container"><img class="navbar-picto"  src="img/picto/picto-{{connect}}.svg"></div>
-              <div class="navbar-link">CONNEXION</div>
+            <a class="navbar-link" ng-click="openModalLogin()" ng-init="connect = 'connect'" ng-mouseenter="connect = 'connect-green'" ng-mouseleave="connect='connect'">
+              <div class="navbar-picto-container"><img class="navbar-picto"  ng-src="img/picto/picto-{{connect}}.svg"></div>
+              <div class="navbar-link-text">CONNEXION</div>
             </a>
           </li>
           <li class="dropdown" ng-show="isLogged" id="navbar-avatar-container">
             <a class="dropdown-toggle">
-              <img id="navbar-avatar" src="{{userInfo.image_url}}" class="img-circle"/>
+              <img id="navbar-avatar" ng-src="{{userInfo.image_url}}" class="img-circle"/>
               <span id="navbar-dropdown-arrow"></span>
               <div class="navbar-link">COMPTE</div>
             </a>

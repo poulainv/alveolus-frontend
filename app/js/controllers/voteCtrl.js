@@ -29,6 +29,7 @@ controller('VoteCtrl', function($scope,$routeParams,WebappService) {
         if($scope.isLogged)
             WebappService.vote({id: webAppId, value: voteValue}, function(data){
                 $scope.alveoles[index] = data;
+                console.log($scope.alveoles[index]);
             });
     };
 

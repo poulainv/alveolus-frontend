@@ -19,7 +19,7 @@
 			<div id="teamSelectionWrapper" class="span11">
 				<div id="teamSelection">
 					<div  class="row-fluid">
-						<h3 class="span7"><img src="img/icon-team-selection.svg"> Sélection de l'équipe - {{catSelected.name}} :</h3>
+						<h3 class="span7"><img src="img/icon/icon-team-selection.svg"> Sélection de l'équipe - {{catSelected.name}} :</h3>
 						<button id="btnMore" class="btn btn-inverse span5" type="button" ng-click="changeView('alveoles')">{{catSelected.name}} : Voir toutes les alvéoles > </button>
 					</div>
 					<br>
@@ -38,7 +38,7 @@
 								{{appFeatured.description | truncate:500}}
 							</div>
 							<div id="tagListFeatured">
-								<img src="img/icon-tags.svg">
+								<img src="img/icon/icon-tags.svg">
 								<span ng-repeat="tag in appFeatured.tags">
 									<a href="#/alveoles/search/{{tag.name}}" class="tag">{{tag.name}}</a> 
 								</span>
@@ -55,7 +55,7 @@
 
 			<div class="container">
 				<div  id="popularApps" class="span11">
-					<h3><img src="img/star_small.png">  Dernières alvéoles</h3>
+					<h3><img src="img/icon/icon-hot.svg">  Dernières alvéoles</h3>
 
 					<carousel>
 						<slide ng-repeat="slide in slides" active="img.active" class="row-fluid">
@@ -80,7 +80,7 @@
 												</p>
 											</a>
 												<div class="alveoleTagsWrapper">
-													<img src="img/icon-tags.svg" ng-show="alveole.tags">
+													<img src="img/icon/icon-tags.svg" ng-show="alveole.tags">
 													<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)" class="tag">
 														<a href="#/alveoles/search/{{tag.name}}" class="tag">{{tag.name}}</a>
 													</span>

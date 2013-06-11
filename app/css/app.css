@@ -450,7 +450,7 @@ h1, h2, h3, h4, h5{
 #alertContainer{
   position: fixed;
   top: 90px;
-  z-index: 1049;
+  z-index: 999;
 }
 
 #alveolesList{
@@ -701,7 +701,7 @@ h1, h2, h3, h4, h5{
 }
 
 #teamSelection{
-  padding: 20px 50px;
+  /*padding: 20px 50px;*/
 }
 
 #teamSelectionWrapper{

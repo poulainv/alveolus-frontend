@@ -54,7 +54,7 @@
 				<div class="span5">
 					<div class="webapp-border row">
 						<h1 class="span3"><a href="{{webapp.url}}" target="_blank">{{webapp.title}}</a></h1>
-						<span class="span2 pull-right" ng-hide="webapp.bookmarked"><a ng-click="bookmark();"><i class="icon-heart-empty icon-large"></i> Ajouter aux favoris</a></span>
+						<span class="span2 pull-right" ng-hide="webapp.bookmarked"><a ng-click="bookmark();"><img ng-src="img/icon/icon-bookmark.svg"> Ajouter aux favoris</a></span>
 						<span ng-show="webapp.bookmarked"><i class="icon-heart icon-large"></i> Dans vos favoris <a ng-click="unbookmark();" id="unbookmark-link">(Supprimer)</a></a></span>
 					</div>
 
@@ -83,13 +83,16 @@
 							<h4>Réseaux sociaux</h4>
 							<ul class="ulWebAppLinks">
 								<li ng-show='facebook'>
-									<a href="{{facebook.link}}" target="_blank"><i class="icon-facebook icon-large icon-fixed-width"></i> {{facebook.likes}} likes</a>
+									<!-- <a href="{{facebook.link}}" target="_blank"><i class="icon-facebook icon-large icon-fixed-width"></i> {{facebook.likes}} likes</a> -->
+									<a href="{{facebook.link}}" target="_blank"><img ng-src="img/icon/icon-facebook.svg"> {{facebook.likes}} likes</a>
 								</li>
 								<li ng-show='twitter'>
-									<a href="https://twitter.com/{{webapp.twitter_id}}" target="_blank"><i class="icon-twitter icon-large icon-fixed-width"></i> {{twitter.followers_count}} followers</a>
+									<!-- <a href="https://twitter.com/{{webapp.twitter_id}}" target="_blank"><i class="icon-twitter icon-large icon-fixed-width"></i> {{twitter.followers_count}} followers</a> -->
+									<a href="https://twitter.com/{{webapp.twitter_id}}" target="_blank"><img ng-src="img/icon/icon-twitter.svg"> {{twitter.followers_count}} followers</a>
 								</li>
 								<li ng-show='webapp.gplus_id'>
-									<a href="https://plus.google.com/{{webapp.gplus_id}}" target="_blank"><i class="icon-google-plus icon-large icon-fixed-width"></i> Google Plus</a>
+									<!-- <a href="https://plus.google.com/{{webapp.gplus_id}}" target="_blank"><i class="icon-google-plus icon-large icon-fixed-width"></i> Google Plus</a> -->
+									<a href="https://plus.google.com/{{webapp.gplus_id}}" target="_blank"><img ng-src="img/icon/icon-gplus.svg"> Google Plus</a>
 								</li>
 							</ul>
 						</div>
@@ -97,15 +100,19 @@
 							<h4>Partager sur...</h4>
 							<ul class="listWithoutDecoration grey-hover">
 								<li><a target="_blank" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]={{webapp.url}}&amp;p[images][0]=https://cot-production-assets.s3.amazonaws.com/assets/happy-fingers-da11d5333af9a701244f3606686120a0.jpeg&amp;p[title]={{webapp.title}}&amp;p[summary]={{webapp.caption}}" ng-click="trackSharing()">
-									<i class="icon-facebook-sign icon-2x"></i></a></li>
+									<!-- <i class="icon-facebook-sign icon-2x"></i></a></li> -->
+									<img ng-src="img/icon/icon-facebook.svg">
+								</a></li>
 								<!-- <a facebook ng-click="shareOnFb()">
 									<i class="icon-facebook-sign icon-2x"></i>
 								</a> -->
 								<li><a target="_blank" href="https://twitter.com/intent/tweet?url={{webapp.url}}&amp;text={{webapp.caption}}">  <!-- via={{webapp.twitter_id}} ? -->
-									<i class="icon-twitter-sign icon-2x"></i>
+									<!-- <i class="icon-twitter-sign icon-2x"></i> -->
+									<img ng-src="img/icon/icon-twitter.svg">
 								</a></li>
 								<li><a target="_blank" href="https://plus.google.com/share?url={{webapp.url}}">
-									<i class="icon-google-plus-sign icon-2x"></i>
+									<!-- <i class="icon-google-plus-sign icon-2x"></i> -->
+									<img ng-src="img/icon/icon-gplus.svg">
 								</a></li>
 							</ul>
 						</div>

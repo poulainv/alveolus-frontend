@@ -104,7 +104,7 @@ factory('WebappService', function($http,$resource, $rootScope, $location, Sessio
     }
 
     service.addTag = function(params,callback,callbackError){
-        $http({method:'POST', url: globals.server_url+'/webapps/'+params.id+'/tags', params : {'tag' : {'name' : params.tagName}}}).
+        $http({method:'POST', url: globals.server_url+'/webapps/'+params.id+'/tags', params : {'tag' : params.tagName}}).
         success(function(data){callback(data);}).
         error(function(data){callbackError(data);});        
     }

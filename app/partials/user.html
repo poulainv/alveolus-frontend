@@ -17,7 +17,7 @@
 									<div class="control-group">
 										<label class="control-label" for="inputPseudo">Pseudo</label>
 										<div class="controls">
-											<input type="text" id="inputPseudo" value="{{user.pseudo}}" ng-model="user.pseudo">
+											<input type="text" id="inputPseudo" value="{{user.pseudo}}" ng-model="user.pseudo"> <button class="btn" ng-click="submitEditInfos(user);">Enregistrer</button>
 										</div>
 									</div>
 									<div class="control-group">
@@ -33,13 +33,8 @@
 										</div>
 									</div>
 
-									<div class="control-group">
-										<div class="controls">
-											<button class="btn" ng-click="submitEditInfos(user);">Enregistrer</button>
-										</div>
-									</div>
-
 								</form>
+
 								<!-- <pre>{{user | json}}</pre> -->
 
 
@@ -50,31 +45,40 @@
 								    <h3 id="ModalLabel">Modifier mon mot de passe</h3>
 								  </div>
 								  <div class="modal-body">
-								  	<form name="form" class="form-signin form-horizontal">
+								  	<form name="form" class="form-signin form-horizontal" novalidate ng-submit="submitEditPassword()">
 										<div class="control-group">
-											<label class="control-label" for="inputPassword">Mot de passe actuel</label>
+											<label class="control-label" for="inputPassword">Mot de passe actuel<span class="red-star">*</span></label>
 											<div class="controls">
-												<input type="password" id="inputPassword" ng-model="password.current_password">
+												<input type="password" id="inputPassword" name="inputPassword" required ng-model="password.current_password">
+												<span class='help-inline' ng-show="form.inputPassword.$error.wrongPassword">
+				                                    Votre mot de passe est incorrect.
+				                                </span>
 											</div>
 										</div>
-										<div class="control-group">
-											<label class="control-label" for="inputNewPass">Nouveau mot de passe</label>
-											<div class="controls">
-												<input type="password" id="inputNewPass" ng-model="password.password">
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label" for="inputNewPassConfirm">Confirmation</label>
-											<div class="controls">
-												<input type="password" id="inputNewPassConfirm" ng-model="password.password_confirmation">
-											</div>
-										</div>
+				                        <div class='control-group' ng-class="{error: form.password.$error.minlenght, success: form.password.$valid}">
+				                            <label class="control-label" for='password'>Mot de passe<span class="red-star">*</span></label>
+				                            <div class='controls'>
+				                                <input type='password' id='password' name='password' required name='password' ng-model='user.password' ng-minlength="8">
+				                                <span class='help-inline' ng-show="form.password.$error.minlength">
+				                                    Votre mot de passe doit contenir au moins 8 caractères
+				                                </span>
+				                            </div>
+				                        </div>
+				                        <div class='control-group' ng-class="{error: form.password_confirmation.$error.sameAs, success: form.password_confirmation.$valid}">
+				                            <label class="control-label" for='password_confirmation'>Confirmation<span class="red-star">*</span></label>
+				                            <div class='controls'>
+				                                <input type='password' id='password_confirmation' name='password_confirmation' name='password_confirmation' same-as='user.password' ng-model='user.password_confirmation' required>
+				                                <span class='help-inline' ng-show='form.password_confirmation.$error.sameAs'>
+				                                    Les deux mots de passe ne sont pas identiques.
+				                                </span>
+				                            </div>
+				                        </div>  
 									</form>
 								    
 								  </div>
 								  <div class="modal-footer">
 								    <button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button>
-								    <button class="btn btn-primary" ng-click="submitEditPassword()">Enregistrer</button>
+								    <input type="submit" value="Valider" class="btn btn-primary" ng-disabled="!form.$valid" ng-click="submitEditPassword()"/>
 								  </div>
 								</div>	
 							</div>
@@ -112,7 +116,8 @@
 												<div class="row">
 													<div class="span2 text-center">
 														<a href="#alveoles/{{comment.webapp_id}}">
-															<img ng-src="{{comment.webapp_image_url}}"/>
+															<!-- <img ng-src="{{comment.webapp_image_url}}"/> -->
+															<img ng-src="{{comment | image_comment}}"/>
 															<h4 class="span2 text-center user-title-webapp-list">{{comment.webapp_title}}</h4>
 														</a>
 													</div>
@@ -134,6 +139,7 @@
 								<div ng-hide="user.comments.length">
 									<p>Vous n'avez posté aucun commentaire :(</p>
 								</div>
+								<pre>{{user.comments | json}}</pre>
 							</div>
 							
 

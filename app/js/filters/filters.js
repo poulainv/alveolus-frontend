@@ -27,6 +27,17 @@ angular.module('alveolus.filters', []).filter('star', function() {
     }
   };
 })
+.filter('image_comment', function() {
+  return function(input) {
+    if(input && input.webapp_image_url == "img/missing.png"){
+      return "img/"+input.webapp_id+".jpg";
+    } else if(input){
+      return input.webapp_image_url;
+    } else {
+      return "img/missing.png";
+    }
+  };
+})
 .filter('range', function() {
   return function(input, total) {
     total = parseInt(total);

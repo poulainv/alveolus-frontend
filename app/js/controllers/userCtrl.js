@@ -5,7 +5,8 @@
 angular.module('alveolus.userCtrl', []).
 controller('UserCtrl', function($scope, $routeParams, $location, $rootScope, UserService, SessionService, CategoryService) {
 
-	var alertNewComment = {type : 'success', msg : 'Votre profil a bien été mis à jour.'};
+	var alertUpdatePseudo = {type : 'success', msg : 'Votre pseudo a bien été mis à jour.'};
+	var alertPasswordChanged = {type : 'success', msg : 'Votre mot de passe a bien été modifié.'};
 
 	console.log('isLogged:'+$scope.isLogged+' user.id:'+$scope.user.id);
 
@@ -21,7 +22,7 @@ controller('UserCtrl', function($scope, $routeParams, $location, $rootScope, Use
 		console.log('$scope.submitEditInfos');
 		UserService.updateUser({userId : user.id, user : user}, function(data){
 			$scope.user=data;
-			$scope.addAlert(alertNewComment);
+			$scope.addAlert(alertUpdatePseudo);
 			console.log('callback '.data);
 		});	
 	}
@@ -29,7 +30,12 @@ controller('UserCtrl', function($scope, $routeParams, $location, $rootScope, Use
 	$scope.submitEditPassword=function(){
 		console.log("pass:"+$scope.password.password);
 		UserService.updatePassword({userId : $scope.user.id, user : $scope.password}, function(data){
-			console.log('callback '+data);
+			$('#modalEditPassword').modal('hide');
+			$scope.addAlert(alertPasswordChanged);
+		},
+		function(data){
+			$scope.errors=data.errors;
+			$scope.form.inputPassword.$error.wrongPassword=true;
 		});	
 	}
 

@@ -32,10 +32,16 @@ factory('UserService', function($http,$resource,globals, SessionService) {
         success(function(data){callback(data);});
     }
 
-    service.updatePassword = function(params,callback){
+    service.updatePassword = function(params,success,error){
         $http({method:'PUT', url: globals.server_url+'/users/'+params.userId+'/update_password', cache:true,
-            data : {'user' : params.user}}).
-        success(function(data){callback(data);});
+            data : {'user' : params.user}})
+        .success(function(data, status, headers, config) {
+            console.log("success");
+            success(data);
+        }).error(function(data, status, headers, config) {
+            console.log("error");
+            error(data);
+        });
     }
 
      service.updateAvatar = function(xhr,fd,id){

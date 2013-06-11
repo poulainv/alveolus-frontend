@@ -84,7 +84,7 @@ controller('WebappCtrl', function($scope,$location,$routeParams, WebappService, 
 		// A voir récupération données google+ ???
 		// if($scope.webapp.gplus_id)
 		// 	WebappTwitter.get($scope.webapp.gplus_id,function(data){$scope.twitter=data});
-		// else $scope.twitter=null; 
+		// else $scope.twitter=null;
 
 	});
 
@@ -163,6 +163,10 @@ $scope.goToEditWebappPage = function(){
 }
 
 
+
+$scope.$on('$viewContentLoaded', function(){
+	$('#comment-scrollbar').tinyscrollbar();
+});
 // ---------- Ne marche pas --------------
 // $scope.shareOnFb=function(){
 // 	 console.log("share");

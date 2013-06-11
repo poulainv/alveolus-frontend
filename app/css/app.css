@@ -395,6 +395,10 @@ h1, h2, h3, h4, h5{
   background-color: rgb(57,181,74);
 }
 
+.tag:hover{
+  background-color: #27ae60;
+}
+
 .team-member{
   padding: 5px;
   margin-bottom: 10px;

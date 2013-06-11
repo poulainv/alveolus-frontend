@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.mainCtrl', []).
-controller('MainCtrl', function($scope,$routeParams,$location,$window,WebappService,SessionService,TagService,FeedbackService,UserService) {
+controller('MainCtrl', function($scope,$routeParams,$location,$window,$timeout,WebappService,SessionService,TagService,FeedbackService,UserService) {
 
 	var alertLogSuccess = { type: 'success', msg: 'Parfait, vous êtes correctement authentifié' } ;
 	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifier' } ;
@@ -92,6 +92,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,WebappServ
 	var addAlert = function(alert) {
 		$scope.alerts = [];
 		$scope.alerts.push(alert);
+		$timeout(function(){$scope.closeAlert(0)},6000);
 	};
 	$scope.addAlert = addAlert;
 
@@ -105,7 +106,9 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,WebappServ
 	};
 
 	$scope.closeModalAlert = function(index) {
-		$scope.modalAlert.splice(index, 1);
+		if($scope.alerts.length != 0){
+			$scope.modalAlert.splice(index, 1);
+		}
 	};
 
 	// Reset alert when change location

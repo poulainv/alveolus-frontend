@@ -93,5 +93,5 @@ config(
 
     $httpProvider.responseInterceptors.push(interceptor);
 
-}]).value('globals',{server_url : 'http://quiet-spire-4994.herokuapp.com'});
+}]).value('globals',{server_url : 'http://alveolus.fr'});
 

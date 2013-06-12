@@ -37,7 +37,6 @@ h1, h2, h3, h4, h5{
 * Define how an alveole is displayed in a list
 * or in the carousel
 **/
-
 .alveole{
   overflow: hidden;
   position: relative;
@@ -59,6 +58,7 @@ h1, h2, h3, h4, h5{
 .alveole:hover .alveoleHeader{
   top:0;
 }
+<<<<<<< HEAD
 
 .alveoleName{
   /*color: rgb(57,181,74);*/
@@ -97,29 +97,37 @@ h1, h2, h3, h4, h5{
 /*  text-align: justify;*/
   /*height: 105px;*/
 }
+
+.alveoleRatingWrapper{
+  display: block;
+  width: auto;
+  float: right;
+  padding-right: 10px;
+
+}
 .cropedImg{
   height: 130px;
   overflow: hidden;  
   position: relative;
-  border: 1px solid #d0d5cb;
 }
 .alveoleImg{
   position: absolute;
-
 }
-
+.alveole hr{
+  margin: 0;
+  margin-top: 5px;
+}
+.alveoleDesc{
+  color: #75796f;
+  font-size: 12px;
+  text-align: justify;
+}
 .alveoleTagsWrapper{
   height: 38px;
   top:auto;
   bottom: 9px;
   position:absolute;
   overflow: hidden;
-}
-.alveoleRatingWrapper{
-  display: block;
-  width: auto;
-  float: right;
-  padding-right: 10px;
 }
 /* -------------------- */
 
@@ -426,6 +434,10 @@ h1, h2, h3, h4, h5{
   text-shadow: none;
   font-weight: normal;
   background-color: rgb(57,181,74);
+}
+
+.tag:hover{
+  background-color: #27ae60;
 }
 
 .team-member{

@@ -19,6 +19,9 @@
           <hr>
           <div ng-show="detailViewed" class="box-desc" id="graphDesc">
            <h4>{{webappSelected.title}} </h4>
+           <span ng-repeat="tag in webappSelected.tags">
+              <span class="label-color tagList"> {{tag.name}}</span>
+            </span>
             {{webappSelected.caption}}
            <div id="graphDescMore">
              <hr>

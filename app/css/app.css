@@ -93,7 +93,8 @@ h1, h2, h3, h4, h5{
 .alveoleDesc{
   color: #75796f;
   font-size: 12px;
-  text-align: justify;
+  line-height: 1.4;
+/*  text-align: justify;*/
   /*height: 105px;*/
 }
 .cropedImg{
@@ -654,6 +655,11 @@ h1, h2, h3, h4, h5{
 
 #navLinks{
   padding-top: 10px;
+}
+
+.popover{
+  font-size:12px;
+  background-color: #eef2ea;
 }
 
 #popularAppsWrapper{

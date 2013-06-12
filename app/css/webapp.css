@@ -9,10 +9,13 @@
 .alveole-details-header, .alveole-description, .alveole-comments{
   background-color: #FFF;
   border: 1px solid #d0d5cb;
-  padding: 10px;
+}
+
+.left-header{
+  padding: 10px 0 10px 10px;
 }
 .right-header{
-
+  padding: 10px 10px 10px 0;  
 }
 
 .title-box{
@@ -20,11 +23,11 @@
   border-bottom: 1px solid #2ecc71;
   margin-bottom: 10px;
 }
-.bookmark{
+.bookmark, .global-rating{
   position: absolute;
   top: auto;
   left: auto;
-  bottom: 0;
+  bottom: 10px;
   right: 0;
 }
 
@@ -38,25 +41,22 @@
   color: #c0392b;
 }
 
-
-.left-header{
-
+.info-list i{
+  color: rgb(57,181,74);
 }
 
 .alveole-description, .alveole-comments{
   margin-top: 20px;
+  padding: 10px;
 }
- 
-.alveole-comments .fixed-height{
-  height: 600px;
-  overflow:auto;
-}
+
 .alveole-description{
   text-align: justify;
-  height: 623px;
+  height: 600px;
 }
-.alveole-comments{
 
+.nano-parent{
+  height: 600px;  
 }
 
 .tag-list, .share-list, .social-networks-list, .info-list{
@@ -70,25 +70,10 @@
   position: relative;
   margin-bottom: 10px;
 }
-.global-rating{
-  position: absolute;
-  top: auto;
-  left: auto;
-  bottom: 0;
-  right: 0;
-}
 
 .comment-form, .my-comment, .comment-item{
   border-bottom: 1px solid #d0d5cb;
   padding: 5px 0;
-}
-.comment-form{}
-.my-comment{
-
-}
-
-.comment-item{
-
 }
 
 .comment-time{
@@ -102,7 +87,7 @@
 #comment-scrollbar .thumb { background-color: #777; }
 #comment-scrollbar .scrollbar { position: relative; float: right; width: 10px; }
 #comment-scrollbar .track { background-color: #d0d5cb; height: 100%; width:7px; position: relative; padding: 0 1px; }
-#comment-scrollbar .thumb { height: 20px; width: 7px; cursor: pointer; overflow: hidden; position: absolute; top: 0; }
+#comment-scrollbar .thumb { height: 7px; width: 7px; cursor: pointer; overflow: hidden; position: absolute; top: 0; }
 #comment-scrollbar .thumb .end { overflow: hidden; height: 5px; width: 7px; }
 #comment-scrollbar .disable{ display: none; }
 .noSelect { user-select: none; -o-user-select: none; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; }

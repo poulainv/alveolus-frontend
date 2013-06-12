@@ -12,10 +12,16 @@ controller('WebappCtrl', function($scope,$location,$routeParams, WebappService, 
 	var alertErrorAlreadyTagged = {type : 'error', msg : "Vous avez déjà proposé ce tag pour cette alvéole ! Votre tag n'a pas été ajouté."};
 	var alertWebappBookmarked = {type : 'success', msg : "Cette alvéole a bien été ajoutée à vos favoris."};
 	var alertWebappUnbookmarked = {type : 'info', msg : "Cette alvéole a bien été supprimée de vos favoris."};
-
+	$scope.scrollbar = function(){
+		console.log('yamakassiiiiii !');
+		setTimeout(function(){
+			$(".nano").nanoScroller({ flash: true });
+			//$('#comment-scrollbar').tinyscrollbar();	
+		},1000);
+		
+	};
 
 	$scope.canEdit = false;
-
 	$scope.webAppId=$routeParams.webAppId;
 	$scope.webapp=WebappService.get({id: $routeParams.webAppId}, function(data){
 
@@ -41,6 +47,7 @@ controller('WebappCtrl', function($scope,$location,$routeParams, WebappService, 
 					if($scope.webapp.comments.length==1)
 						$scope.webappHaveComments=false;
 				}
+				$scope.scrollbar();
 			});
 			// $scope.user.id=2;	
 			console.log($scope.webapp);
@@ -62,10 +69,12 @@ controller('WebappCtrl', function($scope,$location,$routeParams, WebappService, 
 						$scope.canComment=false;
 						$scope.commentUser=data;
 					}
+					$scope.scrollbar();
 				});
 			}else{
 				$scope.canComment=false;
 			}
+			$scope.scrollbar();
 		});
 
 		if($scope.webapp.facebook_id){
@@ -85,7 +94,7 @@ controller('WebappCtrl', function($scope,$location,$routeParams, WebappService, 
 		// if($scope.webapp.gplus_id)
 		// 	WebappTwitter.get($scope.webapp.gplus_id,function(data){$scope.twitter=data});
 		// else $scope.twitter=null;
-
+		$scope.scrollbar();
 	});
 
 
@@ -162,11 +171,6 @@ $scope.goToEditWebappPage = function(){
 	}  		
 }
 
-
-
-$scope.$on('$viewContentLoaded', function(){
-	$('#comment-scrollbar').tinyscrollbar();
-});
 // ---------- Ne marche pas --------------
 // $scope.shareOnFb=function(){
 // 	 console.log("share");

@@ -12,7 +12,7 @@
 								<li ng-class="{'active':!webapp.vimeo_id}"><a href="#image" data-toggle="tab">Image</a></li>
 							</ul>
 							<div class="tab-content" id="webapp-content-img">
-								<div class="tab-pane active" id="video" ng-show="webapp.vimeo_id">
+								<div class="tab-pane" ng-class="{'active':webapp.vimeo_id}" id="video" ng-show="webapp.vimeo_id">
 									<span ng-bind-html-unsafe='webapp.vimeo_id | vimeo'></span>
 								</div>
 								<div class="tab-pane" ng-class="{'active':!webapp.vimeo_id}" id="image">
@@ -30,7 +30,7 @@
 					<article class="span6 right-header">
 						<header class="row-fluid title-box">
 							<h1 class="span8"><a href="{{webapp.url}}" target="_blank">{{webapp.title}}</a></h1>
-							<div class="span4 pull-right bookmark">
+							<div class="bookmark">
 								<a ng-hide="webapp.bookmarked" ng-click="bookmark();">
 									<img src="img/picto/picto-empty-heart-red.svg" alt="empty-heart-picto"> Mettre en favoris
 								</a>
@@ -52,7 +52,7 @@
 						<!-- ./Caption -->
 						<footer class="row-fluid">
 							<div class="span4">
-								<h4><img src="img/icon-tags.svg"> Tags</h4>
+								<h4><img src="img/icon/icon-tags.svg"> Tags</h4>
 								<ul class="tag-list">
 									<li ng-repeat="tag in webapp.tags" >
 										<a ng-href="#/alveoles/search/{{tag.name}}" class="tag"> {{tag.name}}</a>
@@ -119,13 +119,12 @@
 						<p>{{webapp.description}}</p>
 					</section>
 					<!-- Comment box -->
-					<section class="span7 alveole-comments" id="comment-scrollbar">
-						<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-					    <div class="viewport">
-				        <div class="overview">
+					<section class="span7 alveole-comments nano-parent">
+						<div class="nano">
+						<div class="content">
 							<header class="row-fluid comment-header">
 								<h3 class="span8">Commentaires ({{webapp.comments.length}})</h3>
-								<h4 class="span4 starsRatingShow global-rating" id="starsRatingShowDesc" ng-show="webapp.average_rate">Note : {{webapp.average_rate|truncate:3:''}} /5 <i class="{{ {'rate':webapp.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+								<h4 class="starsRatingShow global-rating" id="starsRatingShowDesc" ng-show="webapp.average_rate">Note : {{webapp.average_rate|truncate:3:''}} /5 <i class="{{ {'rate':webapp.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
 								</h4>
 							</header>
 							<!-- Comment form
@@ -165,9 +164,11 @@
 									</p>
 								</aside>
 								<section class="span9">
-									<p class="pull-right comment-time">Le {{commentUser.created_at| date:'d/M/yyyy à HH:mm'}}</p>
+									<div class="row-fluid" ng-hide="editComment">
+										<p class="pull-right comment-time">Le {{commentUser.created_at| date:'d/M/yyyy à HH:mm'}}</p>
+									</div>
 									<div ng-hide="editComment" ng-init="editComment=false" class="row-fluid">
-										<p class="">{{commentUser.body}}</p>
+										<p class="span12">{{commentUser.body}}</p>
 										
 									</div>
 									<div ng-show="editComment" class="row-fluid">
@@ -190,15 +191,17 @@
 										</div>
 									</aside>
 									<section class="span9">
-										<span class="pull-right comment-time">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
+										<div class="row-fluid">
+											<span class="pull-right comment-time">Le {{comment.created_at| date:'d/M/yyyy à HH:mm'}}</span>
+										</div>
 										<div class="row-fluid">
 											<p>{{comment.body}}</p>
 										</div>
 									</section>
 								</div>
 							</div>
-							</div> <!-- ./overview -->
-							</div> <!-- ./viewport -->
+							</div> <!-- ./content -->
+						</div>
 						</section>
 					</div>
 				</section>

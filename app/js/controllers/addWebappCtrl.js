@@ -14,7 +14,7 @@ controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,$
 
 	// $('body').css('background-color','#eef2ea');
 
-	var nbTags = 0;
+	$scope.nbTags = 0;
 
 	$scope.webapp=WebappService.new();
 
@@ -32,9 +32,9 @@ controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,$
 			source: tagNames,
 
 			updater:function (item) {
-				var appendMe = "<span onClick=\"$(this).remove()\" class=\"tag\" id=\"tag"+nbTags+"\"> "+item+" </span>";
+				var appendMe = "<span onClick=\"$(this).remove()\" class=\"tag\" id=\"tag"+$scope.nbTags+"\"> "+item+" </span>";
 				$('#tagList').append(appendMe);	
-				nbTags++;
+				$scope.$apply($scope.nbTags++);
 			}
 		});
 	});
@@ -47,7 +47,7 @@ controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,$
 
 		// concatenating tags into an array
 		var tagList = [];
-		for(var i = 0; i<nbTags;i++){
+		for(var i = 0; i<$scope.nbTags;i++){
 			if( $("#tag"+i).text().length > 0 ){
 				tagList.push($("#tag"+i).text());
 			}

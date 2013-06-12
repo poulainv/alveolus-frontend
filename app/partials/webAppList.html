@@ -1,55 +1,55 @@
-
-<div class="container">
-	<div class="row-fluid">
-		<aside id="navLinks" class="span3 pull-right">
-			<a href="#/graph" class="btn">Exploration graphique</a>
-			<h4><img src="img/icon/icon-selection.svg">Sélection</h4>
-			<ul class="noStyleList">
-				<li ng-repeat="selectionCat in selectionCats"><span class="link" ng-click="changeFeat(selectionCat);">{{selectionCat.name}}</span></li>
-			</ul>
-			<h4><img src="img/icon/icon-categories.svg">Catégories</h4>
-			<ul class="noStyleList">
-				<li ng-repeat="cat in cats"><span class="link" ng-click="changeCat(cat)">{{cat.name}}</span></li>
-			</ul>
-			<h4><img src="img/icon/icon-tags.svg">Tags</h4>
-			<ul class="noStyleList">
-				<li ng-repeat="tag in tags"><span class="link" ng-click="search(tag.name)">{{tag.name}}</span></li>
-			</ul>
-		</aside>
-		<section id="alveolesList" class="span9">
-			<h2><img src="img/icon/icon-team-selection.svg"> Alvéoles / {{subTitle}}</h2>
-			<div ng-repeat="subcat in subcats" class="row-fluid"> 
-				<h3>{{subcat.name}}</h3>
-				<article class="alveole span3" ng-repeat="alveole in subcat.alveoles">
-					<header class="alveoleHeader">Note : {{alveole.average_rate|truncate:3:''}}/5
-						<span class="alveoleRatingWrapper">
-							<i class="{{ {'rate':alveole.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
-						</span>
-					</header>
-					<div class="alveoleContent">
-						<a href="#/alveoles/{{alveole.id}}">
-							<div class="cropedImg">
-								<img class="alveoleImg" ng-src="{{alveole | image}}"  alt="{{alveole.title}}">
-							</div>
-							<hr/>
-							<h4 class="alveoleName">
-								<strong>{{alveole.title}}</strong>
-							</h4>
-							<p class="alveoleDesc">
-								{{alveole.caption}}
-							</p>
-						</a>
+<div class="container-grey">
+	<div class="container">
+		<div class="row-fluid container-white">
+			<aside id="navLinks" class="span3 pull-right">
+				<a href="#/graph" class="btn">Exploration graphique</a>
+				<h4><img src="img/icon/icon-selection.svg">Sélection</h4>
+				<ul class="noStyleList">
+					<li ng-repeat="selectionCat in selectionCats"><span class="link" ng-click="changeFeat(selectionCat);">{{selectionCat.name}}</span></li>
+				</ul>
+				<h4><img src="img/icon/icon-categories.svg">Catégories</h4>
+				<ul class="noStyleList">
+					<li ng-repeat="cat in cats"><span class="link" ng-click="changeCat(cat)">{{cat.name}}</span></li>
+				</ul>
+				<h4><img src="img/icon/icon-tags.svg">Tags</h4>
+				<ul class="noStyleList">
+					<li ng-repeat="tag in tags"><span class="link" ng-click="search(tag.name)">{{tag.name}}</span></li>
+				</ul>
+			</aside>
+			<section id="alveolesList" class="span9">
+				<h2><img src="img/icon/icon-team-selection.svg"> Alvéoles / {{subTitle}}</h2>
+				<div ng-repeat="subcat in subcats" class="row-fluid"> 
+					<h3>{{subcat.name}}</h3>
+					<article class="alveole span3" ng-repeat="alveole in subcat.alveoles">
+						<header class="alveoleHeader">Note : {{alveole.average_rate|truncate:3:''}}/5
+							<span class="alveoleRatingWrapper">
+								<i class="{{ {'rate':alveole.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+							</span>
+						</header>
+						<div class="alveoleContent">
+							<a href="#/alveoles/{{alveole.id}}">
+								<div class="cropedImg">
+									<img class="alveoleImg" ng-src="{{alveole | image}}"  alt="{{alveole.title}}">
+								</div>
+								<hr/>
+								<h4 class="alveoleName">
+									<strong>{{alveole.title}}</strong>
+								</h4>
+								<p class="alveoleDesc">
+									{{alveole.caption}}
+								</p>
+							</a>
 							<div class="alveoleTagsWrapper">
 								<img src="img/icon/icon-tags.svg" ng-show="alveole.tags">
 								<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)" class="tag">
 									<a href="#/alveoles/search/{{tag.name}}" class="tag">{{tag.name}}</a>
 								</span>
 							</div>
-						
-					</div>
-				</article>
-			</div>
-		</section>
+
+						</div>
+					</article>
+				</div>
+			</section>
+		</div>
 	</div>
 </div>
-

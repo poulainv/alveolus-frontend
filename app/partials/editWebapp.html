@@ -106,18 +106,18 @@
 										name="description" 
 										rows="7" 
 										class="field span5" 
-										placeholder="Donnez une description du site, mettant en avant l'originalité du projet (entre 100 et 600 caractères)" 
+										placeholder="Donnez une description du site, mettant en avant l'originalité du projet (entre 100 et 1000 caractères)" 
 										ng-model="webapp.description" 
 										ng-minlength="100" 
-										ng-maxlength="600" 
+										ng-maxlength="1000" 
 										tooltip-placement="right" 
-										tooltip="Donnez une description du site, mettant en avant l'originalité du projet (entre 100 et 600 caractères)" 
+										tooltip="Donnez une description du site, mettant en avant l'originalité du projet (entre 100 et 1000 caractères)" 
 										required></textarea>
 
 										<span 
 										ng-show="form.description.$invalid && (!!form.description.$error.minlength || !!form.description.$error.maxlength)"
 										class="help-inline">
-										La description doit faire entre 100 et 600 caractères</span>
+										La description doit faire entre 100 et 1000 caractères</span>
 									</div></div>
 
 									<div 

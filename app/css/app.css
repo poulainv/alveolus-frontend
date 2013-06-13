@@ -112,6 +112,8 @@ h1, h2, h3, h4, h5{
 }
 .alveoleImg{
   position: absolute;
+  height: 130px;
+  width: 212px;
 }
 .alveole hr{
   margin: 0;
@@ -269,6 +271,26 @@ h1, h2, h3, h4, h5{
 }
 .dropbox.over {
   background-color: #bce8f1;
+}
+
+.error-message-form{
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+  padding-left: 5px;
+  background-color: #b94a48;
+  color: white;
+  display: inline-block;
+  padding: 2px 4px;
+  font-size: 11.844px;
+  font-weight: bold;
+  line-height: 14px;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+
 }
 
 .graph-popover{

@@ -37,7 +37,7 @@
 
 										<span 
 										ng-show="form.title.$invalid && (!!form.title.$error.minlength || !!form.title.$error.maxlength)" 
-										class="help-inline">
+										class="error-message-form"><i class="icon-warning-sign icon-white"></i>
 										Le nom du site doit contenir entre 2 et 25 caractères</span>
 									</div></div>
 
@@ -62,7 +62,7 @@
 
 										<span 
 										ng-show="form.url.$invalid && !!form.url.$error.url" 
-										class="help-inline">
+										class="error-message-form"><i class="icon-warning-sign icon-white"></i>
 										L'url doit être de la forme 'http://...'</span>
 									</div></div>
 
@@ -89,7 +89,7 @@
 
 										<span 
 										ng-show="form.caption.$invalid && (!!form.caption.$error.minlength || !!form.caption.$error.maxlength)"
-										class="help-inline">
+										class="error-message-form"><i class="icon-warning-sign icon-white"></i>
 										La caption doit faire entre 30 et 200 caractères</span>
 									</div></div>
 
@@ -116,7 +116,7 @@
 
 										<span 
 										ng-show="form.description.$invalid && (!!form.description.$error.minlength || !!form.description.$error.maxlength)"
-										class="help-inline">
+										class="error-message-form"><i class="icon-warning-sign icon-white"></i>
 										La description doit faire entre 100 et 1000 caractères</span>
 									</div></div>
 

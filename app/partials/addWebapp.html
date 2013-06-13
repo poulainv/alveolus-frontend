@@ -1,243 +1,244 @@
 <div id="formContainer" class="container-grey">
 	<div class="container">
-		<div id="contentWrapper">
-			<div id="appForm" class="row container-white">
-				<div class="span7">
-					<form name="form" class="form-signin form-horizontal" novalidate>
-						<h2>Proposition d'une alvéole</h2>
-						<hr>
+		<div id="appForm" class="row container-white">
+			<div class="span7">
+				<form name="form" class="form-signin form-horizontal" novalidate>
+					<h2>Proposition d'une alvéole</h2>
+					<hr>
 
-						<div 
-						class="control-group" 
-						ng-class="{
-						error: form.title.$invalid && (!!form.title.$error.minlength || !!form.title.$error.maxlength),
-						success: form.title.$valid}">
-						<label class="control-label" for="title">Titre<span class="red-star">*</span> : </label>
-						<div class="controls">
+					<div 
+					class="control-group" 
+					ng-class="{
+					error: form.title.$invalid && (!!form.title.$error.minlength || !!form.title.$error.maxlength),
+					success: form.title.$valid}">
+					<label class="control-label" for="title">Titre<span class="red-star">*</span> : </label>
+					<div class="controls">
 
-							<input 
-							type="text" 
-							name="title" 
-							id="title" 
-							class="span5" 
-							ng-model="webapp.title" 
-							placeholder="MaSuperAlvéole" 
-							tooltip-placement="right" 
-							tooltip="Le nom du site" 
-							ng-minlength="2" 
-							ng-maxlength="25"  
-							required></input>
+						<input 
+						type="text" 
+						name="title" 
+						id="title" 
+						class="span5" 
+						ng-model="webapp.title" 
+						placeholder="MaSuperAlvéole" 
+						tooltip-placement="right" 
+						tooltip="Le nom du site" 
+						ng-minlength="2" 
+						ng-maxlength="25"  
+						required></input>
 
-							<span 
-							ng-show="form.title.$invalid && (!!form.title.$error.minlength || !!form.title.$error.maxlength)" 
-							class="help-inline">
-							Le nom du site doit contenir entre 2 et 25 caractères</span>
-						</div></div>
+						<span 
+						ng-show="form.title.$invalid && (!!form.title.$error.minlength || !!form.title.$error.maxlength)" 
+						class="help-inline">
+						Le nom du site doit contenir entre 2 et 25 caractères</span>
+					</div></div>
 
-						<div 
-						class="control-group" 
-						ng-class="{
-						error: form.url.$invalid && !!form.url.$error.url,
-						success: form.url.$valid}">
-						<label class="control-label" for="url">Url<span class="red-star">*</span> : </label>
-						<div class="controls">
+					<div 
+					class="control-group" 
+					ng-class="{
+					error: form.url.$invalid && !!form.url.$error.url || !urlOk,
+					success: form.url.$valid && urlOk}">
+					<label class="control-label" for="url">Url<span class="red-star">*</span> : </label>
+					<div class="controls">
 
-							<input 
-							type="url" 
-							name="url" 
-							id="url" 
-							class="span5" 
-							ng-model="webapp.url" 
-							placeholder="http://" 
-							tooltip-placement="right" 
-							tooltip="L'url de l'alvéole (doit être au format http://...)" 
-							required></input>
+						<input 
+						type="url" 
+						name="url" 
+						id="url" 
+						class="span5" 
+						ng-model="webapp.url" 
+						placeholder="http://" 
+						tooltip-placement="right" 
+						tooltip="L'url de l'alvéole (doit être au format http://...)" 
+						required></input>
 
-							<span 
-							ng-show="form.url.$invalid && !!form.url.$error.url" 
-							class="help-inline">
-							L'url doit être de la forme 'http://...'</span>
-						</div></div>
+						<span 
+						ng-show="form.url.$invalid && !!form.url.$error.url" 
+						class="help-inline">
+						L'url doit être de la forme 'http://...'</span>
+						<span 
+						ng-show="!urlOk && webapp.url.length>0" 
+						class="help-inline">
+						Ce site existe déjà dans notre base !</span>
+					</div></div>
+					<div 
+					class="control-group" 
+					ng-class="{
+					error: form.caption.$invalid && (!!form.caption.$error.minlength || !!form.caption.$error.maxlength),
+					success: form.caption.$valid}">
+					<label class="control-label" for="caption">Description rapide<span class="red-star">*</span> : </label>
+					<div class="controls">
 
-						<div 
-						class="control-group" 
-						ng-class="{
-						error: form.caption.$invalid && (!!form.caption.$error.minlength || !!form.caption.$error.maxlength),
-						success: form.caption.$valid}">
-						<label class="control-label" for="caption">Description rapide<span class="red-star">*</span> : </label>
-						<div class="controls">
+						<textarea 
+						id="caption" 
+						name="caption" 
+						rows="3" 
+						class="field span5" 
+						placeholder="Une phrase d'accroche" 
+						ng-model="webapp.caption"
+						ng-minlength="30" 
+						ng-maxlength="200" 
+						tooltip-placement="right" 
+						tooltip="Une phrase d'accroche" 
+						required></textarea>
 
-							<textarea 
-							id="caption" 
-							name="caption" 
-							rows="3" 
-							class="field span5" 
-							placeholder="Une phrase d'accroche" 
-							ng-model="webapp.caption"
-							ng-minlength="30" 
-							ng-maxlength="200" 
-							tooltip-placement="right" 
-							tooltip="Une phrase d'accroche" 
-							required></textarea>
+						<span 
+						ng-show="form.caption.$invalid && (!!form.caption.$error.minlength || !!form.caption.$error.maxlength)"
+						class="help-inline">
+						La caption doit faire entre 30 et 200 caractères</span>
+					</div></div>
 
-							<span 
-							ng-show="form.caption.$invalid && (!!form.caption.$error.minlength || !!form.caption.$error.maxlength)"
-							class="help-inline">
-							La caption doit faire entre 30 et 200 caractères</span>
-						</div></div>
+					<div 
+					class="control-group" 
+					ng-class="{
+					error: form.description.$invalid && (!!form.description.$error.minlength || !!form.description.$error.maxlength),
+					success: form.description.$valid}">
+					<label class="control-label" for="description">Description complète<span class="red-star">*</span> : </label>
+					<div class="controls">
 
-						<div 
-						class="control-group" 
-						ng-class="{
-						error: form.description.$invalid && (!!form.description.$error.minlength || !!form.description.$error.maxlength),
-						success: form.description.$valid}">
-						<label class="control-label" for="description">Description complète<span class="red-star">*</span> : </label>
-						<div class="controls">
+						<textarea 
+						id="description" 
+						name="description" 
+						rows="7" 
+						class="field span5" 
+						placeholder="Donnez une description du site, mettant en avant l'originalité du projet (entre 100 et 1000 caractères)" 
+						ng-model="webapp.description" 
+						ng-minlength="100" 
+						ng-maxlength="1000" 
+						tooltip-placement="right" 
+						tooltip="Donnez une description du site, mettant en avant l'originalité du projet (entre 100 et 1000 caractères)" 
+						required></textarea>
 
-							<textarea 
-							id="description" 
-							name="description" 
-							rows="7" 
-							class="field span5" 
-							placeholder="Donnez une description du site, mettant en avant l'originalité du projet (entre 100 et 1000 caractères)" 
-							ng-model="webapp.description" 
-							ng-minlength="100" 
-							ng-maxlength="1000" 
-							tooltip-placement="right" 
-							tooltip="Donnez une description du site, mettant en avant l'originalité du projet (entre 100 et 1000 caractères)" 
-							required></textarea>
+						<span 
+						ng-show="form.description.$invalid && (!!form.description.$error.minlength || !!form.description.$error.maxlength)"
+						class="help-inline">
+						La description doit faire entre 100 et 1000 caractères</span>
+					</div></div>
 
-							<span 
-							ng-show="form.description.$invalid && (!!form.description.$error.minlength || !!form.description.$error.maxlength)"
-							class="help-inline">
-							La description doit faire entre 100 et 1000 caractères</span>
-						</div></div>
+					<div 
+					class="control-group" 
+					ng-class="{success:form.cat.$valid}">
+					<label class="control-label" for="cat">Catégorie<span class="red-star">*</span> : </label>
+					<div class="controls">
 
-						<div 
-						class="control-group" 
-						ng-class="{success:form.cat.$valid}">
-						<label class="control-label" for="cat">Catégorie<span class="red-star">*</span> : </label>
-						<div class="controls">
+						<select 
+						id="cat" 
+						name="cat" 
+						class="span5" 
+						ng-model="webapp.category_id" 
+						ng-options="cat.id as cat.name for cat in categories" 
+						tooltip-placement="right" 
+						tooltip="Choisissez la catégorie qui représente le mieux le site" 
+						required></select>
+					</div></div>
 
-							<select 
-							id="cat" 
-							name="cat" 
-							class="span5" 
-							ng-model="webapp.category_id" 
-							ng-options="cat.id as cat.name for cat in categories" 
-							tooltip-placement="right" 
-							tooltip="Choisissez la catégorie qui représente le mieux le site" 
-							required></select>
-						</div></div>
+					<div 
+					class="control-group">
+					<label class="control-label" for="tags">Tags : </label>
+					<div class="controls">
 
-						<div 
-						class="control-group">
-						<label class="control-label" for="tags">Tags : </label>
-						<div class="controls">
-
-							<input 
-							id="tags" 
-							type="text" 
-							class="span5" 
-							tooltip-placement="right" 
-							tooltip="Choisissez une liste de tag pour décrire le site"
-							placeholder="Choisissez un ou plusieurs tags parmi la liste de ceux qui existent déjà" ></input>
-							<br>
-							<div ng-hide="nbTags==0" id="tagList"><img src="img/icon/icon-tags.svg"> </div>
-							<div ng-show="nbTags==0" class="warning-no-tags">Aucun tag selectionné</div>
-						</div>
+						<input 
+						id="tags" 
+						type="text" 
+						class="span5" 
+						tooltip-placement="right" 
+						tooltip="Choisissez une liste de tag pour décrire le site"
+						placeholder="Choisissez un ou plusieurs tags parmi la liste de ceux qui existent déjà" ></input>
+						<br>
+						<div ng-hide="nbTags==0" id="tagList"><img src="img/icon/icon-tags.svg"> </div>
+						<div ng-show="nbTags==0" class="warning-no-tags">Aucun tag selectionné</div>
 					</div>
+				</div>
 
 
-					<!-- Réseaux sociaux -> récupération id et vérification que la page existe à voir -->
+				<!-- Réseaux sociaux -> récupération id et vérification que la page existe à voir -->
 
-					<div class="control-group">
-						<label class="control-label" for="facebook"><i class="icon-large icon-facebook"></i></label>
-						<div class="controls">
-							<input type="text" id="facebook" class="span3" ng-model="webapp.facebook_id" tooltip-placement="right" tooltip="L'identifiant Facebook"></input>
-						</div>
+				<div class="control-group">
+					<label class="control-label" for="facebook"><i class="icon-large icon-facebook"></i></label>
+					<div class="controls">
+						<input type="text" id="facebook" class="span3" ng-model="webapp.facebook_id" tooltip-placement="right" tooltip="L'identifiant Facebook"></input>
 					</div>
+				</div>
 
-					<div class="control-group">
-						<label class="control-label" for="twitter"><i class="icon-large icon-twitter"></i></label>
-						<div class="controls">
-							<input type="text" id="twitter" class="span3" ng-model="webapp.twitter_id" tooltip-placement="right" tooltip="L'identifiant Twitter"></input>
-						</div>
+				<div class="control-group">
+					<label class="control-label" for="twitter"><i class="icon-large icon-twitter"></i></label>
+					<div class="controls">
+						<input type="text" id="twitter" class="span3" ng-model="webapp.twitter_id" tooltip-placement="right" tooltip="L'identifiant Twitter"></input>
 					</div>
+				</div>
 
-					<div class="control-group">
-						<label class="control-label" for="gplus"><i class="icon-google-plus icon-large"></i></label>
-						<div class="controls">
-							<input type="text" id="gplus" class="span3" ng-model="webapp.gplus_id" tooltip-placement="right" tooltip="L'identifiant Google+"></input>
-						</div>
+				<div class="control-group">
+					<label class="control-label" for="gplus"><i class="icon-google-plus icon-large"></i></label>
+					<div class="controls">
+						<input type="text" id="gplus" class="span3" ng-model="webapp.gplus_id" tooltip-placement="right" tooltip="L'identifiant Google+"></input>
 					</div>
+				</div>
 
-					<div class="control-group">
-						<label class="control-label" for="image">Image <span class="red-star">*</span> : </label>
-						<div class="controls">
-							<input id="fileToUpload" ng-model="webapp.image" name="fileToUpload" type="file" ng-init="fileReady=false" accept="image/*" onchange="angular.element(this).scope().fileReady=true;angular.element(this).scope().setFile(this);" />
-							<input type="button" value="Choisissez une image... (< 1mo)" class="block"  onclick="document.getElementById('fileToUpload').click();" />
-							<div ng-show="files.length">
-								<div ng-repeat="file in files.slice(0)">
-									<span>{{file.webkitRelativePath || file.name}}(</span>
-									<span ng-switch="file.size > 1024*1024">
-										<span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB)</span>
-										<span ng-switch-default>{{file.size / 1024 | number:2}} kB)</span>
-									</span>
-								</div>
+				<div class="control-group">
+					<label class="control-label" for="image">Image <span class="red-star">*</span> : </label>
+					<div class="controls">
+						<input id="fileToUpload" ng-model="webapp.image" name="fileToUpload" type="file" ng-init="fileReady=false" accept="image/*" onchange="angular.element(this).scope().fileReady=true;angular.element(this).scope().setFile(this);" />
+						<input type="button" value="Choisissez une image... (< 1mo)" class="block"  onclick="document.getElementById('fileToUpload').click();" />
+						<div ng-show="files.length">
+							<div ng-repeat="file in files.slice(0)">
+								<span>{{file.webkitRelativePath || file.name}}(</span>
+								<span ng-switch="file.size > 1024*1024">
+									<span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB)</span>
+									<span ng-switch-default>{{file.size / 1024 | number:2}} kB)</span>
+								</span>
 							</div>
-							<br>
-							<div id="dropbox" class="dropbox span5" ng-class="dropClass"><h3>... ou déposez une image</h3></div>
 						</div>
+						<br>
+						<div id="dropbox" class="dropbox span5" ng-class="dropClass"><h3>... ou déposez une image</h3></div>
 					</div>
-
-					<br>
-					<div class="control-group">
-						<div class="controls">
-							<button class="btn" ng-disabled="form.$invalid || !fileReady" ng-click="submit(webapp)">Envoyer</button>
-						</div>
-					</div>
-					<div><span class="red-star">*</span> : Champs requis</div>
-				</form>
-
-
-				<div id="progressBar" class="progress progress-success progress-striped">
-					<div class="bar" style="width: 0%"></div>
 				</div>
 
+				<br>
+				<div class="control-group">
+					<div class="controls">
+						<button class="btn" ng-disabled="form.$invalid || !fileReady" ng-click="submit(webapp)">Envoyer</button>
+					</div>
+				</div>
+				<div><span class="red-star">*</span> : Champs requis</div>
+			</form>
 
 
+			<div id="progressBar" class="progress progress-success progress-striped">
+				<div class="bar" style="width: 0%"></div>
 			</div>
-			<div id="formExplicationsWrapper" class="span4 alert alert-info">
-				<button type="button" class="close" data-dismiss="alert">×</button>
-				<div id="formExplications">
-					<dl>
-						<dt> <h5>Quels sites ont leur place au sein d'AlveolUs ?</h5> </dt>
-						<dd>
-							<small>
-								La vocation d'AlveolUs est d'être le catalogue des sites internet innovants, dont les services
-								favorisent de près ou de loin :
-								<ul>
-									<li>
-										Le partage et la collaboration entre individus
-									</li>
-									<li>
-										Le transfert et le partage des connaissances
-									</li>
-									<li>
-										Le développement durable
-									</li>
-								</ul>
-							</small>
-						</dd>
-						<dt> <h5>Comment ma suggestion sera-t-elle validée ? </h5> </dt>
-						<dd>
-							<small>
-								Ce sont les utilisateurs qui décident de l'acceptation ou non d'une suggestion.
-							</small>
-						</dd>
-					</dl>
-				</div>
+
+
+
+		</div>
+		<div id="formExplicationsWrapper" class="span4 alert alert-info">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<div id="formExplications">
+				<dl>
+					<dt> <h5>Quels sites ont leur place au sein d'AlveolUs ?</h5> </dt>
+					<dd>
+						<small>
+							La vocation d'AlveolUs est d'être le catalogue des sites internet innovants, dont les services
+							favorisent de près ou de loin :
+							<ul>
+								<li>
+									Le partage et la collaboration entre individus
+								</li>
+								<li>
+									Le transfert et le partage des connaissances
+								</li>
+								<li>
+									Le développement durable
+								</li>
+							</ul>
+						</small>
+					</dd>
+					<dt> <h5>Comment ma suggestion sera-t-elle validée ? </h5> </dt>
+					<dd>
+						<small>
+							Ce sont les utilisateurs qui décident de l'acceptation ou non d'une suggestion.
+						</small>
+					</dd>
+				</dl>
 			</div>
 		</div>
 	</div>

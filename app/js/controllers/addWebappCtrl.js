@@ -15,7 +15,7 @@ controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,$
 	// $('body').css('background-color','#eef2ea');
 
 	$scope.nbTags = 0;
-
+	$scope.urlOk = true;
 	$scope.webapp=WebappService.new();
 
 	$scope.categories=CategoryService.query();
@@ -37,6 +37,17 @@ controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,$
 				$scope.$apply($scope.nbTags++);
 			}
 		});
+	});
+
+	$('#url').blur(function(){
+		var content = $('#url').val();
+		if(content.length>0){
+			WebappService.checkUrl(content,function(data){
+				$scope.urlOk = true
+			}, function(data){
+				$scope.urlOk = false;
+			});
+		}
 	});
 
 	$scope.submit=function(webapp){

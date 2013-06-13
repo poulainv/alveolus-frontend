@@ -109,6 +109,12 @@ factory('WebappService', function($http,$resource, $rootScope, $location, Sessio
         error(function(data){callbackError(data);});        
     }
 
+    service.checkUrl = function(urlToCheck,callback,callbackError){
+        $http({method:'POST', url: globals.server_url+'/webapps/check_url', params : {'url' : urlToCheck}}).
+        success(function(data){callback(data);}).
+        error(function(data){callbackError(data);});        
+    }
+
 
     return service;
 });

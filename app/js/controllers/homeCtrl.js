@@ -49,7 +49,7 @@ controller('HomeCtrl', function($scope,$location,CategoryService,WebappService,S
 	$scope.changeCat = function(cat){
 		$scope.catSelected = cat;
 		$scope.appFeatured = cat.webapps[Math.floor(Math.random() * $scope.catSelected.webapps.length)];
-	}
+	};
 
 	$scope.itemClass = function(cat) {
 		return cat.id === $scope.catSelected.id ? 'btnCatFocus' : undefined;
@@ -58,11 +58,11 @@ controller('HomeCtrl', function($scope,$location,CategoryService,WebappService,S
 	$scope.changeView = function(url){
 		CategoryService.setIdCatSelected($scope.catSelected.id);
 		$location.path(url);
-	}
+	};
 
 	$scope.changeDesc = function(catSelected){
 		$scope.descCatSelected = catSelected;
-	}
+	};
 
 	$scope.search = function(content){
 		$location.path('/alveoles/search/'+content);
@@ -70,8 +70,9 @@ controller('HomeCtrl', function($scope,$location,CategoryService,WebappService,S
 	var joyride_validator = [];
 	var joyride_tester = function(type){
 		joyride_validator[type] = true;
-		if(joyride_validator['categories'] && joyride_validator['carousel']){
-			$('#joyRideTipContent').joyride('restart');
+		if(joyride_validator['categories'] && joyride_validator['carousel'] && !$scope.ridden){
+            $('#joyRideTipContent').joyride('init');
+            $scope.ridden = true;
 		}
 
 	};

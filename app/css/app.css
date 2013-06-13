@@ -503,26 +503,6 @@ h1, h2, h3, h4, h5{
   margin-bottom: 20px;
 }
 
-#changeImage{
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 90%;
-  height: 20px;
-  padding:20px;
-  background-color: black;
-  opacity: 0.5;
-  color: white;
-  text-align: center;
-  -webkit-transition: 0.25s;
-  -moz-transition: 0.25s;
-  -ms-transition: 0.25s;
-  -o-transition: 0.25s;
-  transition: 0.25s;
-  cursor: pointer;
-  font-size: 20px;
-}
-
 #descFeaturedApp{
   /*padding: 50px;*/
   /*text-align : justify;*/

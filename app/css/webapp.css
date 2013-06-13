@@ -80,18 +80,26 @@
   font-size: 0.8em;
   color: #999;
 }
-/* Comment scrollbar */
-#comment-scrollbar .viewport { height: 600px; overflow: hidden; position: relative; }
-#comment-scrollbar .overview { list-style: none; position: absolute; left: 0; top: 0; width:100%;}
-#comment-scrollbar .thumb .end,
-#comment-scrollbar .thumb { background-color: #777; }
-#comment-scrollbar .scrollbar { position: relative; float: right; width: 10px; }
-#comment-scrollbar .track { background-color: #d0d5cb; height: 100%; width:7px; position: relative; padding: 0 1px; }
-#comment-scrollbar .thumb { height: 7px; width: 7px; cursor: pointer; overflow: hidden; position: absolute; top: 0; }
-#comment-scrollbar .thumb .end { overflow: hidden; height: 5px; width: 7px; }
-#comment-scrollbar .disable{ display: none; }
-.noSelect { user-select: none; -o-user-select: none; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; }
 
+#changeImage{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 90%;
+  height: 20px;
+  padding:20px;
+  background-color: black;
+  opacity: 0.5;
+  color: white;
+  text-align: center;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -ms-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s;
+  cursor: pointer;
+  font-size: 20px;
+}
 
 
 /* Liste de liens à côté de l'image/video */

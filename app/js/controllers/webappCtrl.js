@@ -15,11 +15,11 @@ controller('WebappCtrl', function($scope,$location,$routeParams, WebappService, 
 	$scope.scrollbar = function(){
 		setTimeout(function(){
 			$(".nano").nanoScroller({ flash: true });
-			//$('#comment-scrollbar').tinyscrollbar();	
 		},1000);
 	};
 
 	$scope.canEdit = false;
+
 	$scope.webAppId=$routeParams.webAppId;
 	$scope.webapp=WebappService.get({id: $routeParams.webAppId}, function(data){
 

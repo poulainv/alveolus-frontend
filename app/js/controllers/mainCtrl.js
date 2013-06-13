@@ -151,5 +151,6 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,$timeout,W
 	}
 
 	$scope.tags=TagService.query();
+	$scope.ridden = false;
 
 });

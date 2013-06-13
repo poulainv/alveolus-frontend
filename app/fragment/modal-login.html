@@ -12,25 +12,28 @@
     <div class="row-fluid">
       <div class="span6">
         <h3><small>Via vos identifiants...</small></h3>
-        <div class="control-group">
-          <div class="controls">
-            <div class="input-prepend">
-              <span class="add-on"><div class="icon-user"></div></span>
-              <input id="user-email" type="text" placeholder="E-mail" ng-model="user.email"/>
+        <form ng-submit="sign_in(user)">
+          <div class="control-group">
+            <div class="controls">
+              <div class="input-prepend">
+                <span class="add-on"><div class="icon-user"></div></span>
+                <input id="user-email" type="text" placeholder="E-mail" ng-model="user.email"/>
+              </div>
             </div>
-          </div>
-          <div class="control-group custom_inline" >
-           <div class="controls">
-             <div class="input-prepend">
-               <span class="add-on"><div class="icon-lock"></div></span>
-               <input id="user-password" type="password" placeholder="Mot de passe" ng-model="user.password"/>
+            <div class="control-group custom_inline" >
+             <div class="controls">
+               <div class="input-prepend">
+                 <span class="add-on"><div class="icon-lock"></div></span>
+                 <input id="user-password" type="password" placeholder="Mot de passe" ng-model="user.password"/>
+               </div>
+             </div>
+             <div class="line-separator">
              </div>
            </div>
-           <div class="line-separator">
-           </div>
-         </div>
 
-       </div>
+         </div>
+         <input type="submit" ng-click="sign_in(user)" ng-show="false"></input>
+       </form>
 
      </div>
      <div class="span6">

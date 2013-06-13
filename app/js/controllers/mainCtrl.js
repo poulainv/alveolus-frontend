@@ -150,7 +150,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,$timeout,g
 		});
 	};
 
-	$scope.tags=TagService.query();
+
 	globals.joydire = false;
 
 });

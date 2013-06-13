@@ -32,6 +32,11 @@ factory('WebappService', function($http,$resource, $rootScope, $location, Sessio
         success(function(data){callback(data);});
     }
 
+    service.getPopular = function(callback){
+        $http({method:'GET', url: globals.server_url+'/webapps/trend/popular', cache: true}).
+        success(function(data){callback(data);});
+    }
+
     service.getFeaturedApp = function(params,callback){
         $http({method:'GET', url: globals.server_url+'/categories/'+params.catId+'/featured_webapp', cache:true}).
         success(function(data){callback(data);});

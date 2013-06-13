@@ -5,13 +5,13 @@
 	<div id="contentWrapper">
 		<div id="homeBody" class="container">
 			<div class="row-fluid">
-				<h3 class="span6 offset1 title-box"><img src="img/icon/icon-team-selection.svg"> Sélection de l'équipe - {{catSelected.name}} :</h3>
+				<h3 class="span6 offset1"><img src="img/icon/icon-team-selection.svg"> Sélection de l'équipe - {{catSelected.name}} :</h3>
 				<button id="btnMore" class="btn btn-inverse span4" type="button" ng-click="changeView('alveoles')">{{catSelected.name}} : Voir toutes les alvéoles > </button>
 			</div>
 			<div class="row-fluid">
 				<div class="span2 offset1">
 					<div id="catList">
-						<span ng-repeat="cat in categories" ng-mouseover="descCatSelected = cat.description" ng-click="changeCat(cat)" ng-class="itemClass(cat)" class="btnCat" popover-placement="right" popover="{{descCatSelected}}" popover-popup-delay='1000' popover-trigger="mouseenter"> 
+						<span ng-repeat="cat in categories" ng-mouseover="descCatSelected = cat.description" ng-click="changeCat(cat)" ng-class="itemClass(cat)" class="btnCat" tooltip-placement="left" tooltip="{{descCatSelected}}" tooltip-popup-delay='500' tooltip-trigger="mouseenter"> 
 							{{cat.name}}
 						</span>
 					</div>
@@ -63,14 +63,14 @@
 
 				<div class="row-fluid">
 					<div class="span6 offset1">
-						<h3><img src="img/icon/icon-hot.svg">  Dernières alvéoles</h3>
+						<h3><img src="img/icon/icon-hot.svg">  Alvéoles populaires </h3>
 					</div>
 				</div>
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="row-fluid">
 							<carousel>
-								<slide ng-repeat="slide in slides" active="img.active" class="row-fluid">
+								<slide ng-repeat="slide in slidesPopular" active="img.active" class="row-fluid">
 									<section class="span10 offset1">
 										<div class="row-fluid">	
 											<article class="alveole span3" ng-repeat="alveole in slide">
@@ -112,5 +112,62 @@
 				</div>
 			</div>
 		</div>
+
+		<div id="">
+			<div class="container">
+
+				<div class="row-fluid">
+					<div class="span6 offset1">
+						<h3><img src="img/icon/icon-hot.svg">  Dernières alvéoles</h3>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="row-fluid">
+							<carousel>
+								<slide ng-repeat="slide in slidesRecent" active="img.active" class="row-fluid">
+									<section class="span10 offset1">
+										<div class="row-fluid">	
+											<article class="alveole span3" ng-repeat="alveole in slide">
+												<header class="alveoleHeader">Note : {{alveole.average_rate|truncate:3:''}}/5
+													<span class="alveoleRatingWrapper">
+														<i class="{{ {'rate':alveole.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
+													</span>
+												</header>
+												<div class="alveoleContent">
+													<a href="#/alveoles/{{alveole.id}}">
+														<div class="cropedImg">
+															<img class="alveoleImg" ng-src="{{alveole | image}}"  alt="{{alveole.title}}">
+														</div>
+														<h4 class="alveoleName">
+															<strong>{{alveole.title}}</strong>
+														</h4>
+														<p class="alveoleDesc">
+															{{alveole.caption}}
+														</p>
+													</a>
+													<div class="alveoleTagsWrapper">
+														<img src="img/icon/icon-tags.svg" ng-show="alveole.tags">
+														<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)" class="tag">
+															<a href="#/alveoles/search/{{tag.name}}" class="tag">{{tag.name}}</a>
+														</span>
+													</div>
+
+												</div>
+											</article>
+										</div>
+									</section>
+								</slide>
+							</carousel>
+						</div>
+
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+
 	</div>
 </div>

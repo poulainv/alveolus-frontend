@@ -61,6 +61,7 @@ h1, h2, h3, h4, h5{
 }
 
 .alveoleName{
+  font-size : 20px;
   /*color: rgb(57,181,74);*/
   /*font-size: 15px;*/
   /*margin: 0;*/
@@ -547,7 +548,7 @@ h1, h2, h3, h4, h5{
 
 #footer{
   padding-bottom: 25px;
-  background-color:#f5f5f5;
+  background-color:rgba(95, 93, 93, 0.89);
   font-size: 90%;
 }
 #footer h5{
@@ -617,10 +618,10 @@ h1, h2, h3, h4, h5{
 
 #headerSlogan{
   color: black;
-  font-family: Politica;
-  font-weight: bold;
+/*  font-family: Politica;
+  font-weight: bold;*/
   text-align: right;
-  padding: 120px 30px;
+  padding: 110px 30px;
 }
 
 #headerImgCarousel{
@@ -648,7 +649,7 @@ h1, h2, h3, h4, h5{
 
 #mainWrapper{
   min-height: 915px;
-  padding-bottom: 100px;
+  padding-bottom: 2%;
 }
 
 #navbar{
@@ -691,8 +692,8 @@ h1, h2, h3, h4, h5{
 
 #popularAppsWrapper{
   background-color: #eef2ea;
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
+/*  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;*/
 }
 
 #popularCarousel{

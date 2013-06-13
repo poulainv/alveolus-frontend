@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.homeCtrl', []).
-controller('HomeCtrl', function($scope,$location,CategoryService,WebappService,SessionService, UserService) {
+controller('HomeCtrl', function($scope,$location,globals,CategoryService,WebappService,SessionService, UserService) {
 	$scope.webapps = WebappService.query(function(data){
 		/**
 		 * Get the 12 last apps validated
@@ -70,9 +70,9 @@ controller('HomeCtrl', function($scope,$location,CategoryService,WebappService,S
 	var joyride_validator = [];
 	var joyride_tester = function(type){
 		joyride_validator[type] = true;
-		if(joyride_validator['categories'] && joyride_validator['carousel'] && !$scope.ridden){
+		if(joyride_validator['categories'] && joyride_validator['carousel'] && !globals.joyride){
             $('#joyRideTipContent').joyride('init');
-            $scope.ridden = true;
+            globals.joyride = true;
 		}
 
 	};

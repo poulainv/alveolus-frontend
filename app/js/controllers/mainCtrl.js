@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.mainCtrl', []).
-controller('MainCtrl', function($scope,$routeParams,$location,$window,$timeout,WebappService,SessionService,TagService,FeedbackService,UserService) {
+controller('MainCtrl', function($scope,$routeParams,$location,$window,$timeout,globals,WebappService,SessionService,TagService,FeedbackService,UserService) {
 
 	var alertLogSuccess = { type: 'success', msg: 'Parfait, vous êtes correctement authentifié' } ;
 	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifier' } ;
@@ -148,9 +148,9 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,$timeout,W
 		FeedbackService.sendFeedback(content,function(data){
 			console.log(data);
 		});
-	}
+	};
 
 	$scope.tags=TagService.query();
-	$scope.ridden = false;
+	globals.joydire = false;
 
 });

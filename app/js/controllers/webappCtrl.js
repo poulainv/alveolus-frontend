@@ -169,8 +169,6 @@ $scope.goToEditWebappPage = function(){
 $scope.shareOnFb=function(){
 	// http://alveolus.fr/app/img/1.jpg
 	var img=($scope.webapp.image_url=="img/missing.png") ? "http://alveolus.fr/app/img/"+$routeParams.webAppId+".jpg" : $scope.webapp.image_url;
-
-	console.log("picture:"+img);
         var obj = {
           method: 'feed',
           redirect_uri: 'http://alveolus.fr/',

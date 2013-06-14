@@ -71,14 +71,14 @@
 									<button class="btn" ng-click="userAddTag=false"><i class="icon-remove" ></i></button>
 								</span>
 							</div>
-							<div class="span4">
+							<div class="span4" ng-show="facebook || twitter || webapp.gplus_id">
 								<h4>Réseaux sociaux</h4>
 								<ul class="social-networks-list">
 									<li ng-show='facebook' class="facebook">
 										<a href="{{facebook.link}}" target="_blank"><i class="icon-facebook icon-large icon-fixed-width facebook"></i> {{facebook.likes}} likes</a>
 									</li>
 									<li ng-show='twitter' class="twitter">
-										<a href="https://twitter.com/{{webapp.twitter_id}}" target="_blank"><i class="icon-twitter icon-large icon-fixed-width twitter"></i> {{twitter.followers_count}} followers</a>
+										<a href="https://twitter.com/{{webapp.twitter_id}}" target="_blank"><i class="icon-twitter icon-large icon-fixed-width twitter"></i> {{twitter}} followers</a>
 									</li>
 									<li ng-show='webapp.gplus_id' class="gplus">
 										<a href="https://plus.google.com/{{webapp.gplus_id}}" target="_blank"><i class="icon-google-plus icon-large icon-fixed-width gplus"></i> Google Plus</a>

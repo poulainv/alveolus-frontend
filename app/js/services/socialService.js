@@ -12,9 +12,15 @@ factory('SocialService', function($http,$resource) {
         success(function(data) {callback(data)});
     }
 
-    service.getTwitterData = function(id,callback){
-        $http({method: 'JSONP', url: 'http://api.twitter.com/1/users/show.json?screen_name='+id+'&callback=JSON_CALLBACK', cache: true}).
-        success(function(data) {callback(data)});
+    service.getTwitterData = function(cb, id,callback){
+        cb.__call(
+            'users_show',
+            'screen_name='+id,
+            function (reply) {
+                callback(reply);
+            },
+            true
+        );
     }
 
     return service;

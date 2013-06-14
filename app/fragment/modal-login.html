@@ -12,7 +12,7 @@
     <div class="row-fluid">
       <div class="span6">
         <h3><small>Via vos identifiants...</small></h3>
-        <form ng-submit="sign_in(user)">
+        <form ng-submit="sign_in(user)" name="loginForm" >
           <div class="control-group">
             <div class="controls">
               <div class="input-prepend">
@@ -27,16 +27,15 @@
                  <input id="user-password" type="password" placeholder="Mot de passe" ng-model="user.password"/>
                </div>
              </div>
+             <input type="submit" id="loginSubmit"/>
              <div class="line-separator">
              </div>
            </div>
-
          </div>
-         <input type="submit" ng-click="sign_in(user)" ng-show="false"></input>
        </form>
 
-     </div>
-     <div class="span6">
+    </div>
+    <div class="span6">
       <h3><small>...ou utiliser un compte tiers</small></h3>
 
       <span data-facebook='261681253955145' >

@@ -3,7 +3,7 @@
 /* Controleur de la home page */
 
 angular.module('alveolus.addWebappCtrl', []).
-controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,$window,WebappService, SocialService, CategoryService, TagService) {
+controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,WebappService, SocialService, CategoryService, TagService) {
 
 	if(!$scope.isLogged){
 		$location.path('/');
@@ -87,7 +87,7 @@ controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,$
         fd.append("webapp[photo]", $scope.files[0]);
         var xhr = new XMLHttpRequest();
         xhr.upload.onprogress = updateProgress;
-        xhr.addEventListener("load", function(){$rootScope.$broadcast('onSuggestionSaved');}, false);
+        xhr.addEventListener("load", $scope.callbackUpload, false);
         xhr.addEventListener("error", function(){alert("Erreur pendant le chargement du fichier")}, false);
         xhr.addEventListener("abort", function(){ alert('Connexion perdue')}, false);
         WebappService.addWebapp(xhr,fd);
@@ -155,6 +155,14 @@ controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,$
 			progress.text( Math.round(percentComplete)+'%');
 		}
 	};
+
+	$scope.callbackUpload = function(){
+		console.log('upload OK');
+		$rootScope.$apply(function(){
+			$rootScope.$broadcast('onSuggestionSaved');
+			$location.path('/vote');
+		});
+	}
 
 
 });

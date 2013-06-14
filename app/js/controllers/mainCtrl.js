@@ -12,7 +12,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,$timeout,g
 	var alertUnLogFail = { type: 'error', msg: 'Oops, erreur dans la déconnexion' } ;
 	var alertUnauthorized = { type: 'error', msg: 'Vous devez être authentifié' } ;
 	var alertUnlogSuccess = { type: 'info', msg: 'A bientôt ! Vous vous êtes correctement déconnecté' } ;
-	var alertSuggestionSaved = { type: 'success', msg: 'Votre proposition a bien été prise en compte' } ;
+	var alertSuggestionSaved = { type: 'success', msg: 'Merci ! Votre proposition a bien été prise en compte, cous pouvez maintenant voter pour que votre site soit accepté' } ;
 	var alertFileUpdate = { type: 'success', msg: 'Le fichier a été correctement mis à jour !' } ;
 
 	$scope.user = SessionService.getUser();
@@ -73,6 +73,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,$timeout,g
 	// Call SessionService to sin in user with email and password given in modal
 	// Update $scope.user of mainControler
 	$scope.sign_in = function(user){
+		console.log('sign_in');
 		SessionService.sign_in($scope.user);
 	};
 
@@ -106,14 +107,14 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,$timeout,g
 	};
 
 	$scope.closeModalAlert = function(index) {
-		if($scope.alerts.length != 0){
+		if($scope.modalAlert.length != 0){
 			$scope.modalAlert.splice(index, 1);
 		}
 	};
 
 	// Reset alert when change location
 	$scope.$on('$routeChangeSuccess', function(event) {
-		$scope.alerts = [];
+		// $scope.alerts = [];
 		// For google analytics
 	    $window._gaq.push(['_trackPageview', $location.path()]);
 	});
@@ -121,6 +122,8 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,$timeout,g
 
 	// Manage open and close of modal login
 	$scope.openModalLogin = function () {
+		$scope.modalAlert = [];
+		$scope.user = {};
 		$('#modalLogin').modal('show');
 	};
 

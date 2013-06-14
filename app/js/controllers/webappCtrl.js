@@ -12,6 +12,8 @@ controller('WebappCtrl', function($scope,$location,$routeParams, WebappService, 
 	var alertErrorAlreadyTagged = {type : 'error', msg : "Vous avez déjà proposé ce tag pour cette alvéole ! Votre tag n'a pas été ajouté."};
 	var alertWebappBookmarked = {type : 'success', msg : "Cette alvéole a bien été ajoutée à vos favoris."};
 	var alertWebappUnbookmarked = {type : 'info', msg : "Cette alvéole a bien été supprimée de vos favoris."};
+	var alertPostedOnFacebook = {type : 'success', msg : "Merci d\'avoir partagé cette alvéole sur Facebook !"};
+
 	$scope.scrollbar = function(){
 		setTimeout(function(){
 			$(".nano").nanoScroller({ flash: true });
@@ -164,17 +166,26 @@ $scope.goToEditWebappPage = function(){
 	}
 };
 
-// ---------- Ne marche pas --------------
-// $scope.shareOnFb=function(){
-//   console.log("share");
-//   FB.ui({
-//           method: 'feed',
-//           name: "title",
-//           link:  "http://alveolus.fr",
-//           caption: "caption",
-//           message: "J'ai découvert ça sur EnjoyTheWeb, ça peut vous intéresser !"
-//       },function(response) {
-//       console.log("response:"+response);
-//     });
-// }
+$scope.shareOnFb=function(){
+	// http://alveolus.fr/app/img/1.jpg
+	var img=($scope.webapp.image_url=="img/missing.png") ? "http://alveolus.fr/app/img/"+$routeParams.webAppId+".jpg" : $scope.webapp.image_url;
+
+	console.log("picture:"+img);
+        var obj = {
+          method: 'feed',
+          redirect_uri: 'http://alveolus.fr/',
+          link: 'http://alveolus.fr/app/index.html#/alveoles/'+$routeParams.webAppId,
+          picture: img,
+          name: $scope.webapp.title,
+          caption: $scope.webapp.caption
+        };
+
+        function callback(response) {
+          if(response){
+          	$scope.addAlert(alertPostedOnFacebook);
+          }
+        }
+
+        FB.ui(obj, callback);
+}
 });

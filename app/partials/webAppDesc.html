@@ -89,15 +89,12 @@
 								<h4><img src="img/picto/picto-share-green.svg" alt="share-picto"> Partagez sur...</h4>
 								<ul class="share-list">
 									<li>
-										<a target="_blank" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]={{webapp.url}}&amp;p[images][0]=https://cot-production-assets.s3.amazonaws.com/assets/happy-fingers-da11d5333af9a701244f3606686120a0.jpeg&amp;p[title]={{webapp.title}}&amp;p[summary]={{webapp.caption}}" ng-click="trackSharing()">
-										<img src="img/picto/picto-facebook-colored.svg" alt="facebook-picto">
-									</a>
+										<a target="_blank" ng-click="shareOnFb()">
+											<img src="img/picto/picto-facebook-colored.svg" alt="facebook-picto">
+										</a>
 									</li>
-									<!-- <a facebook ng-click="shareOnFb()">
-										<i class="icon-facebook-sign icon-2x"></i>
-									</a> -->
 									<li>
-										<a target="_blank" href="https://twitter.com/intent/tweet?url={{webapp.url}}&amp;text={{webapp.caption}}">  <!-- via={{webapp.twitter_id}} ? -->
+										<a target="_blank" href="https://twitter.com/intent/tweet?url={{webapp.url}}&amp;text={{webapp.title}}">  <!-- via={{webapp.twitter_id}} ? -->
 										<img src="img/picto/picto-twitter-colored.svg" alt="twitter-picto">
 										</a>
 									</li>

@@ -119,7 +119,7 @@ controller('EditWebappCtrl', function($scope,$routeParams,$location,$rootScope,W
 
 	var callback = function(evt){
 		$scope.webapp = jQuery.parseJSON(evt.target.response);
-		$rootScope.$broadcast('onFileUpdate');
+		$rootScope.$apply($rootScope.$broadcast('onFileUpdate'));
 		console.log($scope.webapp);
 	};
 

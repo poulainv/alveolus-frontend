@@ -175,6 +175,13 @@
 				</div>
 
 				<div class="control-group">
+					<label class="control-label" for="vimeo"><i class="icon-facetime-video icon-large"></i></label>
+					<div class="controls">
+						<input type="text" id="vimeo" class="span3" ng-model="webapp.vimeo_id" tooltip-placement="right" tooltip="L'identifiant d'une vidéo présentant le site hébergée sur vimeo."></input>
+					</div>
+				</div>
+
+				<div class="control-group">
 					<label class="control-label" for="image">Image <span class="red-star">*</span> : </label>
 					<div class="controls">
 						<input id="fileToUpload" ng-model="webapp.image" name="fileToUpload" type="file" ng-init="fileReady=false" accept="image/*" onchange="angular.element(this).scope().fileReady=true;angular.element(this).scope().setFile(this);" />

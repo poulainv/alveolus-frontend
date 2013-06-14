@@ -16,7 +16,8 @@ controller('EditWebappCtrl', function($scope,$routeParams,$location,$rootScope,W
 	
 	$scope.webapp = WebappService.get({id:$routeParams.webAppId}, function(){
 		if($scope.user.id != $scope.webapp.user_id){
-			// $location.path('alveoles/'+$routeParams.webAppId);
+			$location.path('alveoles/'+$routeParams.webAppId);
+			$rootScope.$broadcast('onEditAccessFailed');
 		}	
 	});
 	$scope.categories=CategoryService.query();		
@@ -34,6 +35,7 @@ controller('EditWebappCtrl', function($scope,$routeParams,$location,$rootScope,W
 			facebook_id : webapp.facebook_id,
 			twitter_id : webapp.twitter_id,
 			gplus_id : webapp.gplus_id,
+			vimeo_id : webapp.vimeo_id,
 		}
 		console.log('edit webapp :');
 		console.log(webappToSend);

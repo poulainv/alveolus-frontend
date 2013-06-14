@@ -84,6 +84,7 @@ controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,W
         fd.append("webapp[twitter_id]", webapp.twitter_id);
         fd.append("webapp[facebook_id]", webapp.facebook_id);
         fd.append("webapp[gplus_id]", webapp.gplus_id);
+        fd.append("webapp[vimeo_id]", webapp.vimeo_id);
         fd.append("webapp[photo]", $scope.files[0]);
         var xhr = new XMLHttpRequest();
         xhr.upload.onprogress = updateProgress;

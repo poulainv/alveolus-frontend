@@ -15,6 +15,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,$timeout,g
 	var alertSuggestionSaved = { type: 'success', msg: 'Merci ! Votre proposition a bien été prise en compte, cous pouvez maintenant voter pour que votre site soit accepté' } ;
 	var alertFileUpdate = { type: 'success', msg: 'Le fichier a été correctement mis à jour !' } ;
 	var alertEditAccessFailed = { type: 'error', msg: 'Erreur, seul le créateur d\'une alvéole peut la modifier.' } ;
+	var alertFeebackSent = { type: 'success', msg: 'Feedback envoyé, merci !' } ;
 
 	$scope.user = SessionService.getUser();
 	$scope.isLogged = SessionService.authorized();
@@ -157,6 +158,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,$timeout,g
 		console.log("feedback"+content.comment);
 		FeedbackService.sendFeedback(content,function(data){
 			console.log(data);
+			addAlert(alertFeebackSent);
 		});
 	};
 

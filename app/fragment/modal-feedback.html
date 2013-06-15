@@ -1,24 +1,18 @@
-<div id="modalFeedback" class="modal hide" tabindex="-1" role="dialog" aria-hidden="true" close="closeModalFeedback()">
+<div id="modalFeedback" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modalFeedbackLabel" aria-hidden="true" close="closeModalFeedback()">
   <div class="modal-header">
-    <h4>Feedback</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 id="modalFeedbackLabel">Feedback</h4>
   </div>
-  <form name="formFeedback">
-    <div class="modal-body">
-      <div class="control-group">
+  <div class="modal-body">
+    <div class="control-group">
         <div class="controls">
           <textarea autofocus="autofocus" cols="40" ng-model="feedback.comment" id="feedbackContent" name="feedbackContent" placeholder="Une idée, un commentaire, un bug ? Dites-nous tout !" rows="20"></textarea>
         </div>
-        <div class="modal-footer">
-          <div class="control-group">
-            <div class="controls">
-              <button class="btn btn-warning cancel" ng-click="closeModalFeedback()">Cancel</button>
-              <button class="btn btn-success"  ng-click="sendFeedback(feedback)" ng-disabled="!feedback.comment">Envoyer
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
-
-    </div>
-  </form>
-</div> 
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-warning cancel" ng-click="closeModalFeedback()">Cancel</button>
+    <button class="btn btn-success"  ng-click="sendFeedback(feedback)" ng-disabled="!feedback.comment">Envoyer
+    </button>
+  </div>
+</div>

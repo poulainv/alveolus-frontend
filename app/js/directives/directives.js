@@ -49,8 +49,7 @@ directive('facebook', function($http,globals) {
       // Additional JS functions here
       window.fbAsyncInit = function() {
       	FB.init({
-          appId      : attrs.facebook, // App ID
-          channelUrl : '//alveolus.fr/channel.html', // Channel File
+          appId      : '270956813042625', // App ID
           status     : true, // check login status
           cookie     : true, // enable cookies to allow the server to access the session
           xfbml      : true  // parse XFBML

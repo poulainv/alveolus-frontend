@@ -62,41 +62,6 @@ h1, h2, h3, h4, h5{
 
 .alveoleName{
   font-size : 20px;
-  /*color: rgb(57,181,74);*/
-  /*font-size: 15px;*/
-  /*margin: 0;*/
-}
-.alveoleContent{
-  /*position: absolute;*/
-  /*background-color: #FFF;*/
-  /*background-color: rgba(255,255,255,.8);*/
-  /*height: 215px;*/
-  /*top: 215px;*/
-  /*left: 0;*/
-  /*transition: top .3s ease-in;*/
-  /*padding: 5px;*/
-}
-
-.alveoleContent .more{
-  /*background: none;*/
-  /*text-shadow: none;*/
-  /*background-color: rgb(57,181,74);*/
-  /*color: #FFF;*/
-  /*border: none;*/
-  /*border-radius: 0;*/
-  /*margin-top: 20px;*/
-}
-
-.alveoleContent .more:hover{
-  /*background-color: rgb(57,181,74);*/
-}
-
-.alveoleDesc{
-  color: #75796f;
-  font-size: 12px;
-  line-height: 1.4;
-  /*  text-align: justify;*/
-  /*height: 105px;*/
 }
 
 .alveoleRatingWrapper{
@@ -121,7 +86,8 @@ h1, h2, h3, h4, h5{
 .alveoleDesc{
   color: #75796f;
   font-size: 12px;
-  /*text-align: justify;*/
+  text-align: justify;
+  line-height: 1.4;
 }
 .alveoleTagsWrapper{
   height: 38px;

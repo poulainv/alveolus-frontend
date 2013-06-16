@@ -25,6 +25,10 @@ controller('WebappCtrl', function($scope,$location,$routeParams, WebappService, 
 	$scope.webAppId=$routeParams.webAppId;
 	$scope.webapp=WebappService.get({id: $routeParams.webAppId}, function(data){
 
+		if(!$scope.webapp.validate){
+			$location.path('/');
+		}
+
 		if($.isEmptyObject(data.comments)){
 			$scope.webappHaveComments=false;
 		}

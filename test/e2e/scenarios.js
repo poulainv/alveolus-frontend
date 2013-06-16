@@ -5,10 +5,14 @@
 /**
  * Fonctions de service
  */
-function connexion() {
+ // si besoin d'accèder à ces comptes mails, les mots de passes sont les mêmes
+var MAILS = ["e2e.test1.alveolus@gmail.com", "e2e.test2.alveolus@gmail.com", "e2e.test3.alveolus@gmail.com", "e2e.test4.alveolus@gmail.com", "e2e.test5.alveolus@gmail.com"];
+var PWDS = ["e2etest1", "e2etest2", "e2etest3", "e2etest4", "e2etest5"];
+
+function connexion(mail, pwd) {
     element('.navbar-link:contains(CONNEXION)').click();
-    input('user.email').enter('moi.inscription@gmail.com');
-    input('user.password').enter('e2etests');
+    input('user.email').enter(mail);
+    input('user.password').enter(pwd);
     element('.modal button:contains(Se connecter)').click();
 }
 
@@ -30,10 +34,9 @@ function expectNonexistentElement(selector) {
  */
 describe('alveolus', function() {
   
-    angular.scenario.matcher('toEqualFuture', function(future) {
-        return this.actual == future.value;
-    });
-  
+  angular.scenario.matcher('toEqualFuture', function(future) {
+      return this.actual == future.value;
+  });  
 
   describe('Routing', function() {
       it('should redirect bad url to home page', function() {
@@ -50,15 +53,15 @@ describe('alveolus', function() {
 
         it('should check connexion and disconnexion', function() {
             // connexion
-            connexion();
-            expect(element('.alert span').text()).toBe('Parfait, vous êtes correctement authentifié');
+            connexion(MAILS[0], PWDS[0]);
+            expectUniqueElement('.navbar-link-text:contains(MON COMPTE)');
             expectNonexistentElement('.navbar-link:visible:contains(CONNEXION)');
             element('.navbar-link:contains(COMPTE)').click();
             expectUniqueElement('.nav a:visible:contains(Deconnexion)');
             // disconnexion
             disconnexion();
-            expect(element('.alert span').text()).toBe('A bientôt ! Vous vous êtes correctement déconnecté');
             expectUniqueElement('.navbar-link:visible:contains(CONNEXION)');
+            expectNonexistentElement('.navbar-link-text:visible:contains(MON COMPTE)');
             expectNonexistentElement('.nav a:visible:contains(Deconnexion)');
         });
     });
@@ -74,7 +77,7 @@ describe('alveolus', function() {
         });
 
         it('should redirect to addwebapp page when "PROPOSEZ" is clicked and the user logged in', function() {
-            connexion();
+            connexion(MAILS[0], PWDS[0]);
             element('.navbar-link:contains(PROPOSEZ)').click();
             expect(browser().location().url()).toBe('/alveoles/new');
         });
@@ -98,7 +101,8 @@ describe('alveolus', function() {
       });
 
       describe('routing', function() {
-        it('should redirect to webapp page when a webapp is clicked in carousel', function() {
+        // xit car pas de caroussel actuellement
+        xit('should redirect to webapp page when a webapp is clicked in carousel', function() {
           element('.carousel .alveole:first .imgCarousel').click();
           expect(browser().location().url()).toMatch('/alveoles/\\d+');
         });
@@ -119,16 +123,18 @@ describe('alveolus', function() {
         });
 
         it('should display then hide feedback modal window when "Feedback" clicked then "Cancel" clicked', function() {
-          expectNonexistentElement('.modal:visible');
+          expectNonexistentElement('#modalFeedback:visible');
           element('a[id="feedback_link"]').click();
-          expectUniqueElement('.modal:visible');
-          element('.modal button:contains(Cancel)').click();
-          expectNonexistentElement('.modal:visible');
+          sleep(0.5); // temp du fade in
+          expectUniqueElement('#modalFeedback:visible');
+          element('#modalFeedback button:contains(Cancel)').click();
+          expectNonexistentElement('#modalFeedback:visible');
         });
       });
       
+      // xit car pas de caroussel actuellement
       describe('carousel', function() {
-        it('should display 4 webapp in carousel', function() {
+        xit('should display 4 webapp in carousel', function() {
           expect(repeater('.carousel-inner .item .alveoleWrap:visible').count()).toBe(4);
         });
 
@@ -136,7 +142,7 @@ describe('alveolus', function() {
             //  expect(repeater('.carousel-inner .item:first .alveoleWrap').count()).toBe(??);
             //});
 
-        it('should display other webapp when right control clicked in carousel', function() {
+        xit('should display other webapp when right control clicked in carousel', function() {
           var firstVisibleAlveole = element('.carousel-inner .item .alveoleWrap:visible.alveoleWrap:first').text();
           element('.carousel-control.right').click();
           sleep(1);
@@ -144,8 +150,9 @@ describe('alveolus', function() {
         });
       });
 
+      // xit car pas de selection de l'équipe pour l'instant
       describe('categories', function() {
-        it('should change "selection de l\'équipe" webapp when other category clicked', function() {
+        xit('should change "selection de l\'équipe" webapp when other category clicked', function() {
           element('span:contains(Crowdfunding).btnCat').click();
           expectUniqueElement('#teamSelection h3:contains(Crowdfunding)');
           expectNonexistentElement('#teamSelection h3:contains(Food)');
@@ -160,15 +167,15 @@ describe('alveolus', function() {
 
     beforeEach(function() {
       browser().navigateTo('../../app/index.html');
-      connexion();
-      browser().navigateTo('../../app/index.html#/alveoles/new');
+      connexion(MAILS[0], PWDS[0]);
+      element('.navbar-link:contains(PROPOSEZ)').click();
     });
 
     afterEach(function() {
       disconnexion();
     });
 
-    xit('should not allow to send a webapp until the form is correctly filled', function() {
+    it('should not allow to send a webapp until the form is correctly filled', function() {
       expectNonexistentElement('button:contains(Envoyer)[disabled!="disabled"]');
       input('webapp.title').enter('Alveole e2e-testing');
       expectNonexistentElement('button:contains(Envoyer)[disabled!="disabled"]');
@@ -179,42 +186,52 @@ describe('alveolus', function() {
       input('webapp.description').enter('Description complète e2e-testing, Description complète e2e-testing, Description complète e2e-testing, Description complète e2e-testing.');
       expectNonexistentElement('button:contains(Envoyer)[disabled!="disabled"]');
       select('webapp.category_id').option('Food');
-      expectUniqueElement('button:contains(Envoyer)[disabled!="disabled"]');
+      expectNonexistentElement('button:contains(Envoyer)[disabled!="disabled"]');
+      // TODO : check avec l'ajout d'image, impossible actuelement
     });
 
-    xit('should send a well formed request when form is correctly filled and "Envoyer" pushed', function() {
-      input('webapp.title').enter('Alveole e2e-testing');
-      input('webapp.url').enter('http://e2e-testing.alveole');
-      input('webapp.caption').enter('Description rapide e2e-testing');
-      input('webapp.description').enter('Description complète e2e-testing, Description complète e2e-testing, Description complète e2e-testing, Description complète e2e-testing.');
-      select('webapp.category_id').option('Food');  
-        // TODO     
+    it('should send a webapp when form is correctly filled and "Envoyer" pushed', function() {
+      // TODO : impossible actuellement à cause de l'upload d'image
+    });
+  });
+
+  describe('Vote page', function() {
+    it('should check if webapp has been sent', function() {
+      browser().navigateTo('../../app/index.html#/vote');
+      // TODO : impossible actuellement, nécessite le post d'une alvéole
     });
   });
 
   describe('Web app page', function() {
     beforeEach(function() {
-       browser().navigateTo('../../app/index.html#/alveoles/6'); // MyMajorCompany
+       browser().navigateTo('../../app/index.html#/alveoles/6'); // Homengo
     });
 
-    it('should display MyMajorCompany web app page', function() {
-      expect(element('button#btnMore').text()).toBe('Toutes les alvéoles Crowdfunding');
-      expect(element('h1').text()).toBe('MyMajorCompany');
-      expect(element('h4.ng-binding').text()).toBe('Pionnier du financement participatif mondial, MMC vous propose de financer et de donner vie à tout type de projets culturels et innovants !');
-      expect(element('h4.ng-binding + p.ng-binding').text()).toBe('My Major Company est un des pionniers du financement participatif mondial, et aujourd’hui leader du secteur en Europe, par la taille de sa communauté, les montants levés – plus de 12 millions d\'euros sur près de 42.000 projets en France, en Allemagne et en Angleterre – et les succès commerciaux engendrés.');
+    it('should display Homengo web app page', function() {
+      expect(element('h1').text()).toBe('Homengo');
+      expectUniqueElement('.caption:visible:contains(Home\'n\'go centralise toutes les annonces immobilières qui vous plaisent en un seul endroit que vous pouvez partager avec vos proches.)');
+      expectUniqueElement('p:visible:contains(Marre de chercher un logement ? Home\'n\'go vous simplifie la vie en vous aidant à vous organiser. Centralisez toutes les annonces qui vous plaisent sur votre espace et découvrez ce qui se trouve à proximité de chacune d\'entre elle. Home\'n\'go utilise les données ouvertes (Open Data) pour centraliser toutes les informations qui peuvent vous être utiles pendant la recherche de votre logement. (prix moyen au mètre carré, ratio homme/femme, orientation politique du quartier etc...))');
     });
 
     it('should display tags', function() {
-      expectUniqueElement('span.tagList:contains(financement)');
-      expectUniqueElement('span.tagList:contains(culture)');
+      // TODO : pas encore de tags sur homengo
     });
 
     describe('add a comment', function() {
+
+      beforeEach(function() {
+        disconnexion();
+        connexion(MAILS[0], PWDS[0]);
+      });
+
+      afterEach(function() {
+        disconnexion();
+      });
+
       it('should propose to add a comment when user logged in (remove manually Test comment if already there)', function() {
-        expectNonexistentElement('h4:contains(Donnez votre avis):visible');
+        disconnexion();
         expectNonexistentElement('#textarea:visible');
-        connexion();
-        expectUniqueElement('h4:contains(Donnez votre avis):visible');
+        connexion(MAILS[0], PWDS[0]);
         expectUniqueElement('#textarea:visible');
       });
 
@@ -224,35 +241,20 @@ describe('alveolus', function() {
         expectUniqueElement('button:contains(Envoyer)[disabled!="disabled"]');
       });
 
-      it('should add a comment on MyMajorCompany and hide comment form', function() {
+      it('should add a comment on Homengo and hide comment form', function() {
         element('#star3').click();
         input('comment.body').enter('Une idée sympa! test');
         element('button:contains(Envoyer)').click();
+        sleep(0.5);
         expectUniqueElement('p:contains(Une idée sympa! test):visible');
-        expectNonexistentElement('h4:contains(Donnez votre avis):visible');
         expectNonexistentElement('#textarea:visible');
       });
 
-      it('should delete a comment on MyMajorCompany', function() {
-        element('p:contains(Une idée sympa! test) + div i.icon-trash').click();
+      it('should delete a comment on Homengo', function() {
+        element('i.icon-trash:visible').click();
         expectNonexistentElement('p:contains(Une idée sympa! test):visible');
         disconnexion();
       });
     });
   });
-  
-  describe('Web app list page', function() {
-    describe('', function() {
-
-    });
-  });
-  
-  describe('User page', function() {
-  
-  });
-  
-  describe('Vote page', function() {
-  
-  });
-
 });

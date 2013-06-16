@@ -3,15 +3,15 @@
 		<div class="row-fluid container-white">
 			<aside id="navLinks" class="span3 pull-right">
 				<a href="#/graph" class="btn">Exploration graphique</a>
-				<h4><img src="img/icon/icon-selection.svg">Sélection</h4>
+				<h3><img src="img/picto/picto-selection-green.svg"> Sélection</h3>
 				<ul class="noStyleList">
 					<li ng-repeat="selectionCat in selectionCats"><span class="link" ng-click="changeFeat(selectionCat);">{{selectionCat.name}}</span></li>
 				</ul>
-				<h4><img src="img/icon/icon-categories.svg">Catégories</h4>
+				<h3><img src="img/icon/icon-categories.svg"> Catégories</h3>
 				<ul class="noStyleList">
 					<li ng-repeat="cat in cats"><span class="link" ng-click="changeCat(cat)">{{cat.name}}</span></li>
 				</ul>
-				<h4><img src="img/icon/icon-tags.svg">Tags</h4>
+				<h3><img src="img/icon/icon-tags.svg"> Tags</h3>
 				<ul class="noStyleList">
 					<li ng-repeat="tag in tags"><span class="link" ng-click="search(tag.name)">{{tag.name}}</span></li>
 				</ul>

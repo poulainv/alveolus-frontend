@@ -15,6 +15,7 @@
   src: url(../font//Politica/Politica-Italic.otf) format("opentype");
 }
 
+
 a, a:link, a:visited, a:hover, a:active {
   color:black;
   text-decoration: none;
@@ -234,8 +235,11 @@ h1, h2, h3, h4, h5{
 
 .container-grey{
   /*background-color: #eef2ea;*/
-  background-color: rgb(240,240,240);
+/*  background-color: rgb(240,240,240);*/
   padding-bottom: 100px;
+  background-image: url('../img/cloth_alike.png');
+  background-position: initial initial;
+  background-repeat: initial initial;
 }
 
 .container-white{
@@ -545,16 +549,32 @@ h1, h2, h3, h4, h5{
 
 #footer{
   padding-bottom: 25px;
-  background-color:rgba(95, 93, 93, 0.89);
+  /*background-color:rgba(95, 93, 93, 0.89);*/
+  background-image: url('../img/binding_dark.png'); 
+  background-position: initial initial;
+  background-repeat: initial initial;
   font-size: 90%;
 }
 #footer h5{
-  color:#999999;
+  color : rgb(231, 231, 231);
+  font-family: Politica-italic
+
 }
+
 #footer .footer-list{
   list-style:none;
   padding: 0;
   margin: 0;
+}
+
+#footer a{
+  font-size:12px;
+  color : rgb(231, 231, 231);
+}
+
+#footer p{
+  font-size:12px;
+  color : rgb(231, 231, 231);
 }
 
 

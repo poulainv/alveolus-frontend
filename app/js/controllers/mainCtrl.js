@@ -18,6 +18,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,$timeout,g
 	var alertFeebackSent = { type: 'success', msg: 'Feedback envoyé, merci !' } ;
 
 	$scope.user = SessionService.getUser();
+	$scope.tags=TagService.query();
 	$scope.isLogged = SessionService.authorized();
 	$scope.userInfo = $scope.isLogged ? UserService.get({id:$scope.user.id}): null;
 		// To receive broadcasts

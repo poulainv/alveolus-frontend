@@ -53,7 +53,7 @@ factory('WebappService', function($http,$resource, $rootScope, $location, Sessio
     }
 
     service.getUnvalidated = function(callback){
-        $http({method:'GET', url: globals.server_url+'/webapps/trend/unvalidated', cache: true}).
+        $http({method:'GET', url: globals.server_url+'/webapps/trend/unvalidated', cache: false}).
         success(function(data){callback(data);});
     }
 

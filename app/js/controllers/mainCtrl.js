@@ -12,7 +12,7 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,$timeout,g
 	var alertUnLogFail = { type: 'error', msg: 'Oops, erreur dans la déconnexion.' } ;
 	var alertUnauthorized = { type: 'error', msg: 'Vous devez être authentifié.' } ;
 	var alertUnlogSuccess = { type: 'info', msg: 'A bientôt ! Vous vous êtes correctement déconnecté.' } ;
-	var alertSuggestionSaved = { type: 'success', msg: 'Merci ! Votre proposition a bien été prise en compte, cous pouvez maintenant voter pour que votre site soit accepté !' } ;
+	var alertSuggestionSaved = { type: 'success', msg: 'Merci ! Votre proposition a bien été prise en compte, vous pouvez maintenant voter pour que votre site soit accepté !' } ;
 	var alertFileUpdate = { type: 'success', msg: 'Le fichier a été correctement mis à jour !' } ;
 	var alertEditAccessFailed = { type: 'error', msg: 'Erreur, seul le créateur d\'une alvéole peut la modifier.' } ;
 	var alertFeebackSent = { type: 'success', msg: 'Feedback envoyé, merci !' } ;

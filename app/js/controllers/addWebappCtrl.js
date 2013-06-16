@@ -57,15 +57,14 @@ controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,W
 		$('#progressBar').show();
 
 		// concatenating tags into an array
-		var tagList = [];
+		var tagList = "";
 		for(var i = 0; i<$scope.nbTags;i++){
 			if( $("#tag"+i).text().length > 0 ){
-				tagList.push($("#tag"+i).text());
+				tagList+=($("#tag"+i).text()+",");
 			}
 		}
 
-		// uncomment this to add tags (waiting for confirmation)
-		// webapp.tags = tagList;
+		webapp.tag_list = tagList;
 		
 		$scope.webapp = webapp;
 		console.log($scope.webapp);
@@ -161,6 +160,8 @@ controller('AddWebappCtrl', function($scope,$routeParams,$rootScope, $location,W
 		console.log('upload OK');
 		$rootScope.$apply(function(){
 			$rootScope.$broadcast('onSuggestionSaved');
+			$('#progressBar .bar').css("width",'100%');
+			$('#progressBar .bar').text('100%');
 			$location.path('/vote');
 		});
 	}

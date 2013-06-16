@@ -5,14 +5,14 @@
 angular.module('alveolus.mainCtrl', []).
 controller('MainCtrl', function($scope,$routeParams,$location,$window,$timeout,globals,WebappService,SessionService,TagService,FeedbackService,UserService) {
 
-	var alertLogSuccess = { type: 'success', msg: 'Parfait, vous êtes correctement authentifié' } ;
-	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifier' } ;
+	var alertLogSuccess = { type: 'success', msg: 'Parfait, vous êtes correctement authentifié.' } ;
+	var alertLogFail = { type: 'error', msg: 'Oops, impossible de vous authentifier.' } ;
 	var alertWrongPassword = { type: 'error', msg: 'Mauvais mot de passe.' } ;
 	var alertNotConfirmed = { type: 'error', msg: 'Vous devez valider votre inscription avec le mail de confirmation.' } ;
-	var alertUnLogFail = { type: 'error', msg: 'Oops, erreur dans la déconnexion' } ;
-	var alertUnauthorized = { type: 'error', msg: 'Vous devez être authentifié' } ;
-	var alertUnlogSuccess = { type: 'info', msg: 'A bientôt ! Vous vous êtes correctement déconnecté' } ;
-	var alertSuggestionSaved = { type: 'success', msg: 'Merci ! Votre proposition a bien été prise en compte, cous pouvez maintenant voter pour que votre site soit accepté' } ;
+	var alertUnLogFail = { type: 'error', msg: 'Oops, erreur dans la déconnexion.' } ;
+	var alertUnauthorized = { type: 'error', msg: 'Vous devez être authentifié.' } ;
+	var alertUnlogSuccess = { type: 'info', msg: 'A bientôt ! Vous vous êtes correctement déconnecté.' } ;
+	var alertSuggestionSaved = { type: 'success', msg: 'Merci ! Votre proposition a bien été prise en compte, cous pouvez maintenant voter pour que votre site soit accepté !' } ;
 	var alertFileUpdate = { type: 'success', msg: 'Le fichier a été correctement mis à jour !' } ;
 	var alertEditAccessFailed = { type: 'error', msg: 'Erreur, seul le créateur d\'une alvéole peut la modifier.' } ;
 	var alertFeebackSent = { type: 'success', msg: 'Feedback envoyé, merci !' } ;

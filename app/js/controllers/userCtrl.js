@@ -13,7 +13,10 @@ controller('UserCtrl', function($scope, $routeParams, $location, $rootScope, Use
 	if($scope.isLogged){
 		$scope.user=UserService.get({id: $scope.user.id});
 	}
-	else $scope.openModalLogin();
+	else{
+		$location.path('/');
+		$scope.openModalLogin();
+	} 
 
 	$('#progressBar').hide();
 	

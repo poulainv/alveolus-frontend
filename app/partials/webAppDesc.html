@@ -65,7 +65,7 @@
 										<a ng-click="userAddTag=true" id="addTagLink" class="tag"><i class="icon-plus"></i> Ajoutez le premier tag</a>
 									</li>
 								</ul>
-								<span ng-show="userAddTag" class="input-append">
+								<span ng-show="userAddTag" class="input-append add-tag-form">
 									<input type="text" placeholder="Votre tag" ng-model="newTag.name" id="inputTextTag" class="span6">
 									<button class="btn" ng-click="submitTag(newTag)">Ok</button>
 									<button class="btn" ng-click="userAddTag=false"><i class="icon-remove" ></i></button>

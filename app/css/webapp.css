@@ -101,7 +101,10 @@
   font-size: 20px;
 }
 
-
+.add-tag-form{
+  position: relative;
+  z-index: 99;
+}
 /* PAGE USER */
 .user-title-webapp-list{
   margin: 0;

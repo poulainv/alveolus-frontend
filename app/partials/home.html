@@ -11,7 +11,7 @@
 			<div class="row-fluid">
 				<div class="span2 offset1">
 					<div id="catList">
-						<span ng-repeat="cat in categories" ng-mouseover="descCatSelected = cat.description" ng-click="changeCat(cat)" ng-class="itemClass(cat)" class="btnCat" tooltip-placement="left" tooltip="{{descCatSelected}}" tooltip-popup-delay='500' tooltip-trigger="mouseenter"> 
+						<span ng-repeat="cat in categories" ng-mouseover="descCatSelected = cat.description" ng-click="changeCat(cat)" ng-class="itemClass(cat)" class="btnCat" tooltip-placement="top" tooltip="{{descCatSelected}}" tooltip-popup-delay='300' tooltip-trigger="mouseenter"> 
 							{{cat.name}}
 						</span>
 					</div>

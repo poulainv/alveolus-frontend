@@ -76,9 +76,10 @@ h1, h2, h3, h4, h5{
   height: 130px;
   overflow: hidden;  
   position: relative;
+  text-align: center;
 }
 .alveoleImg{
-  position: absolute;
+  max-height: 130px;
 }
 .alveole hr{
   margin: 0;
@@ -201,7 +202,7 @@ h1, h2, h3, h4, h5{
 
 .container-grey{
   /*background-color: #eef2ea;*/
-/*  background-color: rgb(240,240,240);*/
+  /*  background-color: rgb(240,240,240);*/
   padding-bottom: 100px;
   background-image: url('../img/cloth_alike.png');
   background-position: initial initial;
@@ -602,9 +603,9 @@ h1, h2, h3, h4, h5{
 #headerSlogan{
   color: black;
 /*  font-family: Politica;
-  font-weight: bold;*/
-  text-align: right;
-  padding: 110px 30px;
+font-weight: bold;*/
+text-align: right;
+padding: 110px 30px;
 }
 
 #headerImgCarousel{
@@ -677,7 +678,7 @@ h1, h2, h3, h4, h5{
 #popularAppsWrapper{
   background-color: #eef2ea;
 /*  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;*/
+border-bottom: 1px solid grey;*/
 }
 
 #popularCarousel{

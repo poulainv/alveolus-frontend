@@ -50,7 +50,7 @@ controller('WebappCtrl', function($scope,$location,$routeParams, WebappService, 
 				}
 				$scope.scrollbar();
 			});
-			if($scope.user.id == $scope.webapp.user_id){
+			if($scope.user.id == $scope.webapp.user_id || $scope.userInfo.admin == true){
 				$scope.canEdit = true;
 			}
 		}else{

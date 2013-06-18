@@ -15,7 +15,8 @@ controller('EditWebappCtrl', function($scope,$routeParams,$location,$rootScope,W
 	$('#progressBar').hide();
 	
 	$scope.webapp = WebappService.get({id:$routeParams.webAppId}, function(){
-		if($scope.user.id != $scope.webapp.user_id){
+		// If user is not admin AND he's not alveole owner
+		if(!($scope.user.id == $scope.webapp.user_id || $scope.userInfo.admin)){
 			$location.path('alveoles/'+$routeParams.webAppId);
 			$rootScope.$broadcast('onEditAccessFailed');
 		}	

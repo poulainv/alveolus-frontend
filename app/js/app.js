@@ -35,7 +35,7 @@ config(
         when('/alveoles/new',               {templateUrl: 'partials/addWebapp.html',        controller: 'AddWebappCtrl'}).
         when('/alveoles/search/:content',   {templateUrl: 'partials/webAppList.html',       controller: 'WebAppListCtrl'}).
         when('/alveoles/:webAppId',         {templateUrl: 'partials/webAppDesc.html',       controller: 'WebappCtrl'}).
-        when('/alveoles/:webAppId/edit',    {templateUrl: 'partials/editWebApp.html',       controller: 'EditWebappCtrl'}).
+        when('/alveoles/:webAppId/edit',    {templateUrl: 'partials/editWebapp.html',       controller: 'EditWebappCtrl'}).
         when('/webappModal/:webAppId',      {templateUrl: 'partials/webAppModal.html',      controller: 'WebappCtrl'}).
         when('/alveoles',                   {templateUrl: 'partials/webAppList.html',       controller: 'WebAppListCtrl'}).
         when('/user/:userId',               {templateUrl: 'partials/user.html',             controller: 'UserCtrl'}).

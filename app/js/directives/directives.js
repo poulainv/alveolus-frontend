@@ -37,8 +37,8 @@ directive('facebook', function($http,globals) {
       $scope.fetch = function() {
         console.log("fetch function...");
         if ($scope.login_status == 'connected') {
-         console.log('fetch');
-         fetch();
+        alert("Merci d'avoir accepté la demande d'autorisation, vous pouvez vous connecter en SSO");
+            location.reload();
        } else {
         console.log("login function...");
         login();
@@ -86,7 +86,7 @@ directive('share', function($http,globals,WebappService) {
         var img=($attrs.image=="img/missing.png") ? "http://alveolus.fr/app/img/"+$attrs.id+".jpg" : $attrs.image;
         var obj = {
           method: 'feed',
-          link: 'http://alveolus.fr/app/index.html#/alveoles/'+$attrs.id,
+          link: 'http://alveolus.fr/#/alveoles/'+$attrs.id,
           picture: img,
           name: $attrs.title,
           caption: $attrs.caption

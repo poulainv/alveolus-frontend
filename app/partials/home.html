@@ -1,173 +1,144 @@
-<div ng-include src="'fragment/header-carousel.html'"></div>
-<!-- mainWrapper has a static height, preventing the page to shrink when we hide the content -->
-<div id="mainWrapper">
-	<!-- contentWrapper can be hidden -->
-	<div id="contentWrapper">
-		<div id="homeBody" class="container">
-			<div class="row-fluid">
-				<h3 class="span6 offset1"><img src="img/picto/picto-selection-green-big.svg"> Sélection de l'équipe - {{catSelected.name}} :</h3>
-				<button id="btnMore" class="btn btn-inverse span4" type="button" ng-click="changeView('alveoles')">{{catSelected.name}} : Voir toutes les alvéoles > </button>
-			</div>
-			<div class="row-fluid">
-				<div class="span2 offset1">
-					<div id="catList">
-						<span ng-repeat="cat in categories" ng-mouseover="descCatSelected = cat.description" ng-click="changeCat(cat)" ng-class="itemClass(cat)" class="btnCat" tooltip-placement="top" tooltip="{{descCatSelected}}" tooltip-popup-delay='300' tooltip-trigger="mouseenter"> 
-							{{cat.name}}
-						</span>
-					</div>
-				</div>
+<!doctype html>
+<html lang="fr" ng-app="alveolus">
 
-				<div class="span8">
-					<br>
-					<div id="appFeatured" class="row-fluid">
-						<div class="span4">
-							<a href="#/alveoles/{{appFeatured.id}}"><img id="logoTeamSelection" class="rounded" ng-src="{{appFeatured | image}}" title="{{appFeatured.title}}" alt="{{appFeatured.title}}"></a>
-						</div>
-						<div id="appFeaturedDescWrapper" class="span8">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AlveolUs</title>
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-responsive.css" >
+  <link rel=" stylesheet" type="text/css" href="css/joyride-2.0.3.css"> <!-- Joyride plugin -->
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/webapp.css"/>
+  <link rel="stylesheet" href="css/feedback.css"/>
+  <link rel="stylesheet" href="css/nanoscroller.css"/>
+  <link rel="stylesheet" href="css/FontAwesome/css/font-awesome.min.css"> <!-- Ajout d'icones à bootstrap -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'><!-- police Open Sans -->
+  
 
-							<div class="row-fluid">
-								<div class="span7">
-									<h2><a href="#/alveoles/{{appFeatured.id}}">{{appFeatured.title}}</a></h2>
-								</div>
-								<div class="span5">
-									<i class="{{ {'rate':appFeatured.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
-									({{appFeatured.comments.length}} avis)
-								</div>
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>-->
+ 
+  <script src="lib/angular/angular.min.js"></script>
+  <!-- // <script src="lib/d3v3/d3.v3.min.js"></script> -->
+  <script src="lib/d3/d3.min.js"></script>
+  <script src="lib/popover.js"></script>
+  <script src="lib/angular/angular-cookies.min.js"></script>
+  <script src="lib/angular/angular-resource.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services/sessionService.js"></script>
+  <script src="js/services/webappService.js"></script>
+  <script src="js/services/categoryService.js"></script>
+  <script src="js/services/commentService.js"></script>
+  <script src="js/services/socialService.js"></script>
+  <script src="js/services/feedbackService.js"></script>
+  <script src="js/services/tagService.js"></script>
+  <script src="js/services/userService.js"></script>
+  <script src="js/controllers/homeCtrl.js"></script>
+  <script src="js/controllers/graphCtrl.js"></script>
+  <script src="js/controllers/mainCtrl.js"></script>
+  <script src="js/controllers/webappCtrl.js"></script>
+  <script src="js/controllers/addWebappCtrl.js"></script>
+  <script src="js/controllers/editWebappCtrl.js"></script>
+  <script src="js/controllers/webAppListCtrl.js"></script>
+  <script src="js/controllers/userCtrl.js"></script>
+  <script src="js/controllers/addUserCtrl.js"></script>
+  <script src="js/controllers/voteCtrl.js"></script>
+  <script src="js/filters/filters.js"></script>
+  <script src="js/directives/directives.js"></script>
 
-							</div>
+  <!-- Twitter API -->
+  <script type="text/javascript" src="lib/twitter/codebird.min.js"></script>
 
-							<div class="row-fluid" id="descFeaturedApp">
-								<div class="span12">
-									{{appFeatured.description | truncate:500}}
-								</div>
-							</div>
+</head>
 
-							<div class="row-fluid"  style="margin-top:2%;">
-								<div class="span12">
-									<img src="img/icon/icon-tags.svg">
-									<span ng-repeat="tag in appFeatured.tags">
-										<a href="#/alveoles/search/{{tag.name}}" class="tag">{{tag.name}}</a> 
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<br>
-				</div>
-			</div>
-		</div>
+<body ng-controller="MainCtrl" ng-cloak>
 
-		<!-- <div class="separator span11"></div> -->
-		<div id="popularAppsWrapper">
-			<div class="container">
+  <div ng-include src="'fragment/navbar.html'"></div>
 
-				<div class="row-fluid">
-					<div class="span6 offset1">
-						<h3><img src="img/icon/icon-hot-green.svg">  Alvéoles populaires </h3>
-					</div>
-				</div>
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="row-fluid">
-							<carousel>
-								<slide ng-repeat="slide in slidesPopular" active="img.active" class="row-fluid">
-									<section class="span10 offset1">
-										<div class="row-fluid">	
-											<article class="alveole span3" ng-repeat="alveole in slide">
-												<header class="alveoleHeader">Note : {{alveole.average_rate|truncate:3:''}}/5
-													<span class="alveoleRatingWrapper">
-														<i class="{{ {'rate':alveole.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
-													</span>
-												</header>
-												<div class="alveoleContent">
-													<a href="#/alveoles/{{alveole.id}}">
-														<div class="cropedImg">
-															<img class="alveoleImg" ng-src="{{alveole | image}}"  alt="{{alveole.title}}">
-														</div>
-														<h4 class="alveoleName">
-															<strong>{{alveole.title}}</strong>
-														</h4>
-														<p class="alveoleDesc">
-															{{alveole.caption}}
-														</p>
-													</a>
-													<div class="alveoleTagsWrapper">
-														<img src="img/icon/icon-tags.svg" ng-show="alveole.tags">
-														<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)" class="tag">
-															<a href="#/alveoles/search/{{tag.name}}" class="tag">{{tag.name}}</a>
-														</span>
-													</div>
-
-												</div>
-											</article>
-										</div>
-									</section>
-								</slide>
-							</carousel>
-						</div>
-
-					</div>
-
-
-				</div>
-			</div>
-		</div>
-
-		<div id="">
-			<div class="container">
-
-				<div class="row-fluid">
-					<div class="span6 offset1">
-						<h3><img src="img/icon/icon-hot-green.svg">  Dernières alvéoles</h3>
-					</div>
-				</div>
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="row-fluid">
-							<carousel>
-								<slide ng-repeat="slide in slidesRecent" active="img.active" class="row-fluid">
-									<section class="span10 offset1">
-										<div class="row-fluid">	
-											<article class="alveole span3" ng-repeat="alveole in slide">
-												<header class="alveoleHeader">Note : {{alveole.average_rate|truncate:3:''}}/5
-													<span class="alveoleRatingWrapper">
-														<i class="{{ {'rate':alveole.average_rate, 'index':$index} | star}} icon-large"  ng-repeat="n in [] | range:5"></i>
-													</span>
-												</header>
-												<div class="alveoleContent">
-													<a href="#/alveoles/{{alveole.id}}">
-														<div class="cropedImg">
-															<img class="alveoleImg" ng-src="{{alveole | image}}"  alt="{{alveole.title}}">
-														</div>
-														<h4 class="alveoleName">
-															<strong>{{alveole.title}}</strong>
-														</h4>
-														<p class="alveoleDesc">
-															{{alveole.caption}}
-														</p>
-													</a>
-													<div class="alveoleTagsWrapper">
-														<img src="img/icon/icon-tags.svg" ng-show="alveole.tags">
-														<span ng-repeat="tag in alveole.tags" ng-click="search(tag.name)" class="tag">
-															<a href="#/alveoles/search/{{tag.name}}" class="tag">{{tag.name}}</a>
-														</span>
-													</div>
-
-												</div>
-											</article>
-										</div>
-									</section>
-								</slide>
-							</carousel>
-						</div>
-
-					</div>
-
-
-				</div>
-			</div>
-		</div>
-
-
-	</div>
+  <div id="mainContainer">
+   <a ng-click="openModalFeedback()" id="feedback_link" class="feedback_link left"></a>
+   <div class="row-fluid" ng-show="alerts">
+     <div id="alertContainer" class="offset1 span10">
+      <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+    </div>
+  </div>
+  <div ng-view></div>
 </div>
+<!-- Loading animation container -->
+<div id="loading">
+  <!-- We make this div spin -->
+  <div class="spinner">
+    <img src="img/spinner.png"/>
+  </div>
+</div>
+
+<div ng-include src="'fragment/modal-login.html'"></div>
+
+<div ng-include src="'fragment/modal-feedback.html'"></div>
+
+<div ng-include src="'fragment/footer.html'"></div>
+
+<!-- Tip Content -->
+    <ol id="joyRideTipContent">
+      <li data-id="logoNavbar" data-text="Suivant">
+        <h2>Bienvenue</h2>
+        <p> Alveolus vous souhaite la bienvenue. Prenez quelques secondes pour découvrir le site...</p>
+      </li>
+      <li data-id="proposez" data-text="Suivant">
+        <h2>Proposez</h2>
+        <p>Nous avons besoin de vous. N'hésitez pas à soumettre vos découvertes de sites internet contributifs...</p>
+      </li>
+      <li data-id="moderez" data-text="Suivant">
+        <h2>Modérez</h2>
+        <p>... et à valider celles des autres membres de la communauté.</p>
+      </li>
+      <li data-id="catList" data-text="Suivant" data-options="tipLocation:top">
+        <h2>Les catégories</h2>
+        <p>Passer la souris pour en savoir plus sur la catégorie. Cliquer pour découvrir les alvéoles qui nous ont séduit !</p>
+      </li>
+      <li data-id="social-networks" data-button="Suivant" data-options="tipLocation:top">
+        <h2>Réseaux sociaux</h2>
+        <p>Retrouvez nous sur les réseaux sociaux</p>
+      </li>
+      <li data-id="btnMore" data-text="Fermer">
+        <h2>Toutes les alvéoles</h2>
+        <p>Consultez dès maintenant la liste des alvéoles</p>
+      </li>
+    </ol>
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="lib/jquery.joyride-2.0.3.js"></script>
+<script src="lib/jquery.cookie.js"></script>
+<script src="lib/modernizr.mq.js"></script>
+<script src="lib/jquery.nanoscroller.min.js"></script>
+<script src="lib/bootstrap/bootstrap.min.js"></script>
+<script src="lib/bootstrap/ui-bootstrap-tpls-0.3.0.js"></script>
+  <span id="fb-root"></span>
+<script>
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-41410962-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- /Google Analytics -->
+
+<!-- /Facebook -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<!-- /Twitter -->
+<script>
+$('#joyRideTipContent').joyride({
+        'autoStart' : false,
+        'cookieMonster': true,
+        });
+</script>
+
+</body>
+</html>

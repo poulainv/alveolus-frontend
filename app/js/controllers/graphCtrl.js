@@ -51,7 +51,7 @@ controller('GraphCtrl', function($scope,$routeParams,$location,TagService,Catego
               root.children[i].children[index] = new Object();
               root.children[i].children[index].title = data[i].webapps[j].title ;
               root.children[i].children[index].index = j ;
-              root.children[i].children[index].image = data[i].webapps[j].id>11 ? "img/11.jpg" : "img/"+data[i].webapps[j].id + ".jpg" ;
+              root.children[i].children[index].image = data[i].webapps[j].image_url;
               root.children[i].children[index].caption = data[i].webapps[j].caption ;
               root.children[i].children[index].description = data[i].webapps[j].description ;
               index++;

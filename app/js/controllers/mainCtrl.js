@@ -155,7 +155,11 @@ controller('MainCtrl', function($scope,$routeParams,$location,$window,$timeout,g
 	$scope.sendFeedback = function (content) {
 		$scope.closeModalFeedback();
 		content.page = $location.path() ;
-		content.email = $scope.user.email ; 
+		
+		if($scope.isLogged){
+			content.email = $scope.user.email;
+		} 
+		
 		console.log("feedback"+content.comment);
 		FeedbackService.sendFeedback(content,function(data){
 			console.log(data);

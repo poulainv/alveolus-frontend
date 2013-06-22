@@ -52,7 +52,7 @@
 
 .alveole-description{
   /*text-align: justify;*/
-  height: 350px;
+  min-height: 350px !important;
 }
 
 .nano-parent{

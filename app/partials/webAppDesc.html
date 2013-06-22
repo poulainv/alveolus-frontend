@@ -47,6 +47,7 @@
 								<li><a ng-href="{{webapp.url}}" target="_blank"><img src="img/picto/picto-link-green.svg" alt="link-picto"> {{webapp.url}}</a></li>
 								<li><i class="icon-eye-open icon-large"></i> Vu {{webapp.nb_click_preview + webapp.nb_click_detail}} fois</li>
 								<li ng-show="canEdit"><a ng-href="#/alveoles/{{webapp.id}}/edit"><i class="icon-pencil icon-large"></i> Editer</a></li>
+								<li ng-hide="canEdit"><i class="icon-pencil icon-large"></i> Proposé par : {{webapp.user.pseudo}}</li>
 							</ul>
 						</div>
 						<!-- ./Caption -->

@@ -16,12 +16,12 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
     **/
 
     function broadcastLogged(){
-      console.log("cast broadcastLogged");
+      // console.log("cast broadcastLogged");
       $rootScope.$broadcast('onLoggedSuccess');
     };
 
     function broadcastUnlogged(){
-      console.log("cast broadcastUnlogged");
+      // console.log("cast broadcastUnlogged");
       $rootScope.$broadcast('onUnloggedSuccess');
     };
 
@@ -37,7 +37,7 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
         data: data,
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }).success(function(data){
-        console.log("User logged");
+        // console.log("User logged");
         setUser({id : data.id, email : data.email, success: true });
         token = data.auth_token;
         setHttpProviderCommonHeaderToken(token);
@@ -45,7 +45,7 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
         broadcastLogged();
       })
       .error(function(data) {
-        console.log("User not logged");
+        // console.log("User not logged");
         setUser({id : data.id, email : data.email, success: false});
       });
     };
@@ -57,12 +57,12 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
         url: globals.server_url+'/sign_out.json?id='+user.id,
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }).success(function(data){
-        console.log("User unlogged");
+        // console.log("User unlogged");
         resetSession();
         broadcastUnlogged();
       })
       .error(function(data) {
-        console.log("Error sign_out");
+        // console.log("Error sign_out");
         resetSession();
         broadcastUnlogged();
       });
@@ -70,11 +70,11 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
 
 
     function initTryToLogWithCookie(){
-      console.log("Try to log with cookies ");
+      // console.log("Try to log with cookies ");
       var cookieToken = getTokenCookie();
       if(cookieToken!=null && cookieToken!=""){
         token = cookieToken;
-        console.log("session cookie found");
+        // console.log("session cookie found");
         setUser({success: true, id : getUserIdCookie()});
         setHttpProviderCommonHeaderToken(token);
         broadcastLogged();
@@ -89,7 +89,7 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
       user.email = newUser.email ;
       user.id = newUser.id;
       user.authorized = newUser.success;
-      console.log("setUser auth :"+newUser.success);
+      // console.log("setUser auth :"+newUser.success);
     }
 
     function resetUser(){
@@ -105,13 +105,13 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
 
 
     function setSessionToken(token,id){
-      console.log("set cookie token : "+token+" for userId :"+id);
+      // console.log("set cookie token : "+token+" for userId :"+id);
       $cookieStore.put('alveolus-token',token)
       $cookieStore.put('alveolus-userId', id);
     }
 
     function getTokenCookie(){
-      console.log('getCookie '+ $cookieStore.get('alveolus-token'))
+      // console.log('getCookie '+ $cookieStore.get('alveolus-token'))
       return $cookieStore.get('alveolus-token');
     }
 
@@ -151,7 +151,7 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
     }
 
     authorized = function() {
-      console.log("authorized????"+(user.authorized))
+      // console.log("authorized????"+(user.authorized))
       return user.authorized;
     };
 
@@ -175,7 +175,7 @@ factory('SessionService', function($log, $cookieStore, $resource, $http, $rootSc
     };
 
     getToken = function(){
-      console.log("return token : "+token);
+      // console.log("return token : "+token);
       return token;
     };
 
